@@ -48,15 +48,17 @@ namespace BioBotApp.Model.Data {
         
         private bbt_protocolDataTable tablebbt_protocol;
         
-        private global::System.Data.DataRelation relationbbt_property_bbt_object_property;
-        
-        private global::System.Data.DataRelation relationbbt_object_type_bbt_object_property;
-        
-        private global::System.Data.DataRelation relationbbt_operation_type_bbt_operation;
+        private global::System.Data.DataRelation relationbbt_object_bbt_operation_reference;
         
         private global::System.Data.DataRelation relationbbt_operation_bbt_operation_reference;
         
-        private global::System.Data.DataRelation relationbbt_object_bbt_operation_reference;
+        private global::System.Data.DataRelation relationbbt_operation_type_bbt_operation;
+        
+        private global::System.Data.DataRelation relationbbt_step_bbt_operation;
+        
+        private global::System.Data.DataRelation relationbbt_protocol_bbt_protocol;
+        
+        private global::System.Data.DataRelation relationbbt_protocol_bbt_step;
         
         private global::System.Data.DataRelation relationbbt_information_bbt_information_value;
         
@@ -64,17 +66,13 @@ namespace BioBotApp.Model.Data {
         
         private global::System.Data.DataRelation relationbbt_object_bbt_information_value;
         
-        private global::System.Data.DataRelation relationbbt_protocol_bbt_protocol;
-        
         private global::System.Data.DataRelation relationbbt_object_bbt_step;
         
-        private global::System.Data.DataRelation relationbbt_protocol_bbt_step;
+        private global::System.Data.DataRelation relationbbt_object_type_bbt_object_property;
+        
+        private global::System.Data.DataRelation relationbbt_property_bbt_object_property;
         
         private global::System.Data.DataRelation relationbbt_object_type_bbt_object;
-        
-        private global::System.Data.DataRelation relationbbt_object_bbt_object;
-        
-        private global::System.Data.DataRelation relationbbt_step_bbt_operation;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -486,20 +484,19 @@ namespace BioBotApp.Model.Data {
                     this.tablebbt_protocol.InitVars();
                 }
             }
-            this.relationbbt_property_bbt_object_property = this.Relations["bbt_property_bbt_object_property"];
-            this.relationbbt_object_type_bbt_object_property = this.Relations["bbt_object_type_bbt_object_property"];
-            this.relationbbt_operation_type_bbt_operation = this.Relations["bbt_operation_type_bbt_operation"];
-            this.relationbbt_operation_bbt_operation_reference = this.Relations["bbt_operation_bbt_operation_reference"];
             this.relationbbt_object_bbt_operation_reference = this.Relations["bbt_object_bbt_operation_reference"];
+            this.relationbbt_operation_bbt_operation_reference = this.Relations["bbt_operation_bbt_operation_reference"];
+            this.relationbbt_operation_type_bbt_operation = this.Relations["bbt_operation_type_bbt_operation"];
+            this.relationbbt_step_bbt_operation = this.Relations["bbt_step_bbt_operation"];
+            this.relationbbt_protocol_bbt_protocol = this.Relations["bbt_protocol_bbt_protocol"];
+            this.relationbbt_protocol_bbt_step = this.Relations["bbt_protocol_bbt_step"];
             this.relationbbt_information_bbt_information_value = this.Relations["bbt_information_bbt_information_value"];
             this.relationbbt_information_types_bbt_information = this.Relations["bbt_information_types_bbt_information"];
             this.relationbbt_object_bbt_information_value = this.Relations["bbt_object_bbt_information_value"];
-            this.relationbbt_protocol_bbt_protocol = this.Relations["bbt_protocol_bbt_protocol"];
             this.relationbbt_object_bbt_step = this.Relations["bbt_object_bbt_step"];
-            this.relationbbt_protocol_bbt_step = this.Relations["bbt_protocol_bbt_step"];
+            this.relationbbt_object_type_bbt_object_property = this.Relations["bbt_object_type_bbt_object_property"];
+            this.relationbbt_property_bbt_object_property = this.Relations["bbt_property_bbt_object_property"];
             this.relationbbt_object_type_bbt_object = this.Relations["bbt_object_type_bbt_object"];
-            this.relationbbt_object_bbt_object = this.Relations["bbt_object_bbt_object"];
-            this.relationbbt_step_bbt_operation = this.Relations["bbt_step_bbt_operation"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -534,26 +531,30 @@ namespace BioBotApp.Model.Data {
             base.Tables.Add(this.tablebbt_operation_type);
             this.tablebbt_protocol = new bbt_protocolDataTable();
             base.Tables.Add(this.tablebbt_protocol);
-            this.relationbbt_property_bbt_object_property = new global::System.Data.DataRelation("bbt_property_bbt_object_property", new global::System.Data.DataColumn[] {
-                        this.tablebbt_property.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_property.fk_properties_idColumn}, false);
-            this.Relations.Add(this.relationbbt_property_bbt_object_property);
-            this.relationbbt_object_type_bbt_object_property = new global::System.Data.DataRelation("bbt_object_type_bbt_object_property", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_type.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_property.fk_object_type_idColumn}, false);
-            this.Relations.Add(this.relationbbt_object_type_bbt_object_property);
-            this.relationbbt_operation_type_bbt_operation = new global::System.Data.DataRelation("bbt_operation_type_bbt_operation", new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation_type.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation.fk_operation_typeColumn}, false);
-            this.Relations.Add(this.relationbbt_operation_type_bbt_operation);
-            this.relationbbt_operation_bbt_operation_reference = new global::System.Data.DataRelation("bbt_operation_bbt_operation_reference", new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation_reference.fk_operationColumn}, false);
-            this.Relations.Add(this.relationbbt_operation_bbt_operation_reference);
             this.relationbbt_object_bbt_operation_reference = new global::System.Data.DataRelation("bbt_object_bbt_operation_reference", new global::System.Data.DataColumn[] {
                         this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_operation_reference.fk_objectColumn}, false);
             this.Relations.Add(this.relationbbt_object_bbt_operation_reference);
+            this.relationbbt_operation_bbt_operation_reference = new global::System.Data.DataRelation("bbt_operation_bbt_operation_reference", new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation_reference.fk_operationColumn}, false);
+            this.Relations.Add(this.relationbbt_operation_bbt_operation_reference);
+            this.relationbbt_operation_type_bbt_operation = new global::System.Data.DataRelation("bbt_operation_type_bbt_operation", new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation_type.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation.fk_operation_typeColumn}, false);
+            this.Relations.Add(this.relationbbt_operation_type_bbt_operation);
+            this.relationbbt_step_bbt_operation = new global::System.Data.DataRelation("bbt_step_bbt_operation", new global::System.Data.DataColumn[] {
+                        this.tablebbt_step.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation.fk_stepColumn}, false);
+            this.Relations.Add(this.relationbbt_step_bbt_operation);
+            this.relationbbt_protocol_bbt_protocol = new global::System.Data.DataRelation("bbt_protocol_bbt_protocol", new global::System.Data.DataColumn[] {
+                        this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_protocol.fk_protocolColumn}, false);
+            this.Relations.Add(this.relationbbt_protocol_bbt_protocol);
+            this.relationbbt_protocol_bbt_step = new global::System.Data.DataRelation("bbt_protocol_bbt_step", new global::System.Data.DataColumn[] {
+                        this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_step.fk_protocolColumn}, false);
+            this.Relations.Add(this.relationbbt_protocol_bbt_step);
             this.relationbbt_information_bbt_information_value = new global::System.Data.DataRelation("bbt_information_bbt_information_value", new global::System.Data.DataColumn[] {
                         this.tablebbt_information.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_information_value.fk_informationColumn}, false);
@@ -566,30 +567,22 @@ namespace BioBotApp.Model.Data {
                         this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_information_value.fk_objectColumn}, false);
             this.Relations.Add(this.relationbbt_object_bbt_information_value);
-            this.relationbbt_protocol_bbt_protocol = new global::System.Data.DataRelation("bbt_protocol_bbt_protocol", new global::System.Data.DataColumn[] {
-                        this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_protocol.fk_protocolColumn}, false);
-            this.Relations.Add(this.relationbbt_protocol_bbt_protocol);
             this.relationbbt_object_bbt_step = new global::System.Data.DataRelation("bbt_object_bbt_step", new global::System.Data.DataColumn[] {
                         this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_step.fk_objectColumn}, false);
             this.Relations.Add(this.relationbbt_object_bbt_step);
-            this.relationbbt_protocol_bbt_step = new global::System.Data.DataRelation("bbt_protocol_bbt_step", new global::System.Data.DataColumn[] {
-                        this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_step.fk_protocolColumn}, false);
-            this.Relations.Add(this.relationbbt_protocol_bbt_step);
+            this.relationbbt_object_type_bbt_object_property = new global::System.Data.DataRelation("bbt_object_type_bbt_object_property", new global::System.Data.DataColumn[] {
+                        this.tablebbt_object_type.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_object_property.fk_object_type_idColumn}, false);
+            this.Relations.Add(this.relationbbt_object_type_bbt_object_property);
+            this.relationbbt_property_bbt_object_property = new global::System.Data.DataRelation("bbt_property_bbt_object_property", new global::System.Data.DataColumn[] {
+                        this.tablebbt_property.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_object_property.fk_properties_idColumn}, false);
+            this.Relations.Add(this.relationbbt_property_bbt_object_property);
             this.relationbbt_object_type_bbt_object = new global::System.Data.DataRelation("bbt_object_type_bbt_object", new global::System.Data.DataColumn[] {
                         this.tablebbt_object_type.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_object.fk_object_typeColumn}, false);
             this.Relations.Add(this.relationbbt_object_type_bbt_object);
-            this.relationbbt_object_bbt_object = new global::System.Data.DataRelation("bbt_object_bbt_object", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_object.fk_objectColumn}, false);
-            this.Relations.Add(this.relationbbt_object_bbt_object);
-            this.relationbbt_step_bbt_operation = new global::System.Data.DataRelation("bbt_step_bbt_operation", new global::System.Data.DataColumn[] {
-                        this.tablebbt_step.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation.fk_stepColumn}, false);
-            this.Relations.Add(this.relationbbt_step_bbt_operation);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2120,7 +2113,7 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow Addbbt_objectRow(bbt_object_typeRow parentbbt_object_typeRowBybbt_object_type_bbt_object, int deck_x, int deck_y, int rotation, string activated, string description, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_object) {
+            public bbt_objectRow Addbbt_objectRow(bbt_object_typeRow parentbbt_object_typeRowBybbt_object_type_bbt_object, int deck_x, int deck_y, int rotation, string activated, string description, int fk_object) {
                 bbt_objectRow rowbbt_objectRow = ((bbt_objectRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2130,12 +2123,9 @@ namespace BioBotApp.Model.Data {
                         rotation,
                         activated,
                         description,
-                        null};
+                        fk_object};
                 if ((parentbbt_object_typeRowBybbt_object_type_bbt_object != null)) {
                     columnValuesArray[1] = parentbbt_object_typeRowBybbt_object_type_bbt_object[0];
-                }
-                if ((parentbbt_objectRowBybbt_object_bbt_object != null)) {
-                    columnValuesArray[7] = parentbbt_objectRowBybbt_object_bbt_object[0];
                 }
                 rowbbt_objectRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_objectRow);
@@ -4489,23 +4479,23 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow bbt_objectRow {
-                get {
-                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_step"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_step"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_protocolRow bbt_protocolRow {
                 get {
                     return ((bbt_protocolRow)(this.GetParentRow(this.Table.ParentRelations["bbt_protocol_bbt_step"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["bbt_protocol_bbt_step"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_objectRow bbt_objectRow {
+                get {
+                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_step"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_step"]);
                 }
             }
             
@@ -4871,17 +4861,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow bbt_objectRowParent {
-                get {
-                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_object"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_object"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isfk_object_typeNull() {
                 return this.IsNull(this.tablebbt_object.fk_object_typeColumn);
             }
@@ -4996,17 +4975,6 @@ namespace BioBotApp.Model.Data {
                     return ((bbt_stepRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_bbt_step"])));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow[] Getbbt_objectRows() {
-                if ((this.Table.ChildRelations["bbt_object_bbt_object"] == null)) {
-                    return new bbt_objectRow[0];
-                }
-                else {
-                    return ((bbt_objectRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_bbt_object"])));
-                }
-            }
         }
         
         /// <summary>
@@ -5058,23 +5026,23 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_propertyRow bbt_propertyRow {
-                get {
-                    return ((bbt_propertyRow)(this.GetParentRow(this.Table.ParentRelations["bbt_property_bbt_object_property"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_property_bbt_object_property"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_object_typeRow bbt_object_typeRow {
                 get {
                     return ((bbt_object_typeRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_type_bbt_object_property"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["bbt_object_type_bbt_object_property"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_propertyRow bbt_propertyRow {
+                get {
+                    return ((bbt_propertyRow)(this.GetParentRow(this.Table.ParentRelations["bbt_property_bbt_object_property"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["bbt_property_bbt_object_property"]);
                 }
             }
         }
@@ -5322,23 +5290,23 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow bbt_operationRow {
-                get {
-                    return ((bbt_operationRow)(this.GetParentRow(this.Table.ParentRelations["bbt_operation_bbt_operation_reference"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_operation_bbt_operation_reference"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_objectRow bbt_objectRow {
                 get {
                     return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_operation_reference"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_operation_reference"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow bbt_operationRow {
+                get {
+                    return ((bbt_operationRow)(this.GetParentRow(this.Table.ParentRelations["bbt_operation_bbt_operation_reference"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["bbt_operation_bbt_operation_reference"]);
                 }
             }
         }
@@ -9916,7 +9884,6 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    this.SortSelfReferenceRows(updatedRows, dataSet.Relations["bbt_object_bbt_object"], false);
                     result = (result + this._bbt_objectTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
@@ -10034,7 +10001,6 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                 global::System.Data.DataRow[] addedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    this.SortSelfReferenceRows(addedRows, dataSet.Relations["bbt_object_bbt_object"], false);
                     result = (result + this._bbt_objectTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
@@ -10215,7 +10181,6 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                 global::System.Data.DataRow[] deletedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    this.SortSelfReferenceRows(deletedRows, dataSet.Relations["bbt_object_bbt_object"], true);
                     result = (result + this._bbt_objectTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
