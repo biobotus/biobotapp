@@ -95,7 +95,6 @@
     <EmbeddedResource Include="View\Protocol\ProtocolForm.resx">
       <DependentUpon>ProtocolForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Model\Data\dsBioBot.xsc">
       <DependentUpon>dsBioBot.xsd</DependentUpon>
     </None>
