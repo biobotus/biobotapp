@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Model.Data
 {
-    class DBManager
+    public class DBManager
     {
         private static DBManager instance;
-        private Data.BioBotDataset projectDataset { get; set; }
+        public Data.BioBotDataSets projectDataset { get; set; }
 
         private DBManager()
         {

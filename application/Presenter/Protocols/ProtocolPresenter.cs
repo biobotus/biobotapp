@@ -15,6 +15,7 @@ namespace BioBotApp.Presenter
         public ProtocolPresenter(IProtocolView protocolView)
         {
             this.protocolView = protocolView;
+            
             this.protocolView.OnProtocolAddEvent += ProtocolView_OnProtocolAddEvent;
         }
 

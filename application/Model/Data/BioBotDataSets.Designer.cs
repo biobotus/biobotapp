@@ -20,9 +20,9 @@ namespace BioBotApp.Model.Data {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("dsBioBot")]
+    [global::System.Xml.Serialization.XmlRootAttribute("BioBotDataSets")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class dsBioBot : global::System.Data.DataSet {
+    public partial class BioBotDataSets : global::System.Data.DataSet {
         
         private bbt_informationDataTable tablebbt_information;
         
@@ -48,37 +48,11 @@ namespace BioBotApp.Model.Data {
         
         private bbt_protocolDataTable tablebbt_protocol;
         
-        private global::System.Data.DataRelation relationbbt_object_bbt_operation_reference;
-        
-        private global::System.Data.DataRelation relationbbt_operation_bbt_operation_reference;
-        
-        private global::System.Data.DataRelation relationbbt_operation_type_bbt_operation;
-        
-        private global::System.Data.DataRelation relationbbt_step_bbt_operation;
-        
-        private global::System.Data.DataRelation relationbbt_protocol_bbt_protocol;
-        
-        private global::System.Data.DataRelation relationbbt_protocol_bbt_step;
-        
-        private global::System.Data.DataRelation relationbbt_information_bbt_information_value;
-        
-        private global::System.Data.DataRelation relationbbt_information_types_bbt_information;
-        
-        private global::System.Data.DataRelation relationbbt_object_bbt_information_value;
-        
-        private global::System.Data.DataRelation relationbbt_object_bbt_step;
-        
-        private global::System.Data.DataRelation relationbbt_object_type_bbt_object_property;
-        
-        private global::System.Data.DataRelation relationbbt_property_bbt_object_property;
-        
-        private global::System.Data.DataRelation relationbbt_object_type_bbt_object;
-        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public dsBioBot() {
+        public BioBotDataSets() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -89,7 +63,7 @@ namespace BioBotApp.Model.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected dsBioBot(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected BioBotDataSets(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -318,7 +292,7 @@ namespace BioBotApp.Model.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            dsBioBot cln = ((dsBioBot)(base.Clone()));
+            BioBotDataSets cln = ((BioBotDataSets)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -484,27 +458,14 @@ namespace BioBotApp.Model.Data {
                     this.tablebbt_protocol.InitVars();
                 }
             }
-            this.relationbbt_object_bbt_operation_reference = this.Relations["bbt_object_bbt_operation_reference"];
-            this.relationbbt_operation_bbt_operation_reference = this.Relations["bbt_operation_bbt_operation_reference"];
-            this.relationbbt_operation_type_bbt_operation = this.Relations["bbt_operation_type_bbt_operation"];
-            this.relationbbt_step_bbt_operation = this.Relations["bbt_step_bbt_operation"];
-            this.relationbbt_protocol_bbt_protocol = this.Relations["bbt_protocol_bbt_protocol"];
-            this.relationbbt_protocol_bbt_step = this.Relations["bbt_protocol_bbt_step"];
-            this.relationbbt_information_bbt_information_value = this.Relations["bbt_information_bbt_information_value"];
-            this.relationbbt_information_types_bbt_information = this.Relations["bbt_information_types_bbt_information"];
-            this.relationbbt_object_bbt_information_value = this.Relations["bbt_object_bbt_information_value"];
-            this.relationbbt_object_bbt_step = this.Relations["bbt_object_bbt_step"];
-            this.relationbbt_object_type_bbt_object_property = this.Relations["bbt_object_type_bbt_object_property"];
-            this.relationbbt_property_bbt_object_property = this.Relations["bbt_property_bbt_object_property"];
-            this.relationbbt_object_type_bbt_object = this.Relations["bbt_object_type_bbt_object"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "dsBioBot";
+            this.DataSetName = "BioBotDataSets";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/dsBioBot.xsd";
+            this.Namespace = "http://tempuri.org/BioBotDataSets.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablebbt_information = new bbt_informationDataTable();
@@ -531,58 +492,6 @@ namespace BioBotApp.Model.Data {
             base.Tables.Add(this.tablebbt_operation_type);
             this.tablebbt_protocol = new bbt_protocolDataTable();
             base.Tables.Add(this.tablebbt_protocol);
-            this.relationbbt_object_bbt_operation_reference = new global::System.Data.DataRelation("bbt_object_bbt_operation_reference", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation_reference.fk_objectColumn}, false);
-            this.Relations.Add(this.relationbbt_object_bbt_operation_reference);
-            this.relationbbt_operation_bbt_operation_reference = new global::System.Data.DataRelation("bbt_operation_bbt_operation_reference", new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation_reference.fk_operationColumn}, false);
-            this.Relations.Add(this.relationbbt_operation_bbt_operation_reference);
-            this.relationbbt_operation_type_bbt_operation = new global::System.Data.DataRelation("bbt_operation_type_bbt_operation", new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation_type.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation.fk_operation_typeColumn}, false);
-            this.Relations.Add(this.relationbbt_operation_type_bbt_operation);
-            this.relationbbt_step_bbt_operation = new global::System.Data.DataRelation("bbt_step_bbt_operation", new global::System.Data.DataColumn[] {
-                        this.tablebbt_step.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_operation.fk_stepColumn}, false);
-            this.Relations.Add(this.relationbbt_step_bbt_operation);
-            this.relationbbt_protocol_bbt_protocol = new global::System.Data.DataRelation("bbt_protocol_bbt_protocol", new global::System.Data.DataColumn[] {
-                        this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_protocol.fk_protocolColumn}, false);
-            this.Relations.Add(this.relationbbt_protocol_bbt_protocol);
-            this.relationbbt_protocol_bbt_step = new global::System.Data.DataRelation("bbt_protocol_bbt_step", new global::System.Data.DataColumn[] {
-                        this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_step.fk_protocolColumn}, false);
-            this.Relations.Add(this.relationbbt_protocol_bbt_step);
-            this.relationbbt_information_bbt_information_value = new global::System.Data.DataRelation("bbt_information_bbt_information_value", new global::System.Data.DataColumn[] {
-                        this.tablebbt_information.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_information_value.fk_informationColumn}, false);
-            this.Relations.Add(this.relationbbt_information_bbt_information_value);
-            this.relationbbt_information_types_bbt_information = new global::System.Data.DataRelation("bbt_information_types_bbt_information", new global::System.Data.DataColumn[] {
-                        this.tablebbt_information_types.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_information.fk_information_typeColumn}, false);
-            this.Relations.Add(this.relationbbt_information_types_bbt_information);
-            this.relationbbt_object_bbt_information_value = new global::System.Data.DataRelation("bbt_object_bbt_information_value", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_information_value.fk_objectColumn}, false);
-            this.Relations.Add(this.relationbbt_object_bbt_information_value);
-            this.relationbbt_object_bbt_step = new global::System.Data.DataRelation("bbt_object_bbt_step", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_step.fk_objectColumn}, false);
-            this.Relations.Add(this.relationbbt_object_bbt_step);
-            this.relationbbt_object_type_bbt_object_property = new global::System.Data.DataRelation("bbt_object_type_bbt_object_property", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_type.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_property.fk_object_type_idColumn}, false);
-            this.Relations.Add(this.relationbbt_object_type_bbt_object_property);
-            this.relationbbt_property_bbt_object_property = new global::System.Data.DataRelation("bbt_property_bbt_object_property", new global::System.Data.DataColumn[] {
-                        this.tablebbt_property.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_property.fk_properties_idColumn}, false);
-            this.Relations.Add(this.relationbbt_property_bbt_object_property);
-            this.relationbbt_object_type_bbt_object = new global::System.Data.DataRelation("bbt_object_type_bbt_object", new global::System.Data.DataColumn[] {
-                        this.tablebbt_object_type.pk_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebbt_object.fk_object_typeColumn}, false);
-            this.Relations.Add(this.relationbbt_object_type_bbt_object);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -668,7 +577,7 @@ namespace BioBotApp.Model.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            dsBioBot ds = new dsBioBot();
+            BioBotDataSets ds = new BioBotDataSets();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -855,15 +764,12 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_informationRow Addbbt_informationRow(string description, bbt_information_typesRow parentbbt_information_typesRowBybbt_information_types_bbt_information) {
+            public bbt_informationRow Addbbt_informationRow(string description, int fk_information_type) {
                 bbt_informationRow rowbbt_informationRow = ((bbt_informationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         description,
-                        null};
-                if ((parentbbt_information_typesRowBybbt_information_types_bbt_information != null)) {
-                    columnValuesArray[2] = parentbbt_information_typesRowBybbt_information_types_bbt_information[0];
-                }
+                        fk_information_type};
                 rowbbt_informationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_informationRow);
                 return rowbbt_informationRow;
@@ -983,7 +889,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1169,20 +1075,14 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow Addbbt_stepRow(bbt_protocolRow parentbbt_protocolRowBybbt_protocol_bbt_step, string description, string value, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_step) {
+            public bbt_stepRow Addbbt_stepRow(int fk_protocol, string description, string value, int fk_object) {
                 bbt_stepRow rowbbt_stepRow = ((bbt_stepRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        null,
+                        fk_protocol,
                         description,
                         value,
-                        null};
-                if ((parentbbt_protocolRowBybbt_protocol_bbt_step != null)) {
-                    columnValuesArray[1] = parentbbt_protocolRowBybbt_protocol_bbt_step[0];
-                }
-                if ((parentbbt_objectRowBybbt_object_bbt_step != null)) {
-                    columnValuesArray[4] = parentbbt_objectRowBybbt_object_bbt_step[0];
-                }
+                        fk_object};
                 rowbbt_stepRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_stepRow);
                 return rowbbt_stepRow;
@@ -1309,7 +1209,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1585,7 +1485,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1761,19 +1661,13 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_information_valueRow Addbbt_information_valueRow(string information_value, bbt_informationRow parentbbt_informationRowBybbt_information_bbt_information_value, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_information_value) {
+            public bbt_information_valueRow Addbbt_information_valueRow(string information_value, int fk_information, int fk_object) {
                 bbt_information_valueRow rowbbt_information_valueRow = ((bbt_information_valueRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         information_value,
-                        null,
-                        null};
-                if ((parentbbt_informationRowBybbt_information_bbt_information_value != null)) {
-                    columnValuesArray[2] = parentbbt_informationRowBybbt_information_bbt_information_value[0];
-                }
-                if ((parentbbt_objectRowBybbt_object_bbt_information_value != null)) {
-                    columnValuesArray[3] = parentbbt_objectRowBybbt_object_bbt_information_value[0];
-                }
+                        fk_information,
+                        fk_object};
                 rowbbt_information_valueRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_information_valueRow);
                 return rowbbt_information_valueRow;
@@ -1897,7 +1791,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2113,20 +2007,17 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow Addbbt_objectRow(bbt_object_typeRow parentbbt_object_typeRowBybbt_object_type_bbt_object, int deck_x, int deck_y, int rotation, string activated, string description, int fk_object) {
+            public bbt_objectRow Addbbt_objectRow(int fk_object_type, int deck_x, int deck_y, int rotation, string activated, string description, int fk_object) {
                 bbt_objectRow rowbbt_objectRow = ((bbt_objectRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        null,
+                        fk_object_type,
                         deck_x,
                         deck_y,
                         rotation,
                         activated,
                         description,
                         fk_object};
-                if ((parentbbt_object_typeRowBybbt_object_type_bbt_object != null)) {
-                    columnValuesArray[1] = parentbbt_object_typeRowBybbt_object_type_bbt_object[0];
-                }
                 rowbbt_objectRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_objectRow);
                 return rowbbt_objectRow;
@@ -2261,7 +2152,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2427,18 +2318,12 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_object_propertyRow Addbbt_object_propertyRow(bbt_object_typeRow parentbbt_object_typeRowBybbt_object_type_bbt_object_property, bbt_propertyRow parentbbt_propertyRowBybbt_property_bbt_object_property, string value) {
+            public bbt_object_propertyRow Addbbt_object_propertyRow(int fk_object_type_id, int fk_properties_id, string value) {
                 bbt_object_propertyRow rowbbt_object_propertyRow = ((bbt_object_propertyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        null,
+                        fk_object_type_id,
+                        fk_properties_id,
                         value};
-                if ((parentbbt_object_typeRowBybbt_object_type_bbt_object_property != null)) {
-                    columnValuesArray[0] = parentbbt_object_typeRowBybbt_object_type_bbt_object_property[0];
-                }
-                if ((parentbbt_propertyRowBybbt_property_bbt_object_property != null)) {
-                    columnValuesArray[1] = parentbbt_propertyRowBybbt_property_bbt_object_property[0];
-                }
                 rowbbt_object_propertyRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_object_propertyRow);
                 return rowbbt_object_propertyRow;
@@ -2557,7 +2442,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2833,7 +2718,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3110,7 +2995,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3276,18 +3161,12 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow Addbbt_operationRow(bbt_operation_typeRow parentbbt_operation_typeRowBybbt_operation_type_bbt_operation, bbt_stepRow parentbbt_stepRowBybbt_step_bbt_operation) {
+            public bbt_operationRow Addbbt_operationRow(int fk_operation_type, int fk_step) {
                 bbt_operationRow rowbbt_operationRow = ((bbt_operationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        null,
+                        fk_operation_type,
+                        fk_step,
                         null};
-                if ((parentbbt_operation_typeRowBybbt_operation_type_bbt_operation != null)) {
-                    columnValuesArray[0] = parentbbt_operation_typeRowBybbt_operation_type_bbt_operation[0];
-                }
-                if ((parentbbt_stepRowBybbt_step_bbt_operation != null)) {
-                    columnValuesArray[1] = parentbbt_stepRowBybbt_step_bbt_operation[0];
-                }
                 rowbbt_operationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_operationRow);
                 return rowbbt_operationRow;
@@ -3407,7 +3286,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3563,17 +3442,11 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operation_referenceRow Addbbt_operation_referenceRow(bbt_operationRow parentbbt_operationRowBybbt_operation_bbt_operation_reference, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_operation_reference) {
+            public bbt_operation_referenceRow Addbbt_operation_referenceRow(int fk_operation, int fk_object) {
                 bbt_operation_referenceRow rowbbt_operation_referenceRow = ((bbt_operation_referenceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        null};
-                if ((parentbbt_operationRowBybbt_operation_bbt_operation_reference != null)) {
-                    columnValuesArray[0] = parentbbt_operationRowBybbt_operation_bbt_operation_reference[2];
-                }
-                if ((parentbbt_objectRowBybbt_object_bbt_operation_reference != null)) {
-                    columnValuesArray[1] = parentbbt_objectRowBybbt_object_bbt_operation_reference[0];
-                }
+                        fk_operation,
+                        fk_object};
                 rowbbt_operation_referenceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_operation_referenceRow);
                 return rowbbt_operation_referenceRow;
@@ -3676,7 +3549,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3953,7 +3826,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4119,15 +3992,12 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_protocolRow Addbbt_protocolRow(bbt_protocolRow parentbbt_protocolRowBybbt_protocol_bbt_protocol, string description) {
+            public bbt_protocolRow Addbbt_protocolRow(int fk_protocol, string description) {
                 bbt_protocolRow rowbbt_protocolRow = ((bbt_protocolRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        null,
+                        fk_protocol,
                         description};
-                if ((parentbbt_protocolRowBybbt_protocol_bbt_protocol != null)) {
-                    columnValuesArray[1] = parentbbt_protocolRowBybbt_protocol_bbt_protocol[0];
-                }
                 rowbbt_protocolRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_protocolRow);
                 return rowbbt_protocolRow;
@@ -4247,7 +4117,7 @@ namespace BioBotApp.Model.Data {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsBioBot ds = new dsBioBot();
+                BioBotDataSets ds = new BioBotDataSets();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4360,17 +4230,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_information_typesRow bbt_information_typesRow {
-                get {
-                    return ((bbt_information_typesRow)(this.GetParentRow(this.Table.ParentRelations["bbt_information_types_bbt_information"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_information_types_bbt_information"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsdescriptionNull() {
                 return this.IsNull(this.tablebbt_information.descriptionColumn);
             }
@@ -4379,17 +4238,6 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdescriptionNull() {
                 this[this.tablebbt_information.descriptionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_information_valueRow[] Getbbt_information_valueRows() {
-                if ((this.Table.ChildRelations["bbt_information_bbt_information_value"] == null)) {
-                    return new bbt_information_valueRow[0];
-                }
-                else {
-                    return ((bbt_information_valueRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_information_bbt_information_value"])));
-                }
             }
         }
         
@@ -4479,28 +4327,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_protocolRow bbt_protocolRow {
-                get {
-                    return ((bbt_protocolRow)(this.GetParentRow(this.Table.ParentRelations["bbt_protocol_bbt_step"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_protocol_bbt_step"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow bbt_objectRow {
-                get {
-                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_step"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_step"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isfk_protocolNull() {
                 return this.IsNull(this.tablebbt_step.fk_protocolColumn);
             }
@@ -4533,17 +4359,6 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setfk_objectNull() {
                 this[this.tablebbt_step.fk_objectColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow[] Getbbt_operationRows() {
-                if ((this.Table.ChildRelations["bbt_step_bbt_operation"] == null)) {
-                    return new bbt_operationRow[0];
-                }
-                else {
-                    return ((bbt_operationRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_step_bbt_operation"])));
-                }
             }
         }
         
@@ -4598,17 +4413,6 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdescriptionNull() {
                 this[this.tablebbt_information_types.descriptionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_informationRow[] Getbbt_informationRows() {
-                if ((this.Table.ChildRelations["bbt_information_types_bbt_information"] == null)) {
-                    return new bbt_informationRow[0];
-                }
-                else {
-                    return ((bbt_informationRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_information_types_bbt_information"])));
-                }
             }
         }
         
@@ -4673,28 +4477,6 @@ namespace BioBotApp.Model.Data {
                 }
                 set {
                     this[this.tablebbt_information_value.fk_objectColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_informationRow bbt_informationRow {
-                get {
-                    return ((bbt_informationRow)(this.GetParentRow(this.Table.ParentRelations["bbt_information_bbt_information_value"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_information_bbt_information_value"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow bbt_objectRow {
-                get {
-                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_information_value"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_information_value"]);
                 }
             }
             
@@ -4850,17 +4632,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_object_typeRow bbt_object_typeRow {
-                get {
-                    return ((bbt_object_typeRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_type_bbt_object"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_type_bbt_object"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isfk_object_typeNull() {
                 return this.IsNull(this.tablebbt_object.fk_object_typeColumn);
             }
@@ -4942,39 +4713,6 @@ namespace BioBotApp.Model.Data {
             public void Setfk_objectNull() {
                 this[this.tablebbt_object.fk_objectColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operation_referenceRow[] Getbbt_operation_referenceRows() {
-                if ((this.Table.ChildRelations["bbt_object_bbt_operation_reference"] == null)) {
-                    return new bbt_operation_referenceRow[0];
-                }
-                else {
-                    return ((bbt_operation_referenceRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_bbt_operation_reference"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_information_valueRow[] Getbbt_information_valueRows() {
-                if ((this.Table.ChildRelations["bbt_object_bbt_information_value"] == null)) {
-                    return new bbt_information_valueRow[0];
-                }
-                else {
-                    return ((bbt_information_valueRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_bbt_information_value"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow[] Getbbt_stepRows() {
-                if ((this.Table.ChildRelations["bbt_object_bbt_step"] == null)) {
-                    return new bbt_stepRow[0];
-                }
-                else {
-                    return ((bbt_stepRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_bbt_step"])));
-                }
-            }
         }
         
         /// <summary>
@@ -5021,28 +4759,6 @@ namespace BioBotApp.Model.Data {
                 }
                 set {
                     this[this.tablebbt_object_property.valueColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_object_typeRow bbt_object_typeRow {
-                get {
-                    return ((bbt_object_typeRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_type_bbt_object_property"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_type_bbt_object_property"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_propertyRow bbt_propertyRow {
-                get {
-                    return ((bbt_propertyRow)(this.GetParentRow(this.Table.ParentRelations["bbt_property_bbt_object_property"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_property_bbt_object_property"]);
                 }
             }
         }
@@ -5099,28 +4815,6 @@ namespace BioBotApp.Model.Data {
             public void SetdescriptionNull() {
                 this[this.tablebbt_object_type.descriptionColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_object_propertyRow[] Getbbt_object_propertyRows() {
-                if ((this.Table.ChildRelations["bbt_object_type_bbt_object_property"] == null)) {
-                    return new bbt_object_propertyRow[0];
-                }
-                else {
-                    return ((bbt_object_propertyRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_type_bbt_object_property"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow[] Getbbt_objectRows() {
-                if ((this.Table.ChildRelations["bbt_object_type_bbt_object"] == null)) {
-                    return new bbt_objectRow[0];
-                }
-                else {
-                    return ((bbt_objectRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_object_type_bbt_object"])));
-                }
-            }
         }
         
         /// <summary>
@@ -5156,17 +4850,6 @@ namespace BioBotApp.Model.Data {
                 }
                 set {
                     this[this.tablebbt_property.descriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_object_propertyRow[] Getbbt_object_propertyRows() {
-                if ((this.Table.ChildRelations["bbt_property_bbt_object_property"] == null)) {
-                    return new bbt_object_propertyRow[0];
-                }
-                else {
-                    return ((bbt_object_propertyRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_property_bbt_object_property"])));
                 }
             }
         }
@@ -5217,39 +4900,6 @@ namespace BioBotApp.Model.Data {
                     this[this.tablebbt_operation.pk_idColumn] = value;
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operation_typeRow bbt_operation_typeRow {
-                get {
-                    return ((bbt_operation_typeRow)(this.GetParentRow(this.Table.ParentRelations["bbt_operation_type_bbt_operation"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_operation_type_bbt_operation"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow bbt_stepRow {
-                get {
-                    return ((bbt_stepRow)(this.GetParentRow(this.Table.ParentRelations["bbt_step_bbt_operation"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_step_bbt_operation"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operation_referenceRow[] Getbbt_operation_referenceRows() {
-                if ((this.Table.ChildRelations["bbt_operation_bbt_operation_reference"] == null)) {
-                    return new bbt_operation_referenceRow[0];
-                }
-                else {
-                    return ((bbt_operation_referenceRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_operation_bbt_operation_reference"])));
-                }
-            }
         }
         
         /// <summary>
@@ -5287,28 +4937,6 @@ namespace BioBotApp.Model.Data {
                     this[this.tablebbt_operation_reference.fk_objectColumn] = value;
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow bbt_objectRow {
-                get {
-                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_operation_reference"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_operation_reference"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow bbt_operationRow {
-                get {
-                    return ((bbt_operationRow)(this.GetParentRow(this.Table.ParentRelations["bbt_operation_bbt_operation_reference"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_operation_bbt_operation_reference"]);
-                }
-            }
         }
         
         /// <summary>
@@ -5344,17 +4972,6 @@ namespace BioBotApp.Model.Data {
                 }
                 set {
                     this[this.tablebbt_operation_type.descriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow[] Getbbt_operationRows() {
-                if ((this.Table.ChildRelations["bbt_operation_type_bbt_operation"] == null)) {
-                    return new bbt_operationRow[0];
-                }
-                else {
-                    return ((bbt_operationRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_operation_type_bbt_operation"])));
                 }
             }
         }
@@ -5413,17 +5030,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_protocolRow bbt_protocolRowParent {
-                get {
-                    return ((bbt_protocolRow)(this.GetParentRow(this.Table.ParentRelations["bbt_protocol_bbt_protocol"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_protocol_bbt_protocol"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isfk_protocolNull() {
                 return this.IsNull(this.tablebbt_protocol.fk_protocolColumn);
             }
@@ -5432,28 +5038,6 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setfk_protocolNull() {
                 this[this.tablebbt_protocol.fk_protocolColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_protocolRow[] Getbbt_protocolRows() {
-                if ((this.Table.ChildRelations["bbt_protocol_bbt_protocol"] == null)) {
-                    return new bbt_protocolRow[0];
-                }
-                else {
-                    return ((bbt_protocolRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_protocol_bbt_protocol"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow[] Getbbt_stepRows() {
-                if ((this.Table.ChildRelations["bbt_protocol_bbt_step"] == null)) {
-                    return new bbt_stepRow[0];
-                }
-                else {
-                    return ((bbt_stepRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_protocol_bbt_step"])));
-                }
             }
         }
         
@@ -5866,7 +5450,7 @@ namespace BioBotApp.Model.Data {
         }
     }
 }
-namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
+namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
     
     
     /// <summary>
@@ -6041,7 +5625,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_informationDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_informationDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6054,9 +5638,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_informationDataTable GetData() {
+        public virtual BioBotDataSets.bbt_informationDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_informationDataTable dataTable = new dsBioBot.bbt_informationDataTable();
+            BioBotDataSets.bbt_informationDataTable dataTable = new BioBotDataSets.bbt_informationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -6064,14 +5648,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_informationDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_informationDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_information");
         }
         
@@ -6359,7 +5943,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_stepDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_stepDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6372,9 +5956,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_stepDataTable GetData() {
+        public virtual BioBotDataSets.bbt_stepDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_stepDataTable dataTable = new dsBioBot.bbt_stepDataTable();
+            BioBotDataSets.bbt_stepDataTable dataTable = new BioBotDataSets.bbt_stepDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -6382,14 +5966,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_stepDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_stepDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_step");
         }
         
@@ -6674,7 +6258,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_information_typesDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_information_typesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6687,9 +6271,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_information_typesDataTable GetData() {
+        public virtual BioBotDataSets.bbt_information_typesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_information_typesDataTable dataTable = new dsBioBot.bbt_information_typesDataTable();
+            BioBotDataSets.bbt_information_typesDataTable dataTable = new BioBotDataSets.bbt_information_typesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -6697,14 +6281,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_information_typesDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_information_typesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_information_types");
         }
         
@@ -6979,7 +6563,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_information_valueDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_information_valueDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6992,9 +6576,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_information_valueDataTable GetData() {
+        public virtual BioBotDataSets.bbt_information_valueDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_information_valueDataTable dataTable = new dsBioBot.bbt_information_valueDataTable();
+            BioBotDataSets.bbt_information_valueDataTable dataTable = new BioBotDataSets.bbt_information_valueDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -7002,14 +6586,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_information_valueDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_information_valueDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_information_value");
         }
         
@@ -7322,7 +6906,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_objectDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_objectDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -7335,9 +6919,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_objectDataTable GetData() {
+        public virtual BioBotDataSets.bbt_objectDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_objectDataTable dataTable = new dsBioBot.bbt_objectDataTable();
+            BioBotDataSets.bbt_objectDataTable dataTable = new BioBotDataSets.bbt_objectDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -7345,14 +6929,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_objectDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_objectDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_object");
         }
         
@@ -7680,7 +7264,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_object_propertyDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_object_propertyDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -7693,9 +7277,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_object_propertyDataTable GetData() {
+        public virtual BioBotDataSets.bbt_object_propertyDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_object_propertyDataTable dataTable = new dsBioBot.bbt_object_propertyDataTable();
+            BioBotDataSets.bbt_object_propertyDataTable dataTable = new BioBotDataSets.bbt_object_propertyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -7703,14 +7287,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_object_propertyDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_object_propertyDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_object_property");
         }
         
@@ -7985,7 +7569,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_object_typeDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_object_typeDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -7998,9 +7582,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_object_typeDataTable GetData() {
+        public virtual BioBotDataSets.bbt_object_typeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_object_typeDataTable dataTable = new dsBioBot.bbt_object_typeDataTable();
+            BioBotDataSets.bbt_object_typeDataTable dataTable = new BioBotDataSets.bbt_object_typeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -8008,14 +7592,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_object_typeDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_object_typeDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_object_type");
         }
         
@@ -8276,7 +7860,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_propertyDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_propertyDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -8289,9 +7873,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_propertyDataTable GetData() {
+        public virtual BioBotDataSets.bbt_propertyDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_propertyDataTable dataTable = new dsBioBot.bbt_propertyDataTable();
+            BioBotDataSets.bbt_propertyDataTable dataTable = new BioBotDataSets.bbt_propertyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -8299,14 +7883,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_propertyDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_propertyDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_property");
         }
         
@@ -8576,7 +8160,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_operationDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_operationDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -8589,9 +8173,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_operationDataTable GetData() {
+        public virtual BioBotDataSets.bbt_operationDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_operationDataTable dataTable = new dsBioBot.bbt_operationDataTable();
+            BioBotDataSets.bbt_operationDataTable dataTable = new BioBotDataSets.bbt_operationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -8599,14 +8183,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_operationDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_operationDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_operation");
         }
         
@@ -8853,7 +8437,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_operation_referenceDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_operation_referenceDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -8866,9 +8450,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_operation_referenceDataTable GetData() {
+        public virtual BioBotDataSets.bbt_operation_referenceDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_operation_referenceDataTable dataTable = new dsBioBot.bbt_operation_referenceDataTable();
+            BioBotDataSets.bbt_operation_referenceDataTable dataTable = new BioBotDataSets.bbt_operation_referenceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -8876,14 +8460,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_operation_referenceDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_operation_referenceDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_operation_reference");
         }
         
@@ -9090,7 +8674,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_operation_typeDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_operation_typeDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -9103,9 +8687,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_operation_typeDataTable GetData() {
+        public virtual BioBotDataSets.bbt_operation_typeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_operation_typeDataTable dataTable = new dsBioBot.bbt_operation_typeDataTable();
+            BioBotDataSets.bbt_operation_typeDataTable dataTable = new BioBotDataSets.bbt_operation_typeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -9113,14 +8697,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_operation_typeDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_operation_typeDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_operation_type");
         }
         
@@ -9391,7 +8975,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsBioBot.bbt_protocolDataTable dataTable) {
+        public virtual int Fill(BioBotDataSets.bbt_protocolDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -9404,9 +8988,9 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsBioBot.bbt_protocolDataTable GetData() {
+        public virtual BioBotDataSets.bbt_protocolDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            dsBioBot.bbt_protocolDataTable dataTable = new dsBioBot.bbt_protocolDataTable();
+            BioBotDataSets.bbt_protocolDataTable dataTable = new BioBotDataSets.bbt_protocolDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -9414,14 +8998,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot.bbt_protocolDataTable dataTable) {
+        public virtual int Update(BioBotDataSets.bbt_protocolDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dsBioBot dataSet) {
+        public virtual int Update(BioBotDataSets dataSet) {
             return this.Adapter.Update(dataSet, "bbt_protocol");
         }
         
@@ -9868,33 +9452,14 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(dsBioBot dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(BioBotDataSets dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._bbt_object_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_object_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bbt_informationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_object_typeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._bbt_objectTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_objectTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._bbt_protocolTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_protocol.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    this.SortSelfReferenceRows(updatedRows, dataSet.Relations["bbt_protocol_bbt_protocol"], false);
-                    result = (result + this._bbt_protocolTableAdapter.Update(updatedRows));
+                    result = (result + this._bbt_informationTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9916,21 +9481,39 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bbt_operation_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bbt_information_valueTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_information_value.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_operation_typeTableAdapter.Update(updatedRows));
+                    result = (result + this._bbt_information_valueTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bbt_informationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bbt_objectTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_informationTableAdapter.Update(updatedRows));
+                    result = (result + this._bbt_objectTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bbt_object_propertyTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_object_property.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bbt_object_propertyTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bbt_object_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_object_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bbt_object_typeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9952,30 +9535,30 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bbt_information_valueTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_information_value.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_information_valueTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._bbt_object_propertyTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_object_property.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_object_propertyTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._bbt_operation_referenceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation_reference.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._bbt_operation_referenceTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bbt_operation_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bbt_operation_typeTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bbt_protocolTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_protocol.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bbt_protocolTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9987,30 +9570,13 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(dsBioBot dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(BioBotDataSets dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._bbt_object_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_object_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bbt_informationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_object_typeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._bbt_objectTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_objectTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._bbt_protocolTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_protocol.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    this.SortSelfReferenceRows(addedRows, dataSet.Relations["bbt_protocol_bbt_protocol"], false);
-                    result = (result + this._bbt_protocolTableAdapter.Update(addedRows));
+                    result = (result + this._bbt_informationTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -10030,19 +9596,35 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bbt_operation_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bbt_information_valueTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_information_value.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_operation_typeTableAdapter.Update(addedRows));
+                    result = (result + this._bbt_information_valueTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bbt_informationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bbt_objectTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_informationTableAdapter.Update(addedRows));
+                    result = (result + this._bbt_objectTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._bbt_object_propertyTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_object_property.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bbt_object_propertyTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._bbt_object_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_object_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bbt_object_typeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -10062,27 +9644,27 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bbt_information_valueTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_information_value.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_information_valueTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._bbt_object_propertyTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_object_property.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_object_propertyTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._bbt_operation_referenceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.bbt_operation_reference.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._bbt_operation_referenceTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._bbt_operation_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bbt_operation_typeTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._bbt_protocolTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_protocol.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bbt_protocolTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -10094,29 +9676,29 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(dsBioBot dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(BioBotDataSets dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._bbt_protocolTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_protocol.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bbt_protocolTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._bbt_operation_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bbt_operation_typeTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._bbt_operation_referenceTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation_reference.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._bbt_operation_referenceTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bbt_object_propertyTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_object_property.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_object_propertyTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bbt_information_valueTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_information_value.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_information_valueTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -10136,19 +9718,35 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bbt_informationTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._bbt_object_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_object_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_informationTableAdapter.Update(deletedRows));
+                    result = (result + this._bbt_object_typeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bbt_operation_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._bbt_object_propertyTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_object_property.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_operation_typeTableAdapter.Update(deletedRows));
+                    result = (result + this._bbt_object_propertyTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._bbt_objectTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bbt_objectTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._bbt_information_valueTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_information_value.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bbt_information_valueTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -10168,28 +9766,11 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bbt_protocolTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_protocol.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._bbt_informationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    this.SortSelfReferenceRows(deletedRows, dataSet.Relations["bbt_protocol_bbt_protocol"], true);
-                    result = (result + this._bbt_protocolTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bbt_objectTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_object.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_objectTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bbt_object_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_object_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_object_typeTableAdapter.Update(deletedRows));
+                    result = (result + this._bbt_informationTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -10225,7 +9806,7 @@ namespace BioBotApp.Model.Data.dsBioBotTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(dsBioBot dataSet) {
+        public virtual int UpdateAll(BioBotDataSets dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
