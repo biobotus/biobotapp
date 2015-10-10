@@ -4,25 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioBotApp.Model.Data
+namespace BioBotApp.Model.FSM
 {
-    public class DBManager
+    public class FSMManager
     {
-        private static DBManager instance;
-        public BioBotDataSets projectDataset { get; set; }
+        private static FSMManager instance;
 
-        private DBManager()
+        private FSMManager()
         {
-            projectDataset = new BioBotDataSets();
+
         }
 
-        public static DBManager Instance
+        public static FSMManager Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new DBManager();
+                    instance = new FSMManager();
                 }
                 return instance;
             }

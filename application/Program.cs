@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Presenter;
+using BioBotApp.View.Communication;
 using BioBotApp.View.Protocol;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,8 @@ namespace BioBotApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            ProtocolForm form = new ProtocolForm();         
+
+            CommunicationTestForm form = new CommunicationTestForm();         
             
             Application.Run(form);
         }

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BioBotCommunication">
+      <HintPath>..\serial\BioBotCommunication\BioBotCommunication\bin\Release\BioBotCommunication.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
       <Private>True</Private>
@@ -58,15 +61,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Data\dsBioBot.Designer.cs">
+    <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dsBioBot.xsd</DependentUpon>
+      <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Presenter\Protocols\ProtocolAddEvent.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Communication\CommunicationTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Communication\CommunicationTestForm.Designer.cs">
+      <DependentUpon>CommunicationTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Protocol\IProtocolView.cs" />
     <Compile Include="View\Protocol\ProtocolControl.cs">
       <SubType>UserControl</SubType>
@@ -89,22 +100,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Communication\CommunicationTestForm.resx">
+      <DependentUpon>CommunicationTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Protocol\ProtocolControl.resx">
       <DependentUpon>ProtocolControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Protocol\ProtocolForm.resx">
       <DependentUpon>ProtocolForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Model\Data\dsBioBot.xsc">
-      <DependentUpon>dsBioBot.xsd</DependentUpon>
+    <None Include="Model\Data\BioBotDataSets.xsc">
+      <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </None>
-    <None Include="Model\Data\dsBioBot.xsd">
+    <None Include="Model\Data\BioBotDataSets.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsBioBot.Designer.cs</LastGenOutput>
+      <LastGenOutput>BioBotDataSets.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Model\Data\dsBioBot.xss">
-      <DependentUpon>dsBioBot.xsd</DependentUpon>
+    <None Include="Model\Data\BioBotDataSets.xss">
+      <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
