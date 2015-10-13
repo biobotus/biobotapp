@@ -1,5 +1,6 @@
 ﻿using BioBotApp.Presenter;
 using BioBotApp.View.Communication;
+using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,9 @@ namespace BioBotApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            CommunicationTestForm form = new CommunicationTestForm();         
+            Model.Data.DBManager.Instance.initializeDataSet();
+
+            View.Properties.PropertiesForm form = new PropertiesForm();         
             
             Application.Run(form);
         }

@@ -37,18 +37,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\serial\BioBotCommunication\BioBotCommunication\bin\Debug\BioBotCommunication.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MetroFramework.Design, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,7 +56,11 @@
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\Data\Services\PropertiesService.cs" />
     <Compile Include="Model\FSM\FSMManager.cs" />
+    <Compile Include="Presenter\Jog\JogPresenter.cs" />
+    <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
+    <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolAddEvent.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -78,6 +70,26 @@
     </Compile>
     <Compile Include="View\Communication\CommunicationTestForm.Designer.cs">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Jog\IJogView.cs" />
+    <Compile Include="View\Jog\JogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Jog\JogControl.Designer.cs">
+      <DependentUpon>JogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Properties\IPropertiesView.cs" />
+    <Compile Include="View\Properties\PropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Properties\PropertiesControl.Designer.cs">
+      <DependentUpon>PropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Properties\PropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Properties\PropertiesForm.Designer.cs">
+      <DependentUpon>PropertiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Protocol\IProtocolView.cs" />
     <Compile Include="View\Protocol\ProtocolControl.cs">
@@ -103,6 +115,15 @@
     </Compile>
     <EmbeddedResource Include="View\Communication\CommunicationTestForm.resx">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Jog\JogControl.resx">
+      <DependentUpon>JogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Properties\PropertiesControl.resx">
+      <DependentUpon>PropertiesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Properties\PropertiesForm.resx">
+      <DependentUpon>PropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Protocol\ProtocolControl.resx">
       <DependentUpon>ProtocolControl.cs</DependentUpon>
