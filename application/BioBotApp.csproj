@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BioBotCommunication">
-      <HintPath>..\serial\BioBotCommunication\BioBotCommunication\bin\Release\BioBotCommunication.dll</HintPath>
+    <Reference Include="BioBotCommunication, Version=1.0.0.21589, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\serial\BioBotCommunication\BioBotCommunication\bin\Debug\BioBotCommunication.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>

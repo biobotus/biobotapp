@@ -13,11 +13,23 @@ namespace BioBotApp.View.Communication
 {
     public partial class CommunicationTestForm : Form
     {
-        BioBotCommunication.Serial.Movement.ArduinoCommunication serialPort;
+        BioBotCommunication.Serial.Movement.ArduinoCommunicationWorker serialPort;
         public CommunicationTestForm()
         {
             InitializeComponent();
-            serialPort = BioBotCommunication.Serial.Movement.ArduinoCommunication.Instance;
+            serialPort = BioBotCommunication.Serial.Movement.ArduinoCommunicationWorker.Instance;
+            serialPort.onConnect += SerialPort_onConnect;
+            serialPort.onDisconnect += SerialPort_onDisconnect;
+        }
+
+        private void SerialPort_onDisconnect(object sender, EventArgs e)
+        {
+            lblConnection.Text = "Disconnected";
+        }
+
+        private void SerialPort_onConnect(object sender, EventArgs e)
+        {
+            lblConnection.Text = "Connected";
         }
 
         private void btnConnectArduino_Click(object sender, EventArgs e)
@@ -27,6 +39,7 @@ namespace BioBotApp.View.Communication
             //BioBotCommunication.Serial.Movement.ArduinoCommunication.Instance.Write("adfghj\r\n");
 
             //serialPort.Close();
+
         }
     }
 }

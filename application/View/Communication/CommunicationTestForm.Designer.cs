@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.canConnectorControl1 = new PCAN.CanConnectorControl();
             this.btnConnectArduino = new System.Windows.Forms.Button();
+            this.canConnectorControl1 = new PCAN.CanConnectorControl();
+            this.lblConnection = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // btnConnectArduino
+            // 
+            this.btnConnectArduino.Location = new System.Drawing.Point(183, 335);
+            this.btnConnectArduino.Name = "btnConnectArduino";
+            this.btnConnectArduino.Size = new System.Drawing.Size(172, 50);
+            this.btnConnectArduino.TabIndex = 1;
+            this.btnConnectArduino.Text = "Connect Arduino";
+            this.btnConnectArduino.UseVisualStyleBackColor = true;
+            this.btnConnectArduino.Click += new System.EventHandler(this.btnConnectArduino_Click);
             // 
             // canConnectorControl1
             // 
@@ -41,26 +52,27 @@
             this.canConnectorControl1.TabIndex = 0;
             this.canConnectorControl1.Tag = "Can communication";
             // 
-            // btnConnectArduino
+            // lblConnection
             // 
-            this.btnConnectArduino.Location = new System.Drawing.Point(330, 376);
-            this.btnConnectArduino.Name = "btnConnectArduino";
-            this.btnConnectArduino.Size = new System.Drawing.Size(172, 50);
-            this.btnConnectArduino.TabIndex = 1;
-            this.btnConnectArduino.Text = "Connect Arduino";
-            this.btnConnectArduino.UseVisualStyleBackColor = true;
-            this.btnConnectArduino.Click += new System.EventHandler(this.btnConnectArduino_Click);
+            this.lblConnection.AutoSize = true;
+            this.lblConnection.Location = new System.Drawing.Point(391, 350);
+            this.lblConnection.Name = "lblConnection";
+            this.lblConnection.Size = new System.Drawing.Size(107, 20);
+            this.lblConnection.TabIndex = 2;
+            this.lblConnection.Text = "Disconnected";
             // 
             // CommunicationTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 602);
+            this.Controls.Add(this.lblConnection);
             this.Controls.Add(this.btnConnectArduino);
             this.Controls.Add(this.canConnectorControl1);
             this.Name = "CommunicationTestForm";
             this.Text = "CommunicationTestForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,5 +80,6 @@
 
         private PCAN.CanConnectorControl canConnectorControl1;
         private System.Windows.Forms.Button btnConnectArduino;
+        private System.Windows.Forms.Label lblConnection;
     }
 }

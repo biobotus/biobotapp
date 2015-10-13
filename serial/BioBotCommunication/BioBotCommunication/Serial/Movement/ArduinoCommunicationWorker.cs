@@ -20,11 +20,18 @@ namespace BioBotCommunication.Serial.Movement
             arduinoSerialWorker.WorkerSupportsCancellation = true;
             arduinoSerialWorker.DoWork += ArdunioSerialWorker_DoWork;
             onArduinoReceive += ArduinoCommunicationWorker_onArduinoReceive;
+            onErrorMessage += ArduinoCommunicationWorker_onErrorMessage;
+        }
+
+        private void ArduinoCommunicationWorker_onErrorMessage(object sender, SerialErrorReceivedEventArgs e)
+        {
+            toggle.Set();
         }
 
         private void ArduinoCommunicationWorker_onArduinoReceive(object sender, SerialDataReceivedEventArgs e)
         {
-            String dataReceived = arduinoSerialPort.ReadExisting();
+            SerialPort port = sender as SerialPort;
+            String dataReceived = port.ReadExisting();
             if (dataReceived.Contains("a"))
             {
                 toggle.Set();
@@ -58,6 +65,7 @@ namespace BioBotCommunication.Serial.Movement
                 }
                 finished = toggle.WaitOne(100);
             }
+            
         }
 
         public void startWorker()
