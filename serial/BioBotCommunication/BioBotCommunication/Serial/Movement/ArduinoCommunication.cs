@@ -1,41 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO.Ports;
 
 namespace BioBotCommunication.Serial.Movement
 {
-    public class ArduinoCommunication : SerialPort
+    public class ArduinoCommunication
     {
-        private static ArduinoCommunication instance;
-        
-        public static ArduinoCommunication Instance
+        public SerialPort arduinoSerialPort;
+        public event EventHandler<SerialDataReceivedEventArgs> onArduinoReceive;
+
+        public ArduinoCommunication()
         {
-            get
+            arduinoSerialPort = new SerialPort();
+            arduinoSerialPort.DataReceived += ArduinoSerialPort_DataReceived;
+        }
+
+        private void ArduinoSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (onArduinoReceive != null)
             {
-                if (instance == null)
-                {
-                    instance = new ArduinoCommunication();
-                }
-                return instance;
+                onArduinoReceive(this, e);
             }
         }
 
         public void configure(string portName, string baudRate, string dataBits, StopBits stopBits, Parity parityBits)
         {
-            lock (this)
+            lock (arduinoSerialPort)
             {
-                this.StopBits = stopBits;
-                this.BaudRate = int.Parse(baudRate);
-                this.DataBits = int.Parse(dataBits);
-                this.PortName = portName;
-                this.Parity = parityBits;
+                arduinoSerialPort.StopBits = stopBits;
+                arduinoSerialPort.BaudRate = int.Parse(baudRate);
+                arduinoSerialPort.DataBits = int.Parse(dataBits);
+                arduinoSerialPort.PortName = portName;
+                arduinoSerialPort.Parity = parityBits;
 
-                if (this.IsOpen == true)
+                if (arduinoSerialPort.IsOpen == true)
                 {
-                    this.Close();
+                    arduinoSerialPort.Close();
+                }
+                arduinoSerialPort.Open();
+            }
+        }
+
+        public void write(String data)
+        {
+            lock (arduinoSerialPort)
+            {
+                if (arduinoSerialPort.IsOpen)
+                {
+                    arduinoSerialPort.Write(data);
                 }
             }
         }

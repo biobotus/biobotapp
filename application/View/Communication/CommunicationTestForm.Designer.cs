@@ -43,7 +43,7 @@
             // 
             // btnConnectArduino
             // 
-            this.btnConnectArduino.Location = new System.Drawing.Point(162, 442);
+            this.btnConnectArduino.Location = new System.Drawing.Point(330, 376);
             this.btnConnectArduino.Name = "btnConnectArduino";
             this.btnConnectArduino.Size = new System.Drawing.Size(172, 50);
             this.btnConnectArduino.TabIndex = 1;

@@ -23,10 +23,10 @@ namespace BioBotApp.View.Communication
         private void btnConnectArduino_Click(object sender, EventArgs e)
         {
             serialPort.configure("COM1", "9600", "8", System.IO.Ports.StopBits.One, System.IO.Ports.Parity.None);
-            serialPort.Open();
-            BioBotCommunication.Serial.Movement.ArduinoCommunication.Instance.Write("adfghj\r\n");
+            //serialPort.Open();
+            //BioBotCommunication.Serial.Movement.ArduinoCommunication.Instance.Write("adfghj\r\n");
 
-            serialPort.Close();
+            //serialPort.Close();
         }
     }
 }

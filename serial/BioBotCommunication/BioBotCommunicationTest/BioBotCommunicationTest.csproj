@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{7D0377F9-1837-4C27-A95E-96B3EC5C9515}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BioBotCommunication</RootNamespace>
-    <AssemblyName>BioBotCommunication</AssemblyName>
+    <RootNamespace>BioBotCommunicationTest</RootNamespace>
+    <AssemblyName>BioBotCommunicationTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,54 +35,55 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BioBotCommTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BioBotCommTest.Designer.cs">
+      <DependentUpon>BioBotCommTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Serial\Can\AutoConnectCan.cs" />
-    <Compile Include="Serial\Can\CanConnectorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Serial\Can\CanConnectorControl.designer.cs">
-      <DependentUpon>CanConnectorControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Serial\Can\PCANBasic.cs" />
-    <Compile Include="Serial\Can\PCANCom.cs" />
-    <Compile Include="Serial\Movement\ArduinoCommunication.cs" />
-    <Compile Include="Serial\Movement\ArduinoCommunicationWorker.cs" />
-    <Compile Include="Serial\Movement\ArduinoSerialCommControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Serial\Movement\ArduinoSerialCommControl.Designer.cs">
-      <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="BioBotCommTest.resx">
+      <DependentUpon>BioBotCommTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Serial\Can\CanConnectorControl.resx">
-      <DependentUpon>CanConnectorControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Serial\Movement\ArduinoSerialCommControl.resx">
-      <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_rotate_clockwise.png" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BioBotCommunication\BioBotCommunication.csproj">
+      <Project>{79b4cea7-1c58-4b6f-b21b-1f0c8f68f92f}</Project>
+      <Name>BioBotCommunication</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
