@@ -23,7 +23,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
 
-            View.Properties.PropertiesForm form = new PropertiesForm();         
+            ProtocolForm form = new ProtocolForm();         
             
             Application.Run(form);
         }

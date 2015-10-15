@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Presenter.Protocols;
+using BioBotApp.View.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.Protocol
 {
-    public interface IProtocolView
+    public interface IProtocolView : IDatasetView
     {
-        event EventHandler<ProtocolAddEvent> OnProtocolAddEvent;
 
-        String GetProtocolName{ get; }
-
-        void LoadProtocolName(String protocolName);
     }
 }

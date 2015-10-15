@@ -60,6 +60,7 @@
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
+    <Compile Include="Presenter\Operation\OperationPresenter.cs" />
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolAddEvent.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
@@ -77,6 +78,13 @@
     </Compile>
     <Compile Include="View\Jog\JogControl.Designer.cs">
       <DependentUpon>JogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Operation\IOperationView.cs" />
+    <Compile Include="View\Operation\OperationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Operation\OperationControl.Designer.cs">
+      <DependentUpon>OperationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Properties\IPropertiesView.cs" />
     <Compile Include="View\Properties\PropertiesControl.cs">
@@ -104,6 +112,9 @@
     <Compile Include="View\Protocol\ProtocolForm.Designer.cs">
       <DependentUpon>ProtocolForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Protocol\ProtocolTreeNode.cs" />
+    <Compile Include="View\Protocol\StepTreeNode.cs" />
+    <Compile Include="View\Utils\IDatasetView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -118,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Operation\OperationControl.resx">
+      <DependentUpon>OperationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Properties\PropertiesControl.resx">
       <DependentUpon>PropertiesControl.cs</DependentUpon>
@@ -158,7 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\Console\" />
-    <Folder Include="View\Operation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />

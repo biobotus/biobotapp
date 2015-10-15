@@ -28,53 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtProtocolName = new System.Windows.Forms.TextBox();
-            this.btnSendToPresenter = new System.Windows.Forms.Button();
-            this.txtSendToPresenter = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tlvProtocols = new System.Windows.Forms.TreeView();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtProtocolName
+            // panel1
             // 
-            this.txtProtocolName.Location = new System.Drawing.Point(56, 164);
-            this.txtProtocolName.Name = "txtProtocolName";
-            this.txtProtocolName.Size = new System.Drawing.Size(100, 26);
-            this.txtProtocolName.TabIndex = 0;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(648, 100);
+            this.panel1.TabIndex = 3;
             // 
-            // btnSendToPresenter
+            // panel2
             // 
-            this.btnSendToPresenter.Location = new System.Drawing.Point(189, 164);
-            this.btnSendToPresenter.Name = "btnSendToPresenter";
-            this.btnSendToPresenter.Size = new System.Drawing.Size(182, 37);
-            this.btnSendToPresenter.TabIndex = 1;
-            this.btnSendToPresenter.Text = "Send to presenter";
-            this.btnSendToPresenter.UseVisualStyleBackColor = true;
-            this.btnSendToPresenter.Click += new System.EventHandler(this.btnSendToPresenter_Click_1);
+            this.panel2.Controls.Add(this.tlvProtocols);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 100);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(648, 360);
+            this.panel2.TabIndex = 4;
             // 
-            // txtSendToPresenter
+            // label1
             // 
-            this.txtSendToPresenter.Location = new System.Drawing.Point(56, 63);
-            this.txtSendToPresenter.Name = "txtSendToPresenter";
-            this.txtSendToPresenter.Size = new System.Drawing.Size(516, 26);
-            this.txtSendToPresenter.TabIndex = 2;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(648, 100);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Protocol";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 460);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(648, 100);
+            this.panel3.TabIndex = 5;
+            // 
+            // tlvProtocols
+            // 
+            this.tlvProtocols.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlvProtocols.Location = new System.Drawing.Point(0, 0);
+            this.tlvProtocols.Name = "tlvProtocols";
+            this.tlvProtocols.Size = new System.Drawing.Size(648, 360);
+            this.tlvProtocols.TabIndex = 0;
             // 
             // ProtocolControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtSendToPresenter);
-            this.Controls.Add(this.btnSendToPresenter);
-            this.Controls.Add(this.txtProtocolName);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
             this.Name = "ProtocolControl";
             this.Size = new System.Drawing.Size(648, 560);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtProtocolName;
-        private System.Windows.Forms.Button btnSendToPresenter;
-        private System.Windows.Forms.TextBox txtSendToPresenter;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TreeView tlvProtocols;
     }
 }

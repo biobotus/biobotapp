@@ -10,7 +10,7 @@ namespace BioBotApp.Model.Data
     {
         private static DBManager instance;
         public BioBotDataSets projectDataset { get; set; }
-        private BioBotDataSetsTableAdapters.TableAdapterManager taManager;
+        public BioBotDataSetsTableAdapters.TableAdapterManager taManager { private set; get; }
 
         private DBManager()
         {

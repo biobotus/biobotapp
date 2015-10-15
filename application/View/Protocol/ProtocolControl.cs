@@ -9,49 +9,62 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Presenter.Protocols;
 using BioBotApp.Presenter;
+using BioBotApp.View.Utils;
+using BioBotApp.Model.Data;
 
 namespace BioBotApp.View.Protocol
 {
     public partial class ProtocolControl : UserControl, IProtocolView
     {
 
-        private ProtocolPresenter protocolPresenter;
+        private ProtocolPresenter _presenter;
+        private BioBotDataSets _dataset;
+
         public ProtocolControl()
         {
             InitializeComponent();
-            protocolPresenter = new ProtocolPresenter(this);
+            _presenter = new ProtocolPresenter(this);
         }
 
-        public string GetProtocolName
+        public void setProjectDataset(BioBotDataSets dataset)
         {
-            get
+            _dataset = dataset;
+            initTree();
+        }
+
+        public void initTree()
+        {
+            foreach (BioBotDataSets.bbt_protocolRow protocol in _dataset.bbt_protocol)
             {
-                if (txtProtocolName.Text == String.Empty)
+                if (protocol.Isfk_protocolNull())
                 {
-                    throw new Exception();
+                    addNodes(protocol, null);
                 }
-
-                return txtProtocolName.Text;
             }
         }
 
-        public event EventHandler<ProtocolAddEvent> OnProtocolAddEvent;
-
-        public void LoadProtocolName(String protocolName)
+        public void addNodes(BioBotDataSets.bbt_protocolRow protocol, TreeNode parentNode)
         {
-            if (protocolName == String.Empty)
+            ProtocolTreeNode currentNode = new ProtocolTreeNode(protocol.description);
+
+            if (parentNode == null)
             {
-                throw new Exception();
+                tlvProtocols.Nodes.Add(currentNode);
+            }
+            else
+            {
+                parentNode.Nodes.Add(currentNode);
             }
 
-            txtSendToPresenter.Text = protocolName;
-        }
-
-        private void btnSendToPresenter_Click_1(object sender, EventArgs e)
-        {
-            if (OnProtocolAddEvent != null)
+            foreach (BioBotDataSets.bbt_protocolRow childProtocol in protocol.Getbbt_protocolRows())
             {
-                OnProtocolAddEvent(this, new ProtocolAddEvent(txtProtocolName.Text));
+                addNodes(childProtocol, currentNode);
+            }
+
+            foreach(BioBotDataSets.bbt_stepRow step in protocol.Getbbt_stepRows())
+            {
+                StepTreeNode stepNode = new StepTreeNode(step.description);
+                currentNode.Nodes.Add(stepNode);
             }
         }
     }

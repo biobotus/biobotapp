@@ -1,13 +1,13 @@
-﻿namespace BioBotApp.View.Protocol
+﻿namespace BioBotApp.View.Operation
 {
-    partial class ProtocolForm
+    partial class OperationControl
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,39 +20,37 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.protocolControl1 = new BioBotApp.View.Protocol.ProtocolControl();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // protocolControl1
+            // treeView1
             // 
-            this.protocolControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.protocolControl1.Location = new System.Drawing.Point(0, 0);
-            this.protocolControl1.Name = "protocolControl1";
-            this.protocolControl1.Size = new System.Drawing.Size(748, 619);
-            this.protocolControl1.TabIndex = 0;
+            this.treeView1.Location = new System.Drawing.Point(34, 66);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(121, 97);
+            this.treeView1.TabIndex = 0;
             // 
-            // ProtocolForm
+            // OperationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 619);
-            this.Controls.Add(this.protocolControl1);
-            this.Name = "ProtocolForm";
-            this.Text = "ProtocolForm";
+            this.Controls.Add(this.treeView1);
+            this.Name = "OperationControl";
+            this.Size = new System.Drawing.Size(606, 531);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private ProtocolControl protocolControl1;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

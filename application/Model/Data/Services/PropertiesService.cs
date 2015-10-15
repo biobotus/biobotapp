@@ -9,14 +9,14 @@ namespace BioBotApp.Model.Data.Services
     public class PropertiesService
     {
         DBManager _dbManager;
-        Data.BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter ta_objectProperty;
+        BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter ta_objectProperty;
 
         private static PropertiesService instance;
 
         private PropertiesService()
         {
             _dbManager = DBManager.Instance;
-            ta_objectProperty = new BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter();
+            ta_objectProperty = _dbManager.taManager.bbt_object_propertyTableAdapter;
         }
 
         public static PropertiesService Instance

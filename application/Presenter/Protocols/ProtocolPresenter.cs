@@ -9,19 +9,12 @@ namespace BioBotApp.Presenter
 {
     public class ProtocolPresenter
     {
-        private IProtocolView protocolView;
-        private int indexTest = 0;
+        private IProtocolView _view;
 
-        public ProtocolPresenter(IProtocolView protocolView)
+        public ProtocolPresenter(IProtocolView view)
         {
-            this.protocolView = protocolView;
-            
-            this.protocolView.OnProtocolAddEvent += ProtocolView_OnProtocolAddEvent;
-        }
-
-        private void ProtocolView_OnProtocolAddEvent(object sender, Protocols.ProtocolAddEvent e)
-        {
-            protocolView.LoadProtocolName(e.value + ": " + indexTest++);
+            _view = view;
+            _view.setProjectDataset(Model.Data.DBManager.Instance.projectDataset);
         }
     }
 }
