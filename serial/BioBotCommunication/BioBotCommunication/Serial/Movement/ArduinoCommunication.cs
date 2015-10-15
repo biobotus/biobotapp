@@ -45,7 +45,7 @@ namespace BioBotCommunication.Serial.Movement
                 }
                 catch (UnauthorizedAccessException e)
                 {
-                    ArduinoSerialPort_ErrorReceived(this, new SerialErrorReceivedEventArgs(e.StackTrace));
+                    disconnectArduinoSerialPort();
                 }
             }
         }
@@ -68,7 +68,11 @@ namespace BioBotCommunication.Serial.Movement
                 return;
             }
             onErrorMessage(this, e);
+            disconnectArduinoSerialPort();
+        }
 
+        private void disconnectArduinoSerialPort()
+        {
             lock (arduinoSerialPort)
             {
                 if (arduinoSerialPort.IsOpen == true)
