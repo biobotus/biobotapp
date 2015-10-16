@@ -79,6 +79,19 @@
     <Compile Include="View\Jog\JogControl.Designer.cs">
       <DependentUpon>JogControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ModulePluginManager\IModulePluginPathView.cs" />
+    <Compile Include="View\ModulePluginManager\ModulePluginManagerTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ModulePluginManager\ModulePluginManagerTest.Designer.cs">
+      <DependentUpon>ModulePluginManagerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ModulePluginManager\PluginPathControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ModulePluginManager\PluginPathControl.Designer.cs">
+      <DependentUpon>PluginPathControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Operation\IOperationView.cs" />
     <Compile Include="View\Operation\OperationControl.cs">
       <SubType>UserControl</SubType>
@@ -130,6 +143,12 @@
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ModulePluginManager\ModulePluginManagerTest.resx">
+      <DependentUpon>ModulePluginManagerTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ModulePluginManager\PluginPathControl.resx">
+      <DependentUpon>PluginPathControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Operation\OperationControl.resx">
       <DependentUpon>OperationControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +190,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\ModulePluginManager\" />
+    <Folder Include="Presenter\ModulePluginManager\" />
     <Folder Include="View\Console\" />
   </ItemGroup>
   <ItemGroup>
