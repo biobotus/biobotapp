@@ -15,12 +15,12 @@ namespace BioBotApp.View.Operation
 {
     public partial class OperationControl : UserControl, IOperationView
     {
-        OperationPresenter _presenter;
+        OperationPresenter presenter;
 
         public OperationControl()
         {
             InitializeComponent();
-            _presenter = new OperationPresenter(this);
+            this.presenter = new OperationPresenter(this);
         }
 
         public void initBindings()

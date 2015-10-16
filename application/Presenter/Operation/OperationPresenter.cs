@@ -9,10 +9,10 @@ namespace BioBotApp.Presenter.Operation
 {
     public class OperationPresenter
     {
-        IOperationView _view;
+        IOperationView view;
         public OperationPresenter(IOperationView view)
         {
-            _view = view;
+            this.view = view;
         }
     }
 }

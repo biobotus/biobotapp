@@ -10,6 +10,5 @@ namespace BioBotApp.View.Protocol
 {
     public interface IProtocolView : IDatasetView
     {
-
     }
 }

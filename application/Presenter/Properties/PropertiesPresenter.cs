@@ -9,14 +9,16 @@ namespace BioBotApp.Presenter.Properties
 {
     public class PropertiesPresenter
     {
+        IPropertiesView view;
         public PropertiesPresenter(IPropertiesView view)
         {
             view.setBioBotDataset(Model.Data.DBManager.Instance.projectDataset);
+            this.view = view;
         }
 
         public void addObjectPropertiesValueRow(int object_type_id, int properties_id, String value)
         {
-            Model.Data.Services.PropertiesService.Instance.addObjectPropertiesValueRow(object_type_id, properties_id, value);
+            Model.Data.Services.PropertiesService.Instance.addObjectPropertiesValueRow(object_type_id, properties_id, value);            
         }
     }
 }

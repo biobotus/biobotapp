@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BioBotApp.Model.Data;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,10 +11,18 @@ namespace BioBotApp.View.Protocol
 {
     public class ProtocolTreeNode : TreeNode
     {
-        public ProtocolTreeNode(String text)
+        BioBotDataSets.bbt_protocolRow protocolRow;
+
+        public ProtocolTreeNode(BioBotDataSets.bbt_protocolRow protocolRow)
         {
-            this.Text = text;
+            this.protocolRow = protocolRow;
+            this.Text = this.protocolRow.description;
             this.BackColor = Color.LightCyan;
+        }
+
+        public BioBotDataSets.bbt_protocolRow getProtocolRow()
+        {
+            return this.protocolRow;
         }
     }
 }

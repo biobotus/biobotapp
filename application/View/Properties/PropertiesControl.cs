@@ -15,11 +15,12 @@ namespace BioBotApp.View.Properties
     public partial class PropertiesControl : UserControl, IPropertiesView
     {
 
-        PropertiesPresenter _presenter;
+        PropertiesPresenter presenter;
         public PropertiesControl()
         {
             InitializeComponent();
-            _presenter = new PropertiesPresenter(this);
+            this.presenter = new PropertiesPresenter(this);
+            
         }
 
         public void setBioBotDataset(BioBotDataSets dataset)
@@ -33,7 +34,7 @@ namespace BioBotApp.View.Properties
         {
             int fkObjectType = Convert.ToInt16(txtObjectType.Text);
             int fkProperties = Convert.ToInt16(txtProperties.Text);
-            _presenter.addObjectPropertiesValueRow(fkObjectType, fkProperties, txtValue.Text);
+            this.presenter.addObjectPropertiesValueRow(fkObjectType, fkProperties, txtValue.Text);
         }
     }
 }

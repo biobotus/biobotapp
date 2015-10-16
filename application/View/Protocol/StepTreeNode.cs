@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BioBotApp.Model.Data;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,10 +11,17 @@ namespace BioBotApp.View.Protocol
 {
     public class StepTreeNode : TreeNode
     {
-        public StepTreeNode(String text)
+        private BioBotDataSets.bbt_stepRow stepRow;
+        public StepTreeNode(BioBotDataSets.bbt_stepRow stepRow)
         {
-            this.Text = text;
+            this.stepRow = stepRow;
+            this.Text = this.stepRow.description;
             this.BackColor = Color.LightGreen;
+        }
+
+        public BioBotDataSets.bbt_stepRow getStepRow()
+        {
+            return this.stepRow;
         }
     }
 }

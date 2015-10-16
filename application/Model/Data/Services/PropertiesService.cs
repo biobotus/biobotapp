@@ -8,15 +8,15 @@ namespace BioBotApp.Model.Data.Services
 {
     public class PropertiesService
     {
-        DBManager _dbManager;
-        BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter ta_objectProperty;
+        DBManager dbManager;
+        BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter taObjectProperty;
 
         private static PropertiesService instance;
 
         private PropertiesService()
         {
-            _dbManager = DBManager.Instance;
-            ta_objectProperty = _dbManager.taManager.bbt_object_propertyTableAdapter;
+            this.dbManager = DBManager.Instance;
+            this.taObjectProperty = dbManager.taManager.bbt_object_propertyTableAdapter;
         }
 
         public static PropertiesService Instance
@@ -33,12 +33,12 @@ namespace BioBotApp.Model.Data.Services
 
         public void addObjectPropertiesValueRow(int object_type_id, int properties_id, String value)
         {
-            BioBotDataSets.bbt_object_propertyRow row = _dbManager.projectDataset.bbt_object_property.Newbbt_object_propertyRow();
+            BioBotDataSets.bbt_object_propertyRow row = this.dbManager.projectDataset.bbt_object_property.Newbbt_object_propertyRow();
             row.fk_object_type_id = object_type_id;
             row.fk_properties_id = properties_id;
             row.value = value;
-            _dbManager.projectDataset.bbt_object_property.Addbbt_object_propertyRow(row);
-            ta_objectProperty.Update(_dbManager.projectDataset);
+            this.dbManager.projectDataset.bbt_object_property.Addbbt_object_propertyRow(row);
+            this.taObjectProperty.Update(this.dbManager.projectDataset);
         }
     }
 }

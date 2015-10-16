@@ -9,12 +9,17 @@ namespace BioBotApp.Presenter
 {
     public class ProtocolPresenter
     {
-        private IProtocolView _view;
+        private IProtocolView view;
 
         public ProtocolPresenter(IProtocolView view)
         {
-            _view = view;
-            _view.setProjectDataset(Model.Data.DBManager.Instance.projectDataset);
+            this.view = view;
+            this.view.setProjectDataset(Model.Data.DBManager.Instance.projectDataset);
+        }
+
+        public void updateProtocol()
+        {
+            Model.Data.DBManager.Instance.taManager.bbt_protocolTableAdapter.Update(Model.Data.DBManager.Instance.projectDataset.bbt_protocol);
         }
     }
 }
