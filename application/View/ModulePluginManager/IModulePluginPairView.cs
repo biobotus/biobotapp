@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.ModulePluginManager
 {
-    interface IModulePluginPathView
+    interface IModulePluginPairView
     {
-        void LoadModulePluginPath(List<string> paths);
+        void LoadLoadedPluginList(List<string> pluginList);
+        void LoadModuleNameListe(List<string> pluginList);
     }
 }

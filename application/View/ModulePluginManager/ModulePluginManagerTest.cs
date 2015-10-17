@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BioBotApp.Model.ModulePluginManager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,16 @@ namespace BioBotApp.View.ModulePluginManager
         {
             InitializeComponent();
             List<string> test = new List<string>{ "test1", "test2", "test3" };
-            pluginPathControl1.loadModulePluginPath(test);
+            List<string> plugin = new List<string> { "plugin1", "plugin2", "plugin3" };
+            pluginPathControl1.LoadModulePluginPath(test);
+
+            PluginManager manager = new PluginManager();
+            manager.ImportPlugins();
+
+            modulePluginLoadedView1.LoadLoadedPlugin(manager.GetLoadedPluginList());
+
+            modulePluginPairView1.LoadModuleNameListe(test);
+            modulePluginPairView1.LoadLoadedPluginList(plugin);
         }
     }
 }

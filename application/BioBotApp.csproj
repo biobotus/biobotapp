@@ -38,6 +38,7 @@
       <HintPath>..\serial\BioBotCommunication\BioBotCommunication\bin\Debug\BioBotCommunication.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,6 +59,8 @@
     <Compile Include="Model\Data\DBManager.cs" />
     <Compile Include="Model\Data\Services\PropertiesService.cs" />
     <Compile Include="Model\FSM\FSMManager.cs" />
+    <Compile Include="Model\ModulePluginManager\IModulePlugin.cs" />
+    <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\Operation\OperationPresenter.cs" />
@@ -79,12 +82,26 @@
     <Compile Include="View\Jog\JogControl.Designer.cs">
       <DependentUpon>JogControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ModulePluginManager\IModulePluginLoadedView.cs" />
+    <Compile Include="View\ModulePluginManager\IModulePluginPairView.cs" />
     <Compile Include="View\ModulePluginManager\IModulePluginPathView.cs" />
+    <Compile Include="View\ModulePluginManager\ModulePluginLoadedView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ModulePluginManager\ModulePluginLoadedView.Designer.cs">
+      <DependentUpon>ModulePluginLoadedView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ModulePluginManager\ModulePluginManagerTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\ModulePluginManager\ModulePluginManagerTest.Designer.cs">
       <DependentUpon>ModulePluginManagerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ModulePluginManager\ModulePluginPairView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ModulePluginManager\ModulePluginPairView.Designer.cs">
+      <DependentUpon>ModulePluginPairView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ModulePluginManager\PluginPathControl.cs">
       <SubType>UserControl</SubType>
@@ -143,8 +160,14 @@
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ModulePluginManager\ModulePluginLoadedView.resx">
+      <DependentUpon>ModulePluginLoadedView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ModulePluginManager\ModulePluginManagerTest.resx">
       <DependentUpon>ModulePluginManagerTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ModulePluginManager\ModulePluginPairView.resx">
+      <DependentUpon>ModulePluginPairView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ModulePluginManager\PluginPathControl.resx">
       <DependentUpon>PluginPathControl.cs</DependentUpon>
@@ -190,7 +213,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\ModulePluginManager\" />
     <Folder Include="Presenter\ModulePluginManager\" />
     <Folder Include="View\Console\" />
   </ItemGroup>

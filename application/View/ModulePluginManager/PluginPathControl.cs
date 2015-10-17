@@ -24,7 +24,7 @@ namespace BioBotApp.View.ModulePluginManager
             pathListView.DataSource = dtpluginPath;
         }
 
-        public void loadModulePluginPath(List<string> path)
+        public void LoadModulePluginPath(List<string> path)
         {
             foreach(string s in path)
             {
