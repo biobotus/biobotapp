@@ -33,8 +33,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tlvProtocols = new System.Windows.Forms.TreeView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -87,8 +85,6 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.btnUp);
-            this.flowLayoutPanel1.Controls.Add(this.btnDown);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
@@ -98,28 +94,9 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(70, 586);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // btnUp
-            // 
-            this.btnUp.Location = new System.Drawing.Point(3, 3);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(64, 64);
-            this.btnUp.TabIndex = 0;
-            this.btnUp.Text = "up";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(3, 73);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(64, 64);
-            this.btnDown.TabIndex = 1;
-            this.btnDown.Text = "down";
-            this.btnDown.UseVisualStyleBackColor = true;
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(3, 143);
+            this.btnDelete.Location = new System.Drawing.Point(3, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(64, 64);
             this.btnDelete.TabIndex = 2;
@@ -128,7 +105,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(3, 213);
+            this.btnEdit.Location = new System.Drawing.Point(3, 73);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(64, 64);
             this.btnEdit.TabIndex = 4;
@@ -137,12 +114,13 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(3, 283);
+            this.btnAdd.Location = new System.Drawing.Point(3, 143);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(64, 64);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // ProtocolControl
             // 
@@ -166,8 +144,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TreeView tlvProtocols;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;

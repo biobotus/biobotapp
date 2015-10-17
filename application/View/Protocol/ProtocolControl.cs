@@ -70,7 +70,8 @@ namespace BioBotApp.View.Protocol
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-
+            TreeNode selectedNode = tlvProtocols.SelectedNode;
+                     
         }
 
         private void tlvProtocols_DragEnter(object sender, DragEventArgs e)
@@ -89,9 +90,13 @@ namespace BioBotApp.View.Protocol
 
         private void tlvProtocols_DragDrop(object sender, DragEventArgs e)
         {
+            TreeView treeView = ((TreeView)sender);
             ProtocolTreeNode procotolNode = (ProtocolTreeNode)e.Data.GetData(typeof(ProtocolTreeNode));
-            Point pt = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
-            TreeNode destinationNode = ((TreeView)sender).GetNodeAt(pt);
+
+            if (treeView == null) return;
+
+            Point pt = treeView.PointToClient(new Point(e.X, e.Y));
+            TreeNode destinationNode = treeView.GetNodeAt(pt);
             ProtocolTreeNode destinationProtocolNode = null;
 
             if (destinationNode == null) return;
@@ -104,12 +109,42 @@ namespace BioBotApp.View.Protocol
             if(procotolNode != null)
             {
                 TreeNode parentNode = procotolNode.Parent;
-                parentNode.Nodes.Remove(procotolNode);
-                procotolNode.getProtocolRow().fk_protocol = destinationProtocolNode.getProtocolRow().pk_id;
-                destinationProtocolNode.Nodes.Add(procotolNode);
+
+                if (!isChildNodePresent(procotolNode, destinationProtocolNode))
+                {
+                    if (parentNode == null)
+                    {
+                        tlvProtocols.Nodes.Remove(procotolNode);
+                    }
+                    else
+                    {
+                        parentNode.Nodes.Remove(procotolNode);
+                    }
+                    destinationProtocolNode.Nodes.Add(procotolNode);
+                    procotolNode.getProtocolRow().fk_protocol = destinationProtocolNode.getProtocolRow().pk_id;
+                }
             }
 
             this.presenter.updateProtocol();
+        }
+
+        public Boolean isChildNodePresent(TreeNode parentNode,TreeNode childNode)
+        {
+            Boolean isPresent = false;
+
+            foreach(TreeNode child in parentNode.Nodes)
+            {
+                if (isPresent) return isPresent;
+                if (child == childNode) return true;
+                isPresent = isChildNodePresent(child, childNode);
+            }
+
+            return isPresent;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
