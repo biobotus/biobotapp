@@ -28,17 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("TestDeRacine");
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pluginPathControl1 = new BioBotApp.View.ModulePluginManager.PluginPathControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.modulePluginLoadedView1 = new BioBotApp.View.ModulePluginManager.ModulePluginLoadedView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.pluginPathControl1 = new BioBotApp.View.ModulePluginManager.PluginPathControl();
+            this.modulePluginLoadedView1 = new BioBotApp.View.ModulePluginManager.ModulePluginLoadedView();
             this.modulePluginPairView1 = new BioBotApp.View.ModulePluginManager.ModulePluginPairView();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -46,7 +51,8 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(68, 21);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Location = new System.Drawing.Point(12, 44);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(372, 417);
@@ -60,15 +66,8 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(364, 391);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "PathTest";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pluginPathControl1
-            // 
-            this.pluginPathControl1.Location = new System.Drawing.Point(6, 6);
-            this.pluginPathControl1.Name = "pluginPathControl1";
-            this.pluginPathControl1.Size = new System.Drawing.Size(350, 330);
-            this.pluginPathControl1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -78,15 +77,8 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(364, 391);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "LoadedTest";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // modulePluginLoadedView1
-            // 
-            this.modulePluginLoadedView1.Location = new System.Drawing.Point(18, 6);
-            this.modulePluginLoadedView1.Name = "modulePluginLoadedView1";
-            this.modulePluginLoadedView1.Size = new System.Drawing.Size(320, 343);
-            this.modulePluginLoadedView1.TabIndex = 1;
             // 
             // tabPage3
             // 
@@ -95,8 +87,45 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(364, 391);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "PairingTest";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.mainPanel);
+            this.tabPage4.Controls.Add(this.treeView1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(364, 391);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "TreeNodeTest";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(16, 18);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Outils";
+            treeNode1.Text = "TestDeRacine";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.treeView1.Size = new System.Drawing.Size(118, 184);
+            this.treeView1.TabIndex = 0;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // pluginPathControl1
+            // 
+            this.pluginPathControl1.Location = new System.Drawing.Point(6, 22);
+            this.pluginPathControl1.Name = "pluginPathControl1";
+            this.pluginPathControl1.Size = new System.Drawing.Size(350, 330);
+            this.pluginPathControl1.TabIndex = 0;
+            // 
+            // modulePluginLoadedView1
+            // 
+            this.modulePluginLoadedView1.Location = new System.Drawing.Point(18, 6);
+            this.modulePluginLoadedView1.Name = "modulePluginLoadedView1";
+            this.modulePluginLoadedView1.Size = new System.Drawing.Size(320, 343);
+            this.modulePluginLoadedView1.TabIndex = 1;
             // 
             // modulePluginPairView1
             // 
@@ -105,11 +134,18 @@
             this.modulePluginPairView1.Size = new System.Drawing.Size(314, 307);
             this.modulePluginPairView1.TabIndex = 0;
             // 
+            // mainPanel
+            // 
+            this.mainPanel.Location = new System.Drawing.Point(140, 18);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(221, 184);
+            this.mainPanel.TabIndex = 1;
+            // 
             // ModulePluginManagerTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 478);
+            this.ClientSize = new System.Drawing.Size(392, 473);
             this.Controls.Add(this.tabControl1);
             this.Name = "ModulePluginManagerTest";
             this.Text = "ModulePluginManagerTest";
@@ -117,6 +153,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -130,5 +167,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private ModulePluginPairView modulePluginPairView1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Panel mainPanel;
     }
 }

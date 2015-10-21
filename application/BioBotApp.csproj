@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,7 @@
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
+    <Compile Include="Presenter\ModulePluginManager\PluginManagerPathPresenter.cs" />
     <Compile Include="Presenter\Operation\OperationPresenter.cs" />
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolAddEvent.cs" />
@@ -213,7 +215,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Presenter\ModulePluginManager\" />
     <Folder Include="View\Console\" />
   </ItemGroup>
   <ItemGroup>

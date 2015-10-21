@@ -9,13 +9,14 @@ namespace BioBotApp.Model.ModulePluginManager
 {
     public interface IModulePlugin
     {
-        string Name
-        {
-            get;
-        }
         void ExecuteOperation();
         UserControl GetDescriptionControl();
         TreeNode GetConfTreeNode();
         Dictionary<string, UserControl> getConfAction();
+    }
+
+    public interface IModuleData
+    {
+        string Name { get; }
     }
 }

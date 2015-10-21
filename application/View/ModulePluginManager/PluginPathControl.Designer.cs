@@ -40,6 +40,8 @@
             this.btnDownSel = new System.Windows.Forms.Button();
             this.btnDelLine = new System.Windows.Forms.Button();
             this.pathListView = new System.Windows.Forms.DataGridView();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pathListView)).BeginInit();
             this.SuspendLayout();
@@ -116,7 +118,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 126);
+            this.label2.Location = new System.Drawing.Point(2, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 3;
@@ -124,7 +126,7 @@
             // 
             // btnUpSel
             // 
-            this.btnUpSel.Location = new System.Drawing.Point(310, 142);
+            this.btnUpSel.Location = new System.Drawing.Point(309, 97);
             this.btnUpSel.Name = "btnUpSel";
             this.btnUpSel.Size = new System.Drawing.Size(32, 25);
             this.btnUpSel.TabIndex = 3;
@@ -134,7 +136,7 @@
             // 
             // btnDownSel
             // 
-            this.btnDownSel.Location = new System.Drawing.Point(310, 173);
+            this.btnDownSel.Location = new System.Drawing.Point(309, 128);
             this.btnDownSel.Name = "btnDownSel";
             this.btnDownSel.Size = new System.Drawing.Size(32, 25);
             this.btnDownSel.TabIndex = 6;
@@ -144,7 +146,7 @@
             // 
             // btnDelLine
             // 
-            this.btnDelLine.Location = new System.Drawing.Point(310, 204);
+            this.btnDelLine.Location = new System.Drawing.Point(309, 159);
             this.btnDelLine.Name = "btnDelLine";
             this.btnDelLine.Size = new System.Drawing.Size(32, 25);
             this.btnDelLine.TabIndex = 7;
@@ -162,7 +164,7 @@
             this.pathListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.pathListView.ColumnHeadersVisible = false;
             this.pathListView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pathListView.Location = new System.Drawing.Point(6, 142);
+            this.pathListView.Location = new System.Drawing.Point(5, 97);
             this.pathListView.MultiSelect = false;
             this.pathListView.Name = "pathListView";
             this.pathListView.RowHeadersVisible = false;
@@ -172,10 +174,32 @@
             this.pathListView.Size = new System.Drawing.Size(298, 198);
             this.pathListView.TabIndex = 8;
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(99, 302);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(81, 21);
+            this.btnLoad.TabIndex = 10;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(6, 301);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(73, 23);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // PluginPathControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pathListView);
             this.Controls.Add(this.btnDelLine);
             this.Controls.Add(this.btnDownSel);
@@ -185,7 +209,7 @@
             this.Controls.Add(this.btnAddToPathList);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PluginPathControl";
-            this.Size = new System.Drawing.Size(347, 347);
+            this.Size = new System.Drawing.Size(347, 346);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pathListView)).EndInit();
@@ -208,5 +232,7 @@
         private System.Windows.Forms.Button btnDownSel;
         private System.Windows.Forms.Button btnDelLine;
         private System.Windows.Forms.DataGridView pathListView;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSave;
     }
 }

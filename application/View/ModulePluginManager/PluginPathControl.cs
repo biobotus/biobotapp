@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BioBotApp.Presenter.ModulePluginManager;
 
 namespace BioBotApp.View.ModulePluginManager
 {
@@ -16,17 +17,20 @@ namespace BioBotApp.View.ModulePluginManager
     {
 
         private DataTable dtpluginPath = new DataTable();
+        private PluginManagerPathPresenter presenter;
 
         public PluginPathControl()
         {
             InitializeComponent();
             dtpluginPath.Columns.Add("path");
             pathListView.DataSource = dtpluginPath;
+            presenter = new PluginManagerPathPresenter(this);
         }
 
         public void LoadModulePluginPath(List<string> path)
         {
-            foreach(string s in path)
+            dtpluginPath.Clear();
+            foreach (string s in path)
             {
                 dtpluginPath.Rows.Add(new object[] { s });
             }
@@ -45,7 +49,7 @@ namespace BioBotApp.View.ModulePluginManager
         {
             string path = txtNewPath.Text;
             
-            if (path != null)
+            if (path != null && path != "")
             {
                 bool isInTable = dtpluginPath.AsEnumerable().Any(row => path == row.Field<String>("path"));
                 if(!isInTable)
@@ -111,6 +115,17 @@ namespace BioBotApp.View.ModulePluginManager
             {
                 pathListView.Rows.Remove(row);
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Is there a cleaner way to do that?
+            presenter.saveModulePluginPathList(dtpluginPath.AsEnumerable().Select(x => x[0].ToString()).ToList());
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            presenter.loadModulePluginPathList();
         }
     }
 }

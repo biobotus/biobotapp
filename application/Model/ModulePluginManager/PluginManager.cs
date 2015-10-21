@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Windows.Forms;
+using System.Data.Linq;
+using System.Xml.Linq;
+using System.Xml;
+using System.IO;
 
 namespace BioBotApp.Model.ModulePluginManager
 {
@@ -13,14 +18,36 @@ namespace BioBotApp.Model.ModulePluginManager
         private CompositionContainer _container;
 
         [ImportMany]
-        private IEnumerable<IModulePlugin> plugins;
+        private IEnumerable<Lazy<IModulePlugin,IModuleData>> plugins;
 
         private List<string> pathList;
 
-        public PluginManager()
+        private static PluginManager instance;
+
+        private PluginManager()
         {
             pathList = new List<string>();
-            pathList.Add("C:\\Users\\maler\\Documents\\Visual Studio 2015\\Projects\\DummyModule\\DummyModule\\bin\\Debug");
+            LoadPathList();
+        }
+
+        public static PluginManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new PluginManager();
+             }
+                return instance;
+            }
+        }
+
+        private void AddPath(string path)
+        {
+            if (!pathList.Contains(path))
+            {
+                pathList.Add(path);
+            }
         }
 
         public void ImportPlugins()
@@ -38,6 +65,7 @@ namespace BioBotApp.Model.ModulePluginManager
 
             //Create the CompositionContainer with the parts in the catalog
             _container = new CompositionContainer(catalog);
+
             //Fill the imports of this object
             try
             {
@@ -62,11 +90,78 @@ namespace BioBotApp.Model.ModulePluginManager
         public List<string> GetLoadedPluginList()
         {
             List<string> result = new List<string>();
-            foreach (IModulePlugin plugin in plugins)
+            foreach (Lazy<IModulePlugin, IModuleData> plugin in plugins)
             {
-                result.Add(plugin.Name);
+                result.Add(plugin.Metadata.Name);
             }
             return result;
+        }
+
+        public List<TreeNode> GetPluginConfTreeNode()
+        {
+            List<TreeNode> result = new List<TreeNode>();
+            foreach (Lazy<IModulePlugin, IModuleData> plugin in plugins)
+            {
+                result.Add(plugin.Value.GetConfTreeNode());
+            }
+            return result;
+        }
+
+        public Dictionary<string,UserControl> GetPluginConfTreeNodeAction()
+        {
+            Dictionary<string, UserControl> result = new Dictionary < string, UserControl>();
+            foreach (Lazy<IModulePlugin, IModuleData> plugin in plugins)
+            {
+                Dictionary<string, UserControl>  actions = plugin.Value.getConfAction();
+                foreach (string key in actions.Keys)
+                {
+                    if(!result.Keys.Contains(key))
+                    {
+                        result[key] = actions[key];
+                    }
+                    else
+                    {
+                        throw new DuplicateKeyException(this, "Module node name already have an action associated");
+                    }
+                }
+            }
+            return result;
+        }
+
+        public void SavePathList(List<string> pathList)
+        {
+            var xEle = new XElement("PluginPathList", from path in pathList
+                                    select new XElement("Path",
+                                         new XAttribute("value", path)
+                                       ));
+            xEle.Save(".\\PluginPathList.xml");
+        }
+
+        public void LoadPathList()
+        {
+            if (File.Exists(".\\PluginPathList.xml"))
+            {
+                pathList = new List<string>();
+                XmlTextReader reader = new XmlTextReader(".\\PluginPathList.xml");
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element: // The node is an element.
+                            if (reader.Name == "Path")
+                            {
+                                if (reader.MoveToNextAttribute())
+                                {
+                                    AddPath(reader.Value);
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+           
         }
     }
 }
