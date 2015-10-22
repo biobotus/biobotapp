@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Presenter.ModulePluginManager
 {
-    class PluginManagerPathPresenter
+    class PathPresenter
     {
         private PluginManager pluginManager;
         private IModulePluginPathView view;
 
-        public PluginManagerPathPresenter(IModulePluginPathView pathListView)
+        public PathPresenter(IModulePluginPathView pathListView)
         {
             pluginManager = PluginManager.Instance;
             view = pathListView;

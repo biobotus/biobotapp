@@ -27,6 +27,7 @@ namespace BioBotApp.Model.ModulePluginManager
         private PluginManager()
         {
             pathList = new List<string>();
+            plugins = Enumerable.Empty<Lazy<IModulePlugin, IModuleData>>();
             LoadPathList();
         }
 
@@ -52,6 +53,7 @@ namespace BioBotApp.Model.ModulePluginManager
 
         public void ImportPlugins()
         {
+            plugins = Enumerable.Empty<Lazy<IModulePlugin, IModuleData>>();
             //An aggregate catalog that combines multiple catalogs
             var catalog = new AggregateCatalog();
             //Adds all the parts found in the same assembly as the Program class
@@ -128,10 +130,11 @@ namespace BioBotApp.Model.ModulePluginManager
             return result;
         }
 
-        public void SavePathList(List<string> pathList)
+        public void SavePathList(List<string> newPathList)
         {
-            var xEle = new XElement("PluginPathList", from path in pathList
-                                    select new XElement("Path",
+            pathList = newPathList;
+            var xEle = new XElement("PluginPathList", from path in newPathList
+                                                      select new XElement("Path",
                                          new XAttribute("value", path)
                                        ));
             xEle.Save(".\\PluginPathList.xml");

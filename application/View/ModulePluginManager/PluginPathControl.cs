@@ -17,14 +17,14 @@ namespace BioBotApp.View.ModulePluginManager
     {
 
         private DataTable dtpluginPath = new DataTable();
-        private PluginManagerPathPresenter presenter;
+        private PathPresenter presenter;
 
         public PluginPathControl()
         {
             InitializeComponent();
             dtpluginPath.Columns.Add("path");
             pathListView.DataSource = dtpluginPath;
-            presenter = new PluginManagerPathPresenter(this);
+            presenter = new PathPresenter(this);
         }
 
         public void LoadModulePluginPath(List<string> path)
