@@ -10,6 +10,7 @@ namespace BioBotApp.Presenter.Properties
     public class PropertiesPresenter
     {
         IPropertiesView view;
+
         public PropertiesPresenter(IPropertiesView view)
         {
             view.setBioBotDataset(Model.Data.DBManager.Instance.projectDataset);

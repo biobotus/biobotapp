@@ -58,6 +58,11 @@
     <Compile Include="Model\Data\DBManager.cs" />
     <Compile Include="Model\Data\Services\PropertiesService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
+    <Compile Include="Model\EventBus\EventBus.cs" />
+    <Compile Include="Model\EventBus\Operation\OperationEvent.cs" />
+    <Compile Include="Model\EventBus\Step\StepEvent.cs" />
+    <Compile Include="Model\EventBus\Subscribe.cs" />
+    <Compile Include="Model\EventBus\Subscriber.cs" />
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />

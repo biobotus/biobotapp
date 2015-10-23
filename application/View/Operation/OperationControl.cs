@@ -33,7 +33,7 @@ namespace BioBotApp.View.Operation
 
         public void setOperation(BioBotDataSets.bbt_operationRow operation)
         {
-            this.bioBotDataSets.bbt_operation.DefaultView.RowFilter = "fk_operation = " + operation.pk_id;
+            bbt_operation_referenceBindingSource.Filter = "fk_operation = " + operation.pk_id;
         }
 
         public void setProjectDataset(BioBotDataSets dataset)
@@ -42,9 +42,9 @@ namespace BioBotApp.View.Operation
             initBindings();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public void setStep(BioBotDataSets.bbt_stepRow stepRow)
         {
-
+            //bbt_operation_referenceBindingSource.Filter = "fk_step = " + stepRow.pk_id;
         }
     }
 }

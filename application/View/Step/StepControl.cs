@@ -19,17 +19,5 @@ namespace BioBotApp.View.Step
             InitializeComponent();
             presenter = new StepPresenter(this);
         }
-
-        private void bbt_operationBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bbt_operationBindingSource.EndEdit();
-
-        }
-
-        private void StepControl_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

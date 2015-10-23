@@ -1,5 +1,6 @@
 ﻿using BioBotApp.Presenter;
 using BioBotApp.View.Communication;
+using BioBotApp.View.Operation;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
 using System;
@@ -23,8 +24,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
 
-            ProtocolForm form = new ProtocolForm();         
-            
+            OperationForm form = new OperationForm();
             Application.Run(form);
         }
     }

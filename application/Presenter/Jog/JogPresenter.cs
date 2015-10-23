@@ -8,5 +8,6 @@ namespace BioBotApp.Presenter.Jog
 {
     class JogPresenter
     {
+
     }
 }

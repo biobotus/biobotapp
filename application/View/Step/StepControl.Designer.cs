@@ -35,8 +35,8 @@
             this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
             this.bbt_operationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bbt_operationDataGridView = new System.Windows.Forms.DataGridView();
-            this.bbtoperationtypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bbtoperationtypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -106,11 +106,6 @@
             this.bbt_operationDataGridView.Size = new System.Drawing.Size(367, 413);
             this.bbt_operationDataGridView.TabIndex = 2;
             // 
-            // bbtoperationtypeBindingSource
-            // 
-            this.bbtoperationtypeBindingSource.DataMember = "bbt_operation_type";
-            this.bbtoperationtypeBindingSource.DataSource = this.bioBotDataSets;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "fk_operation_type";
@@ -122,6 +117,11 @@
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn1.ValueMember = "pk_id";
+            // 
+            // bbtoperationtypeBindingSource
+            // 
+            this.bbtoperationtypeBindingSource.DataMember = "bbt_operation_type";
+            this.bbtoperationtypeBindingSource.DataSource = this.bioBotDataSets;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -173,7 +173,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "StepControl";
             this.Size = new System.Drawing.Size(470, 534);
-            this.Load += new System.EventHandler(this.StepControl_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
