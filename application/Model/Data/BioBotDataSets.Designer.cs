@@ -26,8 +26,6 @@ namespace BioBotApp.Model.Data {
         
         private bbt_informationDataTable tablebbt_information;
         
-        private bbt_stepDataTable tablebbt_step;
-        
         private bbt_information_typesDataTable tablebbt_information_types;
         
         private bbt_information_valueDataTable tablebbt_information_value;
@@ -40,17 +38,23 @@ namespace BioBotApp.Model.Data {
         
         private bbt_propertyDataTable tablebbt_property;
         
-        private bbt_operationDataTable tablebbt_operation;
-        
         private bbt_operation_referenceDataTable tablebbt_operation_reference;
         
         private bbt_operation_typeDataTable tablebbt_operation_type;
         
         private bbt_protocolDataTable tablebbt_protocol;
         
+        private bbt_stepDataTable tablebbt_step;
+        
+        private bbt_operationDataTable tablebbt_operation;
+        
         private global::System.Data.DataRelation relationbbt_protocol_bbt_protocol;
         
         private global::System.Data.DataRelation relationbbt_protocol_bbt_step;
+        
+        private global::System.Data.DataRelation relationbbt_step_bbt_operation;
+        
+        private global::System.Data.DataRelation relationbbt_operation_type_bbt_operation;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -83,9 +87,6 @@ namespace BioBotApp.Model.Data {
                 if ((ds.Tables["bbt_information"] != null)) {
                     base.Tables.Add(new bbt_informationDataTable(ds.Tables["bbt_information"]));
                 }
-                if ((ds.Tables["bbt_step"] != null)) {
-                    base.Tables.Add(new bbt_stepDataTable(ds.Tables["bbt_step"]));
-                }
                 if ((ds.Tables["bbt_information_types"] != null)) {
                     base.Tables.Add(new bbt_information_typesDataTable(ds.Tables["bbt_information_types"]));
                 }
@@ -104,9 +105,6 @@ namespace BioBotApp.Model.Data {
                 if ((ds.Tables["bbt_property"] != null)) {
                     base.Tables.Add(new bbt_propertyDataTable(ds.Tables["bbt_property"]));
                 }
-                if ((ds.Tables["bbt_operation"] != null)) {
-                    base.Tables.Add(new bbt_operationDataTable(ds.Tables["bbt_operation"]));
-                }
                 if ((ds.Tables["bbt_operation_reference"] != null)) {
                     base.Tables.Add(new bbt_operation_referenceDataTable(ds.Tables["bbt_operation_reference"]));
                 }
@@ -115,6 +113,12 @@ namespace BioBotApp.Model.Data {
                 }
                 if ((ds.Tables["bbt_protocol"] != null)) {
                     base.Tables.Add(new bbt_protocolDataTable(ds.Tables["bbt_protocol"]));
+                }
+                if ((ds.Tables["bbt_step"] != null)) {
+                    base.Tables.Add(new bbt_stepDataTable(ds.Tables["bbt_step"]));
+                }
+                if ((ds.Tables["bbt_operation"] != null)) {
+                    base.Tables.Add(new bbt_operationDataTable(ds.Tables["bbt_operation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -141,16 +145,6 @@ namespace BioBotApp.Model.Data {
         public bbt_informationDataTable bbt_information {
             get {
                 return this.tablebbt_information;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public bbt_stepDataTable bbt_step {
-            get {
-                return this.tablebbt_step;
             }
         }
         
@@ -218,16 +212,6 @@ namespace BioBotApp.Model.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public bbt_operationDataTable bbt_operation {
-            get {
-                return this.tablebbt_operation;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public bbt_operation_referenceDataTable bbt_operation_reference {
             get {
                 return this.tablebbt_operation_reference;
@@ -251,6 +235,26 @@ namespace BioBotApp.Model.Data {
         public bbt_protocolDataTable bbt_protocol {
             get {
                 return this.tablebbt_protocol;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public bbt_stepDataTable bbt_step {
+            get {
+                return this.tablebbt_step;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public bbt_operationDataTable bbt_operation {
+            get {
+                return this.tablebbt_operation;
             }
         }
         
@@ -324,9 +328,6 @@ namespace BioBotApp.Model.Data {
                 if ((ds.Tables["bbt_information"] != null)) {
                     base.Tables.Add(new bbt_informationDataTable(ds.Tables["bbt_information"]));
                 }
-                if ((ds.Tables["bbt_step"] != null)) {
-                    base.Tables.Add(new bbt_stepDataTable(ds.Tables["bbt_step"]));
-                }
                 if ((ds.Tables["bbt_information_types"] != null)) {
                     base.Tables.Add(new bbt_information_typesDataTable(ds.Tables["bbt_information_types"]));
                 }
@@ -345,9 +346,6 @@ namespace BioBotApp.Model.Data {
                 if ((ds.Tables["bbt_property"] != null)) {
                     base.Tables.Add(new bbt_propertyDataTable(ds.Tables["bbt_property"]));
                 }
-                if ((ds.Tables["bbt_operation"] != null)) {
-                    base.Tables.Add(new bbt_operationDataTable(ds.Tables["bbt_operation"]));
-                }
                 if ((ds.Tables["bbt_operation_reference"] != null)) {
                     base.Tables.Add(new bbt_operation_referenceDataTable(ds.Tables["bbt_operation_reference"]));
                 }
@@ -356,6 +354,12 @@ namespace BioBotApp.Model.Data {
                 }
                 if ((ds.Tables["bbt_protocol"] != null)) {
                     base.Tables.Add(new bbt_protocolDataTable(ds.Tables["bbt_protocol"]));
+                }
+                if ((ds.Tables["bbt_step"] != null)) {
+                    base.Tables.Add(new bbt_stepDataTable(ds.Tables["bbt_step"]));
+                }
+                if ((ds.Tables["bbt_operation"] != null)) {
+                    base.Tables.Add(new bbt_operationDataTable(ds.Tables["bbt_operation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -396,12 +400,6 @@ namespace BioBotApp.Model.Data {
                     this.tablebbt_information.InitVars();
                 }
             }
-            this.tablebbt_step = ((bbt_stepDataTable)(base.Tables["bbt_step"]));
-            if ((initTable == true)) {
-                if ((this.tablebbt_step != null)) {
-                    this.tablebbt_step.InitVars();
-                }
-            }
             this.tablebbt_information_types = ((bbt_information_typesDataTable)(base.Tables["bbt_information_types"]));
             if ((initTable == true)) {
                 if ((this.tablebbt_information_types != null)) {
@@ -438,12 +436,6 @@ namespace BioBotApp.Model.Data {
                     this.tablebbt_property.InitVars();
                 }
             }
-            this.tablebbt_operation = ((bbt_operationDataTable)(base.Tables["bbt_operation"]));
-            if ((initTable == true)) {
-                if ((this.tablebbt_operation != null)) {
-                    this.tablebbt_operation.InitVars();
-                }
-            }
             this.tablebbt_operation_reference = ((bbt_operation_referenceDataTable)(base.Tables["bbt_operation_reference"]));
             if ((initTable == true)) {
                 if ((this.tablebbt_operation_reference != null)) {
@@ -462,8 +454,22 @@ namespace BioBotApp.Model.Data {
                     this.tablebbt_protocol.InitVars();
                 }
             }
+            this.tablebbt_step = ((bbt_stepDataTable)(base.Tables["bbt_step"]));
+            if ((initTable == true)) {
+                if ((this.tablebbt_step != null)) {
+                    this.tablebbt_step.InitVars();
+                }
+            }
+            this.tablebbt_operation = ((bbt_operationDataTable)(base.Tables["bbt_operation"]));
+            if ((initTable == true)) {
+                if ((this.tablebbt_operation != null)) {
+                    this.tablebbt_operation.InitVars();
+                }
+            }
             this.relationbbt_protocol_bbt_protocol = this.Relations["bbt_protocol_bbt_protocol"];
             this.relationbbt_protocol_bbt_step = this.Relations["bbt_protocol_bbt_step"];
+            this.relationbbt_step_bbt_operation = this.Relations["bbt_step_bbt_operation"];
+            this.relationbbt_operation_type_bbt_operation = this.Relations["bbt_operation_type_bbt_operation"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -476,8 +482,6 @@ namespace BioBotApp.Model.Data {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablebbt_information = new bbt_informationDataTable();
             base.Tables.Add(this.tablebbt_information);
-            this.tablebbt_step = new bbt_stepDataTable();
-            base.Tables.Add(this.tablebbt_step);
             this.tablebbt_information_types = new bbt_information_typesDataTable();
             base.Tables.Add(this.tablebbt_information_types);
             this.tablebbt_information_value = new bbt_information_valueDataTable();
@@ -490,14 +494,16 @@ namespace BioBotApp.Model.Data {
             base.Tables.Add(this.tablebbt_object_type);
             this.tablebbt_property = new bbt_propertyDataTable();
             base.Tables.Add(this.tablebbt_property);
-            this.tablebbt_operation = new bbt_operationDataTable();
-            base.Tables.Add(this.tablebbt_operation);
             this.tablebbt_operation_reference = new bbt_operation_referenceDataTable();
             base.Tables.Add(this.tablebbt_operation_reference);
             this.tablebbt_operation_type = new bbt_operation_typeDataTable();
             base.Tables.Add(this.tablebbt_operation_type);
             this.tablebbt_protocol = new bbt_protocolDataTable();
             base.Tables.Add(this.tablebbt_protocol);
+            this.tablebbt_step = new bbt_stepDataTable();
+            base.Tables.Add(this.tablebbt_step);
+            this.tablebbt_operation = new bbt_operationDataTable();
+            base.Tables.Add(this.tablebbt_operation);
             this.relationbbt_protocol_bbt_protocol = new global::System.Data.DataRelation("bbt_protocol_bbt_protocol", new global::System.Data.DataColumn[] {
                         this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_protocol.fk_protocolColumn}, false);
@@ -506,17 +512,19 @@ namespace BioBotApp.Model.Data {
                         this.tablebbt_protocol.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_step.fk_protocolColumn}, false);
             this.Relations.Add(this.relationbbt_protocol_bbt_step);
+            this.relationbbt_step_bbt_operation = new global::System.Data.DataRelation("bbt_step_bbt_operation", new global::System.Data.DataColumn[] {
+                        this.tablebbt_step.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation.fk_stepColumn}, false);
+            this.Relations.Add(this.relationbbt_step_bbt_operation);
+            this.relationbbt_operation_type_bbt_operation = new global::System.Data.DataRelation("bbt_operation_type_bbt_operation", new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation_type.pk_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebbt_operation.fk_operation_typeColumn}, false);
+            this.Relations.Add(this.relationbbt_operation_type_bbt_operation);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializebbt_information() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializebbt_step() {
             return false;
         }
         
@@ -558,12 +566,6 @@ namespace BioBotApp.Model.Data {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializebbt_operation() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializebbt_operation_reference() {
             return false;
         }
@@ -577,6 +579,18 @@ namespace BioBotApp.Model.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializebbt_protocol() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializebbt_step() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializebbt_operation() {
             return false;
         }
         
@@ -639,9 +653,6 @@ namespace BioBotApp.Model.Data {
         public delegate void bbt_informationRowChangeEventHandler(object sender, bbt_informationRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void bbt_stepRowChangeEventHandler(object sender, bbt_stepRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void bbt_information_typesRowChangeEventHandler(object sender, bbt_information_typesRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -660,9 +671,6 @@ namespace BioBotApp.Model.Data {
         public delegate void bbt_propertyRowChangeEventHandler(object sender, bbt_propertyRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void bbt_operationRowChangeEventHandler(object sender, bbt_operationRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void bbt_operation_referenceRowChangeEventHandler(object sender, bbt_operation_referenceRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -670,6 +678,12 @@ namespace BioBotApp.Model.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void bbt_protocolRowChangeEventHandler(object sender, bbt_protocolRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void bbt_stepRowChangeEventHandler(object sender, bbt_stepRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void bbt_operationRowChangeEventHandler(object sender, bbt_operationRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -922,329 +936,6 @@ namespace BioBotApp.Model.Data {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "bbt_informationDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class bbt_stepDataTable : global::System.Data.TypedTableBase<bbt_stepRow> {
-            
-            private global::System.Data.DataColumn columnpk_id;
-            
-            private global::System.Data.DataColumn columnfk_protocol;
-            
-            private global::System.Data.DataColumn columndescription;
-            
-            private global::System.Data.DataColumn columnvalue;
-            
-            private global::System.Data.DataColumn columnfk_object;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepDataTable() {
-                this.TableName = "bbt_step";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal bbt_stepDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected bbt_stepDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pk_idColumn {
-                get {
-                    return this.columnpk_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fk_protocolColumn {
-                get {
-                    return this.columnfk_protocol;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn descriptionColumn {
-                get {
-                    return this.columndescription;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn valueColumn {
-                get {
-                    return this.columnvalue;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fk_objectColumn {
-                get {
-                    return this.columnfk_object;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow this[int index] {
-                get {
-                    return ((bbt_stepRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_stepRowChangeEventHandler bbt_stepRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_stepRowChangeEventHandler bbt_stepRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_stepRowChangeEventHandler bbt_stepRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_stepRowChangeEventHandler bbt_stepRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addbbt_stepRow(bbt_stepRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow Addbbt_stepRow(bbt_protocolRow parentbbt_protocolRowBybbt_protocol_bbt_step, string description, string value, int fk_object) {
-                bbt_stepRow rowbbt_stepRow = ((bbt_stepRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        description,
-                        value,
-                        fk_object};
-                if ((parentbbt_protocolRowBybbt_protocol_bbt_step != null)) {
-                    columnValuesArray[1] = parentbbt_protocolRowBybbt_protocol_bbt_step[0];
-                }
-                rowbbt_stepRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowbbt_stepRow);
-                return rowbbt_stepRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow FindBypk_id(int pk_id) {
-                return ((bbt_stepRow)(this.Rows.Find(new object[] {
-                            pk_id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                bbt_stepDataTable cln = ((bbt_stepDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new bbt_stepDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnpk_id = base.Columns["pk_id"];
-                this.columnfk_protocol = base.Columns["fk_protocol"];
-                this.columndescription = base.Columns["description"];
-                this.columnvalue = base.Columns["value"];
-                this.columnfk_object = base.Columns["fk_object"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnpk_id = new global::System.Data.DataColumn("pk_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpk_id);
-                this.columnfk_protocol = new global::System.Data.DataColumn("fk_protocol", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfk_protocol);
-                this.columndescription = new global::System.Data.DataColumn("description", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndescription);
-                this.columnvalue = new global::System.Data.DataColumn("value", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnvalue);
-                this.columnfk_object = new global::System.Data.DataColumn("fk_object", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfk_object);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnpk_id}, true));
-                this.columnpk_id.AutoIncrement = true;
-                this.columnpk_id.AutoIncrementSeed = -1;
-                this.columnpk_id.AutoIncrementStep = -1;
-                this.columnpk_id.AllowDBNull = false;
-                this.columnpk_id.Unique = true;
-                this.columndescription.AllowDBNull = false;
-                this.columndescription.MaxLength = 8190;
-                this.columnvalue.MaxLength = 8190;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow Newbbt_stepRow() {
-                return ((bbt_stepRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new bbt_stepRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(bbt_stepRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.bbt_stepRowChanged != null)) {
-                    this.bbt_stepRowChanged(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.bbt_stepRowChanging != null)) {
-                    this.bbt_stepRowChanging(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.bbt_stepRowDeleted != null)) {
-                    this.bbt_stepRowDeleted(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.bbt_stepRowDeleting != null)) {
-                    this.bbt_stepRowDeleting(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removebbt_stepRow(bbt_stepRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BioBotDataSets ds = new BioBotDataSets();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "bbt_stepDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3076,297 +2767,6 @@ namespace BioBotApp.Model.Data {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class bbt_operationDataTable : global::System.Data.TypedTableBase<bbt_operationRow> {
-            
-            private global::System.Data.DataColumn columnfk_operation_type;
-            
-            private global::System.Data.DataColumn columnfk_step;
-            
-            private global::System.Data.DataColumn columnpk_id;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationDataTable() {
-                this.TableName = "bbt_operation";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal bbt_operationDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected bbt_operationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fk_operation_typeColumn {
-                get {
-                    return this.columnfk_operation_type;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fk_stepColumn {
-                get {
-                    return this.columnfk_step;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pk_idColumn {
-                get {
-                    return this.columnpk_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow this[int index] {
-                get {
-                    return ((bbt_operationRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_operationRowChangeEventHandler bbt_operationRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_operationRowChangeEventHandler bbt_operationRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_operationRowChangeEventHandler bbt_operationRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event bbt_operationRowChangeEventHandler bbt_operationRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Addbbt_operationRow(bbt_operationRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow Addbbt_operationRow(int fk_operation_type, int fk_step) {
-                bbt_operationRow rowbbt_operationRow = ((bbt_operationRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        fk_operation_type,
-                        fk_step,
-                        null};
-                rowbbt_operationRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowbbt_operationRow);
-                return rowbbt_operationRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow FindBypk_id(int pk_id) {
-                return ((bbt_operationRow)(this.Rows.Find(new object[] {
-                            pk_id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                bbt_operationDataTable cln = ((bbt_operationDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new bbt_operationDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnfk_operation_type = base.Columns["fk_operation_type"];
-                this.columnfk_step = base.Columns["fk_step"];
-                this.columnpk_id = base.Columns["pk_id"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnfk_operation_type = new global::System.Data.DataColumn("fk_operation_type", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfk_operation_type);
-                this.columnfk_step = new global::System.Data.DataColumn("fk_step", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfk_step);
-                this.columnpk_id = new global::System.Data.DataColumn("pk_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpk_id);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnpk_id}, true));
-                this.columnfk_operation_type.AllowDBNull = false;
-                this.columnfk_step.AllowDBNull = false;
-                this.columnpk_id.AutoIncrement = true;
-                this.columnpk_id.AutoIncrementSeed = -1;
-                this.columnpk_id.AutoIncrementStep = -1;
-                this.columnpk_id.AllowDBNull = false;
-                this.columnpk_id.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow Newbbt_operationRow() {
-                return ((bbt_operationRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new bbt_operationRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(bbt_operationRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.bbt_operationRowChanged != null)) {
-                    this.bbt_operationRowChanged(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.bbt_operationRowChanging != null)) {
-                    this.bbt_operationRowChanging(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.bbt_operationRowDeleted != null)) {
-                    this.bbt_operationRowDeleted(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.bbt_operationRowDeleting != null)) {
-                    this.bbt_operationRowDeleting(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Removebbt_operationRow(bbt_operationRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BioBotDataSets ds = new BioBotDataSets();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "bbt_operationDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class bbt_operation_referenceDataTable : global::System.Data.TypedTableBase<bbt_operation_referenceRow> {
             
             private global::System.Data.DataColumn columnfk_operation;
@@ -4197,6 +3597,626 @@ namespace BioBotApp.Model.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class bbt_stepDataTable : global::System.Data.TypedTableBase<bbt_stepRow> {
+            
+            private global::System.Data.DataColumn columnpk_id;
+            
+            private global::System.Data.DataColumn columnfk_protocol;
+            
+            private global::System.Data.DataColumn columndescription;
+            
+            private global::System.Data.DataColumn columnfk_object;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepDataTable() {
+                this.TableName = "bbt_step";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal bbt_stepDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected bbt_stepDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pk_idColumn {
+                get {
+                    return this.columnpk_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fk_protocolColumn {
+                get {
+                    return this.columnfk_protocol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn descriptionColumn {
+                get {
+                    return this.columndescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fk_objectColumn {
+                get {
+                    return this.columnfk_object;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRow this[int index] {
+                get {
+                    return ((bbt_stepRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_stepRowChangeEventHandler bbt_stepRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_stepRowChangeEventHandler bbt_stepRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_stepRowChangeEventHandler bbt_stepRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_stepRowChangeEventHandler bbt_stepRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addbbt_stepRow(bbt_stepRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRow Addbbt_stepRow(bbt_protocolRow parentbbt_protocolRowBybbt_protocol_bbt_step, string description, int fk_object) {
+                bbt_stepRow rowbbt_stepRow = ((bbt_stepRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        description,
+                        fk_object};
+                if ((parentbbt_protocolRowBybbt_protocol_bbt_step != null)) {
+                    columnValuesArray[1] = parentbbt_protocolRowBybbt_protocol_bbt_step[0];
+                }
+                rowbbt_stepRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowbbt_stepRow);
+                return rowbbt_stepRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRow FindBypk_id(int pk_id) {
+                return ((bbt_stepRow)(this.Rows.Find(new object[] {
+                            pk_id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                bbt_stepDataTable cln = ((bbt_stepDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new bbt_stepDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnpk_id = base.Columns["pk_id"];
+                this.columnfk_protocol = base.Columns["fk_protocol"];
+                this.columndescription = base.Columns["description"];
+                this.columnfk_object = base.Columns["fk_object"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnpk_id = new global::System.Data.DataColumn("pk_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpk_id);
+                this.columnfk_protocol = new global::System.Data.DataColumn("fk_protocol", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfk_protocol);
+                this.columndescription = new global::System.Data.DataColumn("description", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndescription);
+                this.columnfk_object = new global::System.Data.DataColumn("fk_object", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfk_object);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnpk_id}, true));
+                this.columnpk_id.AutoIncrement = true;
+                this.columnpk_id.AutoIncrementSeed = -1;
+                this.columnpk_id.AutoIncrementStep = -1;
+                this.columnpk_id.AllowDBNull = false;
+                this.columnpk_id.Unique = true;
+                this.columndescription.AllowDBNull = false;
+                this.columndescription.MaxLength = 8190;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRow Newbbt_stepRow() {
+                return ((bbt_stepRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new bbt_stepRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(bbt_stepRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.bbt_stepRowChanged != null)) {
+                    this.bbt_stepRowChanged(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.bbt_stepRowChanging != null)) {
+                    this.bbt_stepRowChanging(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.bbt_stepRowDeleted != null)) {
+                    this.bbt_stepRowDeleted(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.bbt_stepRowDeleting != null)) {
+                    this.bbt_stepRowDeleting(this, new bbt_stepRowChangeEvent(((bbt_stepRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removebbt_stepRow(bbt_stepRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BioBotDataSets ds = new BioBotDataSets();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "bbt_stepDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class bbt_operationDataTable : global::System.Data.TypedTableBase<bbt_operationRow> {
+            
+            private global::System.Data.DataColumn columnfk_operation_type;
+            
+            private global::System.Data.DataColumn columnfk_step;
+            
+            private global::System.Data.DataColumn columnpk_id;
+            
+            private global::System.Data.DataColumn columnvalue;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationDataTable() {
+                this.TableName = "bbt_operation";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal bbt_operationDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected bbt_operationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fk_operation_typeColumn {
+                get {
+                    return this.columnfk_operation_type;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fk_stepColumn {
+                get {
+                    return this.columnfk_step;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pk_idColumn {
+                get {
+                    return this.columnpk_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn valueColumn {
+                get {
+                    return this.columnvalue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow this[int index] {
+                get {
+                    return ((bbt_operationRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_operationRowChangeEventHandler bbt_operationRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_operationRowChangeEventHandler bbt_operationRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_operationRowChangeEventHandler bbt_operationRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bbt_operationRowChangeEventHandler bbt_operationRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addbbt_operationRow(bbt_operationRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow Addbbt_operationRow(bbt_operation_typeRow parentbbt_operation_typeRowBybbt_operation_type_bbt_operation, bbt_stepRow parentbbt_stepRowBybbt_step_bbt_operation, string value) {
+                bbt_operationRow rowbbt_operationRow = ((bbt_operationRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        null,
+                        value};
+                if ((parentbbt_operation_typeRowBybbt_operation_type_bbt_operation != null)) {
+                    columnValuesArray[0] = parentbbt_operation_typeRowBybbt_operation_type_bbt_operation[0];
+                }
+                if ((parentbbt_stepRowBybbt_step_bbt_operation != null)) {
+                    columnValuesArray[1] = parentbbt_stepRowBybbt_step_bbt_operation[0];
+                }
+                rowbbt_operationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowbbt_operationRow);
+                return rowbbt_operationRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow FindBypk_id(int pk_id) {
+                return ((bbt_operationRow)(this.Rows.Find(new object[] {
+                            pk_id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                bbt_operationDataTable cln = ((bbt_operationDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new bbt_operationDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnfk_operation_type = base.Columns["fk_operation_type"];
+                this.columnfk_step = base.Columns["fk_step"];
+                this.columnpk_id = base.Columns["pk_id"];
+                this.columnvalue = base.Columns["value"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnfk_operation_type = new global::System.Data.DataColumn("fk_operation_type", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfk_operation_type);
+                this.columnfk_step = new global::System.Data.DataColumn("fk_step", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfk_step);
+                this.columnpk_id = new global::System.Data.DataColumn("pk_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpk_id);
+                this.columnvalue = new global::System.Data.DataColumn("value", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnvalue);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnpk_id}, true));
+                this.columnfk_operation_type.AllowDBNull = false;
+                this.columnfk_step.AllowDBNull = false;
+                this.columnpk_id.AutoIncrement = true;
+                this.columnpk_id.AutoIncrementSeed = -1;
+                this.columnpk_id.AutoIncrementStep = -1;
+                this.columnpk_id.AllowDBNull = false;
+                this.columnpk_id.Unique = true;
+                this.columnvalue.MaxLength = 8190;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow Newbbt_operationRow() {
+                return ((bbt_operationRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new bbt_operationRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(bbt_operationRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.bbt_operationRowChanged != null)) {
+                    this.bbt_operationRowChanged(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.bbt_operationRowChanging != null)) {
+                    this.bbt_operationRowChanging(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.bbt_operationRowDeleted != null)) {
+                    this.bbt_operationRowDeleted(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.bbt_operationRowDeleting != null)) {
+                    this.bbt_operationRowDeleting(this, new bbt_operationRowChangeEvent(((bbt_operationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removebbt_operationRow(bbt_operationRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BioBotDataSets ds = new BioBotDataSets();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "bbt_operationDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class bbt_informationRow : global::System.Data.DataRow {
@@ -4258,138 +4278,6 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdescriptionNull() {
                 this[this.tablebbt_information.descriptionColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class bbt_stepRow : global::System.Data.DataRow {
-            
-            private bbt_stepDataTable tablebbt_step;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal bbt_stepRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablebbt_step = ((bbt_stepDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int pk_id {
-                get {
-                    return ((int)(this[this.tablebbt_step.pk_idColumn]));
-                }
-                set {
-                    this[this.tablebbt_step.pk_idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fk_protocol {
-                get {
-                    try {
-                        return ((int)(this[this.tablebbt_step.fk_protocolColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fk_protocol\' in table \'bbt_step\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.fk_protocolColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string description {
-                get {
-                    return ((string)(this[this.tablebbt_step.descriptionColumn]));
-                }
-                set {
-                    this[this.tablebbt_step.descriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string value {
-                get {
-                    try {
-                        return ((string)(this[this.tablebbt_step.valueColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'value\' in table \'bbt_step\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.valueColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fk_object {
-                get {
-                    try {
-                        return ((int)(this[this.tablebbt_step.fk_objectColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fk_object\' in table \'bbt_step\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.fk_objectColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_protocolRow bbt_protocolRow {
-                get {
-                    return ((bbt_protocolRow)(this.GetParentRow(this.Table.ParentRelations["bbt_protocol_bbt_step"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_protocol_bbt_step"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfk_protocolNull() {
-                return this.IsNull(this.tablebbt_step.fk_protocolColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfk_protocolNull() {
-                this[this.tablebbt_step.fk_protocolColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsvalueNull() {
-                return this.IsNull(this.tablebbt_step.valueColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetvalueNull() {
-                this[this.tablebbt_step.valueColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfk_objectNull() {
-                return this.IsNull(this.tablebbt_step.fk_objectColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfk_objectNull() {
-                this[this.tablebbt_step.fk_objectColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4888,54 +4776,6 @@ namespace BioBotApp.Model.Data {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class bbt_operationRow : global::System.Data.DataRow {
-            
-            private bbt_operationDataTable tablebbt_operation;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal bbt_operationRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablebbt_operation = ((bbt_operationDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fk_operation_type {
-                get {
-                    return ((int)(this[this.tablebbt_operation.fk_operation_typeColumn]));
-                }
-                set {
-                    this[this.tablebbt_operation.fk_operation_typeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fk_step {
-                get {
-                    return ((int)(this[this.tablebbt_operation.fk_stepColumn]));
-                }
-                set {
-                    this[this.tablebbt_operation.fk_stepColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int pk_id {
-                get {
-                    return ((int)(this[this.tablebbt_operation.pk_idColumn]));
-                }
-                set {
-                    this[this.tablebbt_operation.pk_idColumn] = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class bbt_operation_referenceRow : global::System.Data.DataRow {
             
             private bbt_operation_referenceDataTable tablebbt_operation_reference;
@@ -5003,6 +4843,17 @@ namespace BioBotApp.Model.Data {
                 }
                 set {
                     this[this.tablebbt_operation_type.descriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow[] Getbbt_operationRows() {
+                if ((this.Table.ChildRelations["bbt_operation_type_bbt_operation"] == null)) {
+                    return new bbt_operationRow[0];
+                }
+                else {
+                    return ((bbt_operationRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_operation_type_bbt_operation"])));
                 }
             }
         }
@@ -5106,6 +4957,219 @@ namespace BioBotApp.Model.Data {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class bbt_stepRow : global::System.Data.DataRow {
+            
+            private bbt_stepDataTable tablebbt_step;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal bbt_stepRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablebbt_step = ((bbt_stepDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int pk_id {
+                get {
+                    return ((int)(this[this.tablebbt_step.pk_idColumn]));
+                }
+                set {
+                    this[this.tablebbt_step.pk_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int fk_protocol {
+                get {
+                    try {
+                        return ((int)(this[this.tablebbt_step.fk_protocolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fk_protocol\' in table \'bbt_step\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebbt_step.fk_protocolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string description {
+                get {
+                    return ((string)(this[this.tablebbt_step.descriptionColumn]));
+                }
+                set {
+                    this[this.tablebbt_step.descriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int fk_object {
+                get {
+                    try {
+                        return ((int)(this[this.tablebbt_step.fk_objectColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fk_object\' in table \'bbt_step\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebbt_step.fk_objectColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_protocolRow bbt_protocolRow {
+                get {
+                    return ((bbt_protocolRow)(this.GetParentRow(this.Table.ParentRelations["bbt_protocol_bbt_step"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["bbt_protocol_bbt_step"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfk_protocolNull() {
+                return this.IsNull(this.tablebbt_step.fk_protocolColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfk_protocolNull() {
+                this[this.tablebbt_step.fk_protocolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfk_objectNull() {
+                return this.IsNull(this.tablebbt_step.fk_objectColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfk_objectNull() {
+                this[this.tablebbt_step.fk_objectColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow[] Getbbt_operationRows() {
+                if ((this.Table.ChildRelations["bbt_step_bbt_operation"] == null)) {
+                    return new bbt_operationRow[0];
+                }
+                else {
+                    return ((bbt_operationRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_step_bbt_operation"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class bbt_operationRow : global::System.Data.DataRow {
+            
+            private bbt_operationDataTable tablebbt_operation;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal bbt_operationRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablebbt_operation = ((bbt_operationDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int fk_operation_type {
+                get {
+                    return ((int)(this[this.tablebbt_operation.fk_operation_typeColumn]));
+                }
+                set {
+                    this[this.tablebbt_operation.fk_operation_typeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int fk_step {
+                get {
+                    return ((int)(this[this.tablebbt_operation.fk_stepColumn]));
+                }
+                set {
+                    this[this.tablebbt_operation.fk_stepColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int pk_id {
+                get {
+                    return ((int)(this[this.tablebbt_operation.pk_idColumn]));
+                }
+                set {
+                    this[this.tablebbt_operation.pk_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string value {
+                get {
+                    try {
+                        return ((string)(this[this.tablebbt_operation.valueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'value\' in table \'bbt_operation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebbt_operation.valueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRow bbt_stepRow {
+                get {
+                    return ((bbt_stepRow)(this.GetParentRow(this.Table.ParentRelations["bbt_step_bbt_operation"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["bbt_step_bbt_operation"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operation_typeRow bbt_operation_typeRow {
+                get {
+                    return ((bbt_operation_typeRow)(this.GetParentRow(this.Table.ParentRelations["bbt_operation_type_bbt_operation"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["bbt_operation_type_bbt_operation"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsvalueNull() {
+                return this.IsNull(this.tablebbt_operation.valueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetvalueNull() {
+                this[this.tablebbt_operation.valueColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5125,40 +5189,6 @@ namespace BioBotApp.Model.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_informationRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class bbt_stepRowChangeEvent : global::System.EventArgs {
-            
-            private bbt_stepRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRowChangeEvent(bbt_stepRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_stepRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5381,40 +5411,6 @@ namespace BioBotApp.Model.Data {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class bbt_operationRowChangeEvent : global::System.EventArgs {
-            
-            private bbt_operationRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRowChangeEvent(bbt_operationRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_operationRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public class bbt_operation_referenceRowChangeEvent : global::System.EventArgs {
             
             private bbt_operation_referenceRow eventRow;
@@ -5499,6 +5495,74 @@ namespace BioBotApp.Model.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_protocolRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class bbt_stepRowChangeEvent : global::System.EventArgs {
+            
+            private bbt_stepRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRowChangeEvent(bbt_stepRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_stepRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class bbt_operationRowChangeEvent : global::System.EventArgs {
+            
+            private bbt_operationRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRowChangeEvent(bbt_operationRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bbt_operationRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5803,344 +5867,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(fk_information_type));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_pk_id));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_fk_information_type));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class bbt_stepTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.Odbc.OdbcDataAdapter _adapter;
-        
-        private global::System.Data.Odbc.OdbcConnection _connection;
-        
-        private global::System.Data.Odbc.OdbcTransaction _transaction;
-        
-        private global::System.Data.Odbc.OdbcCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bbt_stepTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.Odbc.OdbcDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.Odbc.OdbcConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.Odbc.OdbcCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.Odbc.OdbcTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.Odbc.OdbcCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.Odbc.OdbcDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "bbt_step";
-            tableMapping.ColumnMappings.Add("pk_id", "pk_id");
-            tableMapping.ColumnMappings.Add("fk_protocol", "fk_protocol");
-            tableMapping.ColumnMappings.Add("description", "description");
-            tableMapping.ColumnMappings.Add("value", "value");
-            tableMapping.ColumnMappings.Add("fk_object", "fk_object");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"biobot\".\"protocol\".\"bbt_step\" WHERE ((\"pk_id\" = ?) AND ((? = 1 AND \"" +
-                "fk_protocol\" IS NULL) OR (\"fk_protocol\" = ?)) AND ((? = 1 AND \"fk_object\" IS NUL" +
-                "L) OR (\"fk_object\" = ?)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_step\" (\"fk_protocol\", \"description\", \"value\"" +
-                ", \"fk_object\") VALUES (?, ?, ?, ?)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("value", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "value", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE \"biobot\".\"protocol\".\"bbt_step\" SET \"fk_protocol\" = ?, \"description\" = ?, \"" +
-                "value\" = ?, \"fk_object\" = ? WHERE ((\"pk_id\" = ?) AND ((? = 1 AND \"fk_protocol\" I" +
-                "S NULL) OR (\"fk_protocol\" = ?)) AND ((? = 1 AND \"fk_object\" IS NULL) OR (\"fk_obj" +
-                "ect\" = ?)))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("value", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "value", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::BioBotApp.Properties.Settings.Default.biobotConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
-            this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"pk_id\", \"fk_protocol\", \"description\", \"value\", \"fk_object\" FROM \"protocol" +
-                "\".\"bbt_step\"";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BioBotDataSets.bbt_stepDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BioBotDataSets.bbt_stepDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            BioBotDataSets.bbt_stepDataTable dataTable = new BioBotDataSets.bbt_stepDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BioBotDataSets.bbt_stepDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BioBotDataSets dataSet) {
-            return this.Adapter.Update(dataSet, "bbt_step");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_pk_id, int Original_fk_protocol, int Original_fk_object) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_pk_id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_fk_protocol));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_fk_object));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int fk_protocol, string description, string value, int fk_object) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_protocol));
-            if ((description == null)) {
-                throw new global::System.ArgumentNullException("description");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(description));
-            }
-            if ((value == null)) {
-                throw new global::System.ArgumentNullException("value");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(value));
-            }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(fk_object));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int fk_protocol, string description, string value, int fk_object, int Original_pk_id, int Original_fk_protocol, int Original_fk_object) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_protocol));
-            if ((description == null)) {
-                throw new global::System.ArgumentNullException("description");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(description));
-            }
-            if ((value == null)) {
-                throw new global::System.ArgumentNullException("value");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(value));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(fk_object));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_pk_id));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_fk_protocol));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_fk_object));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8060,302 +7786,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class bbt_operationTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.Odbc.OdbcDataAdapter _adapter;
-        
-        private global::System.Data.Odbc.OdbcConnection _connection;
-        
-        private global::System.Data.Odbc.OdbcTransaction _transaction;
-        
-        private global::System.Data.Odbc.OdbcCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bbt_operationTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.Odbc.OdbcDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.Odbc.OdbcConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.Odbc.OdbcCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.Odbc.OdbcTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.Odbc.OdbcCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.Odbc.OdbcDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "bbt_operation";
-            tableMapping.ColumnMappings.Add("fk_operation_type", "fk_operation_type");
-            tableMapping.ColumnMappings.Add("fk_step", "fk_step");
-            tableMapping.ColumnMappings.Add("pk_id", "pk_id");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"biobot\".\"protocol\".\"bbt_operation\" WHERE ((\"fk_operation_type\" = ?) " +
-                "AND (\"fk_step\" = ?) AND (\"pk_id\" = ?))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation\" (\"fk_operation_type\", \"fk_step\") " +
-                "VALUES (?, ?)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE \"biobot\".\"protocol\".\"bbt_operation\" SET \"fk_operation_type\" = ?, \"fk_step\"" +
-                " = ? WHERE ((\"fk_operation_type\" = ?) AND (\"fk_step\" = ?) AND (\"pk_id\" = ?))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::BioBotApp.Properties.Settings.Default.biobotConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
-            this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"fk_operation_type\", \"fk_step\", \"pk_id\" FROM \"protocol\".\"bbt_operation\"";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BioBotDataSets.bbt_operationDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BioBotDataSets.bbt_operationDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            BioBotDataSets.bbt_operationDataTable dataTable = new BioBotDataSets.bbt_operationDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BioBotDataSets.bbt_operationDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BioBotDataSets dataSet) {
-            return this.Adapter.Update(dataSet, "bbt_operation");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_fk_operation_type, int Original_fk_step, int Original_pk_id) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_fk_operation_type));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_fk_step));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_pk_id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int fk_operation_type, int fk_step) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_operation_type));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(fk_step));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int fk_operation_type, int fk_step, int Original_fk_operation_type, int Original_fk_step, int Original_pk_id) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_operation_type));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(fk_step));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_fk_operation_type));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_fk_step));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_pk_id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class bbt_operation_referenceTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.Odbc.OdbcDataAdapter _adapter;
@@ -9173,6 +8603,641 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class bbt_stepTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.Odbc.OdbcDataAdapter _adapter;
+        
+        private global::System.Data.Odbc.OdbcConnection _connection;
+        
+        private global::System.Data.Odbc.OdbcTransaction _transaction;
+        
+        private global::System.Data.Odbc.OdbcCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bbt_stepTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.Odbc.OdbcDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.Odbc.OdbcConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.Odbc.OdbcCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.Odbc.OdbcTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.Odbc.OdbcCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.Odbc.OdbcDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "bbt_step";
+            tableMapping.ColumnMappings.Add("pk_id", "pk_id");
+            tableMapping.ColumnMappings.Add("fk_protocol", "fk_protocol");
+            tableMapping.ColumnMappings.Add("description", "description");
+            tableMapping.ColumnMappings.Add("fk_object", "fk_object");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"biobot\".\"protocol\".\"bbt_step\" WHERE ((\"pk_id\" = ?) AND ((? = 1 AND \"" +
+                "fk_protocol\" IS NULL) OR (\"fk_protocol\" = ?)) AND ((? = 1 AND \"fk_object\" IS NUL" +
+                "L) OR (\"fk_object\" = ?)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_step\" (\"fk_protocol\", \"description\", \"fk_obj" +
+                "ect\") VALUES (?, ?, ?)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE \"biobot\".\"protocol\".\"bbt_step\" SET \"fk_protocol\" = ?, \"description\" = ?, \"" +
+                "fk_object\" = ? WHERE ((\"pk_id\" = ?) AND ((? = 1 AND \"fk_protocol\" IS NULL) OR (\"" +
+                "fk_protocol\" = ?)) AND ((? = 1 AND \"fk_object\" IS NULL) OR (\"fk_object\" = ?)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_protocol", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_protocol", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.Odbc.OdbcConnection();
+            this._connection.ConnectionString = global::BioBotApp.Properties.Settings.Default.biobotConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT \"pk_id\", \"fk_protocol\", \"description\", \"fk_object\" FROM \"protocol\".\"bbt_st" +
+                "ep\"";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(BioBotDataSets.bbt_stepDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BioBotDataSets.bbt_stepDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            BioBotDataSets.bbt_stepDataTable dataTable = new BioBotDataSets.bbt_stepDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BioBotDataSets.bbt_stepDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BioBotDataSets dataSet) {
+            return this.Adapter.Update(dataSet, "bbt_step");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_pk_id, int Original_fk_protocol, int Original_fk_object) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_pk_id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_fk_protocol));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_fk_object));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int fk_protocol, string description, int fk_object) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_protocol));
+            if ((description == null)) {
+                throw new global::System.ArgumentNullException("description");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(description));
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(fk_object));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int fk_protocol, string description, int fk_object, int Original_pk_id, int Original_fk_protocol, int Original_fk_object) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_protocol));
+            if ((description == null)) {
+                throw new global::System.ArgumentNullException("description");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(description));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(fk_object));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_pk_id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_fk_protocol));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_fk_object));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class bbt_operationTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.Odbc.OdbcDataAdapter _adapter;
+        
+        private global::System.Data.Odbc.OdbcConnection _connection;
+        
+        private global::System.Data.Odbc.OdbcTransaction _transaction;
+        
+        private global::System.Data.Odbc.OdbcCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bbt_operationTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.Odbc.OdbcDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.Odbc.OdbcConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.Odbc.OdbcCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.Odbc.OdbcTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.Odbc.OdbcCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.Odbc.OdbcDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "bbt_operation";
+            tableMapping.ColumnMappings.Add("fk_operation_type", "fk_operation_type");
+            tableMapping.ColumnMappings.Add("fk_step", "fk_step");
+            tableMapping.ColumnMappings.Add("pk_id", "pk_id");
+            tableMapping.ColumnMappings.Add("value", "value");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"biobot\".\"protocol\".\"bbt_operation\" WHERE ((\"fk_operation_type\" = ?) " +
+                "AND (\"fk_step\" = ?) AND (\"pk_id\" = ?))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation\" (\"fk_operation_type\", \"fk_step\", " +
+                "\"value\") VALUES (?, ?, ?)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("value", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "value", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE \"biobot\".\"protocol\".\"bbt_operation\" SET \"fk_operation_type\" = ?, \"fk_step\"" +
+                " = ?, \"value\" = ? WHERE ((\"fk_operation_type\" = ?) AND (\"fk_step\" = ?) AND (\"pk_" +
+                "id\" = ?))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("value", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "value", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.Odbc.OdbcConnection();
+            this._connection.ConnectionString = global::BioBotApp.Properties.Settings.Default.biobotConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT \"fk_operation_type\", \"fk_step\", \"pk_id\", \"value\" FROM \"protocol\".\"bbt_oper" +
+                "ation\"";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(BioBotDataSets.bbt_operationDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BioBotDataSets.bbt_operationDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            BioBotDataSets.bbt_operationDataTable dataTable = new BioBotDataSets.bbt_operationDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BioBotDataSets.bbt_operationDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BioBotDataSets dataSet) {
+            return this.Adapter.Update(dataSet, "bbt_operation");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_fk_operation_type, int Original_fk_step, int Original_pk_id) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_fk_operation_type));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_fk_step));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_pk_id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int fk_operation_type, int fk_step, string value) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_operation_type));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(fk_step));
+            if ((value == null)) {
+                throw new global::System.ArgumentNullException("value");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(value));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int fk_operation_type, int fk_step, string value, int Original_fk_operation_type, int Original_fk_step, int Original_pk_id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_operation_type));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(fk_step));
+            if ((value == null)) {
+                throw new global::System.ArgumentNullException("value");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(value));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_fk_operation_type));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_fk_step));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_pk_id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9186,8 +9251,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         
         private bbt_informationTableAdapter _bbt_informationTableAdapter;
         
-        private bbt_stepTableAdapter _bbt_stepTableAdapter;
-        
         private bbt_information_typesTableAdapter _bbt_information_typesTableAdapter;
         
         private bbt_information_valueTableAdapter _bbt_information_valueTableAdapter;
@@ -9200,13 +9263,15 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         
         private bbt_propertyTableAdapter _bbt_propertyTableAdapter;
         
-        private bbt_operationTableAdapter _bbt_operationTableAdapter;
-        
         private bbt_operation_referenceTableAdapter _bbt_operation_referenceTableAdapter;
         
         private bbt_operation_typeTableAdapter _bbt_operation_typeTableAdapter;
         
         private bbt_protocolTableAdapter _bbt_protocolTableAdapter;
+        
+        private bbt_stepTableAdapter _bbt_stepTableAdapter;
+        
+        private bbt_operationTableAdapter _bbt_operationTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -9234,20 +9299,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             }
             set {
                 this._bbt_informationTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public bbt_stepTableAdapter bbt_stepTableAdapter {
-            get {
-                return this._bbt_stepTableAdapter;
-            }
-            set {
-                this._bbt_stepTableAdapter = value;
             }
         }
         
@@ -9340,20 +9391,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public bbt_operationTableAdapter bbt_operationTableAdapter {
-            get {
-                return this._bbt_operationTableAdapter;
-            }
-            set {
-                this._bbt_operationTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public bbt_operation_referenceTableAdapter bbt_operation_referenceTableAdapter {
             get {
                 return this._bbt_operation_referenceTableAdapter;
@@ -9393,6 +9430,34 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public bbt_stepTableAdapter bbt_stepTableAdapter {
+            get {
+                return this._bbt_stepTableAdapter;
+            }
+            set {
+                this._bbt_stepTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public bbt_operationTableAdapter bbt_operationTableAdapter {
+            get {
+                return this._bbt_operationTableAdapter;
+            }
+            set {
+                this._bbt_operationTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -9413,10 +9478,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if (((this._bbt_informationTableAdapter != null) 
                             && (this._bbt_informationTableAdapter.Connection != null))) {
                     return this._bbt_informationTableAdapter.Connection;
-                }
-                if (((this._bbt_stepTableAdapter != null) 
-                            && (this._bbt_stepTableAdapter.Connection != null))) {
-                    return this._bbt_stepTableAdapter.Connection;
                 }
                 if (((this._bbt_information_typesTableAdapter != null) 
                             && (this._bbt_information_typesTableAdapter.Connection != null))) {
@@ -9442,10 +9503,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                             && (this._bbt_propertyTableAdapter.Connection != null))) {
                     return this._bbt_propertyTableAdapter.Connection;
                 }
-                if (((this._bbt_operationTableAdapter != null) 
-                            && (this._bbt_operationTableAdapter.Connection != null))) {
-                    return this._bbt_operationTableAdapter.Connection;
-                }
                 if (((this._bbt_operation_referenceTableAdapter != null) 
                             && (this._bbt_operation_referenceTableAdapter.Connection != null))) {
                     return this._bbt_operation_referenceTableAdapter.Connection;
@@ -9457,6 +9514,14 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if (((this._bbt_protocolTableAdapter != null) 
                             && (this._bbt_protocolTableAdapter.Connection != null))) {
                     return this._bbt_protocolTableAdapter.Connection;
+                }
+                if (((this._bbt_stepTableAdapter != null) 
+                            && (this._bbt_stepTableAdapter.Connection != null))) {
+                    return this._bbt_stepTableAdapter.Connection;
+                }
+                if (((this._bbt_operationTableAdapter != null) 
+                            && (this._bbt_operationTableAdapter.Connection != null))) {
+                    return this._bbt_operationTableAdapter.Connection;
                 }
                 return null;
             }
@@ -9472,9 +9537,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             get {
                 int count = 0;
                 if ((this._bbt_informationTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._bbt_stepTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._bbt_information_typesTableAdapter != null)) {
@@ -9495,9 +9557,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if ((this._bbt_propertyTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._bbt_operationTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._bbt_operation_referenceTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -9505,6 +9564,12 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     count = (count + 1);
                 }
                 if ((this._bbt_protocolTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._bbt_stepTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._bbt_operationTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -9528,12 +9593,12 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bbt_informationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bbt_operation_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_informationTableAdapter.Update(updatedRows));
+                    result = (result + this._bbt_operation_typeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9543,6 +9608,15 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._bbt_stepTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bbt_informationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bbt_informationTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9600,15 +9674,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bbt_operationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_operationTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._bbt_operation_referenceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation_reference.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -9618,12 +9683,12 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bbt_operation_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._bbt_operationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bbt_operation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bbt_operation_typeTableAdapter.Update(updatedRows));
+                    result = (result + this._bbt_operationTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9646,11 +9711,11 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bbt_informationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bbt_operation_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_informationTableAdapter.Update(addedRows));
+                    result = (result + this._bbt_operation_typeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -9659,6 +9724,14 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._bbt_stepTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._bbt_informationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bbt_informationTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -9710,14 +9783,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bbt_operationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_operation.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_operationTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._bbt_operation_referenceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.bbt_operation_reference.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -9726,11 +9791,11 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bbt_operation_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._bbt_operationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bbt_operation.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bbt_operation_typeTableAdapter.Update(addedRows));
+                    result = (result + this._bbt_operationTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -9744,11 +9809,11 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(BioBotDataSets dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._bbt_operation_typeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._bbt_operationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_operation_typeTableAdapter.Update(deletedRows));
+                    result = (result + this._bbt_operationTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -9757,14 +9822,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._bbt_operation_referenceTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._bbt_operationTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_operationTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -9816,6 +9873,14 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._bbt_informationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bbt_informationTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._bbt_stepTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.bbt_step.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -9824,11 +9889,11 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._bbt_informationTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.bbt_information.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._bbt_operation_typeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.bbt_operation_type.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._bbt_informationTableAdapter.Update(deletedRows));
+                    result = (result + this._bbt_operation_typeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -9885,11 +9950,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._bbt_stepTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._bbt_stepTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._bbt_information_typesTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._bbt_information_typesTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -9920,11 +9980,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._bbt_operationTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._bbt_operationTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._bbt_operation_referenceTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._bbt_operation_referenceTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -9937,6 +9992,16 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             }
             if (((this._bbt_protocolTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._bbt_protocolTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._bbt_stepTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._bbt_stepTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._bbt_operationTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._bbt_operationTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -9979,15 +10044,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     if (this._bbt_informationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._bbt_informationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_informationTableAdapter.Adapter);
-                    }
-                }
-                if ((this._bbt_stepTableAdapter != null)) {
-                    revertConnections.Add(this._bbt_stepTableAdapter, this._bbt_stepTableAdapter.Connection);
-                    this._bbt_stepTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(workConnection));
-                    this._bbt_stepTableAdapter.Transaction = ((global::System.Data.Odbc.OdbcTransaction)(workTransaction));
-                    if (this._bbt_stepTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._bbt_stepTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_stepTableAdapter.Adapter);
                     }
                 }
                 if ((this._bbt_information_typesTableAdapter != null)) {
@@ -10044,15 +10100,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_propertyTableAdapter.Adapter);
                     }
                 }
-                if ((this._bbt_operationTableAdapter != null)) {
-                    revertConnections.Add(this._bbt_operationTableAdapter, this._bbt_operationTableAdapter.Connection);
-                    this._bbt_operationTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(workConnection));
-                    this._bbt_operationTableAdapter.Transaction = ((global::System.Data.Odbc.OdbcTransaction)(workTransaction));
-                    if (this._bbt_operationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._bbt_operationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_operationTableAdapter.Adapter);
-                    }
-                }
                 if ((this._bbt_operation_referenceTableAdapter != null)) {
                     revertConnections.Add(this._bbt_operation_referenceTableAdapter, this._bbt_operation_referenceTableAdapter.Connection);
                     this._bbt_operation_referenceTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(workConnection));
@@ -10078,6 +10125,24 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     if (this._bbt_protocolTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._bbt_protocolTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_protocolTableAdapter.Adapter);
+                    }
+                }
+                if ((this._bbt_stepTableAdapter != null)) {
+                    revertConnections.Add(this._bbt_stepTableAdapter, this._bbt_stepTableAdapter.Connection);
+                    this._bbt_stepTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(workConnection));
+                    this._bbt_stepTableAdapter.Transaction = ((global::System.Data.Odbc.OdbcTransaction)(workTransaction));
+                    if (this._bbt_stepTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._bbt_stepTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_stepTableAdapter.Adapter);
+                    }
+                }
+                if ((this._bbt_operationTableAdapter != null)) {
+                    revertConnections.Add(this._bbt_operationTableAdapter, this._bbt_operationTableAdapter.Connection);
+                    this._bbt_operationTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(workConnection));
+                    this._bbt_operationTableAdapter.Transaction = ((global::System.Data.Odbc.OdbcTransaction)(workTransaction));
+                    if (this._bbt_operationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._bbt_operationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._bbt_operationTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -10142,10 +10207,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     this._bbt_informationTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_informationTableAdapter]));
                     this._bbt_informationTableAdapter.Transaction = null;
                 }
-                if ((this._bbt_stepTableAdapter != null)) {
-                    this._bbt_stepTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_stepTableAdapter]));
-                    this._bbt_stepTableAdapter.Transaction = null;
-                }
                 if ((this._bbt_information_typesTableAdapter != null)) {
                     this._bbt_information_typesTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_information_typesTableAdapter]));
                     this._bbt_information_typesTableAdapter.Transaction = null;
@@ -10170,10 +10231,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                     this._bbt_propertyTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_propertyTableAdapter]));
                     this._bbt_propertyTableAdapter.Transaction = null;
                 }
-                if ((this._bbt_operationTableAdapter != null)) {
-                    this._bbt_operationTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_operationTableAdapter]));
-                    this._bbt_operationTableAdapter.Transaction = null;
-                }
                 if ((this._bbt_operation_referenceTableAdapter != null)) {
                     this._bbt_operation_referenceTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_operation_referenceTableAdapter]));
                     this._bbt_operation_referenceTableAdapter.Transaction = null;
@@ -10185,6 +10242,14 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 if ((this._bbt_protocolTableAdapter != null)) {
                     this._bbt_protocolTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_protocolTableAdapter]));
                     this._bbt_protocolTableAdapter.Transaction = null;
+                }
+                if ((this._bbt_stepTableAdapter != null)) {
+                    this._bbt_stepTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_stepTableAdapter]));
+                    this._bbt_stepTableAdapter.Transaction = null;
+                }
+                if ((this._bbt_operationTableAdapter != null)) {
+                    this._bbt_operationTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._bbt_operationTableAdapter]));
+                    this._bbt_operationTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
