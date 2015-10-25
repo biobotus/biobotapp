@@ -17,20 +17,48 @@ namespace BioBotApp.Model.ModulePluginManager
     {
         private CompositionContainer _container;
 
+        /// <summary>
+        /// Path to the xml storing the plugin's dll path list .
+        /// </summary>
+        private static string PathListXmlPath = ".\\PluginPathList.xml";
+
+        /// <summary>
+        /// Path to the xml where the plugin <-> module type pairing is store. 
+        /// </summary>
+        private static string PairingXmlPath = ".\\PluginPairingList";
+
         [ImportMany]
         private IEnumerable<Lazy<IModulePlugin,IModuleData>> plugins;
 
+        /// <summary>
+        /// List of path where are store the DLL containing the modules plugin.
+        /// </summary>
         private List<string> pathList;
 
+        /// <summary>
+        /// Dictionnary associating a type of module (object_type description) and a plugin name (metadata).
+        /// </summary>
+        private Dictionary<string, string> pairingDict;
+
+        /// <summary>
+        ///  Instance of the pluginManager for the singleton implementation
+        /// </summary>
         private static PluginManager instance;
 
+        /// <summary>
+        /// Private constructor load the path store into ./PluginPathList.xml file
+        /// </summary>
         private PluginManager()
         {
             pathList = new List<string>();
             plugins = Enumerable.Empty<Lazy<IModulePlugin, IModuleData>>();
             LoadPathList();
+            LoadPairingDictionary();
         }
 
+        /// <summary>
+        /// Singleton implementation, return a unique instance of the plugin manager
+        /// </summary>
         public static PluginManager Instance
         {
             get
@@ -43,6 +71,10 @@ namespace BioBotApp.Model.ModulePluginManager
             }
         }
 
+        /// <summary>
+        /// Add a path to the pathList.
+        /// </summary>
+        /// <param name="path">the path to be add</param>
         private void AddPath(string path)
         {
             if (!pathList.Contains(path))
@@ -51,6 +83,9 @@ namespace BioBotApp.Model.ModulePluginManager
             }
         }
 
+        /// <summary>
+        /// Import plugins from the dll located into the path from the pathList and the plugin manager assambly
+        /// </summary>
         public void ImportPlugins()
         {
             plugins = Enumerable.Empty<Lazy<IModulePlugin, IModuleData>>();
@@ -79,16 +114,28 @@ namespace BioBotApp.Model.ModulePluginManager
             }
         }
 
+        /// <summary>
+        /// Replace the path list with a new one.
+        /// </summary>
+        /// <param name="newPathList"> the new path where to look for plugins</param>
         public void UpdatePluginPathList(List<string> newPathList)
         {
             pathList = newPathList;
         }
 
+        /// <summary>
+        /// Accessor for the plugin search path list.
+        /// </summary>
+        /// <returns>the list use to search for plugins</returns>
         public List<string> GetPluginPathList()
         {
             return pathList;
         }
 
+        /// <summary>
+        ///  Return a list of the loaded plugins name.
+        /// </summary>
+        /// <returns>the list of plugin name</returns>
         public List<string> GetLoadedPluginList()
         {
             List<string> result = new List<string>();
@@ -99,7 +146,8 @@ namespace BioBotApp.Model.ModulePluginManager
             return result;
         }
 
-        public List<TreeNode> GetPluginConfTreeNode()
+
+        public List<TreeNode> GetPluginsConfTreeNode()
         {
             List<TreeNode> result = new List<TreeNode>();
             foreach (Lazy<IModulePlugin, IModuleData> plugin in plugins)
@@ -130,6 +178,10 @@ namespace BioBotApp.Model.ModulePluginManager
             return result;
         }
 
+        /// <summary>
+        /// Change the plugin search path list and save it to the file .\PluginPathList.xml.
+        /// </summary>
+        /// <param name="newPathList"> the new path list, to be save as xml</param>
         public void SavePathList(List<string> newPathList)
         {
             pathList = newPathList;
@@ -137,15 +189,19 @@ namespace BioBotApp.Model.ModulePluginManager
                                                       select new XElement("Path",
                                          new XAttribute("value", path)
                                        ));
-            xEle.Save(".\\PluginPathList.xml");
+            xEle.Save(PathListXmlPath);
         }
 
+        /// <summary>
+        /// Replace the current path list with the one store as xml on the file .\PluginPathList.xml.
+        /// 
+        /// </summary>
         public void LoadPathList()
         {
-            if (File.Exists(".\\PluginPathList.xml"))
+             if (File.Exists(PathListXmlPath))
             {
                 pathList = new List<string>();
-                XmlTextReader reader = new XmlTextReader(".\\PluginPathList.xml");
+                XmlTextReader reader = new XmlTextReader(PathListXmlPath);
                 while (reader.Read())
                 {
                     switch (reader.NodeType)
@@ -163,8 +219,62 @@ namespace BioBotApp.Model.ModulePluginManager
                             break;
                     }
                 }
+                reader.Close();
             }
            
+        }
+
+        public Dictionary<string,string> GetPairingDictionnary()
+        {
+            return pairingDict;
+        }
+
+        public void SavePairingDictionary(Dictionary<string,string> pairing)
+        {
+            pairingDict = pairing;
+            var xEle = new XElement("PairingList", from pair in pairingDict
+                                                      select new XElement("Pairing",
+                                                        new XAttribute("moduleType", pair.Key),
+                                                        new XAttribute("pluginName", pair.Value)
+                                                      ));
+            xEle.Save(PairingXmlPath);
+        }
+
+        public void LoadPairingDictionary()
+        {
+            if (File.Exists(PairingXmlPath))
+            {
+                pairingDict = new Dictionary<string, string>();
+                XmlTextReader reader = new XmlTextReader(PairingXmlPath);
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element: // The node is an element.
+                            if (reader.Name == "Pairing")
+                            {
+                                string type = "";
+                                string plugin = "";
+                                while (reader.MoveToNextAttribute())
+                                {
+                                    if(reader.Name == "moduleType")
+                                    {
+                                        type = reader.Value;
+                                    }
+                                    if (reader.Name == "pluginName")
+                                    {
+                                        plugin = reader.Value;
+                                    }
+                                }
+                                pairingDict.Add(type, plugin);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                reader.Close();
+            }
         }
     }
 }

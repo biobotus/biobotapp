@@ -18,22 +18,16 @@ namespace BioBotApp.View.ModulePluginManager
 
         public ModulePluginManagerTest()
         {
-            InitializeComponent();
-            List<string> test = new List<string>{ "test1", "test2", "test3" };
-            List<string> plugin = new List<string> { "plugin1", "plugin2", "plugin3" };
-
             PluginManager manager = PluginManager.Instance;
             manager.ImportPlugins();
+            InitializeComponent();
 
-            modulePluginLoadedView1.LoadLoadedPlugin(manager.GetLoadedPluginList());
-
-            modulePluginPairView1.LoadModuleNameListe(test);
-            modulePluginPairView1.LoadLoadedPluginList(plugin);
+            
 
             // this is sketchy only for demonstration purpose
             TreeNode t = treeView1.Nodes.Find("Outils", false)[0];
             t.Nodes.Add(new TreeNode("truc1"));
-            List<TreeNode> nodeList = manager.GetPluginConfTreeNode();
+            List<TreeNode> nodeList = manager.GetPluginsConfTreeNode();
             foreach(TreeNode node in nodeList)
             {
                 t.Nodes.Add(node);

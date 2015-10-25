@@ -33,12 +33,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.modulePluginPairView1 = new BioBotApp.View.ModulePluginManager.ModulePluginPairView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.pluginPathControl1 = new BioBotApp.View.ModulePluginManager.PluginPathControl();
             this.modulePluginLoadedView1 = new BioBotApp.View.ModulePluginManager.ModulePluginLoadedView();
-            this.modulePluginPairView1 = new BioBotApp.View.ModulePluginManager.ModulePluginPairView();
-            this.mainPanel = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -90,6 +90,13 @@
             this.tabPage3.Text = "PairingTest";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // modulePluginPairView1
+            // 
+            this.modulePluginPairView1.Location = new System.Drawing.Point(31, 34);
+            this.modulePluginPairView1.Name = "modulePluginPairView1";
+            this.modulePluginPairView1.Size = new System.Drawing.Size(314, 307);
+            this.modulePluginPairView1.TabIndex = 0;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.mainPanel);
@@ -100,6 +107,13 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "TreeNodeTest";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.Location = new System.Drawing.Point(140, 18);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(221, 184);
+            this.mainPanel.TabIndex = 1;
             // 
             // treeView1
             // 
@@ -115,31 +129,17 @@
             // 
             // pluginPathControl1
             // 
-            this.pluginPathControl1.Location = new System.Drawing.Point(6, 22);
+            this.pluginPathControl1.Location = new System.Drawing.Point(11, 21);
             this.pluginPathControl1.Name = "pluginPathControl1";
-            this.pluginPathControl1.Size = new System.Drawing.Size(350, 330);
+            this.pluginPathControl1.Size = new System.Drawing.Size(347, 346);
             this.pluginPathControl1.TabIndex = 0;
             // 
             // modulePluginLoadedView1
             // 
-            this.modulePluginLoadedView1.Location = new System.Drawing.Point(18, 6);
+            this.modulePluginLoadedView1.Location = new System.Drawing.Point(18, 16);
             this.modulePluginLoadedView1.Name = "modulePluginLoadedView1";
-            this.modulePluginLoadedView1.Size = new System.Drawing.Size(320, 343);
-            this.modulePluginLoadedView1.TabIndex = 1;
-            // 
-            // modulePluginPairView1
-            // 
-            this.modulePluginPairView1.Location = new System.Drawing.Point(31, 34);
-            this.modulePluginPairView1.Name = "modulePluginPairView1";
-            this.modulePluginPairView1.Size = new System.Drawing.Size(314, 307);
-            this.modulePluginPairView1.TabIndex = 0;
-            // 
-            // mainPanel
-            // 
-            this.mainPanel.Location = new System.Drawing.Point(140, 18);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(221, 184);
-            this.mainPanel.TabIndex = 1;
+            this.modulePluginLoadedView1.Size = new System.Drawing.Size(320, 356);
+            this.modulePluginLoadedView1.TabIndex = 0;
             // 
             // ModulePluginManagerTest
             // 
@@ -159,9 +159,6 @@
         }
 
         #endregion
-
-        private PluginPathControl pluginPathControl1;
-        private ModulePluginLoadedView modulePluginLoadedView1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -170,5 +167,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel mainPanel;
+        private PluginPathControl pluginPathControl1;
+        private ModulePluginLoadedView modulePluginLoadedView1;
     }
 }
