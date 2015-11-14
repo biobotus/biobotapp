@@ -58,6 +58,7 @@
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\Data\Services\ObjectTypeService.cs" />
     <Compile Include="Model\Data\Services\PropertiesService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
@@ -168,6 +169,12 @@
     <Compile Include="View\Step\StepControl.Designer.cs">
       <DependentUpon>StepControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TestView\ObjectTypeTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TestView\ObjectTypeTestForm.Designer.cs">
+      <DependentUpon>ObjectTypeTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Utils\IDatasetView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -216,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Step\StepControl.resx">
       <DependentUpon>StepControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TestView\ObjectTypeTestForm.resx">
+      <DependentUpon>ObjectTypeTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Model\Data\BioBotDataSets.xsc">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>

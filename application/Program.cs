@@ -3,6 +3,7 @@ using BioBotApp.View.Communication;
 using BioBotApp.View.Operation;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
+using BioBotApp.View.TestView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
 
-            OperationForm form = new OperationForm();
+            ObjectTypeTestForm form = new ObjectTypeTestForm();
             Application.Run(form);
         }
     }
