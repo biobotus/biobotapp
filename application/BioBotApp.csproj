@@ -58,6 +58,7 @@
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\Data\Services\OperationTypeService.cs" />
     <Compile Include="Model\Data\Services\PropertiesService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
