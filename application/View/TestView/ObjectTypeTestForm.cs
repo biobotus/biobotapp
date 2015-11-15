@@ -16,14 +16,25 @@ namespace BioBotApp.View.TestView
         public ObjectTypeTestForm()
         {
             InitializeComponent();
-        }
+            this.bioBotDataSets = Model.Data.DBManager.Instance.projectDataset;
+            this.bsObjectType.DataMember = "bbt_object_type";
+            this.bsObjectType.DataSource = this.bioBotDataSets;
+        }       
 
-        private void ObjectTypeTestForm_Load(object sender, EventArgs e)
+        public Model.Data.BioBotDataSets.bbt_object_typeRow getSelectedOperationRow()
         {
-            // TODO: cette ligne de code charge les données dans la table 'bioBotDataSets.bbt_object_type'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
-            this.bbt_object_typeTableAdapter.Fill(this.bioBotDataSets.bbt_object_type);            
+            Model.Data.BioBotDataSets.bbt_object_typeRow operationRow = null;
+
+            if (bsObjectType.Current == null) return null;
+            if (!(bsObjectType.Current.GetType() == typeof(DataRowView))) return null;
+            DataRowView rowView = bsObjectType.Current as DataRowView;
+            if (rowView.Row == null) return null;
+            if (!(rowView.Row.GetType() == typeof(Model.Data.BioBotDataSets.bbt_object_typeRow))) return null;
+            operationRow = rowView.Row as Model.Data.BioBotDataSets.bbt_object_typeRow;
+            return operationRow;
         }
 
+        #region events
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ObjectTypeService.Instance.addObjectTypeRow("allo");
@@ -31,8 +42,14 @@ namespace BioBotApp.View.TestView
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Row: " + dataGridView1.CurrentRow.Cells[0].Value);
-            ObjectTypeService.Instance.removeObjectTypeRow((int)(dataGridView1.CurrentRow.Cells[0].Value));
+            ObjectTypeService.Instance.removeObjectTypeRow(getSelectedOperationRow());
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Model.Data.BioBotDataSets.bbt_object_typeRow currentRow = getSelectedOperationRow();
+            currentRow.description = tbDescription.Text;
+            ObjectTypeService.Instance.updateRow(currentRow);
+        }
+        #endregion
     }
 }
