@@ -32,7 +32,7 @@ namespace BioBotApp.Model.Data.Services
             }
         }
 
-        public void addOperationTypeRow (int OperationType_id, String description)
+        public void addOperationTypeRow (String description)
         {
             BioBotDataSets.bbt_operation_typeRow row = this.dbManager.projectDataset.bbt_operation_type.Newbbt_operation_typeRow();
             row.description = description;
@@ -73,7 +73,7 @@ namespace BioBotApp.Model.Data.Services
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                throw;
+                this.dbManager.projectDataset.bbt_operation_type.RejectChanges();
             }
         }
     }
