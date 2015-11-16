@@ -8,53 +8,74 @@ namespace BioBotApp.Model.Data.Services
 {
     public class ProtocolService
     {
-        private DBManager _dbManager;
-        BioBotDataSets _dataset;
-        private BioBotDataSetsTableAdapters.bbt_protocolTableAdapter _taProtocol;
+        DBManager dbManager;
+        BioBotDataSetsTableAdapters.bbt_protocolTableAdapter taProtocol;
 
-        private static ProtocolService _instance;
+        private static ProtocolService instance;
 
         private ProtocolService()
         {
-            _dbManager = DBManager.Instance;
-            _dataset = _dbManager.projectDataset;
-            _taProtocol = _dbManager.taManager.bbt_protocolTableAdapter;
+            this.dbManager = DBManager.Instance;
+            this.taProtocol = dbManager.taManager.bbt_protocolTableAdapter;
         }
 
         public static ProtocolService Instance
         {
             get
             {
-                if (_instance == null)
+                if (instance == null)
                 {
-                    _instance = new ProtocolService();
+                    instance = new ProtocolService();
                 }
-                return _instance;
+                return instance;
             }
         }
 
-        public void modifyProtocol(int pkId, int fkId, String description)
+        public void addProtocolRow(int fkProtocolId, String description)
         {
-            BioBotDataSets.bbt_protocolRow protocolPk = _dataset.bbt_protocol.FindBypk_id(pkId);
-            BioBotDataSets.bbt_protocolRow protocolFk = _dataset.bbt_protocol.FindBypk_id(fkId);
-
-            if (protocolPk == null || protocolFk == null) return;
-            protocolPk.fk_protocol = fkId;
-            if (description.Length == 0) return;
-            protocolPk.description = description;
-            updateProtocol();
-
+            BioBotDataSets.bbt_protocolRow row = this.dbManager.projectDataset.bbt_protocol.Newbbt_protocolRow();
+            row.description = description;
+            row.fk_protocol = fkProtocolId;
+            this.dbManager.projectDataset.bbt_protocol.Addbbt_protocolRow(row);
+            updateRow(row);
         }
 
-        public void updateProtocol()
+        public void modifyProtocolRow(int pk_id, int fkProtocolId, String description)
+        {
+            BioBotDataSets.bbt_protocolRow row = this.dbManager.projectDataset.bbt_protocol.FindBypk_id(pk_id);
+            row.fk_protocol = fkProtocolId;
+            row.description = description;
+            updateRow(row);
+        }
+
+        // Need to do a recursive function to delete the protocols and the sub protocols
+        public void removeProtocolRow(int pk_id)
+        {
+            BioBotDataSets.bbt_protocolRow row = this.dbManager.projectDataset.bbt_protocol.FindBypk_id(pk_id);
+            removeProtocolRow(row);
+        }
+
+        public void removeProtocolRow(BioBotDataSets.bbt_protocolRow protocolRow)
+        {       
+            foreach (BioBotDataSets.bbt_protocolRow childProtocolRow in protocolRow.Getbbt_protocolRows())
+            {
+                StepService.Instance.removeStepsWithGivenProtocol(childProtocolRow);
+                removeProtocolRow(childProtocolRow);
+            }
+            protocolRow.Delete();
+            updateRow(protocolRow);
+        }
+
+        public void updateRow(BioBotDataSets.bbt_protocolRow row)
         {
             try
             {
-                _taProtocol.Update(_dbManager.projectDataset.bbt_protocol);
+                this.taProtocol.Update(row);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                this.dbManager.projectDataset.bbt_protocol.RejectChanges();
             }
         }
     }

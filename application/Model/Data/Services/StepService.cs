@@ -85,6 +85,19 @@ namespace BioBotApp.Model.Data.Services
             updateRowChanges();
         }
 
+        public void removeStepsWithGivenProtocol(BioBotDataSets.bbt_protocolRow parentToDeleteRow)
+        {
+            if (parentToDeleteRow != null)
+            {
+                foreach (BioBotDataSets.bbt_stepRow row in parentToDeleteRow.Getbbt_stepRows())
+                {
+                    OperationService.Instance.removeOperationsWithGivenStep(row);
+                    row.Delete();
+                }
+            }
+            updateRowChanges();
+        }
+
         /// <summary>
         /// Will push the updated information to the database and force revert changes whenever an error occurs
         /// </summary>

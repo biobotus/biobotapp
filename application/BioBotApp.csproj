@@ -52,12 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Data\BioBotDataSets.cs">
+      <DependentUpon>BioBotDataSets.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\Data\Services\InformationService.cs" />
+    <Compile Include="Model\Data\Services\InformationTypeService.cs" />
     <Compile Include="Model\Data\Services\InformationValueService.cs" />
     <Compile Include="Model\Data\Services\ObjectPropertyService.cs" />
     <Compile Include="Model\Data\Services\ObjectService.cs" />
