@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BioBotApp.Model.Data.Services
 {
@@ -53,11 +54,13 @@ namespace BioBotApp.Model.Data.Services
         public void removeObjectTypeRow(int primaryKey)
         {
             BioBotDataSets.bbt_object_typeRow row = this.dbManager.projectDataset.bbt_object_type.FindBypk_id(primaryKey);
+            ObjectService.Instance.removeObjectsWithGivenObjectTypeId(row);
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
         }
         public void removeObjectTypeRow(BioBotDataSets.bbt_object_typeRow row)
         {
+            ObjectService.Instance.removeObjectsWithGivenObjectTypeId(row);
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
         }
