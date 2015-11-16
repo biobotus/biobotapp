@@ -43,11 +43,14 @@ namespace BioBotApp.Model.Data.Services
         public void removeOperationTypeRow(int OperationType_id)
         {
             BioBotDataSets.bbt_operation_typeRow row = this.dbManager.projectDataset.bbt_operation_type.FindBypk_id(OperationType_id);
+            OperationService.Instance.removeOperationsWithGivenOperationType(row);
             row.Delete();
             updateRow(row);
         }
+
         public void removeOperationTypeRow(BioBotDataSets.bbt_operation_typeRow row)
         {
+            OperationService.Instance.removeOperationsWithGivenOperationType(row);            
             row.Delete();
             updateRow(row);
         }
@@ -58,6 +61,7 @@ namespace BioBotApp.Model.Data.Services
             row.description = description;
             updateRow(row);
         }
+
         public void modifyOperationTypeRow(BioBotDataSets.bbt_operation_typeRow row, String description)
         {
             row.description = description;

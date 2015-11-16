@@ -60,6 +60,7 @@ namespace BioBotApp.Model.Data.Services
         }
         public void removeObjectTypeRow(BioBotDataSets.bbt_object_typeRow row)
         {
+            ObjectPropertyService.Instance.removeObjectRowWithGivenObjectType(row);
             ObjectService.Instance.removeObjectsWithGivenObjectTypeId(row);
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);

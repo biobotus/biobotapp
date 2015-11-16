@@ -33,7 +33,6 @@ namespace BioBotApp.Model.Data.Services
         }
 
         // CRUD operations functions
-
         public void addStepRow(int fkProtocolId, String description, int fkObjectId)
         {
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.Newbbt_stepRow();
@@ -61,11 +60,14 @@ namespace BioBotApp.Model.Data.Services
         public void removeStepRow(int primaryKey)
         {
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.FindBypk_id(primaryKey);
+            OperationService.Instance.removeOperationsWithGivenStep(row);
             row.Delete();
             updateRow(row);
         }
+
         public void removeStepRow(BioBotDataSets.bbt_stepRow row)
         {
+            OperationService.Instance.removeOperationsWithGivenStep(row);
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
         }
@@ -75,7 +77,8 @@ namespace BioBotApp.Model.Data.Services
             if (parentToDeleteRow != null)
             {                
                 foreach (BioBotDataSets.bbt_stepRow row in parentToDeleteRow.Getbbt_stepRows())
-                {
+                {                    
+                    OperationService.Instance.removeOperationsWithGivenStep(row);
                     row.Delete();
                 }
             }

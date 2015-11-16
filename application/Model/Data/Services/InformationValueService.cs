@@ -77,6 +77,17 @@ namespace BioBotApp.Model.Data.Services
             }
             updateRowChanges();
         }
+        public void removeInformationValueWithGivenInformation(BioBotDataSets.bbt_informationRow parentToDeleteRow)
+        {
+            if (parentToDeleteRow != null)
+            {
+                foreach (BioBotDataSets.bbt_information_valueRow row in parentToDeleteRow.Getbbt_information_valueRows())
+                {
+                    row.Delete();
+                }
+            }
+            updateRowChanges();
+        }
 
         /// <summary>
         /// Will push the updated information to the database and force revert changes whenever an error occurs

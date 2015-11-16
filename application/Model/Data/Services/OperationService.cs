@@ -40,6 +40,7 @@ namespace BioBotApp.Model.Data.Services
             this.dbManager.projectDataset.bbt_operation.Addbbt_operationRow(row);
             updateRow(row);
         }
+
         public void addOperationRow(BioBotDataSets.bbt_operation_typeRow operationTypeRow, BioBotDataSets.bbt_stepRow stepRow)
         {
             BioBotDataSets.bbt_operationRow row = this.dbManager.projectDataset.bbt_operation.Newbbt_operationRow();
@@ -51,15 +52,19 @@ namespace BioBotApp.Model.Data.Services
 
         public void removeOperationRow(int Operation_id)
         {
-            BioBotDataSets.bbt_operationRow row = this.dbManager.projectDataset.bbt_operation.FindBypk_id(Operation_id);             
+            BioBotDataSets.bbt_operationRow row = this.dbManager.projectDataset.bbt_operation.FindBypk_id(Operation_id);
+            OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
             row.Delete();
             updateRow(row);
         }
+
         public void removeOperationRow(BioBotDataSets.bbt_operationRow row)
         {
+            OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
             row.Delete();
             updateRow(row);
         }
+
         public void removeOperationsWithGivenStepId(int fkStepId)
         {
             BioBotDataSets.bbt_stepRow parentToDelete = this.dbManager.projectDataset.bbt_step.FindBypk_id(fkStepId);
@@ -67,11 +72,13 @@ namespace BioBotApp.Model.Data.Services
             {
                 foreach (BioBotDataSets.bbt_operationRow row in parentToDelete.Getbbt_operationRows())
                 {
+                    OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
                     row.Delete();
                 }
             }
             updateRowChanges();
         }
+
         public void removeOperationsWithGivenOperationTypeId(int fkOperationTypeId)
         {
             BioBotDataSets.bbt_operation_typeRow parentToDelete = this.dbManager.projectDataset.bbt_operation_type.FindBypk_id(fkOperationTypeId);
@@ -79,18 +86,36 @@ namespace BioBotApp.Model.Data.Services
             {
                 foreach (BioBotDataSets.bbt_operationRow row in parentToDelete.Getbbt_operationRows())
                 {
+                    OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
                     row.Delete();
                 }
             }
+            updateRowChanges();
+        }
 
-            /*
-            IEnumerable<BioBotDataSets.bbt_operationRow> rowsToDelete = this.dbManager.projectDataset.bbt_operation.Where(a => a.fk_operation_type == fkOperationTypeId);
-            foreach (BioBotDataSets.bbt_operationRow row in rowsToDelete)
+        public void removeOperationsWithGivenStep(BioBotDataSets.bbt_stepRow parentToDeleteRow)
+        {
+            if (parentToDeleteRow != null)
             {
-                row.Delete();
+                foreach(BioBotDataSets.bbt_operationRow row in parentToDeleteRow.Getbbt_operationRows())
+                {
+                    OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
+                    row.Delete();
+                }
             }
-            */
+            updateRowChanges();
+        }
 
+        public void removeOperationsWithGivenOperationType(BioBotDataSets.bbt_operation_typeRow parentToDeleteRow)
+        {
+            if (parentToDeleteRow != null)
+            {
+                foreach (BioBotDataSets.bbt_operationRow row in parentToDeleteRow.Getbbt_operationRows())
+                {
+                    OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
+                    row.Delete();
+                }
+            }
             updateRowChanges();
         }
 
@@ -101,6 +126,7 @@ namespace BioBotApp.Model.Data.Services
             row.fk_step = newFkStepId;
             updateRow(row);
         }
+
         public void modifyOperationTypeRow(BioBotDataSets.bbt_operationRow row, int newFkOperationTypeId, int newFkStepId)
         {
             row.fk_operation_type = newFkOperationTypeId;
