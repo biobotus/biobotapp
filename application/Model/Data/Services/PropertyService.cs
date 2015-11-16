@@ -36,21 +36,41 @@ namespace BioBotApp.Model.Data.Services
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.Newbbt_propertyRow();
             row.description = description;
             this.dbManager.projectDataset.bbt_property.Addbbt_propertyRow(row);
-            taProperty.Update(row);
+            updateRow(row);
         }
 
         public void modifyPropertyRow(int id, String description)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);
             row.description = description;
-            taProperty.Update(row);
+            updateRow(row);
         }
 
         public void removePropertyRow(int id)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);
             row.Delete();
-            taProperty.Update(row);
+            updateRow(row);
+        }
+
+        public void removePropertyRow(BioBotDataSets.bbt_propertyRow row)
+        {
+            //BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);
+            row.Delete();
+            updateRow(row);
+        }
+
+        public void updateRow(BioBotDataSets.bbt_propertyRow row)
+        {
+            try
+            {
+                this.taProperty.Update(row);
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                this.dbManager.projectDataset.bbt_property.RejectChanges();
+            }
         }
     }
 }

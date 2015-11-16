@@ -60,7 +60,7 @@
     <Compile Include="Model\Data\DBManager.cs" />
     <Compile Include="Model\Data\Services\OperationTypeService.cs" />
     <Compile Include="Model\Data\Services\ObjectTypeService.cs" />
-    <Compile Include="Model\Data\Services\PropertiesService.cs" />
+    <Compile Include="Model\Data\Services\PropertyService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
     <Compile Include="Model\EventBus\Operation\OperationEvent.cs" />
