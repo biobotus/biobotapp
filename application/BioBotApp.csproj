@@ -57,10 +57,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Model\Data\BioBotDataSets1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BioBotDataSets.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\Data\Services\InformationValueService.cs" />
+    <Compile Include="Model\Data\Services\ObjectService.cs" />
     <Compile Include="Model\Data\Services\ObjectTypeService.cs" />
+    <Compile Include="Model\Data\Services\OperationReferenceService.cs" />
     <Compile Include="Model\Data\Services\PropertiesService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
+    <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
     <Compile Include="Model\EventBus\Operation\OperationEvent.cs" />
     <Compile Include="Model\EventBus\Step\StepEvent.cs" />
@@ -233,7 +242,7 @@
     <None Include="Model\Data\BioBotDataSets.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BioBotDataSets.Designer.cs</LastGenOutput>
+      <LastGenOutput>BioBotDataSets1.Designer.cs</LastGenOutput>
     </None>
     <None Include="Model\Data\BioBotDataSets.xss">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
