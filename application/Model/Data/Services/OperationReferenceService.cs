@@ -67,7 +67,18 @@ namespace BioBotApp.Model.Data.Services
             updateRow(row);    //(this.dbManager.projectDataset);
         }
 
-        public void removeOperationRowWithGivenObject(BioBotDataSets.bbt_objectRow parentToDeleteRow)
+        public void removeOperationReferenceRowWithGivenObject(BioBotDataSets.bbt_objectRow parentToDeleteRow)
+        {
+            if (parentToDeleteRow != null)
+            {
+                foreach (BioBotDataSets.bbt_operation_referenceRow row in parentToDeleteRow.Getbbt_operation_referenceRows())
+                {
+                    row.Delete();
+                }
+            }
+            updateRowChanges();
+        }
+        public void removeOperationReferenceRowWithGivenOperation(BioBotDataSets.bbt_operationRow parentToDeleteRow)
         {
             if (parentToDeleteRow != null)
             {

@@ -139,7 +139,7 @@ namespace BioBotApp.Model.Data.Services
                     // Call services to delete rows in tables : operation_reference, information_value and step
                     InformationValueService.Instance.removeInformationValueWithGivenObject(row);
                     StepService.Instance.removeStepsWithGivenObject(row);
-                    OperationReferenceService.Instance.removeOperationRowWithGivenObject(row);
+                    OperationReferenceService.Instance.removeOperationReferenceRowWithGivenObject(row);
                     row.Delete();
                 }
             }

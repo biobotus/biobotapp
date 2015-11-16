@@ -49,13 +49,14 @@ namespace BioBotApp.Model.Data.Services
         public void removePropertyRow(int id)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);
+            ObjectPropertyService.Instance.removeObjectRowWithGivenProperty(row);
             row.Delete();
             updateRow(row);
         }
 
         public void removePropertyRow(BioBotDataSets.bbt_propertyRow row)
         {
-            //BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);
+            ObjectPropertyService.Instance.removeObjectRowWithGivenProperty(row);
             row.Delete();
             updateRow(row);
         }
