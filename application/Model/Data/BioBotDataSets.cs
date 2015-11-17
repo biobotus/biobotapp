@@ -1,1 +1,3 @@
-﻿
+﻿namespace BioBotApp.Model.Data
+{
+}
