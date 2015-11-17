@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BioBotApp.Model.Data.Services
 {
-    class InformationService
+    public class InformationService : IInformationService
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_informationTableAdapter taInformation;               
