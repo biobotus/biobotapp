@@ -99,6 +99,13 @@
     <Compile Include="View\Communication\CommunicationTestForm.Designer.cs">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Deck\DeckView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Deck\DeckView.Designer.cs">
+      <DependentUpon>DeckView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Deck\IDeckView.cs" />
     <Compile Include="View\Jog\IJogView.cs" />
     <Compile Include="View\Jog\JogControl.cs">
       <SubType>UserControl</SubType>
