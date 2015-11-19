@@ -32,6 +32,7 @@
             this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
             this.bsObject = new System.Windows.Forms.BindingSource(this.components);
             this.taObject = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_objectTableAdapter();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
             this.SuspendLayout();
@@ -50,12 +51,22 @@
             // 
             this.taObject.ClearBeforeFill = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(352, 172);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // DeckView
             // 
             this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.button1);
             this.Name = "DeckView";
             this.Size = new System.Drawing.Size(547, 363);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DeckView_DragDrop);
@@ -71,5 +82,6 @@
         private Model.Data.BioBotDataSets bioBotDataSets;
         private System.Windows.Forms.BindingSource bsObject;
         private Model.Data.BioBotDataSetsTableAdapters.bbt_objectTableAdapter taObject;
+        private System.Windows.Forms.Button button1;
     }
 }
