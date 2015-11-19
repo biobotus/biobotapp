@@ -61,8 +61,6 @@
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
-    <Compile Include="Model\Data\Services\InformationService.cs" />
-    <Compile Include="Model\Data\Services\InformationTypeService.cs" />
     <Compile Include="Model\Data\Services\InformationValueService.cs" />
     <Compile Include="Model\Data\Services\ObjectPropertyService.cs" />
     <Compile Include="Model\Data\Services\ObjectService.cs" />
@@ -71,6 +69,7 @@
     <Compile Include="Model\Data\Services\OperationService.cs" />
     <Compile Include="Model\Data\Services\OperationTypeService.cs" />
     <Compile Include="Model\Data\Services\PropertyService.cs" />
+    <Compile Include="Model\Data\Services\PropertyTypeService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
     <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />

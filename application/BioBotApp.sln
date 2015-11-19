@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioBotApp", "BioBotApp.csproj", "{81FFCB80-A1AA-4B1E-B6C2-CE18F5BAB60C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F} = {79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioBotCommunication", "..\serial\BioBotCommunication\BioBotCommunication\BioBotCommunication.csproj", "{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioBotCommunicationTest", "..\serial\BioBotCommunication\BioBotCommunicationTest\BioBotCommunicationTest.csproj", "{7D0377F9-1837-4C27-A95E-96B3EC5C9515}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{81FFCB80-A1AA-4B1E-B6C2-CE18F5BAB60C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81FFCB80-A1AA-4B1E-B6C2-CE18F5BAB60C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81FFCB80-A1AA-4B1E-B6C2-CE18F5BAB60C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79B4CEA7-1C58-4B6F-B21B-1F0C8F68F92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D0377F9-1837-4C27-A95E-96B3EC5C9515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D0377F9-1837-4C27-A95E-96B3EC5C9515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D0377F9-1837-4C27-A95E-96B3EC5C9515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D0377F9-1837-4C27-A95E-96B3EC5C9515}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
