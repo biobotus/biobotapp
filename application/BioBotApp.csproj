@@ -106,6 +106,12 @@
       <DependentUpon>DeckView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Deck\IDeckView.cs" />
+    <Compile Include="View\Deck\ObjectView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Deck\ObjectView.Designer.cs">
+      <DependentUpon>ObjectView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Jog\IJogView.cs" />
     <Compile Include="View\Jog\JogControl.cs">
       <SubType>UserControl</SubType>
@@ -206,6 +212,12 @@
     </Compile>
     <EmbeddedResource Include="View\Communication\CommunicationTestForm.resx">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\DeckView.resx">
+      <DependentUpon>DeckView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\ObjectView.resx">
+      <DependentUpon>ObjectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
