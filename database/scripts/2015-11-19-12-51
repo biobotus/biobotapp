@@ -27,6 +27,13 @@ ALTER TABLE deck.bbt_information_value
 DROP TABLE deck.bbt_information;
 DROP TABLE deck.bbt_information_types;
 
+CREATE TABLE deck.bbt_property_type
+(
+  pk_id serial NOT NULL,
+  description text,
+  CONSTRAINT bbt_property_type_pkey PRIMARY KEY (pk_id),
+  CONSTRAINT bbt_property_type_ukey UNIQUE (description)
+)
 WITH (
   OIDS=FALSE
 );
