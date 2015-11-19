@@ -31,7 +31,7 @@ namespace BioBotApp.Model.Data.Services
             }
         }
 
-        public void addProtocolRow(int fkProtocolId, String description)
+        public void addProtocolRow(int fkProtocolId, String description, int index)
         {
             BioBotDataSets.bbt_protocolRow row = this.dbManager.projectDataset.bbt_protocol.Newbbt_protocolRow();
             row.description = description;
@@ -40,7 +40,7 @@ namespace BioBotApp.Model.Data.Services
             updateRow(row);
         }
 
-        public void modifyProtocolRow(int pk_id, int fkProtocolId, String description)
+        public void modifyProtocolRow(int pk_id, int fkProtocolId, String description, int index)
         {
             BioBotDataSets.bbt_protocolRow row = this.dbManager.projectDataset.bbt_protocol.FindBypk_id(pk_id);
             row.fk_protocol = fkProtocolId;
