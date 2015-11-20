@@ -33,8 +33,7 @@ namespace BioBotApp.Model.Data
         public void initializeTableAdapters()
         {
             taManager = new BioBotDataSetsTableAdapters.TableAdapterManager();
-            taManager.bbt_informationTableAdapter = new BioBotDataSetsTableAdapters.bbt_informationTableAdapter();
-            taManager.bbt_information_typesTableAdapter = new BioBotDataSetsTableAdapters.bbt_information_typesTableAdapter();
+            taManager.bbt_property_typeTableAdapter = new BioBotDataSetsTableAdapters.bbt_property_typeTableAdapter();
             taManager.bbt_information_valueTableAdapter = new BioBotDataSetsTableAdapters.bbt_information_valueTableAdapter();
             taManager.bbt_objectTableAdapter = new BioBotDataSetsTableAdapters.bbt_objectTableAdapter();
             taManager.bbt_object_propertyTableAdapter = new BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter();
@@ -49,8 +48,7 @@ namespace BioBotApp.Model.Data
 
         public void initializeDataSet()
         {
-            taManager.bbt_informationTableAdapter.Fill(projectDataset.bbt_information);
-            taManager.bbt_information_typesTableAdapter.Fill(projectDataset.bbt_information_types);
+            taManager.bbt_property_typeTableAdapter.Fill(projectDataset.bbt_property_type);
             taManager.bbt_information_valueTableAdapter.Fill(projectDataset.bbt_information_value);
             taManager.bbt_objectTableAdapter.Fill(projectDataset.bbt_object);
             taManager.bbt_object_propertyTableAdapter.Fill(projectDataset.bbt_object_property);

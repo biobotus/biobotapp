@@ -33,22 +33,24 @@ namespace BioBotApp.Model.Data.Services
         }
 
         // CRUD operations functions
-        public void addStepRow(int fkProtocolId, String description, int fkObjectId)
+        public void addStepRow(int fkProtocolId, String description, int fkObjectId, int index)
         {
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.Newbbt_stepRow();
             row.fk_protocol = fkProtocolId;
             row.description = description;            
             row.fk_object = fkObjectId;
+            row.index = index;
             this.dbManager.projectDataset.bbt_step.Addbbt_stepRow(row);
             updateRow(row);
         }
 
-        public void modifyStepRow(int primaryKey, int fkProtocolId, String description, int fkObjectId)
+        public void modifyStepRow(int primaryKey, int fkProtocolId, String description, int fkObjectId, int index)
         {
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.FindBypk_id(primaryKey);
             row.fk_protocol = fkProtocolId;
             row.description = description;
             row.fk_object = fkObjectId;
+            row.index = index;
             updateRow(row);
         }
 

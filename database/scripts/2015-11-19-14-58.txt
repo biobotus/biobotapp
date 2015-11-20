@@ -1,0 +1,42 @@
+DROP TABLE protocol.bbt_operation_reference;
+
+CREATE TABLE protocol.bbt_operation_reference
+(
+pk_id serial not null,
+  fk_operation integer NOT NULL,
+  fk_object integer NOT NULL,
+  CONSTRAINT bbt_operation_reference_operation_fkey FOREIGN KEY (fk_operation)
+      REFERENCES protocol.bbt_operation_type (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bbt_operation_reference_step_fkep FOREIGN KEY (fk_object)
+      REFERENCES deck.bbt_object (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bbt_operation_reference_pkey PRIMARY KEY (pk_id),
+  CONSTRAINT bbt_operation_reference_ukey UNIQUE (fk_operation,fk_object)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE protocol.bbt_operation_reference
+  OWNER TO biobot;
+
+
+
+CREATE TABLE protocol.bbt_operation_reference_property
+(
+  fk_operation_reference_id integer NOT NULL,
+  fk_properties_id integer NOT NULL,
+  value text NOT NULL,
+  CONSTRAINT bbt_operation_reference_property_pkey PRIMARY KEY (fk_operation_reference_id, fk_properties_id),
+  CONSTRAINT bbt_operation_reference_property_op_ref_fkey FOREIGN KEY (fk_operation_reference_id)
+      REFERENCES protocol.bbt_operation_reference (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bbt_object_properties_properties_fkey FOREIGN KEY (fk_properties_id)
+      REFERENCES deck.bbt_property (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE protocol.bbt_operation_reference_property
+  OWNER TO biobot;

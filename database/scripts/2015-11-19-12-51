@@ -1,0 +1,48 @@
+DROP TABLE deck.bbt_information_value;
+
+CREATE TABLE deck.bbt_information_value
+(
+  pk_id serial NOT NULL,
+  fk_information_value int,
+  fk_property integer NOT NULL,
+  fk_object integer NOT NULL,
+  information_value text,
+  CONSTRAINT bbt_information_value_pkey PRIMARY KEY (pk_id),
+  CONSTRAINT bbt_information_value_property_fkey FOREIGN KEY (fk_property)
+      REFERENCES deck.bbt_property (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bbt_information_value_object_fkey FOREIGN KEY (fk_object)
+      REFERENCES deck.bbt_object (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT bbt_information_value_info_value_fkey FOREIGN KEY (fk_information_value)
+      REFERENCES deck.bbt_information_value (pk_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT bbt_information_value_ukey UNIQUE (pk_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE deck.bbt_information_value
+  OWNER TO biobot;
+DROP TABLE deck.bbt_information;
+DROP TABLE deck.bbt_information_types;
+
+CREATE TABLE deck.bbt_property_type
+(
+  pk_id serial NOT NULL,
+  description text,
+  CONSTRAINT bbt_property_type_pkey PRIMARY KEY (pk_id),
+  CONSTRAINT bbt_property_type_ukey UNIQUE (description)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE deck.bbt_property_type
+  OWNER TO biobot;
+ALTER TABLE deck.bbt_property
+   ADD COLUMN fk_property_type integer;
+ALTER TABLE deck.bbt_property
+  ADD CONSTRAINT bbt_property_property_type_fkey FOREIGN KEY (fk_property_type) REFERENCES deck.bbt_property_type (pk_id)
+   ON UPDATE NO ACTION ON DELETE NO ACTION;
+CREATE INDEX fki_bbt_property_property_type_fkey
+  ON deck.bbt_property(fk_property_type);

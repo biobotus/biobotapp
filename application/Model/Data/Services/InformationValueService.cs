@@ -33,21 +33,34 @@ namespace BioBotApp.Model.Data.Services
         }
 
         // CRUD operations functions
-        public void addInformationValueRow(String informationValue, int fkInformationId, int fkObjectid)
+        public void addInformationValueRow(String informationValue, int fkPropertyId, int fkObjectid, int fkInformationValue)
         {
             BioBotDataSets.bbt_information_valueRow row = this.dbManager.projectDataset.bbt_information_value.Newbbt_information_valueRow();
             row.information_value = informationValue;
-            row.fk_information = fkInformationId;
+            row.fk_property = fkPropertyId;
+
+            if(fkInformationValue > 0)
+            {
+                row.fk_information_value = fkInformationValue;
+            }
+
             row.fk_object = fkObjectid;
             this.dbManager.projectDataset.bbt_information_value.Addbbt_information_valueRow(row);
             updateRow(row);
         }
-        public void modifyInformationValueRow(int primaryKey, String informationValue, int fkInformationId, int fkObjectid)
+        public void modifyInformationValueRow(int primaryKey, String informationValue, int fkPropertyId, int fkObjectid, int fkInformationValue)
         {
             BioBotDataSets.bbt_information_valueRow row = this.dbManager.projectDataset.bbt_information_value.FindBypk_id(primaryKey);
             row.information_value = informationValue;
-            row.fk_information = fkInformationId;
+            row.fk_property = fkPropertyId;
+
+            if (fkInformationValue > 0)
+            {
+                row.fk_information_value = fkInformationValue;
+            }
+
             row.fk_object = fkObjectid;
+            this.dbManager.projectDataset.bbt_information_value.Addbbt_information_valueRow(row);
             updateRow(row);
         }
         public void modifyInformationValueRow(BioBotDataSets.bbt_information_valueRow row)
@@ -77,7 +90,7 @@ namespace BioBotApp.Model.Data.Services
             }
             updateRowChanges();
         }
-        public void removeInformationValueWithGivenInformation(BioBotDataSets.bbt_informationRow parentToDeleteRow)
+        public void removeInformationValueWithGivenInformation(BioBotDataSets.bbt_propertyRow parentToDeleteRow)
         {
             if (parentToDeleteRow != null)
             {
@@ -87,6 +100,15 @@ namespace BioBotApp.Model.Data.Services
                 }
             }
             updateRowChanges();
+        }
+
+        public void removeInformationValueRow(BioBotDataSets.bbt_information_valueRow row)
+        {
+            foreach(BioBotDataSets.bbt_information_valueRow childRows in row.Getbbt_information_valueRows())
+            {
+                removeInformationValueRow(childRows);
+            }
+            removeInformationValuerow(row);
         }
 
         /// <summary>

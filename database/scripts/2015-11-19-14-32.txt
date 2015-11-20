@@ -1,0 +1,4 @@
+ALTER TABLE protocol.bbt_protocol
+   ADD COLUMN index integer;
+ALTER TABLE protocol.bbt_step
+   ADD COLUMN index integer;
