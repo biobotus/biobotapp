@@ -31,9 +31,9 @@
             this.btnValidation = new System.Windows.Forms.Button();
             this.dgvTacCalibrationDataView = new System.Windows.Forms.DataGridView();
             this.cmbTacSelector = new System.Windows.Forms.ComboBox();
-            this.crudOptions1 = new BioBotApp.Controls.Utils.crudOptions();
+            this.crudOptions1 = new crudOptions();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTacCalibrationDataView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure)).BeginInit();
+//            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure)).BeginInit();
             this.SuspendLayout();
             // 
             // btnValidation
@@ -68,8 +68,8 @@
             // 
             // dsModuleStructure
             // 
-            this.dsModuleStructure.DataSetName = "dsModuleStructure2";
-            this.dsModuleStructure.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+//            this.dsModuleStructure.DataSetName = "dsModuleStructure2";
+//            this.dsModuleStructure.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // crudOptions1
             // 
@@ -95,7 +95,7 @@
             this.Size = new System.Drawing.Size(347, 293);
             this.Tag = "Tac calibration";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTacCalibrationDataView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure)).EndInit();
+//            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure)).EndInit();
             this.ResumeLayout(false);
 
         }

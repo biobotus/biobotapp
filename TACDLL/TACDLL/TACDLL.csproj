@@ -61,6 +61,12 @@
     <Compile Include="OptionCtrl\abstractDialog.designer.cs">
       <DependentUpon>abstractDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="OptionCtrl\crudOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OptionCtrl\crudOptions.Designer.cs">
+      <DependentUpon>crudOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="OptionCtrl\namedInputTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +85,23 @@
     <Compile Include="OptionCtrl\optionTacSampleCtrl.designer.cs">
       <DependentUpon>optionTacSampleCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="OptionCtrl\TacDescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OptionCtrl\TacDescription.Designer.cs">
+      <DependentUpon>TacDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OptionCtrl\TacPluginDescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OptionCtrl\TacPluginDescription.Designer.cs">
+      <DependentUpon>TacPluginDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="TacDll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -94,6 +117,9 @@
     <EmbeddedResource Include="OptionCtrl\abstractDialog.resx">
       <DependentUpon>abstractDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OptionCtrl\crudOptions.resx">
+      <DependentUpon>crudOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OptionCtrl\namedInputTextBox.resx">
       <DependentUpon>namedInputTextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +128,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OptionCtrl\optionTacSampleCtrl.resx">
       <DependentUpon>optionTacSampleCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionCtrl\TacDescription.resx">
+      <DependentUpon>TacDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionCtrl\TacPluginDescription.resx">
+      <DependentUpon>TacPluginDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

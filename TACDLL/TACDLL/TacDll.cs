@@ -18,7 +18,31 @@ namespace TACDLL
             {
                 case "temperature":
                     // we verify here that we have a well formated command for temperature
-                    if(parsed_command.Length == 2 )
+                    if(parsed_command.Length == 3)
+                    {
+                        float goalTemp = float.Parse(parsed_command[1],
+                                        System.Globalization.CultureInfo.InvariantCulture);
+                        // here send the temperature to the tac throught the communication
+                    }
+                    else
+                    {
+                        returnValue = "malform temperature command : " + command;
+                    }
+                    break;
+                case "ventilation":
+                    if (parsed_command.Length == 3)
+                    {
+                        float goalTemp = float.Parse(parsed_command[1],
+                                        System.Globalization.CultureInfo.InvariantCulture);
+                        // here send the temperature to the tac throught the communication
+                    }
+                    else
+                    {
+                        returnValue = "malform temperature command : " + command;
+                    }
+                    break;
+                case "agitation":
+                    if (parsed_command.Length == 3)
                     {
                         float goalTemp = float.Parse(parsed_command[1],
                                         System.Globalization.CultureInfo.InvariantCulture);
@@ -39,22 +63,32 @@ namespace TACDLL
 
         public Dictionary<string, UserControl> getConfAction()
         {
-            throw new NotImplementedException();
+            var d = new Dictionary<string, UserControl>();
+            d.Add("tacPluginRoot", new OptionCtrl.TacPluginDescription());
+            d.Add("tacPluginDoConfiguration", new OptionCtrl.optionTacCalibration());
+            return d;
         }
 
         public TreeNode GetConfTreeNode()
         {
-            throw new NotImplementedException();
+            var root = new TreeNode("Tac modules");
+            root.Name = "tacPluginRoot";
+
+            var doCalibration = new TreeNode("Optical density calibration");
+            doCalibration.Name = "tacPluginDoConfiguration";
+
+            root.Nodes.Add(doCalibration);
+            return root;
         }
 
         public UserControl GetDescriptionControl()
         {
-            throw new NotImplementedException();
+            return new TACDLL.OptionCtrl.TacPluginDescription(); ;
         }
 
         public UserControl GetModuleDescriptionControl(int moduleId)
         {
-            throw new NotImplementedException();
+            return new TACDLL.OptionCtrl.TacDescription();
         }
 
         public void SetInChargeModule(List<string> moduleList)

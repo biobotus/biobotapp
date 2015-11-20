@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using TACDLL;
 namespace SimpleTacClient
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        Option.frmOptions option;
+        TacDll tacPlugin;
+        public MainForm(TacDll dll)
         {
             InitializeComponent();
+            tacPlugin = dll;
+            option = new Option.frmOptions(tacPlugin.GetConfTreeNode(), tacPlugin.getConfAction());
+            tacDescriptionPanel.Controls.Clear();
+            tacDescriptionPanel.Controls.Add(tacPlugin.GetModuleDescriptionControl(1234));
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -43,6 +49,11 @@ namespace SimpleTacClient
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void optionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            option.ShowDialog();
         }
     }
 }
