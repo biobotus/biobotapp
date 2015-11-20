@@ -91,7 +91,7 @@
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolAddEvent.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
-    <Compile Include="Presenter\Services\InformationServicePresenter.cs" />
+    <Compile Include="Presenter\Services\ServicesPresenter.cs" />
     <Compile Include="Presenter\Step\StepPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,6 +176,12 @@
     </Compile>
     <Compile Include="View\Protocol\ProtocolTreeNode.cs" />
     <Compile Include="View\Protocol\StepTreeNode.cs" />
+    <Compile Include="View\Services\ServicesabstractDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Services\ServicesabstractDialog.Designer.cs">
+      <DependentUpon>ServicesabstractDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Services\IInformationServiceView.cs" />
     <Compile Include="View\Services\InformationServiceView.cs">
       <SubType>UserControl</SubType>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Protocol\ProtocolForm.resx">
       <DependentUpon>ProtocolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Services\ServicesabstractDialog.resx">
+      <DependentUpon>ServicesabstractDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Services\InformationServiceView.resx">
       <DependentUpon>InformationServiceView.cs</DependentUpon>

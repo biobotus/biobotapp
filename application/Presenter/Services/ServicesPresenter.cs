@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Presenter.Services
 {
-    public class InformationServicePresenter
+    public class ServicesPresenter
     {
 
         private readonly IInformationServiceView m_View;
-        private IInformationService m_Model;
+        private IInformationService InformationServiceModel;
 
 
-        public InformationServicePresenter(IInformationServiceView view, IInformationService model)
+        public ServicesPresenter(IInformationServiceView view, IInformationService model)
         {
             this.m_View = view;
-            this.m_Model = model;
+            this.InformationServiceModel = model;
         }
 
         public void AddInformationRow()

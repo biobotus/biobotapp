@@ -14,14 +14,14 @@ namespace BioBotApp.View.Services
 {
     public partial class InformationServiceView : UserControl, IInformationServiceView
     {
-        private InformationServicePresenter presenter = null;
+        private ServicesPresenter presenter = null;
         private readonly InformationService m_Model;
 
         public InformationServiceView(InformationService model)
         {
             InitializeComponent();
             m_Model = model;
-            presenter = new InformationServicePresenter(this, m_Model);
+            presenter = new ServicesPresenter(this, m_Model);
 
         }
         private void Add_Click(object sender, EventArgs e)
