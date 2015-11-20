@@ -61,6 +61,7 @@
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
+    <Compile Include="Model\Data\Movement\StepperMotor.cs" />
     <Compile Include="Model\Data\Services\InformationService.cs" />
     <Compile Include="Model\Data\Services\InformationTypeService.cs" />
     <Compile Include="Model\Data\Services\InformationValueService.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
     <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
+    <Compile Include="Model\EventBus\Movement\MotorMovementEvent.cs" />
     <Compile Include="Model\EventBus\Operation\OperationEvent.cs" />
     <Compile Include="Model\EventBus\Step\StepEvent.cs" />
     <Compile Include="Model\EventBus\Subscribe.cs" />
@@ -81,8 +83,8 @@
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Model\ModulePluginManager\IModulePlugin.cs" />
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
+    <Compile Include="Model\Movement\Services\PlatformStateService.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
-    <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\ModulePluginManager\LoadedModulePresenter.cs" />
     <Compile Include="Presenter\ModulePluginManager\ModulePluginPairPresenter.cs" />
     <Compile Include="Presenter\ModulePluginManager\PathPresenter.cs" />

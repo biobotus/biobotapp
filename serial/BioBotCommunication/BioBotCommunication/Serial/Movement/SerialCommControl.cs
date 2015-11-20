@@ -11,9 +11,9 @@ using System.IO.Ports;
 
 namespace BioBotCommunication.Serial.Movement
 {
-    public partial class ArduinoSerialCommControl : UserControl
+    public partial class SerialCommControl : UserControl
     {
-        public ArduinoSerialCommControl()
+        public SerialCommControl()
         {
             InitializeComponent();
             ddlBaud.Items.Add(300);
@@ -84,7 +84,7 @@ namespace BioBotCommunication.Serial.Movement
             {
                 return;
             }
-            ArduinoCommunicationWorker.Instance.configure(ddlPortName.Text,ddlBaud.Text,ddlDataBits.Text, (StopBits)ddlStopBits.SelectedItem, (Parity)ddlParity.SelectedItem);
+            SerialCommunicationWorker.Instance.configure(ddlPortName.Text,ddlBaud.Text,ddlDataBits.Text, (StopBits)ddlStopBits.SelectedItem, (Parity)ddlParity.SelectedItem);
         }
 
         private void ArduinoSerialCommControl_Load(object sender, EventArgs e)

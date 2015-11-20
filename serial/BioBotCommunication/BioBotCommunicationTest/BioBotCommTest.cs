@@ -13,12 +13,12 @@ namespace BioBotCommunicationTest
 {
     public partial class BioBotCommTest : Form
     {
-        ArduinoCommunicationWorker worker;
+        SerialCommunicationWorker worker;
 
         public BioBotCommTest()
         {
             InitializeComponent();
-            worker = ArduinoCommunicationWorker.Instance;
+            worker = SerialCommunicationWorker.Instance;
         }
 
         private void btnStartWorker_Click(object sender, EventArgs e)

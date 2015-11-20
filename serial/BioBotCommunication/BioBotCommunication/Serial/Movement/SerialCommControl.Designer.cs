@@ -1,6 +1,6 @@
 ﻿namespace BioBotCommunication.Serial.Movement
 {
-    partial class ArduinoSerialCommControl
+    partial class SerialCommControl
     {
         /// <summary> 
         /// Required designer variable.

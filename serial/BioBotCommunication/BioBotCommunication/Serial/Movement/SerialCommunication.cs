@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BioBotCommunication.Serial.Movement
 {
-    public class ArduinoCommunication
+    public class SerialCommunication
     {
         private SerialPort arduinoSerialPort;
         public event EventHandler<SerialDataReceivedEventArgs> onArduinoReceive;
@@ -15,7 +15,7 @@ namespace BioBotCommunication.Serial.Movement
         public event EventHandler<EventArgs> onDisconnect;
         public event EventHandler<SerialErrorReceivedEventArgs> onErrorMessage;
 
-        public ArduinoCommunication()
+        public SerialCommunication()
         {
             arduinoSerialPort = new SerialPort();
             arduinoSerialPort.DataReceived += ArduinoSerialPort_DataReceived;

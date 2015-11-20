@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.canConnectorControl1 = new PCAN.CanConnectorControl();
-            this.arduinoSerialCommControl1 = new BioBotCommunication.Serial.Movement.ArduinoSerialCommControl();
+            this.arduinoSerialCommControl1 = new BioBotCommunication.Serial.Movement.SerialCommControl();
             this.btnStartWorker = new System.Windows.Forms.Button();
             this.btnStopWorker = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
         #endregion
 
         private PCAN.CanConnectorControl canConnectorControl1;
-        private BioBotCommunication.Serial.Movement.ArduinoSerialCommControl arduinoSerialCommControl1;
+        private BioBotCommunication.Serial.Movement.SerialCommControl arduinoSerialCommControl1;
         private System.Windows.Forms.Button btnStartWorker;
         private System.Windows.Forms.Button btnStopWorker;
     }

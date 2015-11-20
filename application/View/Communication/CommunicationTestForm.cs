@@ -13,11 +13,11 @@ namespace BioBotApp.View.Communication
 {
     public partial class CommunicationTestForm : Form
     {
-        BioBotCommunication.Serial.Movement.ArduinoCommunicationWorker serialPort;
+        BioBotCommunication.Serial.Movement.SerialCommunicationWorker serialPort;
         public CommunicationTestForm()
         {
             InitializeComponent();
-            serialPort = BioBotCommunication.Serial.Movement.ArduinoCommunicationWorker.Instance;
+            serialPort = BioBotCommunication.Serial.Movement.SerialCommunicationWorker.Instance;
             serialPort.onConnect += SerialPort_onConnect;
             serialPort.onDisconnect += SerialPort_onDisconnect;
         }

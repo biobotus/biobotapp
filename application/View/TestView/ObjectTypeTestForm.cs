@@ -23,15 +23,15 @@ namespace BioBotApp.View.TestView
 
         public Model.Data.BioBotDataSets.bbt_object_typeRow getSelectedOperationRow()
         {
-            Model.Data.BioBotDataSets.bbt_object_typeRow operationRow = null;
+            Model.Data.BioBotDataSets.bbt_object_typeRow objectRow = null;
 
             if (bsObjectType.Current == null) return null;
             if (!(bsObjectType.Current.GetType() == typeof(DataRowView))) return null;
             DataRowView rowView = bsObjectType.Current as DataRowView;
             if (rowView.Row == null) return null;
             if (!(rowView.Row.GetType() == typeof(Model.Data.BioBotDataSets.bbt_object_typeRow))) return null;
-            operationRow = rowView.Row as Model.Data.BioBotDataSets.bbt_object_typeRow;
-            return operationRow;
+            objectRow = rowView.Row as Model.Data.BioBotDataSets.bbt_object_typeRow;
+            return objectRow;
         }
 
         #region events

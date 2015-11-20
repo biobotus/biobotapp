@@ -57,13 +57,13 @@
     </Compile>
     <Compile Include="Serial\Can\PCANBasic.cs" />
     <Compile Include="Serial\Can\PCANCom.cs" />
-    <Compile Include="Serial\Movement\ArduinoCommunication.cs" />
-    <Compile Include="Serial\Movement\ArduinoCommunicationWorker.cs" />
-    <Compile Include="Serial\Movement\ArduinoSerialCommControl.cs">
+    <Compile Include="Serial\Movement\SerialCommunication.cs" />
+    <Compile Include="Serial\Movement\SerialCommunicationWorker.cs" />
+    <Compile Include="Serial\Movement\SerialCommControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Serial\Movement\ArduinoSerialCommControl.Designer.cs">
-      <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
+    <Compile Include="Serial\Movement\SerialCommControl.Designer.cs">
+      <DependentUpon>SerialCommControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -74,8 +74,8 @@
     <EmbeddedResource Include="Serial\Can\CanConnectorControl.resx">
       <DependentUpon>CanConnectorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Serial\Movement\ArduinoSerialCommControl.resx">
-      <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
+    <EmbeddedResource Include="Serial\Movement\SerialCommControl.resx">
+      <DependentUpon>SerialCommControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

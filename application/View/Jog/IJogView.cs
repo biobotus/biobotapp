@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.Jog
 {
-    interface IJogView
+    public interface IJogView
     {
-
+        void updateMotor(Model.Data.Movement.StepperMotor motor);
+        void updateXMotor();
     }
 }

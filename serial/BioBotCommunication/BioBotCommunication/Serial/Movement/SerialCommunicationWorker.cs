@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace BioBotCommunication.Serial.Movement
 {
-    public class ArduinoCommunicationWorker : ArduinoCommunication
+    public class SerialCommunicationWorker : SerialCommunication
     {
         private BackgroundWorker arduinoSerialWorker;
         AutoResetEvent toggle = new AutoResetEvent(false);
 
-        private ArduinoCommunicationWorker()
+        private SerialCommunicationWorker()
         {
             arduinoSerialWorker = new BackgroundWorker();
             arduinoSerialWorker.WorkerSupportsCancellation = true;
@@ -38,14 +38,14 @@ namespace BioBotCommunication.Serial.Movement
             }
         }
 
-        private static ArduinoCommunicationWorker instance;
-        public static ArduinoCommunicationWorker Instance
+        private static SerialCommunicationWorker instance;
+        public static SerialCommunicationWorker Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new ArduinoCommunicationWorker();
+                    instance = new SerialCommunicationWorker();
                 }
                 return instance;
             }
