@@ -12,7 +12,7 @@ using TPCANHandle = System.UInt16;
 
 namespace BioBotApp.Utils.Communication.pcan
 {
-    class PCANCom
+    public class PCANCom
     {
 
         #region MEMBER
