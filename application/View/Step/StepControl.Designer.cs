@@ -29,64 +29,127 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtStepName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.cmbObject = new System.Windows.Forms.ComboBox();
+            this.bsObject = new System.Windows.Forms.BindingSource(this.components);
             this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
-            this.bbt_operationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.bsOperation = new System.Windows.Forms.BindingSource(this.components);
             this.bbt_operationDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.bbtoperationtypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsOperationType = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bbt_operationBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbt_operationDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bbtoperationtypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).BeginInit();
             this.panel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtStepName
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(88, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(372, 26);
-            this.textBox1.TabIndex = 1;
+            this.txtStepName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtStepName.Location = new System.Drawing.Point(52, 0);
+            this.txtStepName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtStepName.Name = "txtStepName";
+            this.txtStepName.Size = new System.Drawing.Size(584, 20);
+            this.txtStepName.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 31);
+            this.label1.Size = new System.Drawing.Size(52, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(470, 51);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel1.Size = new System.Drawing.Size(650, 56);
             this.panel1.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel4.Controls.Add(this.cmbObject);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(7, 28);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(636, 22);
+            this.panel4.TabIndex = 3;
+            // 
+            // cmbObject
+            // 
+            this.cmbObject.DataSource = this.bsObject;
+            this.cmbObject.DisplayMember = "description";
+            this.cmbObject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbObject.FormattingEnabled = true;
+            this.cmbObject.Location = new System.Drawing.Point(52, 0);
+            this.cmbObject.Name = "cmbObject";
+            this.cmbObject.Size = new System.Drawing.Size(584, 21);
+            this.cmbObject.TabIndex = 1;
+            this.cmbObject.ValueMember = "pk_id";
+            // 
+            // bsObject
+            // 
+            this.bsObject.DataMember = "bbt_object";
+            this.bsObject.DataSource = this.bioBotDataSets;
             // 
             // bioBotDataSets
             // 
             this.bioBotDataSets.DataSetName = "BioBotDataSets";
             this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // bbt_operationBindingSource
+            // label2
             // 
-            this.bbt_operationBindingSource.DataMember = "bbt_operation";
-            this.bbt_operationBindingSource.DataSource = this.bioBotDataSets;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Object:";
+            // 
+            // panel3
+            // 
+            this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel3.Controls.Add(this.txtStepName);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(7, 6);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(636, 22);
+            this.panel3.TabIndex = 2;
+            // 
+            // bsOperation
+            // 
+            this.bsOperation.DataMember = "bbt_operation";
+            this.bsOperation.DataSource = this.bioBotDataSets;
             // 
             // bbt_operationDataGridView
             // 
@@ -97,19 +160,20 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            this.bbt_operationDataGridView.DataSource = this.bbt_operationBindingSource;
+            this.bbt_operationDataGridView.DataSource = this.bsOperation;
             this.bbt_operationDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bbt_operationDataGridView.Location = new System.Drawing.Point(5, 5);
+            this.bbt_operationDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.bbt_operationDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.bbt_operationDataGridView.Name = "bbt_operationDataGridView";
             this.bbt_operationDataGridView.RowHeadersVisible = false;
             this.bbt_operationDataGridView.RowTemplate.Height = 28;
-            this.bbt_operationDataGridView.Size = new System.Drawing.Size(367, 413);
+            this.bbt_operationDataGridView.Size = new System.Drawing.Size(597, 229);
             this.bbt_operationDataGridView.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "fk_operation_type";
-            this.dataGridViewTextBoxColumn1.DataSource = this.bbtoperationtypeBindingSource;
+            this.dataGridViewTextBoxColumn1.DataSource = this.bsOperationType;
             this.dataGridViewTextBoxColumn1.DisplayMember = "description";
             this.dataGridViewTextBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.dataGridViewTextBoxColumn1.HeaderText = "Operation";
@@ -118,10 +182,10 @@
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn1.ValueMember = "pk_id";
             // 
-            // bbtoperationtypeBindingSource
+            // bsOperationType
             // 
-            this.bbtoperationtypeBindingSource.DataMember = "bbt_operation_type";
-            this.bbtoperationtypeBindingSource.DataSource = this.bioBotDataSets;
+            this.bsOperationType.DataMember = "bbt_operation_type";
+            this.bsOperationType.DataSource = this.bioBotDataSets;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -140,64 +204,104 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.bbt_operationDataGridView);
+            this.panel2.Controls.Add(this.flowLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 51);
+            this.panel2.Location = new System.Drawing.Point(0, 56);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(377, 423);
+            this.panel2.Padding = new System.Windows.Forms.Padding(3);
+            this.panel2.Size = new System.Drawing.Size(650, 235);
             this.panel2.TabIndex = 3;
             // 
-            // panel3
+            // flowLayoutPanel1
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(377, 51);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(93, 423);
-            this.panel3.TabIndex = 4;
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Controls.Add(this.btnEdit);
+            this.flowLayoutPanel1.Controls.Add(this.btnAdd);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(600, 3);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(47, 229);
+            this.flowLayoutPanel1.TabIndex = 3;
             // 
-            // panel4
+            // btnDelete
             // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 474);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(470, 60);
-            this.panel4.TabIndex = 5;
+            this.btnDelete.Location = new System.Drawing.Point(2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(43, 42);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(2, 48);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(43, 42);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(2, 94);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(43, 42);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // StepControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StepControl";
-            this.Size = new System.Drawing.Size(470, 534);
+            this.Size = new System.Drawing.Size(650, 291);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsObject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bbt_operationBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbt_operationDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bbtoperationtypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtStepName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private Model.Data.BioBotDataSets bioBotDataSets;
-        private System.Windows.Forms.BindingSource bbt_operationBindingSource;
+        private System.Windows.Forms.BindingSource bsOperation;
         private System.Windows.Forms.DataGridView bbt_operationDataGridView;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.BindingSource bbtoperationtypeBindingSource;
+        private System.Windows.Forms.BindingSource bsOperationType;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox cmbObject;
+        private System.Windows.Forms.BindingSource bsObject;
     }
 }

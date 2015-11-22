@@ -19,6 +19,12 @@ namespace BioBotApp.View.Protocol
             this.BackColor = Color.LightGreen;
         }
 
+        public void updateStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+            this.stepRow = row;
+            this.Text = this.stepRow.description;
+        }
+
         public BioBotDataSets.bbt_stepRow getStepRow()
         {
             return this.stepRow;

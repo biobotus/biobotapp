@@ -24,5 +24,11 @@ namespace BioBotApp.View.Protocol
         {
             return this.protocolRow;
         }
+
+        public void setProtocolRow(BioBotDataSets.bbt_protocolRow protocolRow)
+        {
+            this.protocolRow = protocolRow;
+            this.Text = protocolRow.description;
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioBotApp.Model.EventBus.Operation
+namespace BioBotApp.Model.EventBus.Events.Operation
 {
     public class OperationEvent : EventArgs
     {

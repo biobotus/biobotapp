@@ -42,6 +42,7 @@ namespace BioBotApp.Model.Data.Services
             row.index = index;
             this.dbManager.projectDataset.bbt_step.Addbbt_stepRow(row);
             updateRow(row);
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepAddEvent(row));
         }
 
         public void modifyStepRow(int primaryKey, int fkProtocolId, String description, int fkObjectId, int index)
@@ -52,11 +53,13 @@ namespace BioBotApp.Model.Data.Services
             row.fk_object = fkObjectId;
             row.index = index;
             updateRow(row);
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepModifyEvent(row));
         }
 
         public void modifyStepRow(BioBotDataSets.bbt_stepRow row)
         {
             updateRow(row);    //(this.dbManager.projectDataset);
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepModifyEvent(row));
         }
 
         public void removeStepRow(int primaryKey)
