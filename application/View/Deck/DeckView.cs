@@ -14,41 +14,83 @@ namespace BioBotApp.View.Deck
 {
     public partial class DeckView : UserControl, IDeckView
     {
-        private int deckWidthReal;
-        private int deckWidth;
-        private int deckLengthReal;
-        private int deckLength;
-        private int lengthPk;
-        private int widthPk;
+        private int deckYReal;
+        private int deckY = 0;
+        private int deckXReal;
+        private int deckX = 0;
+        private int XPk;
+        private int YPk;
+        private int dim;
+        private int deckTypePk;
+        private int ratio = 2;
+        private int ratioX;
+        private int ratioY;
+
         public DeckView()
         {
             InitializeComponent();
             this.bsObject.DataMember = "bbt_object";
             this.bsObject.DataSource = DBManager.Instance.projectDataset;
-            lengthPk = DBManager.Instance.projectDataset.bbt_property.Where(p => p.description == "length").First().pk_id;
-            widthPk = DBManager.Instance.projectDataset.bbt_property.Where(p => p.description == "width").First().pk_id;
-            BioBotDataSets.bbt_objectRow deck = DBManager.Instance.projectDataset.bbt_object.Where(p => p.description == "deck" && p.activated == "1").First();
-            deckLengthReal = Int32.Parse(DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == deck.pk_id && p.fk_properties_id == lengthPk).First().value);
-            deckWidthReal = Int32.Parse(DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == deck.bbt_object_typeRow.pk_id && p.fk_properties_id == widthPk).First().value);
-            deckLength = deckLengthReal;
-            deckWidth = deckWidthReal;
-            this.Size = new Size(deckLength,deckWidth);
+            dim = DBManager.Instance.projectDataset.bbt_property_type.Where(p => (p.description.ToString()).Equals("dimension", StringComparison.InvariantCultureIgnoreCase)).First().pk_id;
+            deckTypePk = DBManager.Instance.projectDataset.bbt_object_type.Where(p => (p.description.ToString()).Equals("deck",StringComparison.InvariantCultureIgnoreCase)).First().pk_id;
+            XPk = DBManager.Instance.projectDataset.bbt_property.Where(p => (p.description.ToString()).Equals("xlength", StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type==dim).First().pk_id;
+            YPk = DBManager.Instance.projectDataset.bbt_property.Where(p => (p.description.ToString()).Equals("ylength", StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type == dim).First().pk_id;
+            BioBotDataSets.bbt_objectRow deck = DBManager.Instance.projectDataset.bbt_object.Where(p => p.activated == "1" && p.fk_object_type==deckTypePk).First();
+            deckXReal = int.Parse(DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == deck.fk_object_type && p.fk_properties_id == XPk).First().value);
+            deckYReal = int.Parse(DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == deck.fk_object_type && p.fk_properties_id == YPk).First().value);
         }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            deckX = 550; // Convert.ToInt32(Math.Floor(Convert.ToDecimal(this.ParentForm.ClientSize.Width / ratio)));
+            deckY = 443; // Convert.ToInt32(Math.Floor(Convert.ToDecimal(this.ParentForm.ClientSize.Height / ratio)));
+            this.Size = new Size(deckX, deckY);
+            this.Location = new Point(this.ParentForm.ClientSize.Width - deckX, 0);
+            ratioX = deckX / deckXReal;
+            ratioY = deckY / deckYReal;
+        }
+
+        //protected override void OnParentChanged(EventArgs e)
+        //{
+        //    base.OnParentChanged(e);
+        //    if (deckX != 0 || deckY != 0)
+        //    {
+        //        deckX = Convert.ToInt32(Math.Floor(Convert.ToDecimal(this.ParentForm.ClientSize.Width / ratio)));
+        //        deckY = Convert.ToInt32(Math.Floor(Convert.ToDecimal(this.ParentForm.ClientSize.Height / ratio)));
+        //        this.Size = new Size(deckX, deckY);
+        //        this.Location = new Point(this.ParentForm.ClientSize.Width - deckX, 0);
+        //        ratioX = deckX / deckXReal;
+        //        ratioY = deckY / deckYReal;
+        //    }
+        //}
+
+        //protected override void OnSizeChanged(EventArgs e)
+        //{
+        //    base.OnSizeChanged(e);
+        //    if (deckX != 0 || deckY != 0)
+        //    {
+        //        deckX = Convert.ToInt32(Math.Floor(Convert.ToDecimal(this.ParentForm.ClientSize.Width / ratio)));
+        //        deckY = Convert.ToInt32(Math.Floor(Convert.ToDecimal(this.ParentForm.ClientSize.Height / ratio)));
+        //        this.Size = new Size(deckX, deckY);
+        //        this.Location = new Point(this.ParentForm.ClientSize.Width - deckX, 0);
+        //        ratioX = deckX / deckXReal;
+        //        ratioY = deckY / deckYReal;
+        //    }
+        //}
 
         public void addObject(BioBotDataSets.bbt_objectRow obj)
         {
-            if (obj.activated == "1")
+            if (obj.activated == "1") // || obj.deck_x != null || obj.deck_y != null)
             {
                 Button Mod = new Button();
-                BioBotDataSets.bbt_object_propertyRow rowWidth = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.bbt_object_typeRow.pk_id && p.fk_properties_id == widthPk).First();
-                BioBotDataSets.bbt_object_propertyRow rowLength = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.bbt_object_typeRow.pk_id && p.fk_properties_id == lengthPk).First();
-                int WidthDt = Int16.Parse(rowLength.value);
-                int LengthDt = Int16.Parse(rowWidth.value);
-                Mod.Text = obj.pk_id.ToString();
-                Mod.Location = new Point(obj.deck_x * deckLength / deckLengthReal, obj.deck_y * deckWidth / deckWidthReal);
-                setRotation(obj,LengthDt, WidthDt, Mod);
-                Mod.Height = LengthDt * deckLength / deckLengthReal ;
-                Mod.Width = WidthDt * deckWidth / deckWidthReal;
+                BioBotDataSets.bbt_object_propertyRow rowX = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.bbt_object_typeRow.pk_id && p.fk_properties_id == XPk).First();
+                BioBotDataSets.bbt_object_propertyRow rowY = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.bbt_object_typeRow.pk_id && p.fk_properties_id == YPk).First();
+                int XDt = int.Parse(rowX.value.ToString());
+                int YDt = int.Parse(rowY.value.ToString());
+                Mod.Text = obj.description;
+                Mod.Location = new Point(deckX - obj.deck_x * ratioX - XDt * ratioX, obj.deck_y * ratioY);
+                setRotation(obj,XDt, YDt, Mod);
                 Mod.TextAlign = ContentAlignment.MiddleCenter;
 
                 this.Controls.Add(Mod);
@@ -60,30 +102,25 @@ namespace BioBotApp.View.Deck
             switch (obj.rotation)
             {
                 case 0:
-                    button.Height = height * deckLength / deckLengthReal;
-                    button.Width =  width * deckWidth / deckWidthReal;
+                    button.Width = width * ratioX;
+                    button.Height = height * ratioY;
                     break;
                 case 90:
-                    button.Height = width * deckWidth / deckWidthReal;
-                    button.Width = - height * deckLength / deckLengthReal;
+                    button.Width = - height * ratioX;
+                    button.Height = width * deckY / deckYReal;
                     break;
                 case 180:
-                    button.Height = -height* deckLength / deckLengthReal;
-                    button.Width = - width * deckWidth / deckWidthReal;
+                    button.Width = - width * ratioX;
+                    button.Height = -height* ratioY;
                     break;
                 case 270:
-                    button.Height = width * deckWidth / deckWidthReal;
-                    button.Width = -height * deckLength / deckLengthReal;
+                    button.Width = - height * ratioX;
+                    button.Height = width * ratioY;
                     break;
                 default:
                     MessageBox.Show("Rotation value not allowed");
                     break;
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         public Model.Data.BioBotDataSets.bbt_objectRow getSelectedObjectRow()
@@ -101,8 +138,15 @@ namespace BioBotApp.View.Deck
 
         private void DeckView_DragDrop(object sender, DragEventArgs e)
         {
-            BioBotDataSets.bbt_objectRow row = e.Data.GetData(typeof(BioBotDataSets.bbt_objectRow)) as BioBotDataSets.bbt_objectRow;
-            addObject(row);
+            try
+            {
+                BioBotDataSets.bbt_objectRow row = e.Data.GetData(typeof(BioBotDataSets.bbt_objectRow)) as BioBotDataSets.bbt_objectRow;
+            }
+            //if (row.bbt_object_typeRow.description == "Deck" || typeof(row.deck_x) != ) return;
+            catch (StrongTypingException)
+            {
+                
+            }
         }
 
         private void DeckView_DragEnter(object sender, DragEventArgs e)
