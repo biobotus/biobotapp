@@ -10,10 +10,11 @@ using System.Windows.Forms;
 using BioBotApp.Presenter.Services;
 using BioBotApp.Model.Data.Services;
 using BioBotApp.Controls.Option.Options;
+using BioBotApp.View.Utils;
 
 namespace BioBotApp.View.Services
 {
-    public partial class InformationValueServiceView : UserControl, IInformationValueServiceView
+    public partial class InformationValueServiceView : DatasetViewControl, IInformationValueServiceView
     {
         private InformationValueServicesPresenter presenter = null;
 
@@ -22,8 +23,8 @@ namespace BioBotApp.View.Services
         {
             InitializeComponent();
             presenter = new InformationValueServicesPresenter(this);
-            //Model.Data.BioBotDataSets dsBiobotDataSets;
-            //this.bbtinformationvalueBindingSource.DataSource = dsBiobotDataSets;            
+            this.bioBotDataSets = dataset;
+            this.bbtinformationvalueBindingSource.DataSource = bioBotDataSets;
         }
 
         /* 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BioBotApp.View.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,30 @@ namespace BioBotApp.View.Option
         public OptionMainView()
         {
             InitializeComponent();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Name.Equals("PropertyNode"))
+            {
+                setOptionControl(new OptionServicesPropertyView());
+            }
+            else
+            {
+                setOptionControl(null);
+            }
+
+        }
+        private void setOptionControl(UserControl optionControl)
+        {
+            if (optionControl == null)
+            {
+                mainPanel.Controls.Clear();
+                return;
+            }
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(optionControl);
+            optionControl.Dock = DockStyle.Fill;
         }
     }
 }

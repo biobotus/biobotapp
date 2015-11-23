@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Model.Data.Services;
+using BioBotApp.Presenter.Utils;
 using BioBotApp.View.Services;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,13 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Presenter.Services
 {
-    public class InformationValueServicesPresenter
+    public class InformationValueServicesPresenter //: DatasetPresenter
     {
+        IInformationValueServiceView view;
 
-        private readonly IInformationValueServiceView m_View;
-        private IInformationValueService InformationServiceModel;
-
-
-        public InformationValueServicesPresenter(IInformationValueServiceView view)
+        public InformationValueServicesPresenter(IInformationValueServiceView view) //: base(view)
         {
-            this.m_View = view;
+            this.view = view;
             //this.InformationServiceModel = model;
         }
         /*
@@ -25,7 +23,7 @@ namespace BioBotApp.Presenter.Services
         */
         public void AddInformationRow()
         {
-            //InformationServiceModel.addInformationValueRow();
+            
         }
 
 

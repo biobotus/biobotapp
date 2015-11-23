@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Model.Data.Services
 {
-    public class PropertyService : IPropertyService
+    public class PropertyService// : IPropertyService
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_propertyTableAdapter taProperty;

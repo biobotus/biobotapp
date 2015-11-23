@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
-            this.bbtpropertytypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bbt_property_typeTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_property_typeTableAdapter();
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bbtpropertytypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
             this.crudOptions1 = new BioBotApp.Controls.Utils.crudOptions();
+            this.bbt_property_typeTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_property_typeTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbtpropertytypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -70,34 +70,36 @@
             this.dataGridView1.DataSource = this.bbtpropertytypeBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(6, 62);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(297, 399);
             this.dataGridView1.TabIndex = 1;
             // 
-            // bioBotDataSets
+            // pkidDataGridViewTextBoxColumn
             // 
-            this.bioBotDataSets.DataSetName = "BioBotDataSets";
-            this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
+            this.pkidDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.pkidDataGridViewTextBoxColumn.HeaderText = "pk_id";
+            this.pkidDataGridViewTextBoxColumn.Name = "pkidDataGridViewTextBoxColumn";
+            this.pkidDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "description";
+            this.descriptionDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Width = 150;
             // 
             // bbtpropertytypeBindingSource
             // 
             this.bbtpropertytypeBindingSource.DataMember = "bbt_property_type";
             this.bbtpropertytypeBindingSource.DataSource = this.bioBotDataSets;
             // 
-            // bbt_property_typeTableAdapter
+            // bioBotDataSets
             // 
-            this.bbt_property_typeTableAdapter.ClearBeforeFill = true;
-            // 
-            // pkidDataGridViewTextBoxColumn
-            // 
-            this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
-            this.pkidDataGridViewTextBoxColumn.HeaderText = "pk_id";
-            this.pkidDataGridViewTextBoxColumn.Name = "pkidDataGridViewTextBoxColumn";
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.bioBotDataSets.DataSetName = "BioBotDataSets";
+            this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // crudOptions1
             // 
@@ -109,6 +111,10 @@
             this.crudOptions1.Size = new System.Drawing.Size(165, 37);
             this.crudOptions1.TabIndex = 0;
             // 
+            // bbt_property_typeTableAdapter
+            // 
+            this.bbt_property_typeTableAdapter.ClearBeforeFill = true;
+            // 
             // PropertyTypeServiceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,8 +124,8 @@
             this.Size = new System.Drawing.Size(315, 473);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbtpropertytypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -128,11 +134,11 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pkidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bbtpropertytypeBindingSource;
         private Model.Data.BioBotDataSets bioBotDataSets;
         private Controls.Utils.crudOptions crudOptions1;
         private Model.Data.BioBotDataSetsTableAdapters.bbt_property_typeTableAdapter bbt_property_typeTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pkidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
     }
 }

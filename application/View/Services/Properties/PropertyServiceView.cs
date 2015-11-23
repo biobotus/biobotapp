@@ -9,20 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Presenter.Services;
 using BioBotApp.Model.Data.Services;
+using BioBotApp.View.Utils;
 
 namespace BioBotApp.View.Services
 {
-    public partial class PropertyServiceView : UserControl, IPropertyServiceView
+    public partial class PropertyServiceView : DatasetViewControl, IPropertyServiceView
     {
-        private PropertyServicesPresenter presenter = null;
-        //private readonly PropertyService m_Model;
+        PropertyServicesPresenter PropertyPresenter;
 
         public PropertyServiceView()
         {
             InitializeComponent();
+            PropertyPresenter = new PropertyServicesPresenter(this);
+            this.bioBotDataSets = dataset;
+            this.PropertyBindingSource.DataSource = bioBotDataSets;
 
-            presenter = new PropertyServicesPresenter(this);
         }
+
 
     }
 }

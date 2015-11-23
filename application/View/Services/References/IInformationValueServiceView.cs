@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BioBotApp.View.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace BioBotApp.View.Services
 {
-    public interface IInformationValueServiceView
+    public interface IInformationValueServiceView //: IDatasetViewControl
     {
         DataGridView InformationValueDataTable { set; }
 
