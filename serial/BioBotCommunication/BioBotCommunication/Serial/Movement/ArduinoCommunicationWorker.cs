@@ -37,8 +37,9 @@ namespace BioBotCommunication.Serial.Movement
             SerialPort port = sender as SerialPort;
             String dataReceived = port.ReadExisting();
 
-            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
+            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Completed work");
             eventargs.error = false;
+            OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
 
