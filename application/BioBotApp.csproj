@@ -61,9 +61,7 @@
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
     <Compile Include="Model\Data\DBManager.cs" />
-    <Compile Include="Model\Data\Services\IInformationValueService.cs" />
     <Compile Include="Model\Data\Services\InformationValueService.cs" />
-    <Compile Include="Model\Data\Services\IPropertyService.cs" />
     <Compile Include="Model\Data\Services\ObjectPropertyService.cs" />
     <Compile Include="Model\Data\Services\ObjectService.cs" />
     <Compile Include="Model\Data\Services\ObjectTypeService.cs" />
@@ -75,8 +73,13 @@
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
     <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
-    <Compile Include="Model\EventBus\Operation\OperationEvent.cs" />
-    <Compile Include="Model\EventBus\Step\StepEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Operation\OperationEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Protocol\ProtocolAddEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Protocol\ProtocolDeleteEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Protocol\ProtocolModifyEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Step\StepAddEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Step\StepDeleteEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Step\StepModifyEvent.cs" />
     <Compile Include="Model\EventBus\Subscribe.cs" />
     <Compile Include="Model\EventBus\Subscriber.cs" />
     <Compile Include="Model\FSM\FSMManager.cs" />
@@ -91,9 +94,8 @@
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolAddEvent.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
-    <Compile Include="Presenter\Services\InformationValueServicesPresenter.cs" />
-    <Compile Include="Presenter\Services\PropertyServicesPresenter.cs" />
     <Compile Include="Presenter\Step\StepPresenter.cs" />
+    <Compile Include="Presenter\Utils\DatasetPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Communication\CommunicationTestForm.cs">
@@ -149,18 +151,6 @@
     <Compile Include="View\Operation\OperationForm.Designer.cs">
       <DependentUpon>OperationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Option\OptionMainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Option\OptionMainView.Designer.cs">
-      <DependentUpon>OptionMainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Option\OptionServicesPropertyView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Option\OptionServicesPropertyView.Designer.cs">
-      <DependentUpon>OptionServicesPropertyView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Properties\IPropertiesView.cs" />
     <Compile Include="View\Properties\PropertiesControl.cs">
       <SubType>UserControl</SubType>
@@ -175,6 +165,12 @@
       <DependentUpon>PropertiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Protocol\IProtocolView.cs" />
+    <Compile Include="View\Operation\OperationType\OperationTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Operation\OperationType\OperationTypeControl.Designer.cs">
+      <DependentUpon>OperationTypeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Protocol\ProtocolControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -189,62 +185,6 @@
     </Compile>
     <Compile Include="View\Protocol\ProtocolTreeNode.cs" />
     <Compile Include="View\Protocol\StepTreeNode.cs" />
-    <Compile Include="View\Services\IInformationValueServiceView.cs" />
-    <Compile Include="View\Services\InformationValueServiceView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\InformationValueServiceView.Designer.cs">
-      <DependentUpon>InformationValueServiceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\IPropertyServiceView.cs" />
-    <Compile Include="View\Services\namedComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\namedComboBox.Designer.cs">
-      <DependentUpon>namedComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\namedInputTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\namedInputTextBox.Designer.cs">
-      <DependentUpon>namedInputTextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\ObjectPropertyServiceView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\ObjectPropertyServiceView.Designer.cs">
-      <DependentUpon>ObjectPropertyServiceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\ObjectServiceView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\ObjectServiceView.Designer.cs">
-      <DependentUpon>ObjectServiceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\ObjectTypeServiceView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\ObjectTypeServiceView.Designer.cs">
-      <DependentUpon>ObjectTypeServiceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\PropertyServiceView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\PropertyServiceView.Designer.cs">
-      <DependentUpon>PropertyServiceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\PropertyTypeServiceView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Services\PropertyTypeServiceView.Designer.cs">
-      <DependentUpon>PropertyTypeServiceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Services\ServicesabstractDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Services\ServicesabstractDialog.Designer.cs">
-      <DependentUpon>ServicesabstractDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Step\IStepView.cs" />
     <Compile Include="View\Step\StepControl.cs">
       <SubType>UserControl</SubType>
@@ -252,19 +192,40 @@
     <Compile Include="View\Step\StepControl.Designer.cs">
       <DependentUpon>StepControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Step\StepForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Step\StepForm.Designer.cs">
+      <DependentUpon>StepForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\TestView\ObjectTypeTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\TestView\ObjectTypeTestForm.Designer.cs">
       <DependentUpon>ObjectTypeTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Utils\CrudOptions\crudOptions.cs">
+    <Compile Include="View\Utils\Controls\DatasetViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Utils\CrudOptions\crudOptions.Designer.cs">
-      <DependentUpon>crudOptions.cs</DependentUpon>
+    <Compile Include="View\Utils\Controls\IDatasetViewControl.cs" />
+    <Compile Include="View\Utils\Controls\AbstractDialog.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Utils\IDatasetView.cs" />
+    <Compile Include="View\Utils\Controls\AbstractDialog.Designer.cs">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Utils\Controls\NamedComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Utils\Controls\NamedComboBox.Designer.cs">
+      <DependentUpon>NamedComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Utils\Controls\NamedInputTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Utils\Controls\NamedInputTextBox.Designer.cs">
+      <DependentUpon>NamedInputTextBox.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -292,17 +253,8 @@
     <EmbeddedResource Include="View\ModulePluginManager\PluginPathControl.resx">
       <DependentUpon>PluginPathControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Operation\OperationControl.resx">
-      <DependentUpon>OperationControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Operation\OperationForm.resx">
       <DependentUpon>OperationForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Option\OptionMainView.resx">
-      <DependentUpon>OptionMainView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Option\OptionServicesPropertyView.resx">
-      <DependentUpon>OptionServicesPropertyView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Properties\PropertiesControl.resx">
       <DependentUpon>PropertiesControl.cs</DependentUpon>
@@ -310,38 +262,14 @@
     <EmbeddedResource Include="View\Properties\PropertiesForm.resx">
       <DependentUpon>PropertiesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Operation\OperationType\OperationTypeControl.resx">
+      <DependentUpon>OperationTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Protocol\ProtocolControl.resx">
       <DependentUpon>ProtocolControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Protocol\ProtocolForm.resx">
       <DependentUpon>ProtocolForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\InformationValueServiceView.resx">
-      <DependentUpon>InformationValueServiceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\namedComboBox.resx">
-      <DependentUpon>namedComboBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\namedInputTextBox.resx">
-      <DependentUpon>namedInputTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\ObjectPropertyServiceView.resx">
-      <DependentUpon>ObjectPropertyServiceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\ObjectServiceView.resx">
-      <DependentUpon>ObjectServiceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\ObjectTypeServiceView.resx">
-      <DependentUpon>ObjectTypeServiceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\PropertyServiceView.resx">
-      <DependentUpon>PropertyServiceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\PropertyTypeServiceView.resx">
-      <DependentUpon>PropertyTypeServiceView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Services\ServicesabstractDialog.resx">
-      <DependentUpon>ServicesabstractDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Step\StepControl.resx">
       <DependentUpon>StepControl.cs</DependentUpon>
@@ -349,8 +277,14 @@
     <EmbeddedResource Include="View\TestView\ObjectTypeTestForm.resx">
       <DependentUpon>ObjectTypeTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Utils\CrudOptions\crudOptions.resx">
-      <DependentUpon>crudOptions.cs</DependentUpon>
+    <EmbeddedResource Include="View\Utils\Controls\AbstractDialog.resx">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Utils\Controls\NamedComboBox.resx">
+      <DependentUpon>NamedComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Utils\Controls\NamedInputTextBox.resx">
+      <DependentUpon>NamedInputTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Model\Data\BioBotDataSets.xsc">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -358,7 +292,6 @@
     <None Include="Model\Data\BioBotDataSets.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>BioBotDataSets.Designer.cs</LastGenOutput>
     </None>
     <None Include="Model\Data\BioBotDataSets.xss">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -378,17 +311,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Data\CrudOptions\" />
     <Folder Include="View\Console\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
-    <Content Include="Ressources\add.png" />
-    <Content Include="Ressources\arrow_refresh.png" />
-    <Content Include="Ressources\delete.png" />
-    <Content Include="Ressources\link.png" />
-    <Content Include="Ressources\link_break.png" />
-    <Content Include="Ressources\pencil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
