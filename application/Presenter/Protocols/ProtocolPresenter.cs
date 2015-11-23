@@ -37,6 +37,11 @@ namespace BioBotApp.Presenter
             Model.Data.Services.ProtocolService.Instance.modifyProtocolRow(row);
         }
 
+        public void removeProtocolRow(Model.Data.BioBotDataSets.bbt_protocolRow row)
+        {
+            Model.Data.Services.ProtocolService.Instance.removeProtocolRow(row);
+        }
+
         [Model.EventBus.Subscribe]
         public void onProtocolAddEvent(Model.EventBus.Events.Protocol.ProtocolAddEvent e)
         {
@@ -47,6 +52,12 @@ namespace BioBotApp.Presenter
         public void onProtocolModifyEvent(Model.EventBus.Events.Protocol.ProtocolModifyEvent e)
         {
             this.view.onProtocolModifyEvent(e.Row);
+        }
+
+        [Model.EventBus.Subscribe]
+        public void onProtocolDeleteEvent(Model.EventBus.Events.Protocol.ProtocolDeleteEvent e)
+        {
+            this.view.onProtocolDeleteEvent(e.rowId);
         }
     }
 }

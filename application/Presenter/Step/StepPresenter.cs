@@ -27,6 +27,11 @@ namespace BioBotApp.Presenter.Step
             Model.Data.Services.StepService.Instance.modifyStepRow(row);
         }
 
+        public void removeStepRow(Model.Data.BioBotDataSets.bbt_stepRow row)
+        {
+            Model.Data.Services.StepService.Instance.removeStepRow(row);
+        }
+
         [Model.EventBus.Subscribe]
         public void onAddStepRow(Model.EventBus.Events.Step.StepAddEvent e)
         {
@@ -38,5 +43,13 @@ namespace BioBotApp.Presenter.Step
         {
             this.view.modifyStepRow(e.stepRow);
         }
+
+        [Model.EventBus.Subscribe]
+        public void onDeleteStepRow(Model.EventBus.Events.Step.StepDeleteEvent e)
+        {
+            this.view.deleteStepRow(e.rowId);
+        }
+
+
     }
 }

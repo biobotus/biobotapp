@@ -42,6 +42,7 @@ namespace BioBotApp.Model.Data.Services
             row.index = index;
             this.dbManager.projectDataset.bbt_step.Addbbt_stepRow(row);
             updateRow(row);
+            row.AcceptChanges();
             Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepAddEvent(row));
         }
 
@@ -64,17 +65,23 @@ namespace BioBotApp.Model.Data.Services
 
         public void removeStepRow(int primaryKey)
         {
+            int rowId = -1;
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.FindBypk_id(primaryKey);
             OperationService.Instance.removeOperationsWithGivenStep(row);
+            rowId = row.pk_id;
             row.Delete();
             updateRow(row);
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
         }
 
         public void removeStepRow(BioBotDataSets.bbt_stepRow row)
         {
+            int rowId = -1;
             OperationService.Instance.removeOperationsWithGivenStep(row);
+            rowId = row.pk_id;
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
         }
 
         public void removeStepsWithGivenObject(BioBotDataSets.bbt_objectRow parentToDeleteRow)
@@ -82,12 +89,16 @@ namespace BioBotApp.Model.Data.Services
             if (parentToDeleteRow != null)
             {                
                 foreach (BioBotDataSets.bbt_stepRow row in parentToDeleteRow.Getbbt_stepRows())
-                {                    
+                {
+                    int rowId = -1;
                     OperationService.Instance.removeOperationsWithGivenStep(row);
+                    rowId = row.pk_id;
                     row.Delete();
+                    
+                    updateRow(row);
+                    Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
                 }
             }
-            updateRowChanges();
         }
 
         public void removeStepsWithGivenProtocol(BioBotDataSets.bbt_protocolRow parentToDeleteRow)
@@ -96,11 +107,14 @@ namespace BioBotApp.Model.Data.Services
             {
                 foreach (BioBotDataSets.bbt_stepRow row in parentToDeleteRow.Getbbt_stepRows())
                 {
+                    int rowId = -1;
                     OperationService.Instance.removeOperationsWithGivenStep(row);
+                    rowId = row.pk_id;
                     row.Delete();
+                    updateRow(row);
+                    Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
                 }
             }
-            updateRowChanges();
         }
 
         /// <summary>

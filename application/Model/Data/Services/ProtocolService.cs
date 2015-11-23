@@ -72,15 +72,19 @@ namespace BioBotApp.Model.Data.Services
             removeProtocolRow(row);
         }
 
-        public void removeProtocolRow(BioBotDataSets.bbt_protocolRow protocolRow)
-        {       
-            foreach (BioBotDataSets.bbt_protocolRow childProtocolRow in protocolRow.Getbbt_protocolRows())
+        public void removeProtocolRow(BioBotDataSets.bbt_protocolRow row)
+        {
+            int rowId = -1;
+            StepService.Instance.removeStepsWithGivenProtocol(row);
+            foreach (BioBotDataSets.bbt_protocolRow childProtocolRow in row.Getbbt_protocolRows())
             {
                 StepService.Instance.removeStepsWithGivenProtocol(childProtocolRow);
                 removeProtocolRow(childProtocolRow);
             }
-            protocolRow.Delete();
-            updateRow(protocolRow);
+            rowId = row.pk_id;
+            row.Delete();
+            updateRow(row);
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Protocol.ProtocolDeleteEvent(rowId));
         }
 
         public void updateRow(BioBotDataSets.bbt_protocolRow row)

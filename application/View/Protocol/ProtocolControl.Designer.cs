@@ -35,13 +35,13 @@
             this.tlvProtocols = new System.Windows.Forms.TreeView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnAddProtocol = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddStep = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnAddProtocol = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAddStep = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -120,6 +120,28 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddProtocol,
+            this.btnAddStep});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(145, 48);
+            // 
+            // btnAddProtocol
+            // 
+            this.btnAddProtocol.Name = "btnAddProtocol";
+            this.btnAddProtocol.Size = new System.Drawing.Size(144, 22);
+            this.btnAddProtocol.Text = "Add protocol";
+            this.btnAddProtocol.Click += new System.EventHandler(this.btnAddProtocol_Click);
+            // 
+            // btnAddStep
+            // 
+            this.btnAddStep.Name = "btnAddStep";
+            this.btnAddStep.Size = new System.Drawing.Size(144, 22);
+            this.btnAddStep.Text = "Add step";
+            this.btnAddStep.Click += new System.EventHandler(this.btnAddStep_Click);
+            // 
             // btnEdit
             // 
             this.btnEdit.Location = new System.Drawing.Point(2, 48);
@@ -140,6 +162,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUp
             // 
@@ -162,28 +185,6 @@
             this.btnDown.Text = "down";
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddProtocol,
-            this.btnAddStep});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(145, 48);
-            // 
-            // btnAddProtocol
-            // 
-            this.btnAddProtocol.Name = "btnAddProtocol";
-            this.btnAddProtocol.Size = new System.Drawing.Size(144, 22);
-            this.btnAddProtocol.Text = "Add protocol";
-            this.btnAddProtocol.Click += new System.EventHandler(this.btnAddProtocol_Click);
-            // 
-            // btnAddStep
-            // 
-            this.btnAddStep.Name = "btnAddStep";
-            this.btnAddStep.Size = new System.Drawing.Size(144, 22);
-            this.btnAddStep.Text = "Add step";
-            this.btnAddStep.Click += new System.EventHandler(this.btnAddStep_Click);
             // 
             // ProtocolControl
             // 

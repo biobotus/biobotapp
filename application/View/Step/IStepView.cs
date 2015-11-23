@@ -11,5 +11,6 @@ namespace BioBotApp.View.Step
     {
         void addStepRow(Model.Data.BioBotDataSets.bbt_stepRow stepRow);
         void modifyStepRow(Model.Data.BioBotDataSets.bbt_stepRow stepRow);
+        void deleteStepRow(int rowId);
     }
 }

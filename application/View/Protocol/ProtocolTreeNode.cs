@@ -12,12 +12,13 @@ namespace BioBotApp.View.Protocol
     public class ProtocolTreeNode : TreeNode
     {
         BioBotDataSets.bbt_protocolRow protocolRow;
-
+        private int id = -1;
         public ProtocolTreeNode(BioBotDataSets.bbt_protocolRow protocolRow)
         {
             this.protocolRow = protocolRow;
             this.Text = this.protocolRow.description;
             this.BackColor = Color.LightCyan;
+            this.id = protocolRow.pk_id;
         }
 
         public BioBotDataSets.bbt_protocolRow getProtocolRow()
@@ -29,6 +30,12 @@ namespace BioBotApp.View.Protocol
         {
             this.protocolRow = protocolRow;
             this.Text = protocolRow.description;
+            this.id = protocolRow.pk_id;
+        }
+
+        public int getId()
+        {
+            return id;
         }
     }
 }

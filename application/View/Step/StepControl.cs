@@ -34,9 +34,19 @@ namespace BioBotApp.View.Step
 
         public void setStepRow(BioBotDataSets.bbt_stepRow stepRow)
         {
-            this.stepRow = stepRow;
-            this.txtStepName.Text = stepRow.description;
-            cmbObject.SelectedValue = stepRow.fk_object;
+            if(stepRow == null)
+            {
+                this.stepRow = null;
+                this.txtStepName.Text = "";
+                this.cmbObject.SelectedValue = 0;
+            }
+            else
+            {
+                this.stepRow = stepRow;
+                this.txtStepName.Text = stepRow.description;
+                cmbObject.SelectedValue = stepRow.fk_object;
+            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -84,6 +94,15 @@ namespace BioBotApp.View.Step
             if (this.stepRow.pk_id == stepRow.pk_id)
             {
                 setStepRow(stepRow);
+            }
+        }
+
+        public void deleteStepRow(int rowId)
+        {
+            if (this.stepRow == null) return;
+            if (this.stepRow.pk_id == rowId)
+            {
+                setStepRow(null);
             }
         }
         /*

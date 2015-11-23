@@ -514,5 +514,89 @@ namespace BioBotApp.View.Protocol
             }
             
         }
+        
+
+        public void deleteProtocolChildNode(int rowId, TreeNode node)
+        {
+            foreach (TreeNode treeNode in node.Nodes)
+            {
+                if (treeNode is ProtocolTreeNode)
+                {
+                    ProtocolTreeNode protocolNode = treeNode as ProtocolTreeNode;
+                    int stepId = protocolNode.getId();
+                    if (stepId >= 0)
+                    {
+                        if (stepId == rowId)
+                        {
+                            node.Nodes.Remove(protocolNode);
+                            break;
+                        }
+                        else
+                        {
+                            deleteProtocolChildNode(rowId, protocolNode);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void deleteStepNode(int rowId, TreeNode node)
+        {
+            foreach (TreeNode treeNode in node.Nodes)
+            {
+                if (treeNode is StepTreeNode)
+                {
+                    StepTreeNode stepNode = treeNode as StepTreeNode;
+                    int stepId = stepNode.getId();
+                    if (stepId >= 0)
+                    {
+                        if(stepId == rowId)
+                        {
+                            node.Nodes.Remove(stepNode);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    deleteStepNode(rowId, treeNode);
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tlvProtocols.SelectedNode;
+            if(node is ProtocolTreeNode)
+            {
+                ProtocolTreeNode protocolNode = node as ProtocolTreeNode;
+                BioBotDataSets.bbt_protocolRow row = protocolNode.getProtocolRow();
+                if (row == null) return;
+                this.presenter.removeProtocolRow(row);
+            }
+            else if (node is StepTreeNode)
+            {
+                StepTreeNode protocolNode = node as StepTreeNode;
+                BioBotDataSets.bbt_stepRow row = protocolNode.getStepRow();
+                if (row == null) return;
+                this.stepPresenter.removeStepRow(row);
+            }
+        }
+
+        public void deleteStepRow(int rowId)
+        {
+            foreach (TreeNode node in tlvProtocols.Nodes)
+            {
+                deleteStepNode(rowId, node);
+            }
+        }
+
+        public void onProtocolDeleteEvent(int rowId)
+        {
+            foreach (TreeNode node in tlvProtocols.Nodes)
+            {
+                deleteProtocolChildNode(rowId, node);
+            }
+        }
     }
 }

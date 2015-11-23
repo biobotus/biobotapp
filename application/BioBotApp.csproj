@@ -55,7 +55,7 @@
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\Data\BioBotDataSets1.Designer.cs">
+    <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -75,8 +75,10 @@
     <Compile Include="Model\EventBus\EventBus.cs" />
     <Compile Include="Model\EventBus\Events\Operation\OperationEvent.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolAddEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Protocol\ProtocolDeleteEvent.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolModifyEvent.cs" />
     <Compile Include="Model\EventBus\Events\Step\StepAddEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Step\StepDeleteEvent.cs" />
     <Compile Include="Model\EventBus\Events\Step\StepModifyEvent.cs" />
     <Compile Include="Model\EventBus\Subscribe.cs" />
     <Compile Include="Model\EventBus\Subscriber.cs" />
