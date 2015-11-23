@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Model.Data;
+using BioBotCommunication.Serial.Can;
 using BioBotCommunication.Serial.Movement;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,15 @@ namespace BioBotApp.Model.Movement
 {
     class MovementAlgorithm
     {
-        DBManager dbManager;
-        ArduinoCommunicationWorker worker;
+        DBManager dbManager;        
+        ArduinoCommunicationWorker arduinoWorker;        
+        CANCommunicationWorker canWorker;
 
         ToolRack toolRack;
         ToolToMove toolToMove;        
         Movement movementToDo;
+
+        List<string> commandsToSendList = new List<string>();
 
         private static MovementAlgorithm instance;
 
@@ -28,7 +32,19 @@ namespace BioBotApp.Model.Movement
             toolRack = new ToolRack(this.dbManager);
 
             toolToMove = new ToolToMove();
-            movementToDo = new Movement();                
+            movementToDo = new Movement();
+
+            arduinoWorker = ArduinoCommunicationWorker.Instance;
+            arduinoWorker.onArduinoReceive += Worker_onArduinoReceive;
+
+            canWorker = CANCommunicationWorker.Instance;
+            canWorker.OnMessageReceived += CanWorker_OnMessageReceived;            
+                                        
+        }
+        private void CanWorker_OnMessageReceived(object sender, Utils.Communication.pcan.PCANComEventArgs e)
+        {
+            
+            throw new NotImplementedException();
         }
 
         public static MovementAlgorithm Instance
@@ -42,7 +58,6 @@ namespace BioBotApp.Model.Movement
                 return instance;
             }
         }
-
 
         public void LoadTipOnPipette(BioBotDataSets.bbt_operationRow operationRow)
         {
@@ -70,10 +85,15 @@ namespace BioBotApp.Model.Movement
                 movementToDo.setTipDestinationPoint(box, tip, toolToMove);
 
                 // TODO : Calculate the movements to be done for each axis.
+                commandsToSendList.Add("X" + (movementToDo.desiredXPos - movementToDo.initialXPos).ToString());
+                commandsToSendList.Add("Y" + (movementToDo.desiredYPos - movementToDo.initialYPos).ToString());
 
                 // TODO : HOME THE Z AXIS OF THE CONCERNED TOOL BEFORE STARTING
 
-                // TODO : Send the command to move the Y and X axis  
+                // TODO : Send the command to move the Y and X axis 
+                arduinoWorker.startWorker();
+                arduinoWorker.write(commandsToSendList.First());
+                commandsToSendList.RemoveAt(0);                
 
                 // TODO : LOAD THE TIP ON THE TOOL BY DROPPING Z TO THE CALCULATED VALUE IN movementToDo.
 
@@ -135,7 +155,7 @@ namespace BioBotApp.Model.Movement
                     case "BoxP1000":
                     case "BoxP200":
                     case "BoxP100":
-                        b.updateBoxProperties(row.bbt_objectRow);
+                        b.updateBoxProperties(row);
                         break;
 
                     default:
@@ -145,8 +165,11 @@ namespace BioBotApp.Model.Movement
         }        
 
         private void Worker_onArduinoReceive(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {                  
-            throw new NotImplementedException();
+        {
+            arduinoWorker.startWorker();
+            arduinoWorker.write(commandsToSendList.First());
+            commandsToSendList.RemoveAt(0);
+            //throw new NotImplementedException();
         }
 
         /*
@@ -478,8 +501,9 @@ namespace BioBotApp.Model.Movement
             chosenWellRow = 0;
         }
 
-        public void updateBoxProperties(BioBotDataSets.bbt_objectRow objectRow)
+        public void updateBoxProperties(BioBotDataSets.bbt_operation_referenceRow operation_referenceRow)
         {
+            BioBotDataSets.bbt_objectRow objectRow = operation_referenceRow.bbt_objectRow;
             bool getGoing = true;
             isSet = false;
 
@@ -509,18 +533,30 @@ namespace BioBotApp.Model.Movement
                 
                 getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "YOffset" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellOffset").First().value, out tempValue);
                 yWellOffset = tempValue;
-                
 
-                getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
-                chosenWell = tempValue;                
+                //getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
+                getGoing = int.TryParse(operation_referenceRow.Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
+                chosenWell = tempValue;
 
-                getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWellRow" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
+                //getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWellRow" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
+                getGoing = int.TryParse(operation_referenceRow.Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
                 chosenWellRow = tempValue;               
 
                 isSet = true;
             }
         }
     }
+
+    enum CommandType { CAN, SERIAL }
+
+    class CommandToSend
+    {
+        public CommandType cmdType { get; set; }
+        public String SerialMsgToSend { get; set; }
+
+    }
+
+    
 
     class Movement
     {
@@ -553,11 +589,16 @@ namespace BioBotApp.Model.Movement
             int tempX = box.xDeckPos + box.firstWellXBoxOffset;
             int tempY = box.yDeckPos + box.firstWellYBoxOffset;
 
-            if (tool.toolType == ToolType.SingleChannelPipette)
+            if (tool.toolType == ToolType.SingleChannelPipette && box.chosenWell != 0)
             {
                 desiredXPos = tempX + (int)Math.Floor((double)(box.chosenWell / box.yWellCount)) * box.xWellOffset;
-                desiredYPos = tempY + (box.chosenWell % box.yWellCount) * box.yWellOffset; 
-            }            
+                desiredYPos = tempY + (box.chosenWell % box.yWellCount) * box.yWellOffset;
+            }
+            else if (tool.toolType == ToolType.MultipleChannelPipette && box.chosenWellRow != 0)
+            {
+                desiredXPos = tempX + (int)Math.Floor((double)(box.chosenWell / box.yWellCount)) * box.xWellOffset;
+                desiredYPos = tempY;
+            }         
         }
 
         public Movement()

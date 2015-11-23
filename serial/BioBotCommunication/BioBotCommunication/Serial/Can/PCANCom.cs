@@ -8,12 +8,14 @@ using System.Timers;
 
 using Peak.Can.Basic;
 using TPCANHandle = System.UInt16;
-
+using System.IO.Ports;
 
 namespace BioBotApp.Utils.Communication.pcan
 {
-    class PCANCom
+    public class PCANCom
     {
+        public event EventHandler<SerialDataReceivedEventArgs> onPCANReceive;
+        public event EventHandler<SerialErrorReceivedEventArgs> onErrorMessage;
 
         #region MEMBER
 
@@ -161,15 +163,14 @@ namespace BioBotApp.Utils.Communication.pcan
 
         protected virtual void OnMessageReceivedEvent(PCANComEventArgs e)
         {
-            EventHandler<PCANComEventArgs> handler = OnMessageReceived;
+            EventHandler<PCANComEventArgs> handler = OnMessageReceived;            
             if (handler != null)
-            {
+            {                
                 handler(this, e);
             }
         }
         public event EventHandler<PCANComEventArgs> OnMessageReceived;
         #endregion
-
     }
 
 
