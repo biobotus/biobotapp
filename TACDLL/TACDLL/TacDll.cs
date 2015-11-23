@@ -10,6 +10,9 @@ using System.Text;
 
 namespace TACDLL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Export(typeof(IModulePlugin))]
     [ExportMetadata("Name", "TacPlugin")]
     public class TacDll : IModulePlugin
@@ -24,13 +27,36 @@ namespace TACDLL
         {
             string[] parsed_command = command.Split(' ');
             String returnValue = "";
+            byte moduleId = 0;
+            byte subModuleId = 0;
+
+            // Parsing module id an sub-module id
+            bool isModuleIdByte = byte.TryParse(parsed_command[1], NumberStyles.Any, CultureInfo.InvariantCulture, out moduleId);
+            bool isSubModuleIdByte = byte.TryParse(parsed_command[2], NumberStyles.Any, CultureInfo.InvariantCulture, out subModuleId);
+
+            // verify module id and subModule id validity
+            if(isModuleIdByte)
+            {
+                // TODO verifier si le module possedant cette id est la et repondant
+            }
+            else
+            {
+                // error handling
+            }
+
+            // verify module id and subModule id validity
+            if (!isSubModuleIdByte && (subModuleId > 0 || subModuleId < 3))
+            {
+                // error handling
+            }
+
 
             TPCANMsg CANMsg = new TPCANMsg();
             CANMsg.DATA = new byte[8];
             //Device Id
-            CANMsg.DATA[0] = 1;
+            CANMsg.DATA[0] = moduleId;
             //SubModule Target 
-            CANMsg.DATA[1] = 1;
+            CANMsg.DATA[1] = subModuleId;
             // Instruction 
             //  CANMsg.DATA[2] =
             // Spare 
@@ -48,7 +74,7 @@ namespace TACDLL
                         // 0X00 2 byte
                         CANMsg.DATA[2] = 0;
                         float floatParam;
-                        bool isParamFloat = float.TryParse(parsed_command[1], NumberStyles.Any, CultureInfo.InvariantCulture, out floatParam);
+                        bool isParamFloat = float.TryParse(parsed_command[3], NumberStyles.Any, CultureInfo.InvariantCulture, out floatParam);
                         if(isParamFloat)
                         {
                             Int16 temp = (Int16)Math.Truncate(floatParam * 10);
@@ -64,7 +90,7 @@ namespace TACDLL
                                 CANMsg.DATA[4] = bytes[0];
                                 CANMsg.DATA[5] = bytes[1];
                             }
-                            Console.WriteLine(parsed_command[1]);
+                            Console.WriteLine(parsed_command[3]);
                             Console.WriteLine(floatParam);
                             Console.WriteLine(temp);
                             Console.WriteLine(bytes[0]);
@@ -81,13 +107,18 @@ namespace TACDLL
                         break;
                     case "set_agitator_speed":
                         // 0X01 1 byte
+                        CANMsg.DATA[2] = 1;
+                        CANMsg.DATA[4] = parsePercent(parsed_command[3]);
                         break;
                     case "set_fan_speed":
                         // 0x02 1 byte
+                        CANMsg.DATA[2] = 2;
+                        CANMsg.DATA[4] = parsePercent(parsed_command[3]);
                         break;
 
                     default:
                         returnValue = "uknown command : " + command;
+                        // raise error?
                         break;
 
                 }
@@ -97,11 +128,8 @@ namespace TACDLL
                 switch (parsed_command[0])
                 {
                     case "start_calibration":
-                        // we verify here that we have a well formated command for temperature
-
                         break;
                     case "stop_calibration":
-
                         break;
                     case "start_temparature_maintain":
 
@@ -150,7 +178,7 @@ namespace TACDLL
             {
                 returnValue = "malform temperature command : " + command;
             }
-            
+            // Here we should send the packet
             return returnValue;
         }
 
@@ -187,6 +215,17 @@ namespace TACDLL
         public void SetInChargeModule(List<string> moduleList)
         {
             throw new NotImplementedException();
+        }
+
+        private byte parsePercent(string stringValue)
+        {
+            byte result = 0;
+            bool isStringByte = byte.TryParse(stringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out result);
+            if(!isStringByte && result>0)
+            {
+                // raise error
+            }
+            return result;
         }
     }
 }
