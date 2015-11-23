@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BioBotApp.Model.Data.Services
 {
-    class InformationValueService
+    public class InformationValueService : IInformationValueService
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_information_valueTableAdapter taInformationValue;
@@ -60,7 +60,7 @@ namespace BioBotApp.Model.Data.Services
             }
 
             row.fk_object = fkObjectid;
-            this.dbManager.projectDataset.bbt_information_value.Addbbt_information_valueRow(row);
+            this.dbManager.projectDataset.bbt_information_value.Addbbt_information_valueRow(row); // why add row within modify??
             updateRow(row);
         }
         public void modifyInformationValueRow(BioBotDataSets.bbt_information_valueRow row)

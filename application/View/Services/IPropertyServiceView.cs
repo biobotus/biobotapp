@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.Services
 {
-    public interface IInformationServiceView
+    public interface IPropertyServiceView
     {
-
     }
 }
