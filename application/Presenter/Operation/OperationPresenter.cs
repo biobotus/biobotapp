@@ -20,13 +20,13 @@ namespace BioBotApp.Presenter.Operation
         }
 
         [Model.EventBus.Subscribe]
-        public void Test(Model.EventBus.Step.StepEvent e)
+        public void Test(Model.EventBus.Events.Step.StepAddEvent e)
         {
             view.setStep(e.stepRow);
         }
 
         [Model.EventBus.Subscribe]
-        public void Test(Model.EventBus.Operation.OperationEvent e)
+        public void Test(Model.EventBus.Events.Operation.OperationEvent e)
         {
             view.setOperation(e.operationRow);
         }

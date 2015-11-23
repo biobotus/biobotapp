@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.Utils
 {
-    public interface IDatasetView
+    public interface IDatasetViewControl
     {
         void setProjectDataset(Model.Data.BioBotDataSets dataset);
     }

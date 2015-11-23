@@ -60,10 +60,9 @@ namespace BioBotApp.Model.Data.Services
             }
 
             row.fk_object = fkObjectid;
-            this.dbManager.projectDataset.bbt_information_value.Addbbt_information_valueRow(row);
             updateRow(row);
         }
-        public void modifyInformationValueRow(BioBotDataSets.bbt_information_valueRow row)
+        public void modifyInformationValueRow(BioBotDataSets.bbt_information_valueRow row)  
         {
             updateRow(row);    //(this.dbManager.projectDataset);
         }

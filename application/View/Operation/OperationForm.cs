@@ -31,7 +31,7 @@ namespace BioBotApp.View.Operation
         {
             Model.Data.BioBotDataSets.bbt_stepRow stepRow = getSelectedStepRow();
             if (stepRow == null) return;
-            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Step.StepEvent(stepRow));
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepAddEvent(stepRow));
         }
 
         public Model.Data.BioBotDataSets.bbt_stepRow getSelectedStepRow()
@@ -64,7 +64,7 @@ namespace BioBotApp.View.Operation
         {
             Model.Data.BioBotDataSets.bbt_operationRow operationRow = getSelectedOperationRow();
             if (operationRow == null) return;
-            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Operation.OperationEvent(operationRow));
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Operation.OperationEvent(operationRow));
         }
     }
 }

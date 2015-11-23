@@ -66,10 +66,11 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
             this.bbt_object_propertyDataGridView.DataSource = this.bsObjectProperty;
-            this.bbt_object_propertyDataGridView.Location = new System.Drawing.Point(139, 87);
+            this.bbt_object_propertyDataGridView.Location = new System.Drawing.Point(82, 54);
+            this.bbt_object_propertyDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bbt_object_propertyDataGridView.Name = "bbt_object_propertyDataGridView";
             this.bbt_object_propertyDataGridView.RowTemplate.Height = 28;
-            this.bbt_object_propertyDataGridView.Size = new System.Drawing.Size(300, 220);
+            this.bbt_object_propertyDataGridView.Size = new System.Drawing.Size(200, 143);
             this.bbt_object_propertyDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -92,9 +93,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(579, 225);
+            this.btnAdd.Location = new System.Drawing.Point(386, 146);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 53);
+            this.btnAdd.Size = new System.Drawing.Size(67, 34);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -102,55 +104,61 @@
             // 
             // txtObjectType
             // 
-            this.txtObjectType.Location = new System.Drawing.Point(579, 114);
+            this.txtObjectType.Location = new System.Drawing.Point(386, 74);
+            this.txtObjectType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtObjectType.Name = "txtObjectType";
-            this.txtObjectType.Size = new System.Drawing.Size(100, 26);
+            this.txtObjectType.Size = new System.Drawing.Size(68, 20);
             this.txtObjectType.TabIndex = 3;
             // 
             // txtProperties
             // 
-            this.txtProperties.Location = new System.Drawing.Point(579, 146);
+            this.txtProperties.Location = new System.Drawing.Point(386, 95);
+            this.txtProperties.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtProperties.Name = "txtProperties";
-            this.txtProperties.Size = new System.Drawing.Size(100, 26);
+            this.txtProperties.Size = new System.Drawing.Size(68, 20);
             this.txtProperties.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(484, 117);
+            this.label1.Location = new System.Drawing.Point(323, 76);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 20);
+            this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Object type";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(493, 146);
+            this.label2.Location = new System.Drawing.Point(329, 95);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "properties";
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(579, 178);
+            this.txtValue.Location = new System.Drawing.Point(386, 116);
+            this.txtValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(100, 26);
+            this.txtValue.Size = new System.Drawing.Size(68, 20);
             this.txtValue.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(493, 181);
+            this.label3.Location = new System.Drawing.Point(329, 118);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 20);
+            this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "value";
             // 
             // PropertiesControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtValue);
@@ -160,8 +168,9 @@
             this.Controls.Add(this.txtObjectType);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.bbt_object_propertyDataGridView);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PropertiesControl";
-            this.Size = new System.Drawing.Size(795, 416);
+            this.Size = new System.Drawing.Size(530, 270);
             ((System.ComponentModel.ISupportInitialize)(this.dsBioBot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectProperty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbt_object_propertyDataGridView)).EndInit();

@@ -19,6 +19,12 @@ namespace BioBotCommunicationTest
         {
             InitializeComponent();
             worker = ArduinoCommunicationWorker.Instance;
+            worker.OnCompletionEvent += Worker_OnCompletionEvent;
+        }
+
+        private void Worker_OnCompletionEvent(object sender, OnCompletionEventArgs e)
+        {
+            MessageBox.Show(e.message);
         }
 
         private void btnStartWorker_Click(object sender, EventArgs e)
@@ -29,6 +35,14 @@ namespace BioBotCommunicationTest
         private void btnStopWorker_Click(object sender, EventArgs e)
         {
             worker.stopWorker();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtSendSerial.Text.Length == 0) return;
+            
+            worker.startWorker();
+            worker.write(txtSendSerial.Text);
         }
     }
 }
