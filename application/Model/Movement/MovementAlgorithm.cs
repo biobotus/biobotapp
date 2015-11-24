@@ -101,9 +101,6 @@ namespace BioBotApp.Model.Movement
                 loadBoxInfos(operationRow, box);
                 loadTipInfos(operationRow, tip);
 
-                // Setting the starting point for the movement to be done.
-                movementToDo.setStartingPoint(toolRack, toolToMove);
-
                 // Setting the destination point.
                 movementToDo.setTipToLoadPointAsDestination(box, tip, toolRack, toolToMove);
 
@@ -147,9 +144,6 @@ namespace BioBotApp.Model.Movement
                 Trash trash = new Trash();                
                 loadTrashInfos(operationRow, trash);
 
-                // Setting the starting point for the movement to be done.
-                movementToDo.setStartingPoint(toolRack, toolToMove);
-
                 // Setting the destination point.
                 movementToDo.setTrashPointAsDestination(tip, trash, toolToMove);
 
@@ -188,9 +182,7 @@ namespace BioBotApp.Model.Movement
                 // Update the tool to be moved (include update of the attached object if there is one)
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
 
-                // Setting the starting point for the movement to be done.
-                movementToDo.setStartingPoint(toolRack, toolToMove);
-
+                // Setting the destination point.
                 movementToDo.setXYZAsDestination(operationRow, toolToMove);
 
                 // TODO : Create the commands to do the movements for each axis.
@@ -209,24 +201,23 @@ namespace BioBotApp.Model.Movement
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON
-                return -1;
+                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
             }
         }
 
-        public void loadBoxInfos(BioBotDataSets.bbt_operationRow operationRow, Box box)
+        private void loadBoxInfos(BioBotDataSets.bbt_operationRow operationRow, Box box)
         {
             BioBotDataSets.bbt_operation_referenceRow selectedOpRefBoxRow = operationRow.Getbbt_operation_referenceRows().Where(p => p.bbt_objectRow.bbt_object_typeRow.description == "Container").First();
             box.setBoxProperties(selectedOpRefBoxRow);
         }
 
-        public void loadTipInfos(BioBotDataSets.bbt_operationRow operationRow, Tip tip)
+        private void loadTipInfos(BioBotDataSets.bbt_operationRow operationRow, Tip tip)
         {
             BioBotDataSets.bbt_objectRow selectedTipRow = operationRow.Getbbt_operation_referenceRows().Where(p => p.bbt_objectRow.bbt_object_typeRow.description == "Tip").First().bbt_objectRow;
             tip.updateTipProperties(selectedTipRow);
         }
 
-        public void loadTrashInfos(BioBotDataSets.bbt_operationRow operationRow, Trash trash)
+        private void loadTrashInfos(BioBotDataSets.bbt_operationRow operationRow, Trash trash)
         {
             BioBotDataSets.bbt_objectRow selectedTrashRow = operationRow.Getbbt_operation_referenceRows().Where(p => p.bbt_objectRow.bbt_object_typeRow.description == "Trash").First().bbt_objectRow;
             trash.setTrashProperties(selectedTrashRow);
@@ -526,7 +517,7 @@ namespace BioBotApp.Model.Movement
             isSet = false;
             zBoxOffset = 0;
             zPipetteOffset = 0;
-            xTrashDepth = 0;
+            xTrashDepthOffset = 0;
         }
 
         public void updateTipProperties(BioBotDataSets.bbt_objectRow objectRow)
@@ -686,10 +677,6 @@ namespace BioBotApp.Model.Movement
         public const int ADDED_BOX_PENETRATION_DEEPNESS = 30; // Represents 3mm.
         public const int ADDED_TRASH_PENETRATION_DEEPNESS = 10; // Represents 1mm.
 
-        public int initialXPos { get; set; }
-        public int initialYPos { get; set; }
-        public int initialZPos { get; set; }
-
         public int desiredXPos { get; set; }
         public int desiredYPos { get; set; }
         public int desiredZPos { get; set; } 
@@ -699,25 +686,12 @@ namespace BioBotApp.Model.Movement
 
         public Movement()
         {
-            initialXPos = -1;
-            initialYPos = -1;
-            initialZPos = -1;
-
-            desiredXPos = -1;
-            desiredYPos = -1;
-            desiredZPos = -1;
+            desiredXPos = 0;
+            desiredYPos = 0;
+            desiredZPos = 0;
 
             isDestinationPointSet = false;
             isStartingPointSet = false;
-        }
-
-        public void setStartingPoint(ToolRack _toolRack, ToolToMove _toolToMove)
-        {
-            initialXPos = _toolRack.xPos + _toolToMove.xToolRackOffset;
-            initialYPos = _toolRack.yPos + _toolToMove.yToolRackOffset;
-            initialZPos = _toolRack.zPos - Math.Abs(_toolToMove.zToolRackOffset) - _toolToMove.attachedObject.zOffset;
-
-            isStartingPointSet = true;
         }
         
         public void setTipToLoadPointAsDestination(Box box, Tip tip, ToolRack toolRack, ToolToMove tool)
@@ -765,7 +739,6 @@ namespace BioBotApp.Model.Movement
             int.TryParse(operationRow.Getbbt_operation_referenceRows().First().Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "xDestination" && p.bbt_propertyRow.bbt_property_typeRow.description == "DestinationPoint").First().value, out tempValue);
             desiredZPos = tool.zToolZeroPos - tempValue; // Changes the reference point according to the tool from it's tool rack offsets
         }
-
     }
 
     public enum ToolType { Gripper, SingleChannelPipette, MultipleChannelPipette };   
