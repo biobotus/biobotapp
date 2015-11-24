@@ -26,14 +26,12 @@ namespace BioBotApp.Utils.Communication.pcan
 
         #endregion
 
-
         #region CONSTRUCTOR
         public PCANCom(){
 
 
         }
         #endregion
-
 
         #region INSTANCE
         private static PCANCom instance;
@@ -49,7 +47,6 @@ namespace BioBotApp.Utils.Communication.pcan
             }
         }
         #endregion
-
 
         #region CAN CONNEXION / DECONNEXION
         public TPCANStatus connect(TPCANHandle handler, TPCANBaudrate baudrate, TPCANType type, UInt32 io, UInt16 interrupt)
@@ -72,8 +69,7 @@ namespace BioBotApp.Utils.Communication.pcan
 
             return stsResult;
         }
-
-
+        
         public void disconnect()
         {
             // Releases a current connected PCAN-Basic channel
@@ -81,7 +77,6 @@ namespace BioBotApp.Utils.Communication.pcan
         }
 
         #endregion
-
 
         #region SEND MESSAGE
         public TPCANStatus send(TPCANMsg CANMsg)
@@ -92,7 +87,6 @@ namespace BioBotApp.Utils.Communication.pcan
         }
         #endregion
 
-
         #region READ CAN MESSAGE
 
         private Timer readCanTimer;
@@ -100,7 +94,6 @@ namespace BioBotApp.Utils.Communication.pcan
         {
             ReadMessage();
         }
-
 
         /// <summary>
         /// Function for reading PCAN-Basic messages
@@ -121,7 +114,6 @@ namespace BioBotApp.Utils.Communication.pcan
                     break;
             } while (!Convert.ToBoolean(stsResult & TPCANStatus.PCAN_ERROR_QRCVEMPTY));
         }
-
 
         /// <summary>
         /// Function for reading CAN messages on normal CAN devices
@@ -151,9 +143,7 @@ namespace BioBotApp.Utils.Communication.pcan
                 Console.Write("[{0:X}] ", packet[n]);
             }
         }
-
         #endregion
-
 
         #region OBSERVER PATTERN
         private void postMessage(TPCANMsg CANMsg)
@@ -173,16 +163,14 @@ namespace BioBotApp.Utils.Communication.pcan
         #endregion
     }
 
-
     #region OBSERVER PATTERN (EVENTARGS)
     public class PCANComEventArgs : EventArgs
     {
+        public TPCANMsg CanMsg { get; private set; }
         public PCANComEventArgs(TPCANMsg CanMsg)
         {
             this.CanMsg = CanMsg;
-        }
-
-        public TPCANMsg CanMsg { get; private set; }
+        }       
     }
     #endregion
 

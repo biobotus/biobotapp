@@ -75,13 +75,13 @@ namespace BioBotApp.Model.Data {
         private global::System.Data.DataRelation relationbbt_property_bbt_operation_reference_property;
         
         private global::System.Data.DataRelation relationbbt_object_bbt_object;
-		
+        
         private global::System.Data.DataRelation relationbbt_operation_type_bbt_operation;
         
         private global::System.Data.DataRelation relationbbt_step_bbt_operation;
         
         private global::System.Data.DataRelation relationbbt_operation_bbt_operation_reference;
-		
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -506,12 +506,9 @@ namespace BioBotApp.Model.Data {
             this.relationbbt_operation_reference_bbt_operation_reference_property = this.Relations["bbt_operation_reference_bbt_operation_reference_property"];
             this.relationbbt_property_bbt_operation_reference_property = this.Relations["bbt_property_bbt_operation_reference_property"];
             this.relationbbt_object_bbt_object = this.Relations["bbt_object_bbt_object"];
-<<<<<<< HEAD
-=======
             this.relationbbt_operation_type_bbt_operation = this.Relations["bbt_operation_type_bbt_operation"];
             this.relationbbt_step_bbt_operation = this.Relations["bbt_step_bbt_operation"];
             this.relationbbt_operation_bbt_operation_reference = this.Relations["bbt_operation_bbt_operation_reference"];
->>>>>>> dev
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -602,8 +599,6 @@ namespace BioBotApp.Model.Data {
                         this.tablebbt_object.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_object.fk_objectColumn}, false);
             this.Relations.Add(this.relationbbt_object_bbt_object);
-<<<<<<< HEAD
-=======
             this.relationbbt_operation_type_bbt_operation = new global::System.Data.DataRelation("bbt_operation_type_bbt_operation", new global::System.Data.DataColumn[] {
                         this.tablebbt_operation_type.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_operation.fk_operation_typeColumn}, false);
@@ -616,7 +611,6 @@ namespace BioBotApp.Model.Data {
                         this.tablebbt_operation.pk_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebbt_operation_reference.fk_operationColumn}, false);
             this.Relations.Add(this.relationbbt_operation_bbt_operation_reference);
->>>>>>> dev
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2355,13 +2349,9 @@ namespace BioBotApp.Model.Data {
             
             private global::System.Data.DataColumn columnfk_property;
             
-<<<<<<< HEAD
-            private global::System.Data.DataColumn columnindex;
-=======
             private global::System.Data.DataColumn columnfk_object;
             
             private global::System.Data.DataColumn columninformation_value;
->>>>>>> dev
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2422,11 +2412,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
-            public global::System.Data.DataColumn indexColumn {
-                get {
-                    return this.columnindex;
-=======
             public global::System.Data.DataColumn fk_objectColumn {
                 get {
                     return this.columnfk_object;
@@ -2438,7 +2423,6 @@ namespace BioBotApp.Model.Data {
             public global::System.Data.DataColumn information_valueColumn {
                 get {
                     return this.columninformation_value;
->>>>>>> dev
                 }
             }
             
@@ -2479,27 +2463,16 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
-            public bbt_operationRow Addbbt_operationRow(bbt_operation_typeRow parentbbt_operation_typeRowBybbt_operation_type_bbt_operation, bbt_stepRow parentbbt_stepRowBybbt_step_bbt_operation, int index) {
-                bbt_operationRow rowbbt_operationRow = ((bbt_operationRow)(this.NewRow()));
-=======
             public bbt_information_valueRow Addbbt_information_valueRow(bbt_information_valueRow parentbbt_information_valueRowBybbt_information_bbt_information_value, bbt_propertyRow parentbbt_propertyRowBybbt_property_bbt_information_value1, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_information_value, string information_value) {
                 bbt_information_valueRow rowbbt_information_valueRow = ((bbt_information_valueRow)(this.NewRow()));
->>>>>>> dev
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
-<<<<<<< HEAD
-                        index};
-                if ((parentbbt_operation_typeRowBybbt_operation_type_bbt_operation != null)) {
-                    columnValuesArray[0] = parentbbt_operation_typeRowBybbt_operation_type_bbt_operation[0];
-=======
                         null,
                         information_value};
                 if ((parentbbt_information_valueRowBybbt_information_bbt_information_value != null)) {
                     columnValuesArray[1] = parentbbt_information_valueRowBybbt_information_bbt_information_value[0];
->>>>>>> dev
                 }
                 if ((parentbbt_propertyRowBybbt_property_bbt_information_value1 != null)) {
                     columnValuesArray[2] = parentbbt_propertyRowBybbt_property_bbt_information_value1[0];
@@ -2537,14 +2510,10 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnpk_id = base.Columns["pk_id"];
-<<<<<<< HEAD
-                this.columnindex = base.Columns["index"];
-=======
                 this.columnfk_information_value = base.Columns["fk_information_value"];
                 this.columnfk_property = base.Columns["fk_property"];
                 this.columnfk_object = base.Columns["fk_object"];
                 this.columninformation_value = base.Columns["information_value"];
->>>>>>> dev
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2552,10 +2521,6 @@ namespace BioBotApp.Model.Data {
             private void InitClass() {
                 this.columnpk_id = new global::System.Data.DataColumn("pk_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpk_id);
-<<<<<<< HEAD
-                this.columnindex = new global::System.Data.DataColumn("index", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnindex);
-=======
                 this.columnfk_information_value = new global::System.Data.DataColumn("fk_information_value", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfk_information_value);
                 this.columnfk_property = new global::System.Data.DataColumn("fk_property", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2564,7 +2529,6 @@ namespace BioBotApp.Model.Data {
                 base.Columns.Add(this.columnfk_object);
                 this.columninformation_value = new global::System.Data.DataColumn("information_value", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninformation_value);
->>>>>>> dev
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnpk_id}, true));
                 this.columnpk_id.AutoIncrement = true;
@@ -2572,12 +2536,9 @@ namespace BioBotApp.Model.Data {
                 this.columnpk_id.AutoIncrementStep = -1;
                 this.columnpk_id.AllowDBNull = false;
                 this.columnpk_id.Unique = true;
-<<<<<<< HEAD
-=======
                 this.columnfk_property.AllowDBNull = false;
                 this.columnfk_object.AllowDBNull = false;
                 this.columninformation_value.MaxLength = 8190;
->>>>>>> dev
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4295,23 +4256,6 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
-            public bbt_operation_reference_propertyRow Addbbt_operation_reference_propertyRow(bbt_operation_referenceRow parentbbt_operation_referenceRowBybbt_operation_reference_bbt_operation_reference_property, bbt_propertyRow parentbbt_propertyRowBybbt_property_bbt_operation_reference_property, string value) {
-                bbt_operation_reference_propertyRow rowbbt_operation_reference_propertyRow = ((bbt_operation_reference_propertyRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        value};
-                if ((parentbbt_operation_referenceRowBybbt_operation_reference_bbt_operation_reference_property != null)) {
-                    columnValuesArray[0] = parentbbt_operation_referenceRowBybbt_operation_reference_bbt_operation_reference_property[0];
-                }
-                if ((parentbbt_propertyRowBybbt_property_bbt_operation_reference_property != null)) {
-                    columnValuesArray[1] = parentbbt_propertyRowBybbt_property_bbt_operation_reference_property[0];
-                }
-                rowbbt_operation_reference_propertyRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowbbt_operation_reference_propertyRow);
-                return rowbbt_operation_reference_propertyRow;
-=======
             public bbt_operationRow Addbbt_operationRow(bbt_operation_typeRow parentbbt_operation_typeRowBybbt_operation_type_bbt_operation, bbt_stepRow parentbbt_stepRowBybbt_step_bbt_operation, int index) {
                 bbt_operationRow rowbbt_operationRow = ((bbt_operationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -4328,7 +4272,6 @@ namespace BioBotApp.Model.Data {
                 rowbbt_operationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbbt_operationRow);
                 return rowbbt_operationRow;
->>>>>>> dev
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5021,97 +4964,7 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int fk_protocol {
                 get {
-<<<<<<< HEAD
-                    try {
-                        return ((int)(this[this.tablebbt_step.fk_protocolColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'fk_protocol\' dans la table \'bbt_step\' est DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.fk_protocolColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string description {
-                get {
-                    return ((string)(this[this.tablebbt_step.descriptionColumn]));
-                }
-                set {
-                    this[this.tablebbt_step.descriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fk_object {
-                get {
-                    try {
-                        return ((int)(this[this.tablebbt_step.fk_objectColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'fk_object\' dans la table \'bbt_step\' est DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.fk_objectColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int index {
-                get {
-                    try {
-                        return ((int)(this[this.tablebbt_step.indexColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'index\' dans la table \'bbt_step\' est DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.indexColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string value {
-                get {
-                    try {
-                        return ((string)(this[this.tablebbt_step.valueColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'value\' dans la table \'bbt_step\' est DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_step.valueColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow bbt_objectRow {
-                get {
-                    return ((bbt_objectRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_bbt_step"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["bbt_object_bbt_step"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_protocolRow bbt_protocolRow {
-                get {
-                    return ((bbt_protocolRow)(this.GetParentRow(this.Table.ParentRelations["bbt_protocol_bbt_step"])));
-=======
                     return ((int)(this[this.tablebbt_step.fk_protocolColumn]));
->>>>>>> dev
                 }
                 set {
                     this[this.tablebbt_step.fk_protocolColumn] = value;
@@ -5153,28 +5006,17 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int index {
+            public string value {
                 get {
                     try {
-<<<<<<< HEAD
-                        return ((int)(this[this.tablebbt_operation.indexColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'index\' dans la table \'bbt_operation\' est DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablebbt_operation.indexColumn] = value;
-=======
                         return ((string)(this[this.tablebbt_step.valueColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'value\' in table \'bbt_step\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'value\' dans la table \'bbt_step\' est DBNull.", e);
                     }
                 }
                 set {
                     this[this.tablebbt_step.valueColumn] = value;
->>>>>>> dev
                 }
             }
             
@@ -5202,24 +5044,14 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
-            public bool IsindexNull() {
-                return this.IsNull(this.tablebbt_operation.indexColumn);
-=======
             public bool IsvalueNull() {
                 return this.IsNull(this.tablebbt_step.valueColumn);
->>>>>>> dev
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
-            public void SetindexNull() {
-                this[this.tablebbt_operation.indexColumn] = global::System.Convert.DBNull;
-=======
             public void SetvalueNull() {
                 this[this.tablebbt_step.valueColumn] = global::System.Convert.DBNull;
->>>>>>> dev
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5616,16 +5448,7 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int index {
                 get {
-<<<<<<< HEAD
-                    try {
-                        return ((int)(this[this.tablebbt_protocol.indexColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'index\' dans la table \'bbt_protocol\' est DBNull.", e);
-                    }
-=======
                     return ((int)(this[this.tablebbt_protocol.indexColumn]));
->>>>>>> dev
                 }
                 set {
                     this[this.tablebbt_protocol.indexColumn] = value;
@@ -5827,8 +5650,6 @@ namespace BioBotApp.Model.Data {
                     this.SetParentRow(value, this.Table.ParentRelations["bbt_property_bbt_operation_reference_property"]);
                 }
             }
-<<<<<<< HEAD
-=======
         }
         
         /// <summary>
@@ -5921,7 +5742,6 @@ namespace BioBotApp.Model.Data {
                     return ((bbt_operation_referenceRow[])(base.GetChildRows(this.Table.ChildRelations["bbt_operation_bbt_operation_reference"])));
                 }
             }
->>>>>>> dev
         }
         
         /// <summary>
@@ -8100,15 +7920,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "bbt_information_value";
             tableMapping.ColumnMappings.Add("pk_id", "pk_id");
-<<<<<<< HEAD
-            tableMapping.ColumnMappings.Add("index", "index");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"biobot\".\"protocol\".\"bbt_operation\" WHERE ((\"fk_operation_type\" = ?) " +
-                "AND (\"fk_step\" = ?) AND (\"pk_id\" = ?) AND ((? = 1 AND \"index\" IS NULL) OR (\"inde" +
-                "x\" = ?)))";
-=======
             tableMapping.ColumnMappings.Add("fk_information_value", "fk_information_value");
             tableMapping.ColumnMappings.Add("fk_property", "fk_property");
             tableMapping.ColumnMappings.Add("fk_object", "fk_object");
@@ -8119,35 +7930,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.DeleteCommand.CommandText = "DELETE FROM \"biobot\".\"deck\".\"bbt_information_value\" WHERE ((\"pk_id\" = ?) AND ((? " +
                 "= 1 AND \"fk_information_value\" IS NULL) OR (\"fk_information_value\" = ?)) AND (\"f" +
                 "k_property\" = ?) AND (\"fk_object\" = ?))";
->>>>>>> dev
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
-<<<<<<< HEAD
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation\" (\"fk_operation_type\", \"fk_step\", " +
-                "\"index\") VALUES (?, ?, ?)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE \"biobot\".\"protocol\".\"bbt_operation\" SET \"fk_operation_type\" = ?, \"fk_step\"" +
-                " = ?, \"index\" = ? WHERE ((\"fk_operation_type\" = ?) AND (\"fk_step\" = ?) AND (\"pk_" +
-                "id\" = ?) AND ((? = 1 AND \"index\" IS NULL) OR (\"index\" = ?)))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Original, false, null));
-=======
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_information_value", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_information_value", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_information_value", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_information_value", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_property", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_property", global::System.Data.DataRowVersion.Original, false, null));
@@ -8174,7 +7958,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_information_value", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_information_value", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_property", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_property", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
->>>>>>> dev
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8190,13 +7973,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-<<<<<<< HEAD
-            this._commandCollection[0].CommandText = "SELECT        fk_operation_type, fk_step, pk_id, \"index\"\r\nFROM            protoco" +
-                "l.bbt_operation";
-=======
             this._commandCollection[0].CommandText = "SELECT \"pk_id\", \"fk_information_value\", \"fk_property\", \"fk_object\", \"information_" +
                 "value\" FROM \"deck\".\"bbt_information_value\"";
->>>>>>> dev
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8257,21 +8035,12 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-<<<<<<< HEAD
-        public virtual int Delete(int Original_fk_operation_type, int Original_fk_step, int Original_pk_id, int Original_index) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_fk_operation_type));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_fk_step));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_pk_id));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_index));
-=======
         public virtual int Delete(int Original_pk_id, int Original_fk_information_value, int Original_fk_property, int Original_fk_object) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_pk_id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_fk_information_value));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_fk_property));
             this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_fk_object));
->>>>>>> dev
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8292,12 +8061,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-<<<<<<< HEAD
-        public virtual int Insert(int fk_operation_type, int fk_step, int index) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_operation_type));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(fk_step));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(index));
-=======
         public virtual int Insert(int fk_information_value, int fk_property, int fk_object, string information_value) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_information_value));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(fk_property));
@@ -8308,7 +8071,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(information_value));
             }
->>>>>>> dev
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8329,17 +8091,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-<<<<<<< HEAD
-        public virtual int Update(int fk_operation_type, int fk_step, int index, int Original_fk_operation_type, int Original_fk_step, int Original_pk_id, int Original_index) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_operation_type));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(fk_step));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(index));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_fk_operation_type));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_fk_step));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_pk_id));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_index));
-=======
         public virtual int Update(int fk_information_value, int fk_property, int fk_object, string information_value, int Original_pk_id, int Original_fk_information_value, int Original_fk_property, int Original_fk_object) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_information_value));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(fk_property));
@@ -8355,7 +8106,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_fk_information_value));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_fk_property));
             this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_fk_object));
->>>>>>> dev
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9428,13 +9178,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-<<<<<<< HEAD
-            this._adapter.InsertCommand.CommandText = "INSERT INTO protocol.bbt_protocol\r\n                         (fk_protocol, descrip" +
-                "tion, \"index\")\r\nVALUES        (?, ?, ?)\r\nRETURNING pk_id;";
-=======
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation_reference\" (\"fk_operation\", \"fk_ob" +
                 "ject\") VALUES (?, ?)";
->>>>>>> dev
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
@@ -10963,14 +10708,6 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
                         "e chaîne de connexion.");
             }
-<<<<<<< HEAD
-            if (((this._bbt_operationTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._bbt_operationTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
-                        "e chaîne de connexion.");
-            }
-=======
->>>>>>> dev
             if (((this._bbt_information_valueTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._bbt_information_valueTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
@@ -11003,8 +10740,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             }
             if (((this._bbt_operationTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._bbt_operationTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
+                throw new global::System.ArgumentException("Tous les TableAdapters managés par un TableAdapterManager doivent utiliser la mêm" +
+                        "e chaîne de connexion.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {

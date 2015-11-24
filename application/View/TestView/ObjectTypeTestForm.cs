@@ -55,7 +55,7 @@ namespace BioBotApp.View.TestView
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MovementAlgorithm.Instance.MoveTo(bioBotDataSets.bbt_operation.FindBypk_id(1));
+            MovementAlgorithm.Instance.Move(bioBotDataSets.bbt_operation.FindBypk_id(1));
         }
     }
 }

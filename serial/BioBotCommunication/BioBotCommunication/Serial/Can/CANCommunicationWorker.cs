@@ -34,7 +34,8 @@ namespace BioBotCommunication.Serial.Can
             canCommunicationWorker.WorkerSupportsCancellation = true;
             canCommunicationWorker.DoWork += CanCommunicationWorker_DoWork;
             onPCANReceive += CANCommunicationWorker_onPCANReceive;
-            onErrorMessage += CANCommunicationWorker_onErrorMessage;        }
+            onErrorMessage += CANCommunicationWorker_onErrorMessage;
+        }
 
         private void CANCommunicationWorker_onErrorMessage(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
         {

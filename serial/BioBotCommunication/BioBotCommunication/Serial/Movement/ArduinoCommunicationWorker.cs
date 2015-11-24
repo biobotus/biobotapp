@@ -39,6 +39,7 @@ namespace BioBotCommunication.Serial.Movement
 
             OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
             eventargs.error = false;
+            OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
 

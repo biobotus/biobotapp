@@ -293,6 +293,7 @@
     <None Include="Model\Data\BioBotDataSets.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>BioBotDataSets.Designer.cs</LastGenOutput>
     </None>
     <None Include="Model\Data\BioBotDataSets.xss">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
