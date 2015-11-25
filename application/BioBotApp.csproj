@@ -137,9 +137,6 @@
     <Compile Include="View\Execute\ExecuteView.Designer.cs">
       <DependentUpon>ExecuteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Execute\ProtocolNode.cs" />
-    <Compile Include="View\Execute\StepNode.cs" />
-    <Compile Include="View\Execute\SubProtocolNode.cs" />
     <Compile Include="View\Jog\IJogView.cs" />
     <Compile Include="View\Jog\JogControl.cs">
       <SubType>UserControl</SubType>
@@ -282,10 +279,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\ObjectView.resx">
       <DependentUpon>ObjectView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Execute\ExecuteForm.resx">
-      <DependentUpon>ExecuteForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Execute\ExecuteView.resx">
       <DependentUpon>ExecuteView.cs</DependentUpon>

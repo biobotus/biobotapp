@@ -38,7 +38,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,7 +68,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.button4);
             this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.SaveButton);
             this.splitContainer1.Size = new System.Drawing.Size(419, 495);
             this.splitContainer1.SplitterDistance = 356;
             this.splitContainer1.TabIndex = 0;
@@ -164,17 +164,18 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Location = new System.Drawing.Point(23, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new System.Drawing.Point(23, 15);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 0;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // ExecuteView
             // 
@@ -207,6 +208,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SaveButton;
     }
 }

@@ -17,9 +17,9 @@ namespace BioBotApp.View.Execute
             InitializeComponent();
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void ExecuteForm_MouseClick(object sender, MouseEventArgs e)
         {
-
+            Console.WriteLine(e.GetType());
         }
     }
 }

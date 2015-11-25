@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Model.Data;
+using BioBotApp.View.Protocol;
 
 namespace BioBotApp.View.Execute
 {
@@ -26,8 +27,8 @@ namespace BioBotApp.View.Execute
             // Retrieve the node at the drop location.
             TreeNode targetNode = tlvProtocol.GetNodeAt(targetPoint);
             TreeNode dropNode = new TreeNode();
-            StepNode treeNodeStep = (StepNode)e.Data.GetData(typeof(StepNode));
-            ProtocolNode treeNodeProtocol = (ProtocolNode)e.Data.GetData(typeof(ProtocolNode));
+            StepTreeNode treeNodeStep = (StepTreeNode)e.Data.GetData(typeof(StepTreeNode));
+            ProtocolTreeNode treeNodeProtocol = (ProtocolTreeNode)e.Data.GetData(typeof(ProtocolTreeNode));
             List < BioBotDataSets.bbt_stepRow > listStep = new List<BioBotDataSets.bbt_stepRow>();
             if (treeNodeProtocol != null)
             {
@@ -35,13 +36,13 @@ namespace BioBotApp.View.Execute
             }
             else if (treeNodeStep!= null)
             {
-                targetNode.Nodes.Add(new StepNode(treeNodeStep.getStepRow()));
+                targetNode.Nodes.Add(new StepTreeNode(treeNodeStep.getStepRow()));
             }
         }
 
         public void addNodes(BioBotDataSets.bbt_protocolRow row, TreeNode parentNode)
         {
-            TreeNode treeNode = new ProtocolNode(row);
+            TreeNode treeNode = new ProtocolTreeNode(row);
 
             if (parentNode == null)
             {
@@ -59,8 +60,8 @@ namespace BioBotApp.View.Execute
 
             foreach (BioBotDataSets.bbt_stepRow stepRow in row.Getbbt_stepRows())
             {
-                TreeNode stepNode = new StepNode(stepRow);
-                treeNode.Nodes.Add(stepNode);
+                TreeNode StepTreeNode = new StepTreeNode(stepRow);
+                treeNode.Nodes.Add(StepTreeNode);
             }
         }
 
@@ -79,7 +80,7 @@ namespace BioBotApp.View.Execute
         //    {
         //        if (dialogResultAddNode.Equals(DialogResult.OK))
         //        {
-        //            ProtocolNode treeNode = new ProtocolNode(frmProtocolAdd.getStepName());
+        //            ProtocolTreeNode treeNode = new ProtocolTreeNode(frmProtocolAdd.getStepName());
         //            if (tlvProtocol.SelectedNode != null)
         //            {
         //                tlvProtocol.SelectedNode.Nodes.Add(treeNode);
@@ -143,22 +144,7 @@ namespace BioBotApp.View.Execute
         //    tlvProtocol.Nodes.Remove(tlvProtocol.SelectedNode);
         //}
 
-        //private void SaveButton_Click(object sender, EventArgs e)
-        //{
-        //    //SaveFileDialog dialogue = new SaveFileDialog();
-        //    //dialogue.Filter = "Biobot file (.biobot) | *.biobot";
-        //    //DialogResult result = dialogue.ShowDialog();
 
-        //    //if(result == DialogResult.OK)
-        //    //{
-        //    //    SaveTree(tlvProtocol, dialogue.FileName);
-        //    //}
-
-        //    // tlvProtocol.
-
-        //    SaveTree(tlvProtocol.SelectedNode);
-
-        //}
 
         //private void LoadButton_Click(object sender, EventArgs e)
         //{
@@ -170,7 +156,7 @@ namespace BioBotApp.View.Execute
         //    if (dialogResultAddNode == DialogResult.OK)
         //        if (LoadDialogAdd.DialogResult.Equals(DialogResult.OK))
         //        {
-        //            ProtocolNode treeNode = new ProtocolNode(LoadDialogAdd.getProtocolName());
+        //            ProtocolTreeNode treeNode = new ProtocolTreeNode(LoadDialogAdd.getProtocolName());
         //            DataGridView DGV = LoadDialogAdd.getDGV();
         //            tlvProtocol.Nodes.Add(treeNode);
         //            DataSets.dsModuleStructure3.dtSavedProtocolRow row;
@@ -196,92 +182,105 @@ namespace BioBotApp.View.Execute
         //    //    LoadTree(tlvProtocol, dialogue.FileName);
         //    //}
         //}
-        //public void SaveTree(TreeNode treeNode)
-        //{
-        //    //using (Stream file = File.Open(filename, FileMode.Create))
-        //    //{
-        //    //    BinaryFormatter bf = new BinaryFormatter();
-        //    //    bf.Serialize(file, tree.Nodes.Cast<TreeNode>().ToList());
-        //    //}
+        ////public void SaveTree(TreeNode treeNode, string description)
+        ////{
+        ////    BioBotDataSets.bbt_save_protocolRow newSaveProtocol = Model.Data.Services.SaveProtocolService.Instance.addSaveStepRow(description);
+        ////}
+
+        ////public void SaveTree(TreeNode treeNode)
+        ////{
+            
+        ////    int parentNode = protocol
+        ////    if (treeNode is TreeNode && !(treeNode is StepTreeNode))
+        ////    {
+        ////        foreach (TreeNode childNodes in treeNode.Nodes)
+        ////        {
+        ////            ProtocolTreeNode protocolNode = treeNode as ProtocolTreeNode;
+        ////            BioBotDataSets.bbt_protocolRow protocol = protocolNode.getProtocolRow();
+        ////            Model.Data.Services.SaveProtocolService.Instance.addSaveProtocolRow(parentNode, protocol.pk_id, protocol.description);
+        ////            parentNode = protocol.pk_id;
+        ////            SaveTree(childNodes);
+        ////        }
+        ////    }
+
+        ////    if (treeNode is StepTreeNode)
+        ////    {
+
+        ////        StepTreeNode stepNode = treeNode as StepTreeNode;
+
+        ////        BioBotDataSets.bbt_stepRow step = stepNode.getStepRow();
+
+        ////        BioBotDataSets.bbt_save_protocolRow row;
+        ////        //DataSets.dsModuleStructure3.dtSavedProtocolRow test;
+        ////        //row = dsModuleStructureGUI.dtSavedProtocol.NewdtSavedProtocolRow();
+        ////        row = dsModuleStructure.dtSavedProtocol.NewdtSavedProtocolRow();
+        ////        row.description = stepCompositeNode.Parent.Text;
+        ////        row.fk_step_composite = stepComposite.pk_id;
+        ////        dsModuleStructure.dtSavedProtocol.AdddtSavedProtocolRow(row);
+        ////        updateRow(row);
 
 
-        //    if (treeNode is TreeNode && !(treeNode is StepCompositeNode))
-        //    {
-        //        foreach (TreeNode childNodes in treeNode.Nodes)
-        //        {
-        //            SaveTree(childNodes);
-        //        }
+        ////    }
+
         //    }
+            //public void addrow(TreeNode treeNode)
+            //{
 
-        //    if (treeNode is StepCompositeNode)
-        //    {
+            //    //StepCompositeNode stepCompositeNode = treeNode as StepCompositeNode;
 
-        //        StepCompositeNode stepCompositeNode = treeNode as StepCompositeNode;
+            //    //DataSets.dsModuleStructure3.dtStepCompositeRow stepComposite = stepCompositeNode.getStepCompositeRow();
 
-        //        DataSets.dsModuleStructure3.dtStepCompositeRow stepComposite = stepCompositeNode.getStepCompositeRow();
+            //    //DataSets.dsModuleStructure3.dtSavedProtocolRow row;
+            //    ////DataSets.dsModuleStructure3.dtSavedProtocolRow test;
+            //    //row = dsModuleStructureGUI.dtSavedProtocol.NewdtSavedProtocolRow();
+            //    //row.Description = stepCompositeNode.Parent.Text;
+            //    //row.fk_step_composite = stepComposite.pk_id;
+            //    //dsModuleStructureGUI.dtSavedProtocol.AdddtSavedProtocolRow(row);
+            //    //updateRow(row);
 
-        //        DataSets.dsModuleStructure3.dtSavedProtocolRow row;
-        //        //DataSets.dsModuleStructure3.dtSavedProtocolRow test;
-        //        //row = dsModuleStructureGUI.dtSavedProtocol.NewdtSavedProtocolRow();
-        //        row = dsModuleStructure.dtSavedProtocol.NewdtSavedProtocolRow();
-        //        row.description = stepCompositeNode.Parent.Text;
-        //        row.fk_step_composite = stepComposite.pk_id;
-        //        dsModuleStructure.dtSavedProtocol.AdddtSavedProtocolRow(row);
-        //        updateRow(row);
+            //}
 
+            //private void updateRow(DataSets.dsModuleStructure3.dtSavedProtocolRow updateRow)
+            //{
+            //    try
+            //    {
+            //        ta_Saved_Protocol.Update(updateRow);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Invalid action type, try again !",
+            //        "Error !",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error);
+            //        dsModuleStructure.RejectChanges();
+            //    }
+            //}
 
-        //    }
+            //public static void LoadTree(TreeView tree, string filename)
+            //{
+            //    using (Stream file = File.Open(filename, FileMode.Open))
+            //    {
+            //        BinaryFormatter bf = new BinaryFormatter();
+            //        object obj = bf.Deserialize(file);
 
-        //}
-        //public void addrow(TreeNode treeNode)
-        //{
+            //        TreeNode[] nodeList = (obj as IEnumerable<TreeNode>).ToArray();
+            //        tree.Nodes.AddRange(nodeList);
+            //    }
+            //}
 
-        //    //StepCompositeNode stepCompositeNode = treeNode as StepCompositeNode;
-
-        //    //DataSets.dsModuleStructure3.dtStepCompositeRow stepComposite = stepCompositeNode.getStepCompositeRow();
-
-        //    //DataSets.dsModuleStructure3.dtSavedProtocolRow row;
-        //    ////DataSets.dsModuleStructure3.dtSavedProtocolRow test;
-        //    //row = dsModuleStructureGUI.dtSavedProtocol.NewdtSavedProtocolRow();
-        //    //row.Description = stepCompositeNode.Parent.Text;
-        //    //row.fk_step_composite = stepComposite.pk_id;
-        //    //dsModuleStructureGUI.dtSavedProtocol.AdddtSavedProtocolRow(row);
-        //    //updateRow(row);
-
-        //}
-
-        //private void updateRow(DataSets.dsModuleStructure3.dtSavedProtocolRow updateRow)
-        //{
-        //    try
-        //    {
-        //        ta_Saved_Protocol.Update(updateRow);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Invalid action type, try again !",
-        //        "Error !",
-        //        MessageBoxButtons.OK,
-        //        MessageBoxIcon.Error);
-        //        dsModuleStructure.RejectChanges();
-        //    }
-        //}
-
-        //public static void LoadTree(TreeView tree, string filename)
-        //{
-        //    using (Stream file = File.Open(filename, FileMode.Open))
-        //    {
-        //        BinaryFormatter bf = new BinaryFormatter();
-        //        object obj = bf.Deserialize(file);
-
-        //        TreeNode[] nodeList = (obj as IEnumerable<TreeNode>).ToArray();
-        //        tree.Nodes.AddRange(nodeList);
-        //    }
-        //}
 
         private void tlvProtocol_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
         }
-    }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+
+            //   SaveTree(tlvProtocol.SelectedNode);
+
+        }
+}
 }
     
