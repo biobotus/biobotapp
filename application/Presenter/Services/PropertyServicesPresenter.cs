@@ -18,7 +18,12 @@ namespace BioBotApp.Presenter.Services
     public PropertyServicesPresenter(IPropertyServiceView view)
     {
         this.m_View = view;
-        //this.PropertyServiceModel = model;
+        //this.PropertyServiceModel = model;    
+    }
+    [Model.EventBus.Subscribe]
+    public void onCurrentChanged(Model.EventBus.Events.Property.PropertyCurrentChanged e)
+    {
+        this.m_View.onPropertyTypeCurrentChange(e.Row);
     }
 
     }

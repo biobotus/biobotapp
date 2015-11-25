@@ -11,11 +11,17 @@ namespace BioBotApp.Presenter.Services
     {
         IpropertyTypeServiceView View;
 
+        
+
         public PropertyTypeServicePresenter(IpropertyTypeServiceView View)
         {
             this.View = View;
         }
-
+        public void CurrentChanged(object sender, EventArgs e)
+        {
+            Model.Data.Services.PropertyTypeService.Instance.CurrentChanged(sender,e);
+        }
+        
 
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
     <Compile Include="Model\EventBus\Events\Operation\OperationEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Property\PropertyCurrentChanged.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolAddEvent.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolDeleteEvent.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolModifyEvent.cs" />

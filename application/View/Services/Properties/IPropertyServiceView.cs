@@ -8,5 +8,8 @@ namespace BioBotApp.View.Services
 {
     public interface IPropertyServiceView
     {
+
+        void onPropertyTypeCurrentChange(Model.Data.BioBotDataSets.bbt_property_typeRow row);
+
     }
 }

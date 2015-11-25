@@ -25,7 +25,10 @@ namespace BioBotApp.View.Services
             this.PropertyBindingSource.DataSource = bioBotDataSets;
 
         }
+        public void onPropertyTypeCurrentChange(Model.Data.BioBotDataSets.bbt_property_typeRow row)
+        {
 
+        }
 
     }
 }

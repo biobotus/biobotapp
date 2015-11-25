@@ -65,6 +65,11 @@ namespace BioBotApp.View.Services
             }
         }
 
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            PropertyTypePresenter.CurrentChanged(sender,e);
+        }
+
         /*
         
         */
