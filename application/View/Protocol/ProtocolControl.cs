@@ -17,6 +17,25 @@ namespace BioBotApp.View.Protocol
 {
     public partial class ProtocolControl : DatasetViewControl, IProtocolView, IStepView
     {
+        Boolean showSteps;
+
+        [PropertyTab("Show toolbar")]
+        [Browsable(true)]
+        [Description("Show right toolbar"), Category("Behavior")]
+        public bool ShowToolbar
+        {
+            get { return this.toolbarPanel.Visible; }
+            set { this.toolbarPanel.Visible = value; }
+        }
+
+        [PropertyTab("Show steps")]
+        [Browsable(true)]
+        [Description("Show right steps"), Category("Behavior")]
+        public bool ShowSteps
+        {
+            get { return showSteps; }
+            set { showSteps = value; Console.WriteLine("showSteps" + value); }
+        }
 
         private ProtocolPresenter presenter;
         private StepPresenter stepPresenter;
@@ -26,7 +45,7 @@ namespace BioBotApp.View.Protocol
             InitializeComponent();
             this.presenter = new ProtocolPresenter(this);
             stepPresenter = new StepPresenter(this);
-            initTree();
+            
         }
 
         public void initTree()
@@ -53,6 +72,14 @@ namespace BioBotApp.View.Protocol
                 parentNode.Nodes.Add(currentNode);
             }
 
+            if (showSteps)
+            {
+                foreach (BioBotDataSets.bbt_stepRow stepRow in protocol.Getbbt_stepRows())
+                {
+                    currentNode.Nodes.Add(new StepTreeNode(stepRow));
+                }
+            }
+
             foreach (BioBotDataSets.bbt_protocolRow childProtocol in protocol.Getbbt_protocolRows())
             {
                 addNodes(childProtocol, currentNode);
@@ -72,20 +99,14 @@ namespace BioBotApp.View.Protocol
 
         private void tlvProtocols_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            if (e.Item is ProtocolTreeNode)
-            {
-                DoDragDrop(e.Item, DragDropEffects.Move);
-            }
-
+            DoDragDrop(e.Item, DragDropEffects.Move);
         }
 
         private void tlvProtocols_DragDrop(object sender, DragEventArgs e)
         {
             TreeView treeView = ((TreeView)sender);
             ProtocolTreeNode procotolNode = (ProtocolTreeNode)e.Data.GetData(typeof(ProtocolTreeNode));
-
-            if (treeView == null) return;
-
+            if (procotolNode == null) return;
             Point pt = treeView.PointToClient(new Point(e.X, e.Y));
             TreeNode destinationNode = treeView.GetNodeAt(pt);
             ProtocolTreeNode destinationProtocolNode = null;
@@ -103,6 +124,7 @@ namespace BioBotApp.View.Protocol
 
                 if (!isChildNodePresent(procotolNode, destinationProtocolNode))
                 {
+                    if (destinationProtocolNode == procotolNode) return;
                     if (parentNode == null)
                     {
                         tlvProtocols.Nodes.Remove(procotolNode);
@@ -111,6 +133,7 @@ namespace BioBotApp.View.Protocol
                     {
                         parentNode.Nodes.Remove(procotolNode);
                     }
+                    
                     destinationProtocolNode.Nodes.Add(procotolNode);
                     procotolNode.getProtocolRow().fk_protocol = destinationProtocolNode.getProtocolRow().pk_id;
                     procotolNode.getProtocolRow().index = destinationProtocolNode.getProtocolRow().Getbbt_protocolRows().Length + 1;
@@ -454,6 +477,11 @@ namespace BioBotApp.View.Protocol
             BioBotDataSets.bbt_protocolRow row = getSelectedProtocolRow();
             if (row == null) return;
             this.presenter.setSelectedProtocolRow(row);
+        }
+
+        private void ProtocolControl_Load(object sender, EventArgs e)
+        {
+            initTree();
         }
     }
 }

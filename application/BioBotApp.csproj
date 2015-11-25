@@ -95,6 +95,7 @@
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
+    <Compile Include="Presenter\Main\MainPresenter.cs" />
     <Compile Include="Presenter\ModulePluginManager\LoadedModulePresenter.cs" />
     <Compile Include="Presenter\ModulePluginManager\ModulePluginPairPresenter.cs" />
     <Compile Include="Presenter\ModulePluginManager\PathPresenter.cs" />
@@ -118,11 +119,18 @@
     <Compile Include="View\Jog\JogControl.Designer.cs">
       <DependentUpon>JogControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Main\IMainView.cs" />
     <Compile Include="View\Main\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Main\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\ProtocolEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Main\ProtocolEditControl.Designer.cs">
+      <DependentUpon>ProtocolEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Main\MainViewForm.cs">
       <SubType>Form</SubType>
@@ -208,6 +216,7 @@
     <Compile Include="View\Protocol\ProtocolForm.Designer.cs">
       <DependentUpon>ProtocolForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Protocol\StepTreeNode.cs" />
     <Compile Include="View\Protocol\ProtocolTreeNode.cs" />
     <Compile Include="View\Step\IStepView.cs" />
     <Compile Include="View\Step\StepControl.cs">
@@ -270,9 +279,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Main\MainViewForm.resx">
-      <DependentUpon>MainViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ModulePluginManager\ModulePluginLoadedView.resx">
       <DependentUpon>ModulePluginLoadedView.cs</DependentUpon>

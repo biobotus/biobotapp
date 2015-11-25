@@ -20,7 +20,14 @@ namespace BioBotApp.Presenter.Step
         public void setSelectedStepRow(Model.Data.BioBotDataSets.bbt_stepRow row)
         {
             Model.Data.Services.StepService.Instance.setSelectedStepRow(row);
-            Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(row.bbt_objectRow);
+            if (row == null)
+            {
+                Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(null);
+            }
+            else
+            {
+                Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(row.bbt_objectRow);
+            }
         }
 
         public void addStepRow(int fkProtocolId, String description, int fkObjectId, int index)
@@ -41,13 +48,13 @@ namespace BioBotApp.Presenter.Step
         [Model.EventBus.Subscribe]
         public void onAddStepRow(Model.EventBus.Events.Step.StepAddEvent e)
         {
-           // this.view.addStepRow(e.stepRow);
+            // this.view.addStepRow(e.stepRow);
         }
 
         [Model.EventBus.Subscribe]
         public void onModifyStepRow(Model.EventBus.Events.Step.StepModifyEvent e)
         {
-           // this.view.modifyStepRow(e.stepRow);
+            // this.view.modifyStepRow(e.stepRow);
         }
 
         [Model.EventBus.Subscribe]

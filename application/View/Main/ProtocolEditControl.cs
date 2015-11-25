@@ -11,19 +11,11 @@ using BioBotApp.View.Utils;
 
 namespace BioBotApp.View.Main
 {
-    public partial class MainView : DatasetViewControl, IMainView
+    public partial class ProtocolEditControl : DatasetViewControl, IMainView
     {
-        public MainView()
+        public ProtocolEditControl()
         {
             InitializeComponent();
-        }
-
-        private void bbt_objectBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bsObject.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.bioBotDataSets);
-
         }
     }
 }

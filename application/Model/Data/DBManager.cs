@@ -44,6 +44,7 @@ namespace BioBotApp.Model.Data
             taManager.bbt_propertyTableAdapter = new BioBotDataSetsTableAdapters.bbt_propertyTableAdapter();
             taManager.bbt_protocolTableAdapter = new BioBotDataSetsTableAdapters.bbt_protocolTableAdapter();
             taManager.bbt_stepTableAdapter = new BioBotDataSetsTableAdapters.bbt_stepTableAdapter();
+            taManager.bbt_operation_type_object_typeTableAdapter = new BioBotDataSetsTableAdapters.bbt_operation_type_object_typeTableAdapter();
         }
 
         public void initializeDataSet()
@@ -59,6 +60,7 @@ namespace BioBotApp.Model.Data
             taManager.bbt_propertyTableAdapter.Fill(projectDataset.bbt_property);
             taManager.bbt_protocolTableAdapter.Fill(projectDataset.bbt_protocol);
             taManager.bbt_stepTableAdapter.Fill(projectDataset.bbt_step);
+            taManager.bbt_operation_type_object_typeTableAdapter.Fill(projectDataset.bbt_operation_type_object_type);
         }
     }
 }

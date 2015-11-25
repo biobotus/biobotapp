@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.operationTypeControl1 = new BioBotApp.View.Protocol.OperationType.OperationTypeControl();
+            this.operationTypeControl1 = new BioBotApp.View.Operation.OperationType.OperationTypeControl();
             this.protocolControl1 = new BioBotApp.View.Protocol.ProtocolControl();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -78,7 +78,7 @@
         #endregion
 
         private ProtocolControl protocolControl1;
-        private OperationType.OperationTypeControl operationTypeControl1;
+        private Operation.OperationType.OperationTypeControl operationTypeControl1;
         private System.Windows.Forms.Button button1;
     }
 }

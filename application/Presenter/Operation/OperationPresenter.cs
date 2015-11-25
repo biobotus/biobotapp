@@ -63,9 +63,24 @@ namespace BioBotApp.Presenter.Operation
 
 
         [Model.EventBus.Subscribe]
-        public void onStepSelectionChanget(Model.EventBus.Events.Step.StepSelectionChangedEvent e)
+        public void onStepSelectionChange(Model.EventBus.Events.Step.StepSelectionChangedEvent e)
         {
             this.view.setSelectedStepRow(e.stepRow);
+        }
+
+        [Model.EventBus.Subscribe]
+        public void onObjectSelectionChange(Model.EventBus.Events.Object.ObjectSelectionChanged e)
+        {
+            if (e.row == null) return;
+            if (e.selectionType != Model.EventBus.Events.Object.ObjectSelectionChanged.SelectionType.STEP_SELECTION) return;
+            this.view.setSelectedObjectTypeRow(e.row.bbt_object_typeRow);
+        }
+
+        [Model.EventBus.Subscribe]
+        public void onProtocolSelectionChange(Model.EventBus.Events.Protocol.ProtocolSelectionChangedEvent e)
+        {
+            if (e.Row != null) return;
+            this.view.setSelectedStepRow(null);
         }
     }
 }

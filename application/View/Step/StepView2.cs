@@ -15,6 +15,15 @@ namespace BioBotApp.View.Step
 {
     public partial class StepView2 : DatasetViewControl, IStepView
     {
+        [PropertyTab("Show toolbar")]
+        [Browsable(true)]
+        [Description("Show right toolbar"), Category("Behavior")]
+        public bool ShowToolbar
+        {
+            get { return this.toolbarPanel.Visible; }
+            set { this.toolbarPanel.Visible = value; }
+        }
+
         private StepPresenter presenter;
         public StepView2()
         {
@@ -33,6 +42,18 @@ namespace BioBotApp.View.Step
             int index = this.dataset.bbt_protocol.Rows.IndexOf(row);
             if (index < 0) return;
             this.bsProtocol.Position = index;
+            BioBotDataSets.bbt_stepRow stepRow = getSelectedStepRow();
+            this.presenter.setSelectedStepRow(stepRow);
+            try
+            {
+                dgvOperation.Sort(indexColumn, ListSortDirection.Ascending);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                //exception used to eliminate designer error : 
+                //DataGridView control cannot be sorted if it is bound to an IBindingList that does not support sorting. 
+            }
         }
 
         public BioBotDataSets.bbt_protocolRow getSelectedProcotolRow()

@@ -33,7 +33,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolbarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUp = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvOperation = new System.Windows.Forms.DataGridView();
@@ -51,7 +51,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.toolbarPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
@@ -106,19 +106,19 @@
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
-            // flowLayoutPanel1
+            // toolbarPanel
             // 
-            this.flowLayoutPanel1.Controls.Add(this.btnAdd);
-            this.flowLayoutPanel1.Controls.Add(this.btnEdit);
-            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Controls.Add(this.btnUp);
-            this.flowLayoutPanel1.Controls.Add(this.btnDown);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(659, 3);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(46, 303);
-            this.flowLayoutPanel1.TabIndex = 3;
+            this.toolbarPanel.Controls.Add(this.btnAdd);
+            this.toolbarPanel.Controls.Add(this.btnEdit);
+            this.toolbarPanel.Controls.Add(this.btnDelete);
+            this.toolbarPanel.Controls.Add(this.btnUp);
+            this.toolbarPanel.Controls.Add(this.btnDown);
+            this.toolbarPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.toolbarPanel.Location = new System.Drawing.Point(659, 3);
+            this.toolbarPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.toolbarPanel.Name = "toolbarPanel";
+            this.toolbarPanel.Size = new System.Drawing.Size(46, 303);
+            this.toolbarPanel.TabIndex = 3;
             // 
             // btnUp
             // 
@@ -134,7 +134,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvOperation);
-            this.panel2.Controls.Add(this.flowLayoutPanel1);
+            this.panel2.Controls.Add(this.toolbarPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 51);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
@@ -291,7 +291,7 @@
             this.Name = "StepView2";
             this.Size = new System.Drawing.Size(708, 360);
             this.Load += new System.EventHandler(this.StepView2_Load);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.toolbarPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).EndInit();
@@ -311,7 +311,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel toolbarPanel;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvOperation;

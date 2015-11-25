@@ -19,6 +19,7 @@ namespace BioBotApp.View.Step
     {
         private OperationPresenter presenter;
         private BioBotDataSets.bbt_stepRow stepRow;
+        private BioBotDataSets.bbt_object_typeRow objectTypeRow;
         public OperationControl2()
         {
             InitializeComponent();
@@ -26,19 +27,37 @@ namespace BioBotApp.View.Step
             this.bioBotDataSet = this.dataset;
 
             this.bsStep.DataSource = this.bioBotDataSet;
-            this.bsObject.DataSource = this.bioBotDataSet;
             this.bsOperation.DataSource = this.bsStepOperation;
             this.bsStepOperation.DataSource = this.bsStep;
-            this.bsOperationType.DataSource = this.bioBotDataSet;
             this.bsObjectType.DataSource = this.bioBotDataSet;
+            this.bsOperationType.DataSource = this.bioBotDataSet;
+            this.bsObjectTypeOperationType.DataSource = this.bsObjectType;
         }
 
         public void setSelectedStepRow(BioBotDataSets.bbt_stepRow row)
         {
             int index = this.dataset.bbt_step.Rows.IndexOf(row);
-            if (index < 0) return;
+            if (index < 0)
+            {
+                this.bsStep.Filter = "pk_id = -1";
+                return;
+            }
+            this.bsStep.Filter = String.Empty;
             stepRow = row;
             this.bsStep.Position = index;
+        }
+
+        public void setSelectedObjectTypeRow(BioBotDataSets.bbt_object_typeRow row)
+        {
+            int index = this.dataset.bbt_object_type.Rows.IndexOf(row);
+            if (index < 0)
+            {
+                this.bsObjectType.Filter = "pk_id = -1";
+                return;
+            }
+            this.bsObjectType.Filter = String.Empty;
+            objectTypeRow = row;
+            this.bsObjectType.Position = index;
         }
 
         public BioBotDataSets.bbt_operationRow getSelectedOperationRow()
@@ -173,19 +192,18 @@ namespace BioBotApp.View.Step
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (objectTypeRow == null) return;
             AbstractDialog dialog = new AbstractDialog();
-            namedComboBox operationTypeInput = new namedComboBox("Operation type: ");
             NamedInputTextBox valueInput = new NamedInputTextBox("Value: ");
-            operationTypeInput.getComboBox().DataSource = this.bsOperationType;
-            operationTypeInput.getComboBox().DisplayMember = "description";
-            operationTypeInput.getComboBox().ValueMember = "pk_id";
-            dialog.addControl(operationTypeInput);
+            Operation.OperationType.OperationTypeControl operationTypeControl = new Operation.OperationType.OperationTypeControl(objectTypeRow);
+
+            dialog.addControl(operationTypeControl);
             dialog.addControl(valueInput);
 
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                BioBotDataSets.bbt_operation_typeRow operationType = getSelectedOperationTypeRow(operationTypeInput.getComboBox().DataSource as BindingSource);
+                BioBotDataSets.bbt_operation_typeRow operationType = operationTypeControl.getSelectedOperationType();
                 String value = valueInput.getInputTextValue();
 
                 if (value == null) return;
@@ -236,9 +254,6 @@ namespace BioBotApp.View.Step
             }
         }
 
-        public void setSelectedObjectTypeRow(BioBotDataSets.bbt_object_typeRow row)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

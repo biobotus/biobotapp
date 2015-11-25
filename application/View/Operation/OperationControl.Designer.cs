@@ -36,7 +36,7 @@
             this.txtOperationValue = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.operationTypeControl1 = new BioBotApp.View.Protocol.OperationType.OperationTypeControl();
+            this.operationTypeControl1 = new BioBotApp.View.Operation.OperationType.OperationTypeControl();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -323,7 +323,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private Protocol.OperationType.OperationTypeControl operationTypeControl1;
+        private OperationType.OperationTypeControl operationTypeControl1;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.DataGridViewTextBoxColumn pkidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fkoperationDataGridViewTextBoxColumn;

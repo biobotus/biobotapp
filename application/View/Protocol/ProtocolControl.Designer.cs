@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tlvProtocols = new System.Windows.Forms.TreeView();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolbarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -40,7 +40,7 @@
             this.btnDown = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.toolbarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -68,7 +68,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.tlvProtocols);
-            this.panel2.Controls.Add(this.flowLayoutPanel1);
+            this.panel2.Controls.Add(this.toolbarPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 68);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
@@ -90,19 +90,19 @@
             this.tlvProtocols.DragDrop += new System.Windows.Forms.DragEventHandler(this.tlvProtocols_DragDrop);
             this.tlvProtocols.DragEnter += new System.Windows.Forms.DragEventHandler(this.tlvProtocols_DragEnter);
             // 
-            // flowLayoutPanel1
+            // toolbarPanel
             // 
-            this.flowLayoutPanel1.Controls.Add(this.btnAdd);
-            this.flowLayoutPanel1.Controls.Add(this.btnEdit);
-            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Controls.Add(this.btnUp);
-            this.flowLayoutPanel1.Controls.Add(this.btnDown);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(452, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(47, 375);
-            this.flowLayoutPanel1.TabIndex = 1;
+            this.toolbarPanel.Controls.Add(this.btnAdd);
+            this.toolbarPanel.Controls.Add(this.btnEdit);
+            this.toolbarPanel.Controls.Add(this.btnDelete);
+            this.toolbarPanel.Controls.Add(this.btnUp);
+            this.toolbarPanel.Controls.Add(this.btnDown);
+            this.toolbarPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.toolbarPanel.Location = new System.Drawing.Point(452, 0);
+            this.toolbarPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.toolbarPanel.Name = "toolbarPanel";
+            this.toolbarPanel.Size = new System.Drawing.Size(47, 375);
+            this.toolbarPanel.TabIndex = 1;
             // 
             // btnAdd
             // 
@@ -169,9 +169,10 @@
             this.Name = "ProtocolControl";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(505, 446);
+            this.Load += new System.EventHandler(this.ProtocolControl_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.toolbarPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -182,7 +183,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TreeView tlvProtocols;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel toolbarPanel;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;

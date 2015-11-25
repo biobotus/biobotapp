@@ -1,4 +1,4 @@
-﻿namespace BioBotApp.View.Protocol.OperationType
+﻿namespace BioBotApp.View.Operation.OperationType
 {
     partial class OperationTypeControl
     {
@@ -30,10 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.cmbOperationType = new System.Windows.Forms.ComboBox();
-            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
             this.bsOperationType = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
+            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
+            this.txtInputName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbOperationType
@@ -42,31 +43,43 @@
             this.cmbOperationType.DisplayMember = "description";
             this.cmbOperationType.Dock = System.Windows.Forms.DockStyle.Top;
             this.cmbOperationType.FormattingEnabled = true;
-            this.cmbOperationType.Location = new System.Drawing.Point(0, 0);
+            this.cmbOperationType.Location = new System.Drawing.Point(122, 3);
             this.cmbOperationType.Name = "cmbOperationType";
-            this.cmbOperationType.Size = new System.Drawing.Size(408, 21);
+            this.cmbOperationType.Size = new System.Drawing.Size(283, 21);
             this.cmbOperationType.TabIndex = 0;
             this.cmbOperationType.ValueMember = "pk_id";
-            // 
-            // bioBotDataSets
-            // 
-            this.bioBotDataSets.DataSetName = "BioBotDataSets";
-            this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bsOperationType
             // 
             this.bsOperationType.DataMember = "bbt_operation_type";
             this.bsOperationType.DataSource = this.bioBotDataSets;
             // 
+            // bioBotDataSets
+            // 
+            this.bioBotDataSets.DataSetName = "BioBotDataSets";
+            this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // txtInputName
+            // 
+            this.txtInputName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtInputName.Location = new System.Drawing.Point(3, 3);
+            this.txtInputName.Name = "txtInputName";
+            this.txtInputName.Size = new System.Drawing.Size(119, 20);
+            this.txtInputName.TabIndex = 3;
+            this.txtInputName.Text = "OperationType:";
+            this.txtInputName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // OperationTypeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cmbOperationType);
+            this.Controls.Add(this.txtInputName);
             this.Name = "OperationTypeControl";
-            this.Size = new System.Drawing.Size(408, 25);
-            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(408, 26);
             ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -76,5 +89,6 @@
         private System.Windows.Forms.ComboBox cmbOperationType;
         private System.Windows.Forms.BindingSource bsOperationType;
         private Model.Data.BioBotDataSets bioBotDataSets;
+        private System.Windows.Forms.Label txtInputName;
     }
 }
