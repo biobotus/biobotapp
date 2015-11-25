@@ -10,6 +10,7 @@ namespace BioBotApp.Model.Data.Services
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_protocolTableAdapter taProtocol;
+        BioBotDataSets.bbt_protocolRow selectedRow;
 
         private static ProtocolService instance;
 
@@ -29,6 +30,12 @@ namespace BioBotApp.Model.Data.Services
                 }
                 return instance;
             }
+        }
+
+        public void setSelectedRow(BioBotDataSets.bbt_protocolRow selectedRow)
+        {
+            this.selectedRow = selectedRow;
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Protocol.ProtocolSelectionChangedEvent(selectedRow));
         }
 
         public void addProtocolRow(int fkProtocolId, String description, int index)

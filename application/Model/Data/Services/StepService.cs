@@ -11,6 +11,7 @@ namespace BioBotApp.Model.Data.Services
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_stepTableAdapter taStep;
+        private BioBotDataSets.bbt_stepRow selectedStepRow;
 
         private static StepService privateInstance;
 
@@ -30,6 +31,12 @@ namespace BioBotApp.Model.Data.Services
                 }
                 return privateInstance;
             }
+        }
+
+        public void setSelectedStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+            this.selectedStepRow = row;
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepSelectionChangedEvent(row));
         }
 
         // CRUD operations functions

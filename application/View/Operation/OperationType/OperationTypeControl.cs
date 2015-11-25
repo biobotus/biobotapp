@@ -30,5 +30,11 @@ namespace BioBotApp.View.Protocol.OperationType
             operationTypeRow = rowview.Row as Model.Data.BioBotDataSets.bbt_operation_typeRow;
             return operationTypeRow;
         }
+
+        public void setSelectedOperationType(Model.Data.BioBotDataSets.bbt_operation_typeRow row)
+        {
+            if (row == null) return;
+            this.cmbOperationType.SelectedValue = row.pk_id;
+        }
     }
 }

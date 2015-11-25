@@ -22,6 +22,11 @@ namespace BioBotApp.Presenter
             Model.Data.DBManager.Instance.taManager.bbt_protocolTableAdapter.Update(Model.Data.DBManager.Instance.projectDataset.bbt_protocol);
         }
 
+        public void setSelectedProtocolRow(Model.Data.BioBotDataSets.bbt_protocolRow row)
+        {
+            Model.Data.Services.ProtocolService.Instance.setSelectedRow(row);
+        }
+
         public void addProtocolRow(int fkProtocolId, String description, int index)
         {
             Model.Data.Services.ProtocolService.Instance.addProtocolRow(fkProtocolId, description, index);

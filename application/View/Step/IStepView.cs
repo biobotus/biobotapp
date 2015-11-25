@@ -9,8 +9,6 @@ namespace BioBotApp.View.Step
 {
     public interface IStepView : IDatasetViewControl
     {
-        void addStepRow(Model.Data.BioBotDataSets.bbt_stepRow stepRow);
-        void modifyStepRow(Model.Data.BioBotDataSets.bbt_stepRow stepRow);
-        void deleteStepRow(int rowId);
+        void setSelectedProtocolRow(Model.Data.BioBotDataSets.bbt_protocolRow row);
     }
 }

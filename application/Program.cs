@@ -1,5 +1,6 @@
 ﻿using BioBotApp.Presenter;
 using BioBotApp.View.Communication;
+using BioBotApp.View.Main;
 using BioBotApp.View.Operation;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
@@ -26,7 +27,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
 
-            StepForm form = new StepForm();
+            MainViewForm form = new MainViewForm();
             Application.Run(form);
         }
     }

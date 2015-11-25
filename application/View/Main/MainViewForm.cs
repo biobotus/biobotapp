@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BioBotApp.View.Protocol
+namespace BioBotApp.View.Main
 {
-    public partial class ProtocolForm : Form
+    public partial class MainViewForm : Form
     {
-        public ProtocolForm()
+        public MainViewForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            operationTypeControl1.getSelectedOperationType();
         }
     }
 }

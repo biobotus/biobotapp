@@ -32,10 +32,6 @@ namespace PCAN
         /// </summary>
         private System.Threading.AutoResetEvent m_ReceiveEvent;
         /// <summary>
-        /// Thread for message reading (using events)
-        /// </summary>
-        private System.Threading.Thread m_ReadThread;
-        /// <summary>
         /// Handles of the current available PCAN-Hardware
         /// </summary>
         private TPCANHandle[] m_HandlesArray;

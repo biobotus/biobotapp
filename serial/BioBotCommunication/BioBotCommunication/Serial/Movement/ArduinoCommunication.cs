@@ -45,6 +45,7 @@ namespace BioBotCommunication.Serial.Movement
                 }
                 catch (UnauthorizedAccessException e)
                 {
+                    Console.WriteLine(e.StackTrace);
                     disconnectArduinoSerialPort();
                 }
             }
