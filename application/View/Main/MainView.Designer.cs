@@ -83,7 +83,7 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.bbt_objectDataGridView.DataSource = this.bsObject;
-            this.bbt_objectDataGridView.Location = new System.Drawing.Point(478, 123);
+            this.bbt_objectDataGridView.Location = new System.Drawing.Point(414, 77);
             this.bbt_objectDataGridView.Name = "bbt_objectDataGridView";
             this.bbt_objectDataGridView.Size = new System.Drawing.Size(300, 220);
             this.bbt_objectDataGridView.TabIndex = 2;

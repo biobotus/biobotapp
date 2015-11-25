@@ -17,13 +17,5 @@ namespace BioBotApp.View.Main
         {
             InitializeComponent();
         }
-
-        private void bbt_objectBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bsObject.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.bioBotDataSets);
-
-        }
     }
 }
