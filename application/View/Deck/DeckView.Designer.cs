@@ -60,6 +60,7 @@
             this.Size = new System.Drawing.Size(547, 363);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DeckView_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.DeckView_DragEnter);
+            this.Resize += new System.EventHandler(this.DeckView_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).EndInit();
             this.ResumeLayout(false);

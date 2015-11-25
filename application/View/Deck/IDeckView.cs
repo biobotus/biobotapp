@@ -10,7 +10,7 @@ namespace BioBotApp.View.Deck
 {
     public interface IDeckView
     {
-        void addObject(Model.Data.BioBotDataSets.bbt_objectRow obj);
+        //void addObject(Model.Data.BioBotDataSets.bbt_objectRow obj);
 
     }
 }

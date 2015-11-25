@@ -41,6 +41,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,7 +56,7 @@
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
+    <Compile Include="Model\Data\BioBotDataSets1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -71,6 +72,7 @@
     <Compile Include="Model\Data\Services\PropertyService.cs" />
     <Compile Include="Model\Data\Services\PropertyTypeService.cs" />
     <Compile Include="Model\Data\Services\ProtocolService.cs" />
+    <Compile Include="Model\Data\Services\SaveProtocolService.cs" />
     <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
     <Compile Include="Model\EventBus\Events\Operation\OperationEvent.cs" />
@@ -104,6 +106,12 @@
     <Compile Include="View\Communication\CommunicationTestForm.Designer.cs">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Deck\DeckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\DeckForm.Designer.cs">
+      <DependentUpon>DeckForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Deck\DeckView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +125,21 @@
     <Compile Include="View\Deck\ObjectView.Designer.cs">
       <DependentUpon>ObjectView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Execute\ExecuteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Execute\ExecuteForm.Designer.cs">
+      <DependentUpon>ExecuteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Execute\ExecuteView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Execute\ExecuteView.Designer.cs">
+      <DependentUpon>ExecuteView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Execute\ProtocolNode.cs" />
+    <Compile Include="View\Execute\StepNode.cs" />
+    <Compile Include="View\Execute\SubProtocolNode.cs" />
     <Compile Include="View\Jog\IJogView.cs" />
     <Compile Include="View\Jog\JogControl.cs">
       <SubType>UserControl</SubType>
@@ -251,11 +274,21 @@
     <EmbeddedResource Include="View\Communication\CommunicationTestForm.resx">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\DeckForm.resx">
+      <DependentUpon>DeckForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\DeckView.resx">
       <DependentUpon>DeckView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\ObjectView.resx">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Execute\ExecuteForm.resx">
+      <DependentUpon>ExecuteForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Execute\ExecuteView.resx">
+      <DependentUpon>ExecuteView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
@@ -311,6 +344,7 @@
     <None Include="Model\Data\BioBotDataSets.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>BioBotDataSets1.Designer.cs</LastGenOutput>
     </None>
     <None Include="Model\Data\BioBotDataSets.xss">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
