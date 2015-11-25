@@ -1,0 +1,2 @@
+ALTER TABLE deck.bbt_property
+  OWNER TO biobot;

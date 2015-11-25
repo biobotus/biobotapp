@@ -3,6 +3,7 @@ using BioBotApp.View.Communication;
 using BioBotApp.View.Operation;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
+using BioBotApp.View.Step;
 using BioBotApp.View.TestView;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
 
-            ObjectTypeTestForm form = new ObjectTypeTestForm();
+            StepForm form = new StepForm();
             Application.Run(form);
         }
     }
