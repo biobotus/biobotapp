@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.Protocol
 {
-    public interface IProtocolView : IDatasetView
+    public interface IProtocolView : IDatasetViewControl
     {
+        void onProtocolAddEvent(Model.Data.BioBotDataSets.bbt_protocolRow row);
+        void onProtocolModifyEvent(Model.Data.BioBotDataSets.bbt_protocolRow row);
+        void onProtocolDeleteEvent(int rowId);
     }
 }

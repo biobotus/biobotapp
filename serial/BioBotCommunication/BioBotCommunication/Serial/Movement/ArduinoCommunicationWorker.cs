@@ -12,7 +12,8 @@ namespace BioBotCommunication.Serial.Movement
     public class ArduinoCommunicationWorker : ArduinoCommunication
     {
         private BackgroundWorker arduinoSerialWorker;
-        AutoResetEvent toggle = new AutoResetEvent(false);
+        private AutoResetEvent toggle = new AutoResetEvent(false);
+        public event EventHandler<OnCompletionEventArgs> OnCompletionEvent;
 
         private ArduinoCommunicationWorker()
         {
@@ -25,6 +26,9 @@ namespace BioBotCommunication.Serial.Movement
 
         private void ArduinoCommunicationWorker_onErrorMessage(object sender, SerialErrorReceivedEventArgs e)
         {
+            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
+            eventargs.error = true;
+            OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
 
@@ -32,10 +36,10 @@ namespace BioBotCommunication.Serial.Movement
         {
             SerialPort port = sender as SerialPort;
             String dataReceived = port.ReadExisting();
-            if (dataReceived.Contains("a"))
-            {
-                toggle.Set();
-            }
+
+            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
+            eventargs.error = false;
+            toggle.Set();
         }
 
         private static ArduinoCommunicationWorker instance;
@@ -54,7 +58,6 @@ namespace BioBotCommunication.Serial.Movement
         private void ArdunioSerialWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            int a = 0;
             Boolean finished = false;
             while (!finished)
             {
@@ -81,6 +84,15 @@ namespace BioBotCommunication.Serial.Movement
             if (arduinoSerialWorker.WorkerSupportsCancellation)
             {
                 arduinoSerialWorker.CancelAsync();
+            }
+        }
+
+        protected virtual void OnMessageReceivedEvent(OnCompletionEventArgs e)
+        {
+            EventHandler<OnCompletionEventArgs> handler = OnCompletionEvent;
+            if (handler != null)
+            {
+                handler(this, e);
             }
         }
     }

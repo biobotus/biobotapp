@@ -1,9 +1,11 @@
 ﻿using BioBotApp.Presenter;
 using BioBotApp.View.Communication;
 using BioBotApp.View.Deck;
+using BioBotApp.View.Execute;
 using BioBotApp.View.Operation;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
+using BioBotApp.View.Step;
 using BioBotApp.View.TestView;
 using System;
 using System.Collections.Generic;
@@ -28,14 +30,8 @@ namespace BioBotApp
 
             //ObjectTypeTestForm form = new ObjectTypeTestForm();
             Form form = new Form();
-            form.AutoSize = true;
-            form.AllowDrop = true;
-            DeckView view = new DeckView();
-            form.Controls.Add(view);
-            view.Dock = DockStyle.Right;
-            ObjectView obj = new ObjectView();
-            form.Controls.Add(obj);
-            obj.Dock = DockStyle.Left;
+            ExecuteView form2 = new ExecuteView(); 
+            form.Controls.Add(form2);
             Application.Run(form);
         }
     }

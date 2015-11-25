@@ -65,6 +65,7 @@
     <Compile Include="Serial\Movement\ArduinoSerialCommControl.Designer.cs">
       <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Serial\Movement\OnCompletionEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

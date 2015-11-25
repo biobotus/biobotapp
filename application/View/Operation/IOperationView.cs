@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.View.Operation
 {
-    public interface IOperationView : IDatasetView
+    public interface IOperationView : IDatasetViewControl
     {
         void setOperation(Model.Data.BioBotDataSets.bbt_operationRow operation);
         void setStep(Model.Data.BioBotDataSets.bbt_stepRow stepRow);
