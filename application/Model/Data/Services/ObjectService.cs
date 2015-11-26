@@ -55,6 +55,8 @@ namespace BioBotApp.Model.Data.Services
             this.dbManager.projectDataset.bbt_object.Addbbt_objectRow(row);                     
             updateRow(row);
         }
+
+
         public void addObjectRow(BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, String activated, String description)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.Newbbt_objectRow();

@@ -29,9 +29,7 @@ namespace BioBotApp
             Model.Data.DBManager.Instance.initializeDataSet();
 
             //ObjectTypeTestForm form = new ObjectTypeTestForm();
-            Form form = new Form();
-            ExecuteView form2 = new ExecuteView(); 
-            form.Controls.Add(form2);
+            DeckForm form = new DeckForm();
             Application.Run(form);
         }
     }

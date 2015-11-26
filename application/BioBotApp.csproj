@@ -87,6 +87,7 @@
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Model\ModulePluginManager\IModulePlugin.cs" />
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
+    <Compile Include="Presenter\Deck\DeckPresenter.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\ModulePluginManager\LoadedModulePresenter.cs" />
@@ -118,12 +119,25 @@
     <Compile Include="View\Deck\DeckView.Designer.cs">
       <DependentUpon>DeckView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Deck\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Deck\IDeckView.cs" />
+    <Compile Include="View\Deck\Module.cs" />
     <Compile Include="View\Deck\ObjectView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Deck\ObjectView.Designer.cs">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Deck\UserDeckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\UserDeckForm.Designer.cs">
+      <DependentUpon>UserDeckForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Execute\ExecuteForm.cs">
       <SubType>Form</SubType>
@@ -277,8 +291,14 @@
     <EmbeddedResource Include="View\Deck\DeckView.resx">
       <DependentUpon>DeckView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\ObjectView.resx">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\UserDeckForm.resx">
+      <DependentUpon>UserDeckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Execute\ExecuteView.resx">
       <DependentUpon>ExecuteView.cs</DependentUpon>
