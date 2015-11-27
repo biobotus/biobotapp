@@ -33,7 +33,7 @@
     <Reference Include="BioBotApp">
       <HintPath>..\..\application\bin\Debug\BioBotApp.exe</HintPath>
     </Reference>
-    <Reference Include="BioBotCommunication, Version=1.0.0.19415, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BioBotCommunication, Version=1.0.0.19385, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\serial\BioBotCommunication\BioBotCommunication\bin\Release\BioBotCommunication.dll</HintPath>
     </Reference>

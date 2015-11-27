@@ -7,7 +7,7 @@ using Peak.Can.Basic;
 using BioBotApp.Utils.Communication.pcan;
 using System.Globalization;
 using System.Text;
-
+using BioBotApp.Model.Data;
 namespace TACDLL
 {
     /// <summary>
@@ -90,15 +90,6 @@ namespace TACDLL
                                 CANMsg.DATA[4] = bytes[0];
                                 CANMsg.DATA[5] = bytes[1];
                             }
-                            Console.WriteLine(parsed_command[3]);
-                            Console.WriteLine(floatParam);
-                            Console.WriteLine(temp);
-                            Console.WriteLine(bytes[0]);
-                            Console.WriteLine(bytes[1]);
-                            StringBuilder hex = new StringBuilder(bytes.Length * 2);
-                            foreach (byte b in bytes)
-                                hex.AppendFormat("{0:x2}", b);
-                            Console.WriteLine(hex);
                         }
                         else
                         {
@@ -107,13 +98,13 @@ namespace TACDLL
                         break;
                     case "set_agitator_speed":
                         // 0X01 1 byte
-                        CANMsg.DATA[2] = 1;
-                        CANMsg.DATA[4] = parsePercent(parsed_command[3]);
+                        CANMsg.DATA[2] = 0x01;
+                        CANMsg.DATA[4] = ParsePercent(parsed_command[3]);
                         break;
                     case "set_fan_speed":
                         // 0x02 1 byte
-                        CANMsg.DATA[2] = 2;
-                        CANMsg.DATA[4] = parsePercent(parsed_command[3]);
+                        CANMsg.DATA[2] = 0x02;
+                        CANMsg.DATA[4] = ParsePercent(parsed_command[3]);
                         break;
 
                     default:
@@ -128,44 +119,46 @@ namespace TACDLL
                 switch (parsed_command[0])
                 {
                     case "start_calibration":
+                        CANMsg.DATA[2] = 0x03;
                         break;
                     case "stop_calibration":
+                        CANMsg.DATA[2] = 0x04;
                         break;
                     case "start_temparature_maintain":
-
+                        CANMsg.DATA[2] = 0x05;
                         break;
                     case "stop_temparature_maintain":
-
+                        CANMsg.DATA[2] = 0x06;
                         break;
                     case "enable_fan":
-
+                        CANMsg.DATA[2] = 0x07;
                         break;
                     case "disable_fan":
-
+                        CANMsg.DATA[2] = 0x08;
                         break;
                     case "enable_peltier":
-
+                        CANMsg.DATA[2] = 0x09;
                         break;
                     case "disable_peltier":
-
+                        CANMsg.DATA[2] = 0x0A;
                         break;
                     case "enable_agitator":
-
+                        CANMsg.DATA[2] = 0x0B;
                         break;
                     case "disable_agitator":
-
+                        CANMsg.DATA[2] = 0x0C;
                         break;
                     case "send_fan_speed":
-
+                        CANMsg.DATA[2] = 0x0D;
                         break;
                     case "send_temperature":
-
+                        CANMsg.DATA[2] = 0x0E;
                         break;
                     case "send_agitator_speed":
-
+                        CANMsg.DATA[2] = 0x0F;
                         break;
                     case "send_turbidity":
-
+                        CANMsg.DATA[2] = 0x10;
                         break;
 
                     default:
@@ -179,6 +172,11 @@ namespace TACDLL
                 returnValue = "malform temperature command : " + command;
             }
             // Here we should send the packet
+            if (returnValue == "")
+            {
+                CANQueue.Instance.add(CANMsg);
+                CANQueue.Instance.executeFirst();
+            }
             return returnValue;
         }
 
@@ -217,7 +215,11 @@ namespace TACDLL
             throw new NotImplementedException();
         }
 
-        private byte parsePercent(string stringValue)
+        public void SetDataSet(BioBotDataSets dataset)
+        {
+        }
+
+        private byte ParsePercent(string stringValue)
         {
             byte result = 0;
             bool isStringByte = byte.TryParse(stringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out result);
