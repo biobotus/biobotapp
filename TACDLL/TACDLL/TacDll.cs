@@ -8,6 +8,7 @@ using BioBotApp.Utils.Communication.pcan;
 using System.Globalization;
 using System.Text;
 using BioBotApp.Model.Data;
+using Peak.Can.Basic;
 namespace TACDLL
 {
     /// <summary>
@@ -17,7 +18,29 @@ namespace TACDLL
     [ExportMetadata("Name", "TacPlugin")]
     public class TacDll : IModulePlugin
     {
-        private const int HARDWARE_FILTER_TAC = 0x70;
+
+        public byte HARDWARE_FILTER_TAC = 0x70;
+        Dictionary<string, int> byteCommandDict = new Dictionary<string, int>()
+        {
+            {"set_target_temperature", 0x00},
+            {"set_agitator_speed", 0x01},
+            {"set_fan_speed", 0x02},
+            {"start_calibration", 0x03},
+            {"stop_calibration", 0x04},
+            {"start_temperature_maintain", 0x05},
+            {"stop_temperature_maintain", 0x06},
+            {"enable_fan", 0x07},
+            {"disable_fan", 0x08},
+            {"enable_agitator", 0x09},
+            {"disable_agitator", 0x0a},
+            {"enable_peltier", 0x0b},
+            {"disable_peltier", 0x0c},
+            {"send_fan_speed", 0x0d},
+            {"send_temperature", 0x0e},
+            {"send_agitator_speed", 0x0f},
+            {"send_turbidity", 0x10}
+        };
+
         /// <summary>
         /// 
         /// </summary>
@@ -63,16 +86,14 @@ namespace TACDLL
             CANMsg.DATA[3] = 0;
             // Data Byte  1 to 4
             //  CANMsg.DATA[4 to 7] = 
-            CANMsg.ID = HARDWARE_FILTER_TAC;
-            PCANCom.Instance.send(CANMsg);
+            CANMsg.ID = this.HARDWARE_FILTER_TAC;
+            
 
             if (parsed_command.Length == 4)
             {
                 switch (parsed_command[0])
                 {
-                    case "set_taget_temperature":
-                        // 0X00 2 byte
-                        CANMsg.DATA[2] = 0;
+                    case "set_target_temperature":
                         float floatParam;
                         bool isParamFloat = float.TryParse(parsed_command[3], NumberStyles.Any, CultureInfo.InvariantCulture, out floatParam);
                         if(isParamFloat)
@@ -97,13 +118,9 @@ namespace TACDLL
                         }
                         break;
                     case "set_agitator_speed":
-                        // 0X01 1 byte
-                        CANMsg.DATA[2] = 0x01;
                         CANMsg.DATA[4] = ParsePercent(parsed_command[3]);
                         break;
                     case "set_fan_speed":
-                        // 0x02 1 byte
-                        CANMsg.DATA[2] = 0x02;
                         CANMsg.DATA[4] = ParsePercent(parsed_command[3]);
                         break;
 
@@ -111,71 +128,15 @@ namespace TACDLL
                         returnValue = "uknown command : " + command;
                         // raise error?
                         break;
-
                 }
             }
-            else if (parsed_command.Length == 3)
-            {
-                switch (parsed_command[0])
-                {
-                    case "start_calibration":
-                        CANMsg.DATA[2] = 0x03;
-                        break;
-                    case "stop_calibration":
-                        CANMsg.DATA[2] = 0x04;
-                        break;
-                    case "start_temparature_maintain":
-                        CANMsg.DATA[2] = 0x05;
-                        break;
-                    case "stop_temparature_maintain":
-                        CANMsg.DATA[2] = 0x06;
-                        break;
-                    case "enable_fan":
-                        CANMsg.DATA[2] = 0x07;
-                        break;
-                    case "disable_fan":
-                        CANMsg.DATA[2] = 0x08;
-                        break;
-                    case "enable_peltier":
-                        CANMsg.DATA[2] = 0x09;
-                        break;
-                    case "disable_peltier":
-                        CANMsg.DATA[2] = 0x0A;
-                        break;
-                    case "enable_agitator":
-                        CANMsg.DATA[2] = 0x0B;
-                        break;
-                    case "disable_agitator":
-                        CANMsg.DATA[2] = 0x0C;
-                        break;
-                    case "send_fan_speed":
-                        CANMsg.DATA[2] = 0x0D;
-                        break;
-                    case "send_temperature":
-                        CANMsg.DATA[2] = 0x0E;
-                        break;
-                    case "send_agitator_speed":
-                        CANMsg.DATA[2] = 0x0F;
-                        break;
-                    case "send_turbidity":
-                        CANMsg.DATA[2] = 0x10;
-                        break;
-
-                    default:
-                        returnValue = "uknown command : " + command;
-                        break;
-
-                }
-            }
-            else
-            {
-                returnValue = "malform temperature command : " + command;
-            }
+            // Need to check if parsed_command[0] is in the dictionary
+            // and if parsed_command.Length == 3 or 4
             // Here we should send the packet
             if (returnValue == "")
             {
-                CANQueue.Instance.add(CANMsg);
-                CANQueue.Instance.executeFirst();
+                CANMsg.DATA[2] = (Byte)byteCommandDict[parsed_command[0]];
+                PCANCom.Instance.send(CANMsg);
             }
             return returnValue;
         }
@@ -184,7 +145,8 @@ namespace TACDLL
         {
             var d = new Dictionary<string, UserControl>();
             d.Add("tacPluginRoot", new OptionCtrl.TacPluginDescription());
-            d.Add("tacPluginDoConfiguration", new OptionCtrl.optionTacCalibration());
+            // Need to be linked to the db here change the null null
+            d.Add("tacPluginDoConfiguration", new OptionCtrl.optionTacCalibration(null, null, this));
             return d;
         }
 
@@ -207,7 +169,7 @@ namespace TACDLL
 
         public UserControl GetModuleDescriptionControl(int moduleId)
         {
-            return new TACDLL.OptionCtrl.TacDescription();
+            return new TACDLL.OptionCtrl.TacDescription(this);
         }
 
         public void SetInChargeModule(List<string> moduleList)
@@ -228,6 +190,11 @@ namespace TACDLL
                 // raise error
             }
             return result;
+        }
+
+        public string BuildTacCmd(int moduleId, int subModuleId, string cmd, string value)
+        {
+            return cmd + " " + moduleId.ToString() + " " + subModuleId.ToString() + " " + value;
         }
     }
 }

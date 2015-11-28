@@ -16,7 +16,6 @@ namespace PCAN
 {
     public partial class CanConnectorControl : UserControl
     {
-        PCANCom pCanCom = new PCANCom();
 
         #region Members
         /// <summary>

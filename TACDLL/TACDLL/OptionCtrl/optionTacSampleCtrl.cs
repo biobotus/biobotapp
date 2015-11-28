@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BioBotApp.Utils.Communication.pcan;
 
 namespace TACDLL.OptionCtrl
 {
@@ -22,17 +16,22 @@ namespace TACDLL.OptionCtrl
         private bool resetProgress = false;
         int sampleNumber = 0;
         float sampleSum = 0;
-        
-        namedInputTextBox sampleDisplayTxt;
 
+        
+
+        namedInputTextBox sampleDisplayTxt;
+        TacDll tac;
         public optionTacSampleCtrl()
         {
             InitializeComponent();
+            PCANCom.Instance.OnMessageReceived += CANMessageReceived;
+
         }
 
-        public optionTacSampleCtrl(namedInputTextBox sampleTxt):this()
+        public optionTacSampleCtrl(namedInputTextBox sampleTxt, TacDll tacDll) :this()
         {
              sampleDisplayTxt = sampleTxt;
+             tac = tacDll;
         }
 
 
@@ -73,6 +72,7 @@ namespace TACDLL.OptionCtrl
                 isSampling = true;
                 btnStartSample.Text = "Stop sampling";
                 // Here we want to ask for new value of turbido
+                tac.ExecuteCommand(tac.BuildTacCmd(1,1, "send_turbidity", ""));
                 pullTurbidoValue();
             }
         }
@@ -91,14 +91,10 @@ namespace TACDLL.OptionCtrl
         /// </summary>
         void pullTurbidoValue()
         {
-            // @TODO we may coinsider a class sending message to the tac
-            // here we send the request for the right TAC throught the serial/can
-            // ID SUB_MODULE COMMANDE _ _ _ _ _ 
-            byte[] turbidityRequest = { 0x00 , 0x01, 0x10, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-
-            //@TODO here for test purpose to be change by a call to the serial interface
-            onTurbidoValueReceived();
+            //Ask for a new turbido value
+            tac.ExecuteCommand(tac.BuildTacCmd(1, 1, "send_turbidity", ""));
         }
+
 
         /// <summary>
         /// Listening the serial interface plug on the can, we wait for a new value of turbidity to calibrate our TAC
@@ -108,13 +104,13 @@ namespace TACDLL.OptionCtrl
         ///     - compute a mean of the value received up to this time.
         ///     - display the result.
         /// </summary>
-        void onTurbidoValueReceived()
+        void onTurbidoValueReceived(float value)
         {
             float meanValue = 0;
             // we wait 2 sec between the turbido values
             acquisitionTimer.Start();
             // get the sample value from the message
-            this.sampleSum += 1;
+            this.sampleSum += value;
             incrementSampleNumber();
             // we calculate the mean value
             meanValue = this.sampleSum / sampleNumber;
@@ -122,5 +118,19 @@ namespace TACDLL.OptionCtrl
             sampleDisplayTxt.setInputTextValue(meanValue.ToString());
         }
 
+        private void CANMessageReceived(object sender, PCANComEventArgs e)
+        {
+            if (e.CanMsg.DATA[0] == tac.HARDWARE_FILTER_TAC)
+            {
+                switch (e.CanMsg.DATA[2])
+                {
+                    // turbidity
+                    case 0x10:
+                        onTurbidoValueReceived(1);
+                        break;
+
+                }
+            }
+        }
     }
 }

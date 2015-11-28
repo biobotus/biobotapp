@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Can");
             this.panel1 = new System.Windows.Forms.Panel();
             this.tlvOptions = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,6 +58,10 @@
             this.tlvOptions.Location = new System.Drawing.Point(0, 0);
             this.tlvOptions.Margin = new System.Windows.Forms.Padding(2);
             this.tlvOptions.Name = "tlvOptions";
+            treeNode1.Name = "canNode";
+            treeNode1.Text = "Can";
+            this.tlvOptions.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             this.tlvOptions.Size = new System.Drawing.Size(150, 257);
             this.tlvOptions.TabIndex = 0;
             this.tlvOptions.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tlvOptions_AfterSelect);

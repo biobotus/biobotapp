@@ -30,7 +30,7 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.tempTB = new System.Windows.Forms.TextBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.agitPct = new System.Windows.Forms.TrackBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,13 +40,13 @@
             this.ventilCb = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.tacDescriptionPanel = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.sub1RB = new System.Windows.Forms.RadioButton();
+            this.sub2RB = new System.Windows.Forms.RadioButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.VentPct = new System.Windows.Forms.TrackBar();
             this.agitationCb = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.agitPct)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VentPct)).BeginInit();
             this.SuspendLayout();
@@ -69,13 +69,13 @@
             this.tempTB.Text = "0.00";
             this.tempTB.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // trackBar1
+            // agitPct
             // 
-            this.trackBar1.Location = new System.Drawing.Point(112, 76);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(148, 45);
-            this.trackBar1.TabIndex = 5;
-            this.trackBar1.Value = 5;
+            this.agitPct.Location = new System.Drawing.Point(112, 76);
+            this.agitPct.Name = "agitPct";
+            this.agitPct.Size = new System.Drawing.Size(148, 45);
+            this.agitPct.TabIndex = 5;
+            this.agitPct.Value = 5;
             // 
             // menuStrip1
             // 
@@ -156,27 +156,27 @@
             this.tacDescriptionPanel.Size = new System.Drawing.Size(245, 157);
             this.tacDescriptionPanel.TabIndex = 17;
             // 
-            // radioButton1
+            // sub1RB
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(170, 29);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(90, 17);
-            this.radioButton1.TabIndex = 18;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Sub-module 1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.sub1RB.AutoSize = true;
+            this.sub1RB.Checked = true;
+            this.sub1RB.Location = new System.Drawing.Point(170, 29);
+            this.sub1RB.Name = "sub1RB";
+            this.sub1RB.Size = new System.Drawing.Size(90, 17);
+            this.sub1RB.TabIndex = 18;
+            this.sub1RB.TabStop = true;
+            this.sub1RB.Text = "Sub-module 1";
+            this.sub1RB.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // sub2RB
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(170, 52);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(90, 17);
-            this.radioButton2.TabIndex = 19;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Sub-module 2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.sub2RB.AutoSize = true;
+            this.sub2RB.Location = new System.Drawing.Point(170, 52);
+            this.sub2RB.Name = "sub2RB";
+            this.sub2RB.Size = new System.Drawing.Size(90, 17);
+            this.sub2RB.TabIndex = 19;
+            this.sub2RB.Text = "Sub-module 2";
+            this.sub2RB.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
@@ -223,20 +223,20 @@
             this.Controls.Add(this.VentPct);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.sub2RB);
+            this.Controls.Add(this.sub1RB);
             this.Controls.Add(this.tacDescriptionPanel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.ventilCb);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.agitPct);
             this.Controls.Add(this.tempTB);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Simple Tac Client";
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.agitPct)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VentPct)).EndInit();
@@ -248,7 +248,7 @@
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tempTB;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar agitPct;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
@@ -258,8 +258,8 @@
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel tacDescriptionPanel;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton sub1RB;
+        private System.Windows.Forms.RadioButton sub2RB;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar VentPct;

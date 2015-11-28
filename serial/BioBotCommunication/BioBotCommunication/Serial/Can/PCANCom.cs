@@ -32,7 +32,6 @@ namespace BioBotApp.Utils.Communication.pcan
         }
         #endregion
 
-
         #region INSTANCE
         private static PCANCom instance;
         public static PCANCom Instance

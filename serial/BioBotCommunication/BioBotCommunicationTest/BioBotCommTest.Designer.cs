@@ -36,25 +36,26 @@
             // 
             // canConnectorControl1
             // 
-            this.canConnectorControl1.Location = new System.Drawing.Point(88, 35);
-            this.canConnectorControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.canConnectorControl1.Location = new System.Drawing.Point(48, 23);
             this.canConnectorControl1.Name = "canConnectorControl1";
-            this.canConnectorControl1.Size = new System.Drawing.Size(458, 313);
+            this.canConnectorControl1.Size = new System.Drawing.Size(305, 203);
             this.canConnectorControl1.TabIndex = 0;
             this.canConnectorControl1.Tag = "Can communication";
             // 
             // arduinoSerialCommControl1
             // 
-            this.arduinoSerialCommControl1.Location = new System.Drawing.Point(570, 208);
+            this.arduinoSerialCommControl1.Location = new System.Drawing.Point(380, 135);
+            this.arduinoSerialCommControl1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.arduinoSerialCommControl1.Name = "arduinoSerialCommControl1";
-            this.arduinoSerialCommControl1.Size = new System.Drawing.Size(327, 327);
+            this.arduinoSerialCommControl1.Size = new System.Drawing.Size(218, 213);
             this.arduinoSerialCommControl1.TabIndex = 1;
             // 
             // btnStartWorker
             // 
-            this.btnStartWorker.Location = new System.Drawing.Point(955, 214);
+            this.btnStartWorker.Location = new System.Drawing.Point(637, 139);
+            this.btnStartWorker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStartWorker.Name = "btnStartWorker";
-            this.btnStartWorker.Size = new System.Drawing.Size(163, 36);
+            this.btnStartWorker.Size = new System.Drawing.Size(109, 23);
             this.btnStartWorker.TabIndex = 2;
             this.btnStartWorker.Text = "Start worker";
             this.btnStartWorker.UseVisualStyleBackColor = true;
@@ -62,9 +63,10 @@
             // 
             // btnStopWorker
             // 
-            this.btnStopWorker.Location = new System.Drawing.Point(955, 256);
+            this.btnStopWorker.Location = new System.Drawing.Point(637, 166);
+            this.btnStopWorker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStopWorker.Name = "btnStopWorker";
-            this.btnStopWorker.Size = new System.Drawing.Size(163, 36);
+            this.btnStopWorker.Size = new System.Drawing.Size(109, 23);
             this.btnStopWorker.TabIndex = 3;
             this.btnStopWorker.Text = "Stop worker";
             this.btnStopWorker.UseVisualStyleBackColor = true;
@@ -72,13 +74,14 @@
             // 
             // BioBotCommTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1316, 632);
+            this.ClientSize = new System.Drawing.Size(877, 411);
             this.Controls.Add(this.btnStopWorker);
             this.Controls.Add(this.btnStartWorker);
             this.Controls.Add(this.arduinoSerialCommControl1);
             this.Controls.Add(this.canConnectorControl1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BioBotCommTest";
             this.Text = "Form1";
             this.ResumeLayout(false);

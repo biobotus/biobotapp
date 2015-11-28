@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TACDLL;
+
 namespace SimpleTacClient
 {
     public partial class MainForm : Form
     {
         Option.frmOptions option;
         TacDll tacPlugin;
+        TACDLL.OptionCtrl.TacDescription tacDesc; 
         public MainForm(TacDll dll)
         {
             InitializeComponent();
             tacPlugin = dll;
             option = new Option.frmOptions(tacPlugin.GetConfTreeNode(), tacPlugin.getConfAction());
             tacDescriptionPanel.Controls.Clear();
-            tacDescriptionPanel.Controls.Add(tacPlugin.GetModuleDescriptionControl(1234));
+            tacDesc = (TACDLL.OptionCtrl.TacDescription)tacPlugin.GetModuleDescriptionControl(1234);
+            tacDescriptionPanel.Controls.Add(tacDesc);
 
-            dll.ExecuteCommand("set_taget_temperature 32.65 7 2");
-            dll.ExecuteCommand("set_taget_temperature 254.58 7 2");
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -61,23 +55,53 @@ namespace SimpleTacClient
 
         private void button3_Click(object sender, EventArgs e)
         {
-            tacPlugin.ExecuteCommand("start_calibration 1 1");
+            int subModuleId = GetSubModuleId();
+            tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "start_calibration", ""));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int agitation = trackBar1.Value * 10;
-            string agitationCommand = "set_agitator_speed 1 1 " + agitation.ToString();
-            tacPlugin.ExecuteCommand(agitationCommand);
+            int subModuleId = GetSubModuleId();
 
-            string tempCmd = "set_taget_temperature 1 1 " + tempTB.Text;
-            tacPlugin.ExecuteCommand(tempCmd);
-
-            if(ventilCb.Checked )
+            if (agitationCb.Checked)
             {
-                int vent = trackBar1.Value * 10;
-                string ventCmd =;
+                int agitationValue = agitPct.Value * 10;
+                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "set_agitator_speed", agitationValue.ToString()));
+                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "enable_agitator", ""));
             }
+            else
+            {
+                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "disable_agitator", ""));
+            }
+
+            // TODO verify that tempTB.Text is a float
+            tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "set_target_temperature", tempTB.Text));
+
+            if (ventilCb.Checked )
+            {
+                int vent = VentPct.Value * 10;
+                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "set_fan_speed", vent.ToString()));
+                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "enable_fan", ""));
+            }
+            else
+            {
+                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "disable_fan", ""));
+            }
+        }
+
+        private string BuildTacCmd(int moduleId, int subModuleId, string cmd, string value)
+        {
+            return cmd + " " + moduleId.ToString() + " " + subModuleId.ToString() + " " + value;
+        }
+
+        private int GetSubModuleId()
+        {
+            int subModuleId = 1;
+            if (sub2RB.Checked)
+            {
+                subModuleId = 2;
+            }
+            return subModuleId;
         }
     }
 }

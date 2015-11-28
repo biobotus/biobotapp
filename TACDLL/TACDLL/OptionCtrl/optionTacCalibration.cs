@@ -13,6 +13,7 @@ namespace TACDLL.OptionCtrl
 {
     public partial class optionTacCalibration : UserControl
     {
+        TacDll tac;
         public optionTacCalibration()
         {
             InitializeComponent();
@@ -24,8 +25,9 @@ namespace TACDLL.OptionCtrl
         /// <param name="dsModuleStruct"></param>
         /// <param name="tacModel"></param>
         // TODO ajouter en entré la liste des models concerné.
-        public optionTacCalibration(DataSets.dsTacCalibration dsModuleStruct, string tacModel):this()
+        public optionTacCalibration(DataSets.dsTacCalibration dsModuleStruct, string tacModel, TacDll tacDll) :this()
         {
+            tac = tacDll;
             this.dsModuleStructure = dsModuleStruct;
   //          DataView dv = dsModuleStructure.dtModule.DefaultView;
   //          DataView dv2 = dsModuleStructure.dtTacCalibrationData.DefaultView;
@@ -52,7 +54,7 @@ namespace TACDLL.OptionCtrl
 
             namedInputTextBox density = new namedInputTextBox("Optical density");
             namedInputTextBox sample = new namedInputTextBox("Tac value","0");
-            optionTacSampleCtrl sampleCtrl = new optionTacSampleCtrl(sample);
+            optionTacSampleCtrl sampleCtrl = new optionTacSampleCtrl(sample, tac);
 
             dialog.addNamedInputTextBox(density);
             dialog.addNamedInputTextBox(sample);

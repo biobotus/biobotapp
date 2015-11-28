@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using PCAN;
+using BioBotApp.Utils.Communication.pcan;
 namespace SimpleTacClient.Option
 {
     public partial class frmOptions : Form
@@ -19,6 +15,9 @@ namespace SimpleTacClient.Option
             InitializeComponent();
             tlvOptions.Nodes.Add(tacConfRoot);
             treeViewAction = actions;
+            treeViewAction.Add("canNode", new CanConnectorControl());
+            PCANCom p = PCANCom.Instance;
+            p.test = "toto";
         }
 
         private void tlvOptions_AfterSelect(object sender, TreeViewEventArgs e)
