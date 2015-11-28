@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace BioBotApp.View.Services
 {
-    public interface IInformationValueServiceView //: IDatasetViewControl
+    public interface IInformationValueServiceView 
     {
         DataGridView InformationValueDataTable { set; }
 
@@ -21,5 +21,6 @@ namespace BioBotApp.View.Services
 
         int ObjectForeignKey { get; }
 
+        void OnPropertyChange(int pk_id);
     }
 }

@@ -67,7 +67,22 @@ namespace BioBotApp.View.Services
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            PropertyTypePresenter.CurrentChanged(sender,e);
+
+        }
+
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (bbtpropertytypeBindingSource.Current == null)
+            {
+                return;
+            }
+
+            Model.Data.BioBotDataSets.bbt_property_typeRow row;
+            DataRowView rowView = bbtpropertytypeBindingSource.Current as DataRowView;
+            row = rowView.Row as Model.Data.BioBotDataSets.bbt_property_typeRow;
+
+
+            PropertyTypePresenter.CurrentChanged(row.pk_id, e);
         }
 
         /*

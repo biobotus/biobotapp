@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Presenter.Services
 {
-    public class PropertyServicesPresenter
+    public class PropertyServicesPresenter : Model.EventBus.Subscriber
     {
 
         private readonly IPropertyServiceView m_View;
@@ -20,10 +20,16 @@ namespace BioBotApp.Presenter.Services
         this.m_View = view;
         //this.PropertyServiceModel = model;    
     }
-    [Model.EventBus.Subscribe]
-    public void onCurrentChanged(Model.EventBus.Events.Property.PropertyCurrentChanged e)
+
+    public void OnPropertyChanged(int sender, EventArgs e)
     {
-        this.m_View.onPropertyTypeCurrentChange(e.Row);
+            Model.Data.Services.PropertyService.Instance.OnPropertyChange(sender, e);
+    }
+
+    [Model.EventBus.Subscribe]
+    public void onCurrentChanged(Model.EventBus.Events.Property.PropertyTypeCurrentChanged e)
+    {
+        this.m_View.onPropertyTypeCurrentChange(e.pk_id);
     }
 
     }

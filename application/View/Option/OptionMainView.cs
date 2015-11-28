@@ -24,6 +24,10 @@ namespace BioBotApp.View.Option
             {
                 setOptionControl(new OptionServicesPropertyView());
             }
+            else if (e.Node.Name.Equals("ObjectNode"))
+            {
+                setOptionControl(new OptionServicesObjectView());
+            }
             else
             {
                 setOptionControl(null);

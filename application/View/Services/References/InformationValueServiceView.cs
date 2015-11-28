@@ -24,7 +24,7 @@ namespace BioBotApp.View.Services
             InitializeComponent();
             presenter = new InformationValueServicesPresenter(this);
             this.bioBotDataSets = dataset;
-            this.bbtinformationvalueBindingSource.DataSource = bioBotDataSets;
+            this.InformationValueBindingSource.DataSource = bioBotDataSets;
         }
 
         /* 
@@ -35,7 +35,7 @@ namespace BioBotApp.View.Services
         {
             set
             {
-                this.dataGridView1.DataSource = bbtinformationvalueBindingSource;
+                this.dataGridView1.DataSource = InformationValueBindingSource;
             }
         }
 
@@ -44,7 +44,7 @@ namespace BioBotApp.View.Services
             get
             {
                 Model.Data.BioBotDataSets.bbt_information_valueRow row;
-                DataRowView rowView = bbtinformationvalueBindingSource.Current as DataRowView;
+                DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
                 row = rowView.Row as Model.Data.BioBotDataSets.bbt_information_valueRow;
                 return row.pk_id;
             }
@@ -54,7 +54,7 @@ namespace BioBotApp.View.Services
             get
             {
                 Model.Data.BioBotDataSets.bbt_information_valueRow row;
-                DataRowView rowView = bbtinformationvalueBindingSource.Current as DataRowView;
+                DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
                 row = rowView.Row as Model.Data.BioBotDataSets.bbt_information_valueRow;
                 return row;
             }
@@ -64,7 +64,7 @@ namespace BioBotApp.View.Services
             get
             {
                 Model.Data.BioBotDataSets.bbt_propertyRow row;
-                DataRowView rowView = bbtpropertyBindingSource.Current as DataRowView;
+                DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
                 row = rowView.Row as Model.Data.BioBotDataSets.bbt_propertyRow;
                 return row.pk_id;
             }
@@ -74,7 +74,7 @@ namespace BioBotApp.View.Services
             get
             {
                 Model.Data.BioBotDataSets.bbt_objectRow row;
-                DataRowView rowView = bbtobjectBindingSource.Current as DataRowView;
+                DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
                 row = rowView.Row as Model.Data.BioBotDataSets.bbt_objectRow;
                 return row.pk_id;
             }
@@ -84,7 +84,7 @@ namespace BioBotApp.View.Services
             get
             {
                 Model.Data.BioBotDataSets.bbt_propertyRow row;
-                DataRowView rowView = bbtpropertyBindingSource.Current as DataRowView;
+                DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
                 row = rowView.Row as Model.Data.BioBotDataSets.bbt_propertyRow;
                 return row.description;
             }
@@ -94,7 +94,7 @@ namespace BioBotApp.View.Services
             get
             {
                 Model.Data.BioBotDataSets.bbt_objectRow row;
-                DataRowView rowView = bbtobjectBindingSource.Current as DataRowView;
+                DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
                 row = rowView.Row as Model.Data.BioBotDataSets.bbt_objectRow;
                 return row.description;
             }
@@ -120,6 +120,10 @@ namespace BioBotApp.View.Services
         private void Delete_Click(object sender, EventArgs e)
         {
 
+        }
+        public void OnPropertyChange(int pk_id)
+        {
+            this.InformationValueBindingSource.Filter = "fk_property =" + pk_id;
         }
                 
     }

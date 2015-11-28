@@ -73,5 +73,9 @@ namespace BioBotApp.Model.Data.Services
                 this.dbManager.projectDataset.bbt_property.RejectChanges();
             }
         }
+        public void OnPropertyChange(int sender, EventArgs e)
+        {
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Property.PropertyCurrentChanged(sender));
+        }
     }
 }

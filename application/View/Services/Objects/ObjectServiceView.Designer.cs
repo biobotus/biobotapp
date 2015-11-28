@@ -30,12 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.crudOptions1 = new BioBotApp.Controls.Utils.crudOptions();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
-            this.bbt_object_typeTableAdapter1 = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_object_typeTableAdapter();
-            this.ObjectTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bbtobjecttypebbtobjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bbt_objectTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_objectTableAdapter();
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkobjecttypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,12 +46,14 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ObjectTypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bbtobjecttypebbtobjectBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.crudOptions1);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
@@ -63,8 +63,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Object";
             // 
+            // crudOptions1
+            // 
+            this.crudOptions1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.crudOptions1.ButtonRefreshVisible = false;
+            this.crudOptions1.LayoutLeftToRight = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.crudOptions1.Location = new System.Drawing.Point(108, 18);
+            this.crudOptions1.MinimumSize = new System.Drawing.Size(37, 37);
+            this.crudOptions1.Name = "crudOptions1";
+            this.crudOptions1.Size = new System.Drawing.Size(156, 37);
+            this.crudOptions1.TabIndex = 1;
+            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -76,39 +94,22 @@
             this.activatedDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.fkobjectDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.bbtobjecttypebbtobjectBindingSource;
+            this.dataGridView1.DataSource = this.bindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(6, 61);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(258, 373);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // crudOptions1
-            // 
-            this.crudOptions1.LayoutLeftToRight = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.crudOptions1.Location = new System.Drawing.Point(108, 18);
-            this.crudOptions1.MinimumSize = new System.Drawing.Size(37, 37);
-            this.crudOptions1.Name = "crudOptions1";
-            this.crudOptions1.Size = new System.Drawing.Size(156, 37);
-            this.crudOptions1.TabIndex = 1;
             // 
             // bioBotDataSets
             // 
             this.bioBotDataSets.DataSetName = "BioBotDataSets";
             this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // bbt_object_typeTableAdapter1
+            // bindingSource1
             // 
-            this.bbt_object_typeTableAdapter1.ClearBeforeFill = true;
-            // 
-            // ObjectTypeBindingSource
-            // 
-            this.ObjectTypeBindingSource.DataMember = "bbt_object_type";
-            this.ObjectTypeBindingSource.DataSource = this.bioBotDataSets;
-            // 
-            // bbtobjecttypebbtobjectBindingSource
-            // 
-            this.bbtobjecttypebbtobjectBindingSource.DataMember = "bbt_object_type_bbt_object";
-            this.bbtobjecttypebbtobjectBindingSource.DataSource = this.ObjectTypeBindingSource;
+            this.bindingSource1.DataMember = "bbt_object";
+            this.bindingSource1.DataSource = this.bioBotDataSets;
             // 
             // bbt_objectTableAdapter
             // 
@@ -172,8 +173,7 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ObjectTypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bbtobjecttypebbtobjectBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -192,9 +192,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn activatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fkobjectDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource bbtobjecttypebbtobjectBindingSource;
-        private System.Windows.Forms.BindingSource ObjectTypeBindingSource;
-        private Model.Data.BioBotDataSetsTableAdapters.bbt_object_typeTableAdapter bbt_object_typeTableAdapter1;
+        private System.Windows.Forms.BindingSource bindingSource1;
         private Model.Data.BioBotDataSetsTableAdapters.bbt_objectTableAdapter bbt_objectTableAdapter;
     }
 }

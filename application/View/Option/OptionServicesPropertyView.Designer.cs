@@ -32,13 +32,13 @@ namespace BioBotApp.View.Option
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionServicesPropertyView));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.propertyTypeServiceView1 = new BioBotApp.View.Services.PropertyTypeServiceView();
+            this.propertyServiceView1 = new BioBotApp.View.Services.PropertyServiceView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.informationValueServiceView1 = new BioBotApp.View.Services.InformationValueServiceView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.objectPropertyServiceView1 = new BioBotApp.View.Services.ObjectPropertyServiceView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.propertyServiceView1 = new BioBotApp.View.Services.PropertyServiceView();
+            this.objectPropertyServiceView1 = new BioBotApp.View.Services.ObjectPropertyServiceView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -71,6 +71,15 @@ namespace BioBotApp.View.Option
             this.propertyTypeServiceView1.Size = new System.Drawing.Size(255, 515);
             this.propertyTypeServiceView1.TabIndex = 0;
             // 
+            // propertyServiceView1
+            // 
+            this.propertyServiceView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.propertyServiceView1.Location = new System.Drawing.Point(265, 38);
+            this.propertyServiceView1.Name = "propertyServiceView1";
+            this.propertyServiceView1.Size = new System.Drawing.Size(256, 480);
+            this.propertyServiceView1.TabIndex = 1;
+            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -97,12 +106,10 @@ namespace BioBotApp.View.Option
             // 
             // informationValueServiceView1
             // 
-            this.informationValueServiceView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.informationValueServiceView1.Location = new System.Drawing.Point(6, 6);
+            this.informationValueServiceView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.informationValueServiceView1.Location = new System.Drawing.Point(3, 3);
             this.informationValueServiceView1.Name = "informationValueServiceView1";
-            this.informationValueServiceView1.Size = new System.Drawing.Size(236, 442);
+            this.informationValueServiceView1.Size = new System.Drawing.Size(242, 448);
             this.informationValueServiceView1.TabIndex = 0;
             // 
             // tabPage2
@@ -116,13 +123,6 @@ namespace BioBotApp.View.Option
             this.tabPage2.Text = "Object";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // objectPropertyServiceView1
-            // 
-            this.objectPropertyServiceView1.Location = new System.Drawing.Point(6, 6);
-            this.objectPropertyServiceView1.Name = "objectPropertyServiceView1";
-            this.objectPropertyServiceView1.Size = new System.Drawing.Size(239, 443);
-            this.objectPropertyServiceView1.TabIndex = 0;
-            // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -133,14 +133,13 @@ namespace BioBotApp.View.Option
             this.tabPage3.Text = "Operation";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // propertyServiceView1
+            // objectPropertyServiceView1
             // 
-            this.propertyServiceView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyServiceView1.Location = new System.Drawing.Point(265, 38);
-            this.propertyServiceView1.Name = "propertyServiceView1";
-            this.propertyServiceView1.Size = new System.Drawing.Size(256, 480);
-            this.propertyServiceView1.TabIndex = 1;
+            this.objectPropertyServiceView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectPropertyServiceView1.Location = new System.Drawing.Point(3, 3);
+            this.objectPropertyServiceView1.Name = "objectPropertyServiceView1";
+            this.objectPropertyServiceView1.Size = new System.Drawing.Size(242, 448);
+            this.objectPropertyServiceView1.TabIndex = 0;
             // 
             // OptionServicesPropertyView
             // 
@@ -164,9 +163,9 @@ namespace BioBotApp.View.Option
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private Services.ObjectPropertyServiceView objectPropertyServiceView1;
         private Services.PropertyTypeServiceView propertyTypeServiceView1;
         private Services.InformationValueServiceView informationValueServiceView1;
         private Services.PropertyServiceView propertyServiceView1;
+        private Services.ObjectPropertyServiceView objectPropertyServiceView1;
     }
 }

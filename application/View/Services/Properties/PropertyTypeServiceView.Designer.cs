@@ -75,6 +75,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(297, 399);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // pkidDataGridViewTextBoxColumn
             // 
@@ -105,6 +106,7 @@
             // crudOptions1
             // 
             this.crudOptions1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.crudOptions1.ButtonRefreshVisible = false;
             this.crudOptions1.LayoutLeftToRight = System.Windows.Forms.FlowDirection.RightToLeft;
             this.crudOptions1.Location = new System.Drawing.Point(138, 19);
             this.crudOptions1.MinimumSize = new System.Drawing.Size(37, 37);

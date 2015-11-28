@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Presenter.Services
 {
-    public class InformationValueServicesPresenter //: DatasetPresenter
+    public class InformationValueServicesPresenter : Model.EventBus.Subscriber
     {
         IInformationValueServiceView view;
 
@@ -26,6 +26,10 @@ namespace BioBotApp.Presenter.Services
             
         }
 
-
+        [Model.EventBus.Subscribe]
+        public void OnPropertyChange(Model.EventBus.Events.Property.PropertyCurrentChanged e)
+        {
+            this.view.OnPropertyChange(e.pk_id);
+        }
     }
 }

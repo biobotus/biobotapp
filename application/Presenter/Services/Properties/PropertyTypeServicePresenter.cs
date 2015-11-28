@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BioBotApp.Presenter.Services
 {
@@ -17,7 +18,7 @@ namespace BioBotApp.Presenter.Services
         {
             this.View = View;
         }
-        public void CurrentChanged(object sender, EventArgs e)
+        public void CurrentChanged(int sender, EventArgs e)
         {
             Model.Data.Services.PropertyTypeService.Instance.CurrentChanged(sender,e);
         }

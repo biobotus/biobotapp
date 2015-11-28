@@ -3,6 +3,7 @@ using BioBotApp.View.Communication;
 using BioBotApp.View.Deck;
 using BioBotApp.View.Execute;
 using BioBotApp.View.Operation;
+using BioBotApp.View.Option;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
 using BioBotApp.View.Step;
@@ -29,9 +30,9 @@ namespace BioBotApp
             Model.Data.DBManager.Instance.initializeDataSet();
 
             //ObjectTypeTestForm form = new ObjectTypeTestForm();
-            Form form = new Form();
-            ExecuteView form2 = new ExecuteView(); 
-            form.Controls.Add(form2);
+            OptionMainView form = new OptionMainView();
+            //OptionServicesPropertyView form2 = new OptionServicesPropertyView(); 
+            //form.Controls.Add(form2);
             Application.Run(form);
         }
     }

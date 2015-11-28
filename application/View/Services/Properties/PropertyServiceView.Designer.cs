@@ -30,23 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PropertyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
-            this.crudOptions1 = new BioBotApp.Controls.Utils.crudOptions();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bbt_object_propertyTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter();
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkpropertytypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
+            this.crudOptions1 = new BioBotApp.Controls.Utils.crudOptions();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bbt_propertyTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_propertyTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PropertyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -56,17 +59,36 @@
             this.pkidDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.fkpropertytypeDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.PropertyBindingSource;
+            this.dataGridView1.DataSource = this.bindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(6, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(287, 386);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
-            // PropertyBindingSource
+            // pkidDataGridViewTextBoxColumn
             // 
-            this.PropertyBindingSource.DataMember = "bbt_property";
-            this.PropertyBindingSource.DataSource = this.bioBotDataSets;
+            this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
+            this.pkidDataGridViewTextBoxColumn.HeaderText = "pk_id";
+            this.pkidDataGridViewTextBoxColumn.Name = "pkidDataGridViewTextBoxColumn";
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // fkpropertytypeDataGridViewTextBoxColumn
+            // 
+            this.fkpropertytypeDataGridViewTextBoxColumn.DataPropertyName = "fk_property_type";
+            this.fkpropertytypeDataGridViewTextBoxColumn.HeaderText = "fk_property_type";
+            this.fkpropertytypeDataGridViewTextBoxColumn.Name = "fkpropertytypeDataGridViewTextBoxColumn";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataMember = "bbt_property";
+            this.bindingSource1.DataSource = this.bioBotDataSets;
             // 
             // bioBotDataSets
             // 
@@ -98,28 +120,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Property";
             // 
-            // bbt_object_propertyTableAdapter
-            // 
-            this.bbt_object_propertyTableAdapter.ClearBeforeFill = true;
-            // 
-            // pkidDataGridViewTextBoxColumn
-            // 
-            this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
-            this.pkidDataGridViewTextBoxColumn.HeaderText = "pk_id";
-            this.pkidDataGridViewTextBoxColumn.Name = "pkidDataGridViewTextBoxColumn";
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            // 
-            // fkpropertytypeDataGridViewTextBoxColumn
-            // 
-            this.fkpropertytypeDataGridViewTextBoxColumn.DataPropertyName = "fk_property_type";
-            this.fkpropertytypeDataGridViewTextBoxColumn.HeaderText = "fk_property_type";
-            this.fkpropertytypeDataGridViewTextBoxColumn.Name = "fkpropertytypeDataGridViewTextBoxColumn";
-            // 
             // bbt_propertyTableAdapter
             // 
             this.bbt_propertyTableAdapter.ClearBeforeFill = true;
@@ -132,7 +132,7 @@
             this.Name = "PropertyServiceView";
             this.Size = new System.Drawing.Size(305, 460);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PropertyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -145,11 +145,10 @@
         private Model.Data.BioBotDataSets bioBotDataSets;
         private Controls.Utils.crudOptions crudOptions1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.BindingSource PropertyBindingSource;
-        private Model.Data.BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter bbt_object_propertyTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn pkidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fkpropertytypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource bindingSource1;
         private Model.Data.BioBotDataSetsTableAdapters.bbt_propertyTableAdapter bbt_propertyTableAdapter;
     }
 }
