@@ -82,5 +82,9 @@ namespace BioBotApp.Model.Data.Services
                 this.dbManager.projectDataset.bbt_object_type.RejectChanges();
             }
         }
+        public void OnObjectTypeChange(int pk_id,EventArgs e)
+        {
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Object.OnObjectTypeChange(pk_id));
+        }
     }
 }
