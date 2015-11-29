@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Presenter.Services;
 using BioBotApp.Model.Data.Services;
-using BioBotApp.Controls.Option.Options;
 using BioBotApp.View.Utils;
 
 namespace BioBotApp.View.Services

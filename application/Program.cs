@@ -4,7 +4,6 @@ using BioBotApp.View.Deck;
 using BioBotApp.View.Execute;
 using BioBotApp.View.Operation;
 using BioBotApp.View.Option;
-using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
 using BioBotApp.View.Step;
 using BioBotApp.View.TestView;
