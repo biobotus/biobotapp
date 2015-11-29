@@ -32,9 +32,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
             this.toolbarPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnUp = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvOperation = new System.Windows.Forms.DataGridView();
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,41 +93,17 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(2, 186);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(43, 42);
-            this.btnDown.TabIndex = 7;
-            this.btnDown.Text = "down";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
             // toolbarPanel
             // 
             this.toolbarPanel.Controls.Add(this.btnAdd);
             this.toolbarPanel.Controls.Add(this.btnEdit);
             this.toolbarPanel.Controls.Add(this.btnDelete);
-            this.toolbarPanel.Controls.Add(this.btnUp);
-            this.toolbarPanel.Controls.Add(this.btnDown);
             this.toolbarPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolbarPanel.Location = new System.Drawing.Point(659, 3);
             this.toolbarPanel.Margin = new System.Windows.Forms.Padding(2);
             this.toolbarPanel.Name = "toolbarPanel";
             this.toolbarPanel.Size = new System.Drawing.Size(46, 303);
             this.toolbarPanel.TabIndex = 3;
-            // 
-            // btnUp
-            // 
-            this.btnUp.Location = new System.Drawing.Point(2, 140);
-            this.btnUp.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(43, 42);
-            this.btnUp.TabIndex = 6;
-            this.btnUp.Text = "up";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // panel2
             // 
@@ -310,9 +284,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.FlowLayoutPanel toolbarPanel;
-        private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvOperation;
         private Model.Data.BioBotDataSets bioBotDataSet;

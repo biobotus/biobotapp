@@ -236,7 +236,7 @@ namespace BioBotApp.View.Step
                 if (!(stepObjectReference.getComboBox().DataSource is BindingSource)) return;
 
                 BioBotDataSets.bbt_objectRow objectRow = getSelectedObjectRow(stepObjectReference.getComboBox().DataSource as BindingSource);
-                int index = protocolRow.Getbbt_stepRows().Length + 1;
+                int index = protocolRow.Getbbt_stepRows().Length + protocolRow.Getbbt_protocolRows().Length + 1;
 
                 this.presenter.addStepRow(protocolRow.pk_id, description, objectRow.pk_id, index);
             }
@@ -253,10 +253,19 @@ namespace BioBotApp.View.Step
         {
             Boolean enableControl = !(dgvOperation.Rows.GetRowCount(DataGridViewElementStates.Visible) == 0);
             btnDelete.Enabled = enableControl;
-            btnDown.Enabled = enableControl;
             btnEdit.Enabled = enableControl;
-            btnUp.Enabled = enableControl;
-            btnDown.Enabled = enableControl;
+        }
+
+        public void addStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+        }
+
+        public void modifyStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+        }
+
+        public void deleteStepRow(int id)
+        {
         }
     }
 }

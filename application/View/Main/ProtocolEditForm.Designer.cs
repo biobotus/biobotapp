@@ -1,6 +1,6 @@
 ﻿namespace BioBotApp.View.Main
 {
-    partial class MainViewForm
+    partial class ProtocolEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainViewForm));
-            this.mainView1 = new BioBotApp.View.Main.MainViewControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProtocolEditForm));
+            this.protocolEditControl1 = new BioBotApp.View.Main.ProtocolEditControl();
             this.SuspendLayout();
             // 
-            // mainView1
+            // protocolEditControl1
             // 
-            this.mainView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainView1.Location = new System.Drawing.Point(0, 0);
-            this.mainView1.Name = "mainView1";
-            this.mainView1.Size = new System.Drawing.Size(915, 422);
-            this.mainView1.TabIndex = 0;
-            this.mainView1.Load += new System.EventHandler(this.mainView1_Load);
+            this.protocolEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.protocolEditControl1.Location = new System.Drawing.Point(0, 0);
+            this.protocolEditControl1.Name = "protocolEditControl1";
+            this.protocolEditControl1.Size = new System.Drawing.Size(981, 501);
+            this.protocolEditControl1.TabIndex = 0;
             // 
-            // MainViewForm
+            // ProtocolEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 422);
-            this.Controls.Add(this.mainView1);
-            this.Name = "MainViewForm";
-            this.Text = "MainViewForm";
+            this.ClientSize = new System.Drawing.Size(981, 501);
+            this.Controls.Add(this.protocolEditControl1);
+            this.Name = "ProtocolEditForm";
+            this.Text = "ProtocolEditForm";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MainViewControl mainView1;
+        private ProtocolEditControl protocolEditControl1;
     }
 }

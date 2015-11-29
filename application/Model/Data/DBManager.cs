@@ -40,11 +40,14 @@ namespace BioBotApp.Model.Data
             taManager.bbt_object_typeTableAdapter = new BioBotDataSetsTableAdapters.bbt_object_typeTableAdapter();
             taManager.bbt_operationTableAdapter = new BioBotDataSetsTableAdapters.bbt_operationTableAdapter();
             taManager.bbt_operation_referenceTableAdapter = new BioBotDataSetsTableAdapters.bbt_operation_referenceTableAdapter();
+            taManager.bbt_operation_reference_propertyTableAdapter = new BioBotDataSetsTableAdapters.bbt_operation_reference_propertyTableAdapter();
             taManager.bbt_operation_typeTableAdapter = new BioBotDataSetsTableAdapters.bbt_operation_typeTableAdapter();
             taManager.bbt_propertyTableAdapter = new BioBotDataSetsTableAdapters.bbt_propertyTableAdapter();
             taManager.bbt_protocolTableAdapter = new BioBotDataSetsTableAdapters.bbt_protocolTableAdapter();
             taManager.bbt_stepTableAdapter = new BioBotDataSetsTableAdapters.bbt_stepTableAdapter();
             taManager.bbt_operation_type_object_typeTableAdapter = new BioBotDataSetsTableAdapters.bbt_operation_type_object_typeTableAdapter();
+            taManager.bbt_save_protocolTableAdapter = new BioBotDataSetsTableAdapters.bbt_save_protocolTableAdapter();
+            taManager.bbt_save_protocol_referenceTableAdapter = new BioBotDataSetsTableAdapters.bbt_save_protocol_referenceTableAdapter();
         }
 
         public void initializeDataSet()
@@ -61,6 +64,8 @@ namespace BioBotApp.Model.Data
             taManager.bbt_protocolTableAdapter.Fill(projectDataset.bbt_protocol);
             taManager.bbt_stepTableAdapter.Fill(projectDataset.bbt_step);
             taManager.bbt_operation_type_object_typeTableAdapter.Fill(projectDataset.bbt_operation_type_object_type);
+            taManager.bbt_save_protocol_referenceTableAdapter.Fill(projectDataset.bbt_save_protocol_reference);
+            taManager.bbt_operation_reference_propertyTableAdapter.Fill(projectDataset.bbt_operation_reference_property);
         }
     }
 }

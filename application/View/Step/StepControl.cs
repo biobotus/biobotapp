@@ -246,7 +246,6 @@ namespace BioBotApp.View.Step
 
         public void setSelectedProtocolRow(BioBotDataSets.bbt_protocolRow row)
         {
-            throw new NotImplementedException();
         }
 
         public void setSelectedStepRow(BioBotDataSets.bbt_stepRow row)
@@ -254,6 +253,10 @@ namespace BioBotApp.View.Step
         }
 
         public void setSelectedObjectTypeRow(BioBotDataSets.bbt_object_typeRow row)
+        {
+        }
+
+        public void deleteStepRow(BioBotDataSets.bbt_stepRow row)
         {
         }
     }

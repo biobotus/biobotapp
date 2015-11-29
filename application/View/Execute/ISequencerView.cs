@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioBotApp.View.Main
+namespace BioBotApp.View.Execute
 {
-    public interface IMainView : IDatasetViewControl
+    public interface ISequencerView : IDatasetViewControl
     {
-        void setConnectionStatus(String status);
+
     }
 }

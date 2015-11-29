@@ -74,21 +74,20 @@ namespace BioBotApp.Model.Data.Services
         {
             int rowId = -1;
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.FindBypk_id(primaryKey);
-            OperationService.Instance.removeOperationsWithGivenStep(row);
-            rowId = row.pk_id;
-            row.Delete();
-            updateRow(row);
-            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
+            removeStepRow(row);
         }
 
         public void removeStepRow(BioBotDataSets.bbt_stepRow row)
         {
             int rowId = -1;
+            int index = -1;
+            BioBotDataSets.bbt_protocolRow parentRow = row.bbt_protocolRow;
             OperationService.Instance.removeOperationsWithGivenStep(row);
             rowId = row.pk_id;
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
             Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
+            Services.ProtocolService.Instance.updateIndex(parentRow, index);
         }
 
         public void removeStepsWithGivenObject(BioBotDataSets.bbt_objectRow parentToDeleteRow)

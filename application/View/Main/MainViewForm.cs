@@ -16,5 +16,10 @@ namespace BioBotApp.View.Main
         {
             InitializeComponent();
         }
+
+        private void mainView1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

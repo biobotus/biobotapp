@@ -13,6 +13,8 @@ namespace BioBotApp.View.Protocol
     {
         BioBotDataSets.bbt_protocolRow protocolRow;
         private int id = -1;
+        private List<Object> nodes;
+
         public ProtocolTreeNode(BioBotDataSets.bbt_protocolRow protocolRow)
         {
             this.protocolRow = protocolRow;

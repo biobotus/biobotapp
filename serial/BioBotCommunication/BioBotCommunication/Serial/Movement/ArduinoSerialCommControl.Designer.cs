@@ -65,8 +65,9 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(734, 327);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(180, 175);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -76,29 +77,32 @@
             this.panel1.Controls.Add(this.ddlPortName);
             this.panel1.Controls.Add(this.btnResfresh);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.MinimumSize = new System.Drawing.Size(259, 28);
+            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(259, 28);
+            this.panel1.Size = new System.Drawing.Size(173, 24);
             this.panel1.TabIndex = 0;
             // 
             // ddlPortName
             // 
             this.ddlPortName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlPortName.FormattingEnabled = true;
-            this.ddlPortName.Location = new System.Drawing.Point(122, 0);
+            this.ddlPortName.Location = new System.Drawing.Point(81, 0);
+            this.ddlPortName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ddlPortName.Name = "ddlPortName";
-            this.ddlPortName.Size = new System.Drawing.Size(109, 28);
+            this.ddlPortName.Size = new System.Drawing.Size(68, 21);
             this.ddlPortName.TabIndex = 1;
             // 
             // btnResfresh
             // 
             this.btnResfresh.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnResfresh.Image = global::BioBotCommunication.Properties.Resources.arrow_rotate_clockwise;
-            this.btnResfresh.Location = new System.Drawing.Point(231, 0);
-            this.btnResfresh.MinimumSize = new System.Drawing.Size(28, 28);
+            this.btnResfresh.Location = new System.Drawing.Point(149, 0);
+            this.btnResfresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnResfresh.MinimumSize = new System.Drawing.Size(24, 24);
             this.btnResfresh.Name = "btnResfresh";
-            this.btnResfresh.Size = new System.Drawing.Size(28, 28);
+            this.btnResfresh.Size = new System.Drawing.Size(24, 24);
             this.btnResfresh.TabIndex = 2;
             this.btnResfresh.UseVisualStyleBackColor = true;
             this.btnResfresh.Click += new System.EventHandler(this.btnResfresh_Click);
@@ -108,8 +112,9 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 28);
+            this.label1.Size = new System.Drawing.Size(81, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Port name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,19 +125,21 @@
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.ddlBaud);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(3, 37);
-            this.panel2.MinimumSize = new System.Drawing.Size(259, 28);
+            this.panel2.Location = new System.Drawing.Point(2, 30);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(259, 28);
+            this.panel2.Size = new System.Drawing.Size(173, 24);
             this.panel2.TabIndex = 1;
             // 
             // ddlBaud
             // 
             this.ddlBaud.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlBaud.FormattingEnabled = true;
-            this.ddlBaud.Location = new System.Drawing.Point(122, 0);
+            this.ddlBaud.Location = new System.Drawing.Point(81, 0);
+            this.ddlBaud.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ddlBaud.Name = "ddlBaud";
-            this.ddlBaud.Size = new System.Drawing.Size(137, 28);
+            this.ddlBaud.Size = new System.Drawing.Size(92, 21);
             this.ddlBaud.TabIndex = 1;
             // 
             // label2
@@ -140,8 +147,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 28);
+            this.label2.Size = new System.Drawing.Size(81, 24);
             this.label2.TabIndex = 0;
             this.label2.Text = "Baud:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,19 +160,21 @@
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel3.Controls.Add(this.ddlDataBits);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(3, 71);
-            this.panel3.MinimumSize = new System.Drawing.Size(259, 28);
+            this.panel3.Location = new System.Drawing.Point(2, 58);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(259, 28);
+            this.panel3.Size = new System.Drawing.Size(173, 24);
             this.panel3.TabIndex = 2;
             // 
             // ddlDataBits
             // 
             this.ddlDataBits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlDataBits.FormattingEnabled = true;
-            this.ddlDataBits.Location = new System.Drawing.Point(122, 0);
+            this.ddlDataBits.Location = new System.Drawing.Point(81, 0);
+            this.ddlDataBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ddlDataBits.Name = "ddlDataBits";
-            this.ddlDataBits.Size = new System.Drawing.Size(137, 28);
+            this.ddlDataBits.Size = new System.Drawing.Size(92, 21);
             this.ddlDataBits.TabIndex = 1;
             // 
             // label3
@@ -172,8 +182,9 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 28);
+            this.label3.Size = new System.Drawing.Size(81, 24);
             this.label3.TabIndex = 0;
             this.label3.Text = "Data bits:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -184,19 +195,21 @@
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel4.Controls.Add(this.ddlParity);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(3, 105);
-            this.panel4.MinimumSize = new System.Drawing.Size(259, 28);
+            this.panel4.Location = new System.Drawing.Point(2, 86);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(259, 28);
+            this.panel4.Size = new System.Drawing.Size(173, 24);
             this.panel4.TabIndex = 3;
             // 
             // ddlParity
             // 
             this.ddlParity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlParity.FormattingEnabled = true;
-            this.ddlParity.Location = new System.Drawing.Point(122, 0);
+            this.ddlParity.Location = new System.Drawing.Point(81, 0);
+            this.ddlParity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ddlParity.Name = "ddlParity";
-            this.ddlParity.Size = new System.Drawing.Size(137, 28);
+            this.ddlParity.Size = new System.Drawing.Size(92, 21);
             this.ddlParity.TabIndex = 1;
             // 
             // label4
@@ -204,8 +217,9 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Left;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 28);
+            this.label4.Size = new System.Drawing.Size(81, 24);
             this.label4.TabIndex = 0;
             this.label4.Text = "Parity:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -216,19 +230,21 @@
             this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel5.Controls.Add(this.ddlStopBits);
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(3, 139);
-            this.panel5.MinimumSize = new System.Drawing.Size(259, 28);
+            this.panel5.Location = new System.Drawing.Point(2, 114);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(259, 28);
+            this.panel5.Size = new System.Drawing.Size(173, 24);
             this.panel5.TabIndex = 4;
             // 
             // ddlStopBits
             // 
             this.ddlStopBits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlStopBits.FormattingEnabled = true;
-            this.ddlStopBits.Location = new System.Drawing.Point(122, 0);
+            this.ddlStopBits.Location = new System.Drawing.Point(81, 0);
+            this.ddlStopBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ddlStopBits.Name = "ddlStopBits";
-            this.ddlStopBits.Size = new System.Drawing.Size(137, 28);
+            this.ddlStopBits.Size = new System.Drawing.Size(92, 21);
             this.ddlStopBits.TabIndex = 1;
             // 
             // label5
@@ -236,17 +252,19 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 28);
+            this.label5.Size = new System.Drawing.Size(81, 24);
             this.label5.TabIndex = 0;
             this.label5.Text = "Stop bits:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(3, 173);
+            this.btnConnect.Location = new System.Drawing.Point(2, 142);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(104, 34);
+            this.btnConnect.Size = new System.Drawing.Size(69, 22);
             this.btnConnect.TabIndex = 5;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -254,11 +272,12 @@
             // 
             // ArduinoSerialCommControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ArduinoSerialCommControl";
-            this.Size = new System.Drawing.Size(734, 327);
+            this.Size = new System.Drawing.Size(180, 175);
             this.Load += new System.EventHandler(this.ArduinoSerialCommControl_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();

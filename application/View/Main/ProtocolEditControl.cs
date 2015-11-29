@@ -17,5 +17,10 @@ namespace BioBotApp.View.Main
         {
             InitializeComponent();
         }
+
+        public void setConnectionStatus(string status)
+        {
+
+        }
     }
 }

@@ -14,5 +14,10 @@ namespace BioBotApp.Presenter.Main
         {
 
         }
+
+        public void onConnectionStatusChange()
+        {
+
+        }
     }
 }

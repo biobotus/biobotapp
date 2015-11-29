@@ -53,10 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Communication\CommunicationService.cs" />
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\Data\BioBotDataSets1.Designer.cs">
+    <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -95,6 +96,7 @@
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Model\ModulePluginManager\IModulePlugin.cs" />
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
+    <Compile Include="Model\Sequencer\ExecuteService.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\Main\MainPresenter.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Presenter\Operation\OperationPresenter.cs" />
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
+    <Compile Include="Presenter\Sequencer\SequencerPresenter.cs" />
     <Compile Include="Presenter\Step\StepPresenter.cs" />
     <Compile Include="Presenter\Utils\DatasetPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -133,20 +136,13 @@
     <Compile Include="View\Deck\ObjectView.Designer.cs">
       <DependentUpon>ObjectView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Execute\ExecuteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Execute\ExecuteForm.Designer.cs">
-      <DependentUpon>ExecuteForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Execute\ExecuteView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Execute\ExecuteView.Designer.cs">
       <DependentUpon>ExecuteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Execute\ProtocolNode.cs" />
-    <Compile Include="View\Execute\StepNode.cs" />
+    <Compile Include="View\Execute\ISequencerView.cs" />
     <Compile Include="View\Execute\SubProtocolNode.cs" />
     <Compile Include="View\Jog\IJogView.cs" />
     <Compile Include="View\Jog\JogControl.cs">
@@ -156,11 +152,17 @@
       <DependentUpon>JogControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Main\IMainView.cs" />
-    <Compile Include="View\Main\MainView.cs">
+    <Compile Include="View\Main\MainTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\MainTestForm.Designer.cs">
+      <DependentUpon>MainTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\MainViewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Main\MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <Compile Include="View\Main\MainViewControl.Designer.cs">
+      <DependentUpon>MainViewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Main\ProtocolEditControl.cs">
       <SubType>UserControl</SubType>
@@ -173,6 +175,12 @@
     </Compile>
     <Compile Include="View\Main\MainViewForm.Designer.cs">
       <DependentUpon>MainViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\ProtocolEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\ProtocolEditForm.Designer.cs">
+      <DependentUpon>ProtocolEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ModulePluginManager\IModulePluginLoadedView.cs" />
     <Compile Include="View\ModulePluginManager\IModulePluginPairView.cs" />
@@ -246,11 +254,11 @@
     <Compile Include="View\Protocol\ProtocolControl.Designer.cs">
       <DependentUpon>ProtocolControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Protocol\ProtocolForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="View\Protocol\ProtocolStepView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Protocol\ProtocolForm.Designer.cs">
-      <DependentUpon>ProtocolForm.cs</DependentUpon>
+    <Compile Include="View\Protocol\ProtocolStepView.Designer.cs">
+      <DependentUpon>ProtocolStepView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Protocol\StepTreeNode.cs" />
     <Compile Include="View\Protocol\ProtocolTreeNode.cs" />
@@ -322,15 +330,31 @@
     <EmbeddedResource Include="View\Deck\ObjectView.resx">
       <DependentUpon>ObjectView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Execute\ExecuteForm.resx">
-      <DependentUpon>ExecuteForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Execute\ExecuteView.resx">
       <DependentUpon>ExecuteView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Jog\JogControl.resx">
       <DependentUpon>JogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\MainTestForm.resx">
+      <DependentUpon>MainTestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\MainViewControl.resx">
+      <DependentUpon>MainViewControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\MainViewForm.resx">
+      <DependentUpon>MainViewForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\ProtocolEditControl.resx">
+      <DependentUpon>ProtocolEditControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\ProtocolEditForm.resx">
+      <DependentUpon>ProtocolEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ModulePluginManager\ModulePluginLoadedView.resx">
       <DependentUpon>ModulePluginLoadedView.cs</DependentUpon>
@@ -362,8 +386,8 @@
     <EmbeddedResource Include="View\Protocol\ProtocolControl.resx">
       <DependentUpon>ProtocolControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Protocol\ProtocolForm.resx">
-      <DependentUpon>ProtocolForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\Protocol\ProtocolStepView.resx">
+      <DependentUpon>ProtocolStepView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Step\StepControl.resx">
       <DependentUpon>StepControl.cs</DependentUpon>

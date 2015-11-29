@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Model.Data;
+using BioBotApp.View.Step;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -22,12 +23,12 @@ namespace BioBotApp.View.Protocol
             this.id = row.pk_id;
         }
 
-        public BioBotDataSets.bbt_stepRow getProtocolRow()
+        public BioBotDataSets.bbt_stepRow getStepRow()
         {
             return this.row;
         }
 
-        public void setProtocolRow(BioBotDataSets.bbt_stepRow row)
+        public void setStepRow(BioBotDataSets.bbt_stepRow row)
         {
             this.row = row;
             this.Text = row.description;

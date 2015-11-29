@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BioBotApp.View.Execute
+namespace BioBotApp.View.Main
 {
-    public partial class ExecuteForm : Form
+    public partial class ProtocolEditForm : Form
     {
-        public ExecuteForm()
+        public ProtocolEditForm()
         {
             InitializeComponent();
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

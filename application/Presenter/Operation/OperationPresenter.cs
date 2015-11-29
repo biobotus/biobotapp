@@ -79,8 +79,7 @@ namespace BioBotApp.Presenter.Operation
         [Model.EventBus.Subscribe]
         public void onProtocolSelectionChange(Model.EventBus.Events.Protocol.ProtocolSelectionChangedEvent e)
         {
-            if (e.Row != null) return;
-            this.view.setSelectedStepRow(null);
+
         }
     }
 }

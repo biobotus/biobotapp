@@ -13,6 +13,7 @@ namespace BioBotApp.Presenter.Utils
         Model.Data.BioBotDataSets dataset;
         public DatasetPresenter(IDatasetViewControl datasetViewControl)
         {
+            if (datasetViewControl == null) return;
             this.datasetViewControl = datasetViewControl;
             this.dataset = Model.Data.DBManager.Instance.projectDataset;
             datasetViewControl.setProjectDataset(this.dataset);

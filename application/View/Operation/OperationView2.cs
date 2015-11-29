@@ -32,6 +32,7 @@ namespace BioBotApp.View.Step
             this.bsObjectType.DataSource = this.bioBotDataSet;
             this.bsOperationType.DataSource = this.bioBotDataSet;
             this.bsObjectTypeOperationType.DataSource = this.bsObjectType;
+            this.bsStep.Filter = "pk_id = -1";
         }
 
         public void setSelectedStepRow(BioBotDataSets.bbt_stepRow row)
@@ -42,7 +43,7 @@ namespace BioBotApp.View.Step
                 this.bsStep.Filter = "pk_id = -1";
                 return;
             }
-            this.bsStep.Filter = String.Empty;
+            this.bsStep.Filter = "pk_id = " + row.pk_id;
             stepRow = row;
             this.bsStep.Position = index;
         }
