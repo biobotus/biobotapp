@@ -14,27 +14,47 @@ namespace BioBotApp.View.Deck
     public partial class UserDeckForm : Form
     {
         private Module _object;
+        private bool ObjectDeactivated;
+        private bool ObjectActivated;
+        private int[] OffsetFirstHole = new int[2];
+        private int[] OffsetBoard = new int[2];
+        private int[] OffsetSupport = new int[2];
+        private int diameter;
 
         public UserDeckForm()
         {
             InitializeComponent();
+            ObjectDeactivated = false;
+            ObjectActivated = false;
         }
 
-        public UserDeckForm( int DeckSizeX, int DeckSizeY)
+        public UserDeckForm( int DeckCountX, int DeckCountY, int[] OfstFirstHole, int [] OfstBoard, int[] OfstSupport, int diamtr, string ModName,int ModWidth, int ModHeight,string activation,int deckX, int deckY, int rotation ): this()
         {
-            InitializeComponent();
-            deck_X_Box.Maximum = DeckSizeX;
+            OffsetFirstHole = OfstFirstHole;
+            OffsetBoard = OfstBoard;
+            OffsetSupport = OfstSupport;
+            diameter = diamtr;
+            ModuleName.Text = ModName;
+            ModuleWidth.Text = ModWidth.ToString();
+            ModuleHeight.Text = ModHeight.ToString();
+            deck_X_Box.Maximum = DeckCountX;
             deck_X_Box.Minimum = 0;
-            deck_Y_Box.Maximum = DeckSizeY;
+            deck_Y_Box.Maximum = DeckCountY;
             deck_Y_Box.Minimum = 0;
+            int Xcoord = (deckX - OffsetFirstHole[0] - OffsetSupport[0]) / (diameter + OffsetBoard[0]);
+            int Ycoord = (deckY - OffsetFirstHole[1] - OffsetSupport[1]) / (diameter + OffsetBoard[1]);
+            deck_X_Box.Value = Math.Floor(decimal.Parse(Xcoord.ToString()));
+            deck_Y_Box.Value = Math.Floor(decimal.Parse(Ycoord.ToString()));
+            Rotation_Box.SelectedItem = rotation.ToString();
+            if (activation == "1")
+            {
+                activatedBox.Checked = true;
+            }
+            else if (activation == "0")
+            {
+                DeactivedBox.Checked = true;
+            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-
 
         public Module getObjectUserForm(int width, int height)
         {
@@ -44,7 +64,7 @@ namespace BioBotApp.View.Deck
 
         public Boolean FullField()
         {
-            if (Rotation_Box.SelectedItem == null)
+            if (Rotation_Box.SelectedItem == null || (ObjectActivated == false && ObjectDeactivated == false))
             {
                 ErrorLabel.Text = "Please, enter a value for rotation";
                 ErrorLabel.Visible = true;
@@ -58,7 +78,10 @@ namespace BioBotApp.View.Deck
 
         public Module setRotation(int width, int height)
         {
-            Module obj = new Module(int.Parse(deck_X_Box.Value.ToString()), int.Parse(deck_Y_Box.Value.ToString()), width, height, int.Parse(Rotation_Box.SelectedItem.ToString()));
+            
+            int Xref = OffsetFirstHole[0] + int.Parse(deck_X_Box.Value.ToString()) * (OffsetBoard[0] + diameter) - OffsetSupport[0];
+            int Yref = OffsetFirstHole[0] + int.Parse(deck_Y_Box.Value.ToString()) * (OffsetBoard[1] + diameter) - OffsetSupport[1];
+            Module obj = new Module(Xref, Yref, width, height, int.Parse(Rotation_Box.SelectedItem.ToString()));
             int tmp;
             switch (obj.rotation)
             {
@@ -112,23 +135,42 @@ namespace BioBotApp.View.Deck
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        public string ChangeActivation()
         {
-
+            if (ObjectActivated == true) return "1";
+            else if (ObjectDeactivated == false) return "0";
+            return "1";
         }
 
-        private void deck_X_Box_TextChanged(object sender, EventArgs e)
+        private void OnValueChanged(object sender, EventArgs e)
         {
+           
+        }
+       
+        private void activatedBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ObjectActivated = true;
         }
 
-        private void deck_X_Box_ValueChanged(object sender, EventArgs e)
+        private void DeactivedBox_CheckedChanged(object sender, EventArgs e)
         {
-            
+            ObjectDeactivated = true;
         }
 
-        private void deck_Y_Box_ValueChanged(object sender, EventArgs e)
+        private void deck_X_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (deck_X_Box.Value > deck_X_Box.Maximum)
+            {
+                e.Handled = false;
+            }
+        }
 
+        private void deck_Y_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (deck_Y_Box.Value > deck_Y_Box.Maximum)
+            {
+                e.Handled = false;
+            }
         }
     }
 }

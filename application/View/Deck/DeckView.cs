@@ -23,11 +23,16 @@ namespace BioBotApp.View.Deck
         private int deckX;
         private int XPk;
         private int YPk;
-        private int dim;
-        private int deckTypePk;
+        private int XCount;
+        private int YCount;
+        private int[] HoleOffsetX = new int[2];
+        private int[] OffsetSupport = new int[2];
+        private int[] OffsetFirstHole = new int[2];
+        private int diameter;
         private double ratioX;
         private double ratioY;
         List<Button> buttons = new List<Button>();
+        List<Button> RemovableButtons = new List<Button>();
         private Module _NewObject;
 
 
@@ -42,71 +47,201 @@ namespace BioBotApp.View.Deck
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            BioBotDataSets.bbt_property_typeRow PropertyDim = dataset.bbt_property_type.Where(p => (p.description.ToString()).Equals("dimension", StringComparison.InvariantCultureIgnoreCase)).First();
-            dim = PropertyDim.pk_id;
-            BioBotDataSets.bbt_object_typeRow deckType = dataset.bbt_object_type.Where(p => (p.description.ToString()).Equals("deck", StringComparison.InvariantCultureIgnoreCase)).First();
-            deckTypePk = deckType.pk_id;
-            BioBotDataSets.bbt_propertyRow PropertyX = dataset.bbt_property.Where(p => (p.description.ToString()).Equals("xlength", StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type == dim).First();
-            XPk = PropertyX.pk_id;
-            BioBotDataSets.bbt_propertyRow PropertyY = dataset.bbt_property.Where(p => (p.description.ToString()).Equals("ylength", StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type == dim).First();
-            YPk = PropertyY.pk_id;
-            BioBotDataSets.bbt_objectRow deck = dataset.bbt_object.Where(p => p.activated == "1" && p.fk_object_type == deckTypePk).First();
-            BioBotDataSets.bbt_object_propertyRow deckXRealRow = dataset.bbt_object_property.Where(p => p.fk_object_type_id == deck.fk_object_type && p.fk_properties_id == XPk).First();
-            deckXReal = int.Parse(deckXRealRow.value);
-            BioBotDataSets.bbt_object_propertyRow deckYRealRow = dataset.bbt_object_property.Where(p => p.fk_object_type_id == deck.fk_object_type && p.fk_properties_id == YPk).First();
-            deckYReal = int.Parse(deckYRealRow.value);
+            XPk = getPkProperty("dimension", "xlength");
+            YPk = getPkProperty("dimension", "ylength");
+            XCount = getValueObjectProperty("pegholecount", "deck", "X");
+            YCount = getValueObjectProperty("pegholecount", "deck", "Y");
+            deckXReal = getValueObjectProperty("dimension", "deck", "xlength");
+            deckYReal = getValueObjectProperty("dimension", "deck", "ylength");
             this.Location = new Point(this.ParentForm.ClientSize.Width - deckX, 0);
             deckX = this.ParentForm.Width;
             deckY = this.ParentForm.Height;
             this.Size = new Size(deckX, deckY);
+            getOffsetParameters();
+            UpdateDeck(true);
         }
 
-        public void addObject(BioBotDataSets.bbt_objectRow obj)
+        public int getPkProperty(string propertyType, string property)
         {
-            if (obj.activated == "1")
+            BioBotDataSets.bbt_property_typeRow PropType = dataset.bbt_property_type.Where(p => (p.description.ToString()).Equals(propertyType, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            BioBotDataSets.bbt_propertyRow prop = dataset.bbt_property.Where(p => (p.description.ToString()).Equals(property, StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type == PropType.pk_id).FirstOrDefault();
+            return prop.pk_id;
+        }
+
+        public int getValueObjectProperty(string propertyType,string objectType, string property)
+        {
+            BioBotDataSets.bbt_property_typeRow PropType = dataset.bbt_property_type.Where(p => (p.description.ToString()).Equals(propertyType, StringComparison.InvariantCultureIgnoreCase)).First();
+            BioBotDataSets.bbt_object_typeRow ObjType = dataset.bbt_object_type.Where(p => (p.description.ToString()).Equals(objectType, StringComparison.InvariantCultureIgnoreCase)).First();
+            BioBotDataSets.bbt_propertyRow prop = dataset.bbt_property.Where(p => (p.description.ToString()).Equals(property, StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type == PropType.pk_id).First();
+            BioBotDataSets.bbt_object_propertyRow objProp = dataset.bbt_object_property.Where(p => p.fk_object_type_id == ObjType.pk_id && p.fk_properties_id == prop.pk_id).First();
+            return int.Parse(objProp.value);
+        }
+        public int getValueObjectProperty(string propertyType, int objectType, string property)
+        {
+            BioBotDataSets.bbt_property_typeRow PropType = dataset.bbt_property_type.Where(p => (p.description.ToString()).Equals(propertyType, StringComparison.InvariantCultureIgnoreCase)).First();
+            BioBotDataSets.bbt_propertyRow prop = dataset.bbt_property.Where(p => (p.description.ToString()).Equals(property, StringComparison.InvariantCultureIgnoreCase) && p.fk_property_type == PropType.pk_id).First();
+            BioBotDataSets.bbt_object_propertyRow objProp = dataset.bbt_object_property.Where(p => p.fk_object_type_id == objectType && p.fk_properties_id == prop.pk_id).First();
+            return int.Parse(objProp.value);
+        }
+
+        public void getOffsetParameters()
+        {
+            HoleOffsetX[0] = getValueObjectProperty("pegholeoffset", "deck", "x");
+            HoleOffsetX[1] = getValueObjectProperty("pegholeoffset", "deck", "y");
+            OffsetFirstHole[0] = getValueObjectProperty("firstpegholeoffset", "deck", "x");
+            OffsetFirstHole[1] = getValueObjectProperty("firstpegholeoffset", "deck", "y");
+            diameter = getValueObjectProperty("firstpegholeoffset", "deck", "diameter");
+        }
+
+        public void getOffsetSupportParameters(int pkObjectType)
+        {
+            OffsetSupport[0] = getValueObjectProperty("supportoffset", pkObjectType, "x");
+            OffsetSupport[1] = getValueObjectProperty("supportoffset", pkObjectType, "y");
+        }
+        //Refresh deck while checking for overlapping active modules
+        public void UpdateDeck(bool init)
+        {
+            List<BioBotDataSets.bbt_objectRow> listActiveObject = getActiveModules();
+            foreach (BioBotDataSets.bbt_objectRow module in listActiveObject)
             {
-                BioBotDataSets.bbt_propertyRow pkPropertyLayout = DBManager.Instance.projectDataset.bbt_property.Where(p => (p.description.ToString()).Equals("CanDeckLayout", StringComparison.InvariantCultureIgnoreCase)).First();
-                BioBotDataSets.bbt_object_propertyRow objLayout = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.fk_object_type && p.fk_properties_id == pkPropertyLayout.pk_id).First();
-                if (objLayout.value == "1")
+                if (NotOnOtherModule(module, init) == false)
                 {
-                    Button Mod = new Button();
-                    BioBotDataSets.bbt_object_propertyRow rowX;
-                    BioBotDataSets.bbt_object_propertyRow rowY;
-                    try
-                    {
-                        rowX = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.bbt_object_typeRow.pk_id && p.fk_properties_id == XPk).First();
-                        rowY = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == obj.bbt_object_typeRow.pk_id && p.fk_properties_id == YPk).First();
-                    }
-                    catch (System.InvalidOperationException)
-                    {
-                        MessageBox.Show("Object dimensions non-existent");
-                        return;
-                    }
-                    int XDt = int.Parse(rowX.value.ToString()) * deckX / deckXReal;
-                    int YDt = int.Parse(rowY.value.ToString()) * deckY / deckYReal;
-                    Mod.Text = obj.description;
-                    Mod.Location = new Point(deckX - obj.deck_x * deckX / deckXReal - XDt, obj.deck_y * deckY / deckYReal);
-                    setRotation(obj, YDt, XDt, Mod);
-                    Mod.TextAlign = ContentAlignment.MiddleCenter;
-                    if (Mod.Location.X + Mod.Width  - deckX > 0 || Mod.Location.Y + Mod.Height - deckY >= 0)
-                    {
-                        MessageBox.Show("Conflict between dimensions and referential point of the object, try changing rotation value");
-                    }
-                    else if (Mod.Location.Y < 0 || Mod.Location.X < 0)
-                    {
-                        MessageBox.Show("Negative referential point");
-                    }
-                    else
-                    {
-                        this.Controls.Add(Mod);
-                        buttons.Add(Mod);
-                    }
-                }
-                if (objLayout.value == "0")
-                {
-                    MessageBox.Show("Object cannot fit in the deck");
+                    this.presenter.deactivateObject(module);
+                    MessageBox.Show(module.description + " is overlapping on another module, please change its coordinates.");
+                    addObject(module, init);
                 }
             }
+            RefreshDeck();            
+        }
+
+        //Default refresh
+        public void RefreshDeck()
+        {
+            this.Controls.Clear();
+            List<BioBotDataSets.bbt_objectRow> listActiveObject = getActiveModules();
+            foreach (BioBotDataSets.bbt_objectRow module in listActiveObject)
+            {
+                addObject(module, true);
+            }
+        }
+
+        //Get the dimensions of selected module
+        public int[] getDimensions (BioBotDataSets.bbt_objectRow row)
+        {
+            BioBotDataSets.bbt_object_propertyRow rowX;
+            BioBotDataSets.bbt_object_propertyRow rowY;
+            rowX = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == row.bbt_object_typeRow.pk_id && p.fk_properties_id == XPk).First();
+            rowY = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == row.bbt_object_typeRow.pk_id && p.fk_properties_id == YPk).First();
+            int XDt = int.Parse(rowX.value.ToString()) * deckX / deckXReal;
+            int YDt = int.Parse(rowY.value.ToString()) * deckY / deckYReal;
+            int[] dim = new int[2];
+            dim[0] = XDt;
+            dim[1] = YDt;
+            return dim;
+        }
+
+        public Button addObject(BioBotDataSets.bbt_objectRow obj, bool init)
+        {
+            Button Mod = new Button();
+            int[] dim = getDimensions(obj);
+            Mod.Text = obj.description;
+            Mod.Name = obj.description;
+            Mod.Location = new Point(deckX - obj.deck_x * deckX / deckXReal - dim[0], obj.deck_y * deckY / deckYReal);
+            setRotation(obj, dim[1], dim[0], Mod);
+            Mod.TextAlign = ContentAlignment.MiddleCenter;
+            Mod.Click += new System.EventHandler(this.OnClickModule);
+            buttons.Add(Mod);
+
+            if (init == false)
+            {
+                this.Controls.RemoveByKey(Mod.Name);
+            }
+            this.Controls.Add(Mod);
+            return Mod;
+        }
+
+        public Button modifyObject(BioBotDataSets.bbt_objectRow obj)
+        {
+            Button Mod = new Button();
+            int[] dim = getDimensions(obj);
+            Mod.Text = obj.description;
+            Mod.Name = obj.description;
+            Mod.Location = new Point(deckX - obj.deck_x * deckX / deckXReal - dim[0], obj.deck_y * deckY / deckYReal);
+            setRotation(obj, dim[1], dim[0], Mod);
+            Mod.TextAlign = ContentAlignment.MiddleCenter;
+            Mod.Click += new System.EventHandler(this.OnClickModule);
+            buttons.Add(Mod);
+            this.Controls.RemoveByKey(Mod.Name);
+            this.Controls.Add(Mod);
+            return Mod;
+        }
+           
+        private bool NotOnOtherModule(BioBotDataSets.bbt_objectRow row, bool init)
+        {
+            List<Button> listButtons = new List<Button>();
+            foreach (Button btn in this.Controls)
+            {
+                listButtons.Add(btn);
+            }
+            Button newButton = addObject(row, init);
+            listButtons.Remove(newButton);
+            foreach (Button btn in listButtons)
+            {
+                if (newButton.Bounds.IntersectsWith(btn.Bounds) == true)
+                {
+                    RemovableButtons.Add(newButton);
+                    return false;
+                }
+            }
+            if (init == false)
+            {
+                RefreshDeck();
+            }
+            return true;
+        }
+
+        //private List<BioBotDataSets.bbt_objectRow> getValideObjects(BioBotDataSets.bbt_objectDataTable taObject)
+        //{
+        //    Panel parentCtrl = new Panel();
+        //    parentCtrl.Width = deckX;
+        //    parentCtrl.Height = deckY;  
+        //    List<BioBotDataSets.bbt_objectRow> ListValideObject = new List<BioBotDataSets.bbt_objectRow>();
+        //   foreach (BioBotDataSets.bbt_objectRow row in taObject)
+        //    {
+        //        Button btn = new Button();
+        //        int[] dim = getDimensions(row);
+        //        btn.Width = dim[0];
+        //        btn.Height = dim[1];
+        //        btn.Location = new Point(row.deck_x, row.deck_y);
+        //        parentCtrl.Controls.Add(btn);
+
+        //        if (parentCtrl.DisplayRectangle.IntersectsWith(btn.Bounds) == true)
+        //        {
+
+        //        }
+        //    }
+        //}
+
+        private bool NotOnOtherModule(BioBotDataSets.bbt_objectRow row)
+        {
+            List<Button> listButtons = new List<Button>();
+            foreach (Button btn in this.Controls)
+            {
+                listButtons.Add(btn);
+            }
+            Button newButton = addObject(row,false);
+            listButtons.Remove(newButton);
+            listButtons.Remove(listButtons.Find(p => p.Name == newButton.Name));
+            foreach (Button btn in listButtons)
+            {
+                if (newButton.Bounds.IntersectsWith(btn.Bounds) == true)
+                {
+                    this.Controls.Remove(newButton);
+                    return false;
+                }
+            }
+                RefreshDeck();
+            return true;
         }
 
         private void setRotation(BioBotDataSets.bbt_objectRow obj, int height, int width, Button button)
@@ -153,40 +288,103 @@ namespace BioBotApp.View.Deck
             return objectRow;
         }
 
-        private void DeckView_DragDrop(object sender, DragEventArgs e)
+        private List<BioBotDataSets.bbt_objectRow> getActiveModules()
         {
-            BioBotDataSets.bbt_objectRow row = e.Data.GetData(typeof(BioBotDataSets.bbt_objectRow)) as BioBotDataSets.bbt_objectRow;
-            BioBotDataSets.bbt_object_propertyRow ModuleSize = dataset.bbt_object_property.Where(p => p.fk_object_type_id == row.fk_object_type && p.fk_properties_id == XPk).First();
-            int ModuleSizeX = int.Parse(ModuleSize.value);
-            ModuleSize = dataset.bbt_object_property.Where(p => p.fk_object_type_id == row.pk_id && p.fk_properties_id == YPk).First();
-            int ModuleSizeY = int.Parse(ModuleSize.value);
-            UserDeckForm popup = new UserDeckForm(deckXReal, deckYReal);
-            DialogResult result = popup.ShowDialog();
+            List<BioBotDataSets.bbt_objectRow> listActivatedObject = dataset.bbt_object.AsEnumerable().Where(p => p.activated == "1").ToList();
+            List<BioBotDataSets.bbt_objectRow> listActivatedObject2 = dataset.bbt_object.AsEnumerable().Where(p => p.activated == "1").ToList();
+            if (listActivatedObject.Count() == 0) return listActivatedObject; 
+            BioBotDataSets.bbt_propertyRow pkPropertyLayout = DBManager.Instance.projectDataset.bbt_property.Where(p => (p.description.ToString()).Equals("CanDeckLayout", StringComparison.InvariantCultureIgnoreCase)).First();
+
+            foreach (BioBotDataSets.bbt_objectRow row in listActivatedObject)
+            {
+            BioBotDataSets.bbt_object_propertyRow objLayout = DBManager.Instance.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == row.fk_object_type && p.fk_properties_id == pkPropertyLayout.pk_id).First();
+                if (objLayout.value != "1")
+                {
+                    listActivatedObject2.Remove(row);
+                }
+            }
+            return listActivatedObject2;
+        }
+
+        private bool IsLayout(BioBotDataSets.bbt_objectRow row)
+        {
+            if (getValueObjectProperty("nothing", row.fk_object_type, "CanDeckLayout").ToString() == "1")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void modifyObject(BioBotDataSets.bbt_objectRow row, bool dragEvent)
+        {
+            getOffsetSupportParameters(row.fk_object_type);
+            if (IsLayout(row) == true || dragEvent == false)
+            {
+                int[] ModuleSize = getDimensions(row);
+                UserDeckForm popup = new UserDeckForm(XCount, YCount, OffsetFirstHole, HoleOffsetX, OffsetSupport, diameter, row.description, ModuleSize[0], ModuleSize[1], row.activated, row.deck_x, row.deck_y, row.rotation);
+                DialogResult result = popup.ShowDialog();
 
                 if (result == DialogResult.OK && popup.FullField() == true)
                 {
+                    Module _module = popup.setRotation(ModuleSize[0], ModuleSize[1]);
                     // check if it fits the deck
-                    if (popup.FitInDeck(deckXReal, deckYReal, popup.setRotation(ModuleSizeX, ModuleSizeY))==true)
+                    if (popup.FitInDeck(deckXReal, deckYReal, _module) == true)
                     {
-                        _NewObject = popup.getObjectUserForm(ModuleSizeX,ModuleSizeY);
-                        this.presenter.addNewObject(_NewObject, row.pk_id, row.fk_object_type, row.description);
+                        if (NotOnOtherModule(row) == true)
+                        {
+                            NewObject = popup.getObjectUserForm(ModuleSize[0], ModuleSize[1]);
+                            this.presenter.addNewObject(_NewObject, row.pk_id, row.fk_object_type, row.description, popup.ChangeActivation());
+                            RefreshDeck();
+                        }
+                        else
+                        {
+                            MessageBox.Show("There is already an active module on these coordinates");
+                        }
                     }
                     else
                     {
-                    MessageBox.Show("Wrong dimensions");
+                        MessageBox.Show("Wrong dimensions");
                     }
+                }
+                else if (result == DialogResult.Yes)
+                {
+                    row.activated = "0";
+                    this.presenter.deactivateObject(row);
+                    RefreshDeck();
                 }
                 else if (result == DialogResult.Cancel)
                 {
                     popup.Close();
                 }
-            popup.Dispose();
+                popup.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Object layout is non-existent");
+            }
+        }
+
+        private void DeckView_DragDrop(object sender, DragEventArgs e)
+        {
+            BioBotDataSets.bbt_objectRow row = e.Data.GetData(typeof(BioBotDataSets.bbt_objectRow)) as BioBotDataSets.bbt_objectRow;
+            modifyObject(row, true);
+
         }
 
         private void DeckView_DragEnter(object sender, DragEventArgs e)
         {
-           
+           if (e.Data.GetDataPresent(typeof(BioBotDataSets.bbt_objectRow)) == true)
+            {
                 e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void OnClickModule(object sender, EventArgs e)
+        {
+            Button thisButton = (Button)sender;
+            BioBotDataSets.bbt_objectRow row = dataset.bbt_object.Where(p => p.description == thisButton.Text).First();
+            modifyObject(row, false);
+            
         }
 
         public Module NewObject
@@ -199,7 +397,6 @@ namespace BioBotApp.View.Deck
             set
             {
                 _NewObject = value;
-                //addObject(_NewObject);
             }
         }
 
@@ -221,5 +418,7 @@ namespace BioBotApp.View.Deck
                 
             }
         }
+
+        
     }
 }

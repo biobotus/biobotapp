@@ -20,9 +20,21 @@ namespace BioBotApp.Presenter.Deck
             this.view = view;
         }
 
-        public void addNewObject( Module newObject,int pk_id, int fk_type, string description)
+        public void addNewObject( Module newObject,int pk_id, int fk_type, string description, string activation)
         {
-            objectService.modifyObjectRow(pk_id, fk_type, newObject.deckX, newObject.deckY, newObject.rotation,"1", description);
+            objectService.modifyObjectRow(pk_id, fk_type, newObject.deckX, newObject.deckY, newObject.rotation,activation, description);
+        }
+
+        public void updateDeck()
+        {
+            DBManager.Instance.taManager.bbt_objectTableAdapter.Update(DBManager.Instance.projectDataset.bbt_object);
+
+        }
+
+        public void deactivateObject(BioBotDataSets.bbt_objectRow row)
+        {
+            row.activated = "0";
+            objectService.modifyObjectRow(row.pk_id, row.activated);
         }
     }
 }
