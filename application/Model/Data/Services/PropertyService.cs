@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BioBotApp.Model.Data.Services
 {
-    public class PropertyService
+    public class PropertyService// : IPropertyService
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_propertyTableAdapter taProperty;
@@ -72,6 +72,10 @@ namespace BioBotApp.Model.Data.Services
                 System.Windows.Forms.MessageBox.Show(e.Message);
                 this.dbManager.projectDataset.bbt_property.RejectChanges();
             }
+        }
+        public void OnPropertyChange(int sender, EventArgs e)
+        {
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Property.PropertyCurrentChanged(sender));
         }
     }
 }

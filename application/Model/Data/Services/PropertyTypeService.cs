@@ -14,6 +14,7 @@ namespace BioBotApp.Model.Data.Services
 
         private static PropertyTypeService privateInstance;
 
+        
         private PropertyTypeService()
         {
             this.dbManager = DBManager.Instance;
@@ -78,6 +79,11 @@ namespace BioBotApp.Model.Data.Services
                 System.Windows.Forms.MessageBox.Show(e.Message);
                 this.dbManager.projectDataset.bbt_object_type.RejectChanges();
             }
+        }
+        public void CurrentChanged(int sender, EventArgs e)
+        {
+
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Property.PropertyTypeCurrentChanged(sender));
         }
     }
 }
