@@ -18,6 +18,7 @@ namespace BioBotApp.View.Services
 
         int pk_id;
         int fk_property_type = 0;
+        
         PropertyServicesPresenter PropertyPresenter;
 
         public PropertyServiceView()

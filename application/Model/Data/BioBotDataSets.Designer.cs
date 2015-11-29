@@ -1067,11 +1067,9 @@ namespace BioBotApp.Model.Data {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnpk_id}, true));
                 this.columnpk_id.AutoIncrement = true;
-                this.columnpk_id.AutoIncrementSeed = -1;
-                this.columnpk_id.AutoIncrementStep = -1;
+                this.columnpk_id.AutoIncrementSeed = 1;
                 this.columnpk_id.AllowDBNull = false;
                 this.columnpk_id.Unique = true;
-                this.columnactivated.MaxLength = 5;
                 this.columndescription.MaxLength = 8190;
             }
             

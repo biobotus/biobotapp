@@ -67,6 +67,9 @@
             this.crudOptions1.Name = "crudOptions1";
             this.crudOptions1.Size = new System.Drawing.Size(155, 37);
             this.crudOptions1.TabIndex = 1;
+            this.crudOptions1.AddClickHandler += new System.EventHandler(this.AddObjectType);
+            this.crudOptions1.DeleteClickHandler += new System.EventHandler(this.DeleteObjectType);
+            this.crudOptions1.ModifyClickHandler += new System.EventHandler(this.ModifyObjectType);
             // 
             // dataGridView1
             // 
@@ -87,6 +90,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(6, 66);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(268, 353);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);

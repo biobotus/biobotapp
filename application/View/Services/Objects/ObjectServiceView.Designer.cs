@@ -32,9 +32,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.crudOptions1 = new BioBotApp.Controls.Utils.crudOptions();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bbt_objectTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_objectTableAdapter();
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkobjecttypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deckxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,10 +40,13 @@
             this.activatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkobjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
+            this.bbt_objectTableAdapter = new BioBotApp.Model.Data.BioBotDataSetsTableAdapters.bbt_objectTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -73,6 +73,9 @@
             this.crudOptions1.Name = "crudOptions1";
             this.crudOptions1.Size = new System.Drawing.Size(156, 37);
             this.crudOptions1.TabIndex = 1;
+            this.crudOptions1.AddClickHandler += new System.EventHandler(this.AddObject);
+            this.crudOptions1.DeleteClickHandler += new System.EventHandler(this.DeleteObject);
+            this.crudOptions1.ModifyClickHandler += new System.EventHandler(this.ModifyObject);
             // 
             // dataGridView1
             // 
@@ -98,22 +101,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(6, 61);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(258, 373);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // bioBotDataSets
-            // 
-            this.bioBotDataSets.DataSetName = "BioBotDataSets";
-            this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataMember = "bbt_object";
-            this.bindingSource1.DataSource = this.bioBotDataSets;
-            // 
-            // bbt_objectTableAdapter
-            // 
-            this.bbt_objectTableAdapter.ClearBeforeFill = true;
             // 
             // pkidDataGridViewTextBoxColumn
             // 
@@ -163,6 +153,20 @@
             this.fkobjectDataGridViewTextBoxColumn.HeaderText = "fk_object";
             this.fkobjectDataGridViewTextBoxColumn.Name = "fkobjectDataGridViewTextBoxColumn";
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataMember = "bbt_object";
+            this.bindingSource1.DataSource = this.bioBotDataSets;
+            // 
+            // bioBotDataSets
+            // 
+            this.bioBotDataSets.DataSetName = "BioBotDataSets";
+            this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bbt_objectTableAdapter
+            // 
+            this.bbt_objectTableAdapter.ClearBeforeFill = true;
+            // 
             // ObjectServiceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,8 +176,8 @@
             this.Size = new System.Drawing.Size(276, 446);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             this.ResumeLayout(false);
 
         }

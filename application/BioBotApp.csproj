@@ -56,7 +56,7 @@
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\Data\BioBotDataSets1.Designer.cs">
+    <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -301,6 +301,12 @@
     <Compile Include="View\Utils\Controls\AbstractDialog.Designer.cs">
       <DependentUpon>AbstractDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Utils\Controls\NamedCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Utils\Controls\NamedCheckBox.Designer.cs">
+      <DependentUpon>NamedCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Utils\Controls\NamedComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -407,6 +413,9 @@
     <EmbeddedResource Include="View\Utils\Controls\AbstractDialog.resx">
       <DependentUpon>AbstractDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Utils\Controls\NamedCheckBox.resx">
+      <DependentUpon>NamedCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Utils\Controls\NamedComboBox.resx">
       <DependentUpon>NamedComboBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -422,7 +431,7 @@
     <None Include="Model\Data\BioBotDataSets.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>BioBotDataSets1.Designer.cs</LastGenOutput>
+      <LastGenOutput>BioBotDataSets.Designer.cs</LastGenOutput>
     </None>
     <None Include="Model\Data\BioBotDataSets.xss">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>

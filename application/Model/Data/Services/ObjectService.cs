@@ -42,7 +42,7 @@ namespace BioBotApp.Model.Data.Services
         /// <param name="rotation"></param>
         /// <param name="activated"></param>
         /// <param name="description"></param>
-        public void addObjectRow(int fk_object_type, int deck_x, int deck_y, int rotation, String activated, String description)
+        public void addObjectRow(int fk_object_type, int deck_x, int deck_y, int rotation, string activated, String description, int fk_object)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.Newbbt_objectRow();
             row.fk_object_type = fk_object_type;
@@ -51,11 +51,12 @@ namespace BioBotApp.Model.Data.Services
             row.rotation = rotation;
             row.activated = activated;
             row.description = description;
+            row.fk_object = fk_object;
 
             this.dbManager.projectDataset.bbt_object.Addbbt_objectRow(row);                     
             updateRow(row);
         }
-        public void addObjectRow(BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, String activated, String description)
+        public void addObjectRow(BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, string activated, String description)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.Newbbt_objectRow();
             row.fk_object_type = fk_object_type_row.pk_id;  // The pk_id of the object type becomes the reference key here for the object
@@ -69,7 +70,7 @@ namespace BioBotApp.Model.Data.Services
             updateRow(row);
         }
 
-        public void modifyObjectRow(int pk_id, int fk_object_type, int deck_x, int deck_y, int rotation, String activated, String description)
+        public void modifyObjectRow(int pk_id, int fk_object_type, int deck_x, int deck_y, int rotation, string activated, String description)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.FindBypk_id(pk_id);
             row.fk_object_type = fk_object_type;
@@ -81,7 +82,7 @@ namespace BioBotApp.Model.Data.Services
 
             updateRow(row);
         }
-        public void modifyObjectRow(int pk_id, BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, String activated, String description)
+        public void modifyObjectRow(int pk_id, BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, string activated, String description)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.FindBypk_id(pk_id);
             row.fk_object_type = fk_object_type_row.pk_id;
