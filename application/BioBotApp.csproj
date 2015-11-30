@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLL\PipetteSimple\PipetteSimple.cs" />
     <Compile Include="Model\Communication\CommunicationService.cs" />
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -103,7 +104,11 @@
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Model\ModulePluginManager\IModulePlugin.cs" />
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
+    <Compile Include="Model\Sequencer\Events\CompletionCommandEvent.cs" />
+    <Compile Include="Model\Sequencer\Events\ExecuteCommandEvent.cs" />
     <Compile Include="Model\Sequencer\ExecuteService.cs" />
+    <Compile Include="Model\Sequencer\Helpers\ICommand.cs" />
+    <Compile Include="Model\Utils\Events\OnCloseModelEvent.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\Main\MainPresenter.cs" />
@@ -446,10 +451,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainTestForm.resx">
       <DependentUpon>MainTestForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Main\MainViewForm.resx">
-      <DependentUpon>MainViewForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\ProtocolEditControl.resx">

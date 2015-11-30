@@ -41,10 +41,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bsOperationReference = new System.Windows.Forms.BindingSource(this.components);
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkoperationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkobjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bsOperationReference = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbt_operation_referenceDataGridView)).BeginInit();
@@ -145,6 +145,7 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label2
             // 
@@ -179,11 +180,6 @@
             this.panel1.Size = new System.Drawing.Size(448, 65);
             this.panel1.TabIndex = 8;
             // 
-            // bsOperationReference
-            // 
-            this.bsOperationReference.DataMember = "bbt_operation_bbt_operation_reference";
-            this.bsOperationReference.DataSource = this.bsOperation;
-            // 
             // pkidDataGridViewTextBoxColumn
             // 
             this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
@@ -212,6 +208,11 @@
             this.fkobjectDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.fkobjectDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.fkobjectDataGridViewTextBoxColumn.ValueMember = "pk_id";
+            // 
+            // bsOperationReference
+            // 
+            this.bsOperationReference.DataMember = "bbt_operation_bbt_operation_reference";
+            this.bsOperationReference.DataSource = this.bsOperation;
             // 
             // OperationReferenceControl
             // 

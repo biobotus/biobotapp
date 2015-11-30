@@ -20,14 +20,6 @@ namespace BioBotApp.Presenter.Step
         public void setSelectedStepRow(Model.Data.BioBotDataSets.bbt_stepRow row)
         {
             Model.Data.Services.StepService.Instance.setSelectedStepRow(row);
-            if (row == null)
-            {
-                Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(null);
-            }
-            else
-            {
-                Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(row.bbt_objectRow);
-            }
         }
 
         public void addStepRow(int fkProtocolId, String description, int fkObjectId, int index)

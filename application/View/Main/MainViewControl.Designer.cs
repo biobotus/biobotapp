@@ -43,9 +43,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.protocolStepView2 = new BioBotApp.View.Protocol.ProtocolStepView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.operationReferenceControl1 = new BioBotApp.View.Operation.OperationReference.OperationReferenceControl();
             this.operationControl21 = new BioBotApp.View.Step.OperationControl2();
             this.protocolStepView1 = new BioBotApp.View.Protocol.ProtocolStepView();
-            this.operationReferenceControl1 = new BioBotApp.View.Operation.OperationReference.OperationReferenceControl();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -168,6 +168,14 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // operationReferenceControl1
+            // 
+            this.operationReferenceControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.operationReferenceControl1.Location = new System.Drawing.Point(711, 3);
+            this.operationReferenceControl1.Name = "operationReferenceControl1";
+            this.operationReferenceControl1.Size = new System.Drawing.Size(259, 393);
+            this.operationReferenceControl1.TabIndex = 6;
+            // 
             // operationControl21
             // 
             this.operationControl21.Dock = System.Windows.Forms.DockStyle.Left;
@@ -182,17 +190,9 @@
             this.protocolStepView1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.protocolStepView1.Location = new System.Drawing.Point(3, 3);
             this.protocolStepView1.Name = "protocolStepView1";
-            this.protocolStepView1.ShowToolbar = false;
+            this.protocolStepView1.ShowToolbar = true;
             this.protocolStepView1.Size = new System.Drawing.Size(344, 393);
             this.protocolStepView1.TabIndex = 0;
-            // 
-            // operationReferenceControl1
-            // 
-            this.operationReferenceControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.operationReferenceControl1.Location = new System.Drawing.Point(711, 3);
-            this.operationReferenceControl1.Name = "operationReferenceControl1";
-            this.operationReferenceControl1.Size = new System.Drawing.Size(259, 393);
-            this.operationReferenceControl1.TabIndex = 6;
             // 
             // MainViewControl
             // 

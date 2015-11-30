@@ -19,5 +19,10 @@ namespace BioBotApp.Presenter.Main
         {
 
         }
+
+        public void onCloseEvent()
+        {
+            Model.EventBus.EventBus.Instance.post(new Model.Utils.Events.OnCloseModelEvent());
+        }
     }
 }

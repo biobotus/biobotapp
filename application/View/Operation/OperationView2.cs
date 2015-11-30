@@ -258,7 +258,6 @@ namespace BioBotApp.View.Step
         private void dgvOperations_SelectionChanged(object sender, EventArgs e)
         {
             BioBotDataSets.bbt_operationRow row = getSelectedOperationRow();
-            if (row == null) return;
             this.presenter.setSelectedOperationRow(row);
         }
     }

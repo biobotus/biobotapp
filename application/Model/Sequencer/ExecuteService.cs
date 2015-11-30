@@ -1,5 +1,6 @@
 ﻿using BioBotApp.Model.Data;
 using BioBotApp.Model.EventBus;
+using BioBotApp.Model.Sequencer.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace BioBotApp.Model.Sequencer
         private Communication.CommunicationService communicationService;
         BioBotDataSets.bbt_save_protocol_referenceDataTable commands;
         Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
+        List<ICommand> currentCommands;
         int index = 0;
 
         private ExecuteService()
@@ -26,6 +28,7 @@ namespace BioBotApp.Model.Sequencer
             this.dbManager = DBManager.Instance;
             communicationService = Communication.CommunicationService.Instance;
             commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
+            currentCommands = new List<ICommand>();
         }
 
         public static ExecuteService Instance
@@ -52,18 +55,17 @@ namespace BioBotApp.Model.Sequencer
                     generateList(row);
                     index = 0;
                     exectuteNext();
-                    
+
                 }
             }
         }
 
         public void exectuteNext()
         {
-            if(commandsTODO.Count <= index)
+            if (commandsTODO.Count <= index)
             {
                 return;
             }
-
 
             EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index]));
             //communicationService.writeData("Executing: " + .description + '\r' + '\n');
@@ -72,13 +74,18 @@ namespace BioBotApp.Model.Sequencer
         public void generateList(BioBotDataSets.bbt_protocolRow protocolRow)
         {
             int maxSize = protocolRow.Getbbt_protocolRows().Length + protocolRow.Getbbt_stepRows().Length;
-            for (int internalIndex = 1; internalIndex < maxSize+1; internalIndex++)
+            for (int internalIndex = 1; internalIndex < maxSize + 1; internalIndex++)
             {
                 BioBotDataSets.bbt_stepRow nextStepRow = getNextChildStep(protocolRow, internalIndex);
-                for (int i = 1; i < nextStepRow.Getbbt_operationRows().Length; i++)
+                if (nextStepRow != null)
                 {
-                    commandsTODO.Add(index++,nextStepRow.Getbbt_operationRows()[i]);
+                    int operationCount = nextStepRow.Getbbt_operationRows().Length;
+                    for (int i = 0; i < operationCount; i++)
+                    {
+                        commandsTODO.Add(index++, nextStepRow.Getbbt_operationRows()[i]);
+                    }
                 }
+
 
                 BioBotDataSets.bbt_protocolRow nextProtocolRow = getNextChildProtocol(protocolRow, internalIndex);
                 if (nextProtocolRow != null)
@@ -111,11 +118,25 @@ namespace BioBotApp.Model.Sequencer
             }
             return null;
         }
+
         [Model.EventBus.Subscribe]
-        public void onCompletionProtocolCommand(BioBotCommunication.Serial.Events.OnConnectionStatusChangeEvent e)
+        public void onExecuteCommand(Model.Sequencer.Events.ExecuteCommandEvent e)
         {
-            index++;
-            exectuteNext();
+            this.currentCommands.Add(e.command);
+        }
+
+        [Model.EventBus.Subscribe]
+        public void onCompletionCommand(Model.Sequencer.Events.CompletionCommandEvent e)
+        {
+            if (currentCommands.Contains(e.command))
+            {
+                currentCommands.Remove(e.command);
+            }
+            if (currentCommands.Count == 0)
+            {
+                index++;
+                exectuteNext();
+            }
         }
     }
 }

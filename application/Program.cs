@@ -26,6 +26,7 @@ namespace BioBotApp
             Application.SetCompatibleTextRenderingDefault(false);
 
             Model.Data.DBManager.Instance.initializeDataSet();
+            DLL.PipetteSimple.PipetteSimple pipetteSimple = new DLL.PipetteSimple.PipetteSimple();
 
             MainViewForm form = new MainViewForm();
             Application.Run(form);

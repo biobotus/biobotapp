@@ -8,11 +8,11 @@ namespace BioBotApp.Model.EventBus.Events.OperationReference
 {
     public class OperationReferenceRemoveEvent : EventArgs
     {
-        public Model.Data.BioBotDataSets.bbt_operation_referenceRow Row { get; private set; }
+        public int pkID;
 
-        public OperationReferenceRemoveEvent(Model.Data.BioBotDataSets.bbt_operation_referenceRow Row)
+        public OperationReferenceRemoveEvent(int id)
         {
-            this.Row = Row;
+            this.pkID = id;
         }
     }
 }

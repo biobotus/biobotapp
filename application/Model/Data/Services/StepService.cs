@@ -37,6 +37,16 @@ namespace BioBotApp.Model.Data.Services
         {
             this.selectedStepRow = row;
             Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepSelectionChangedEvent(row));
+
+            if (row == null)
+            {
+                Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(null);
+            }
+            else
+            {
+                Model.Data.Services.ObjectService.Instance.setSelectedObjectStepType(row.bbt_objectRow);
+            }
+
         }
 
         // CRUD operations functions

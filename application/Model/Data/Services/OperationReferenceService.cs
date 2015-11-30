@@ -63,27 +63,32 @@ namespace BioBotApp.Model.Data.Services
 
         public void removeOperationReferenceRow(int fkOperationId, int fkObjectId)
         {
+            int id;
             BioBotDataSets.bbt_operation_referenceRow row = this.dbManager.projectDataset.bbt_operation_reference.Where(p => p.fk_object == fkObjectId && p.fk_operation == fkOperationId).First();
+            id = row.pk_id;
             row.Delete();
             updateRow(row);
-            EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(row));
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(id));
         }
         public void removeOperationReferenceRow(BioBotDataSets.bbt_operation_referenceRow row)
         {
+            int id = row.pk_id;
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
-            EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(row));
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(id));
         }
 
         public void removeOperationReferenceRowWithGivenObject(BioBotDataSets.bbt_objectRow parentToDeleteRow)
         {
+            
             if (parentToDeleteRow != null)
             {
                 foreach (BioBotDataSets.bbt_operation_referenceRow row in parentToDeleteRow.Getbbt_operation_referenceRows())
                 {
+                    int id = row.pk_id;
                     row.Delete();
                     updateRow(row);    //(this.dbManager.projectDataset);
-                    EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(row));
+                    EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(id));
                 }
             }
         }
@@ -93,9 +98,10 @@ namespace BioBotApp.Model.Data.Services
             {
                 foreach (BioBotDataSets.bbt_operation_referenceRow row in parentToDeleteRow.Getbbt_operation_referenceRows())
                 {
+                    int id = row.pk_id;
                     row.Delete();
                     updateRow(row);    //(this.dbManager.projectDataset);
-                    EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(row));
+                    EventBus.EventBus.Instance.post(new Model.EventBus.Events.OperationReference.OperationReferenceRemoveEvent(id));
                 }
             }
         }

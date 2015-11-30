@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Ports;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ namespace BioBotCommunication.Serial.Movement
     {
         private Thread arduinoSerialWorker;
         private AutoResetEvent toggle = new AutoResetEvent(false);
-        private AutoResetEvent workerCompletion = new AutoResetEvent(false);
         public event EventHandler<OnCompletionEventArgs> OnCompletionEvent;
         private String data;
         private volatile Boolean isStopped = false;
@@ -66,7 +66,6 @@ namespace BioBotCommunication.Serial.Movement
 
         private void ArdunioSerialWorker_DoWork()
         {
-            workerCompletion.Reset();
             Boolean dataReceived = false;
             while (!isStopped)
             {
@@ -85,6 +84,17 @@ namespace BioBotCommunication.Serial.Movement
         public void stopWorker()
         {
             isStopped = true;
+            arduinoSerialWorker.Join(1000);
+            if (arduinoSerialWorker.IsAlive)
+            {
+                KillTheThread();
+            }
+        }
+
+        [SecurityPermissionAttribute(SecurityAction.Demand, ControlThread = true)]
+        private void KillTheThread()
+        {
+            arduinoSerialWorker.Abort();
         }
 
         protected virtual void OnMessageReceivedEvent(OnCompletionEventArgs e)
