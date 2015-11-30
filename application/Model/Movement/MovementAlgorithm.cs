@@ -369,7 +369,11 @@ namespace BioBotApp.Model.Movement
         public int xPos { get; set; }
         public int yPos { get; set; }
         public int zPos { get; set; }
+        public int xHomeOffset { get; set; }
+        public int yHomeOffset { get; set; }
+        public int zHomeOffset { get; set; }
         public bool isInitialized { get; set; }
+        public int objectId { get; set; }
 
         public ToolRack(DBManager dbManager)
         {
@@ -377,25 +381,56 @@ namespace BioBotApp.Model.Movement
             xPos = 0;
             yPos = 0;
             zPos = 0;
+            xHomeOffset = 0;
+            yHomeOffset = 0;
+            zHomeOffset = 0;
+            objectId = -1;
 
             setToolRackPositions(dbManager);
         }
 
         public bool setToolRackPositions(DBManager dbManager)
         {
-            string informationValue = InformationValueService.Instance.getInformationValue("ToolRackPosition", "Z");
+            objectId = ObjectService.Instance.getUniqueObjectTypeInstanceId("ToolRack");
 
+            if (objectId == -1) return false;
+
+            BioBotDataSets.bbt_objectRow ToolRackRow = dbManager.projectDataset.bbt_object.FindBypk_id(objectId);
+
+            /*string xPosFromDB = InformationValueService.Instance.getInformationValue("ToolRackPosition", "X");
+            string yPosFromDB = InformationValueService.Instance.getInformationValue("ToolRackPosition", "Y");*/
             int tempValue;
-
-            if (int.TryParse(informationValue, out tempValue))
-            {
+            string zPosFromDB = InformationValueService.Instance.getInformationValue("ToolRackPosition", "Z");
+            if (int.TryParse(zPosFromDB, out tempValue))
                 zPos = tempValue;
-                return true;
-            }
             else
-            {
+                return false;            
+
+            xPos = ToolRackRow.deck_x;
+            yPos = ToolRackRow.deck_y;
+            //zPos = ToolRackRow.deck_z; // To be added to the table object in database.            
+            
+            
+            string xHomeOffsetFromDB = InformationValueService.Instance.getInformationValue("ToolRackHomeOffset", "X");
+            if (int.TryParse(xHomeOffsetFromDB, out tempValue))
+                xHomeOffset = tempValue;
+            else
                 return false;
-            }
+
+            string yHomeOffsetFromDB = InformationValueService.Instance.getInformationValue("ToolRackHomeOffset", "Y");
+            if (int.TryParse(yHomeOffsetFromDB, out tempValue))
+                yHomeOffset = tempValue;
+            else
+                return false;
+
+            string zHomeOffsetFromDB = InformationValueService.Instance.getInformationValue("ToolRackHomeOffset", "Z");
+            if (int.TryParse(zHomeOffsetFromDB, out tempValue)) 
+                zHomeOffset = tempValue;         
+            else
+                return false;
+
+            return true;
+
         }
 
         public void updateToolRackPositions(int newXPos, int newYPos, int newZPos)
@@ -547,6 +582,7 @@ namespace BioBotApp.Model.Movement
     {
         public int xDeckPos { get; set; }
         public int yDeckPos { get; set; }
+        //public int zDeckPos { get; set; }
         public int xLength { get; set; }
         public int yLength { get; set; }
         public int zLength { get; set; }
@@ -567,54 +603,9 @@ namespace BioBotApp.Model.Movement
 
         public void updateObject(BioBotDataSets.bbt_objectRow row)
         {
-            if (row.Isdeck_xNull())
-            {
-                xDeckPos = 0;
-            }
-            else
-            {
-                xDeckPos = row.deck_x;
-            }
-
-            if (row.Isdeck_yNull())
-            {
-                yDeckPos = 0;
-            }
-            else
-            {
-                yDeckPos = row.deck_y;
-            }
-
-            // Verify if the object is grippable :
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Grippable").Any())
-            {
-                isGrippable = true;
-            }
-            else
-            {
-                isGrippable = false;
-            }
-
-            // Load the offset that the object adds on the Z axis.
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "PipetteOffset").Any())
-            {
-                int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "PipetteOffset").First().value, out tempValue);
-                zOffset = tempValue;
-            }
-
+            loadObjectPosition(row);
             loadDimensions(row);
-
-            if (radius != 0)
-            {
-                isRectangular = false;
-                isCircular = true;
-            }
-            else
-            {
-                isRectangular = true;
-                isCircular = false;
-            }
+            loadOtherProperties(row);
             isSet = true;
         }
 
@@ -655,6 +646,68 @@ namespace BioBotApp.Model.Movement
                 int tempValue;
                 int.TryParse(tempString, out tempValue);
                 radius = tempValue;
+            }
+        }
+
+        private void loadObjectPosition(BioBotDataSets.bbt_objectRow row)
+        {
+            if (row.Isdeck_xNull())
+            {
+                xDeckPos = 0;
+            }
+            else
+            {
+                xDeckPos = row.deck_x;
+            }
+
+            if (row.Isdeck_yNull())
+            {
+                yDeckPos = 0;
+            }
+            else
+            {
+                yDeckPos = row.deck_y;
+            }
+
+            if (row.Isdeck_zNull())
+            {
+                zDeckPos = row.deck_z;
+            }
+            else
+            {
+                zDeckPos = 0;
+            }
+        }
+
+        private void loadOtherProperties(BioBotDataSets.bbt_objectRow row)
+        {
+            // Verify if the object is grippable :
+            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Grippable").Any())
+            {
+                isGrippable = true;
+            }
+            else
+            {
+                isGrippable = false;
+            }
+
+            // Load the offset that the object adds on the Z axis.
+            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "PipetteOffset").Any())
+            {
+                int tempValue;
+                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "PipetteOffset").First().value, out tempValue);
+                zOffset = tempValue;
+            }
+
+            if (radius != 0)
+            {
+                isRectangular = false;
+                isCircular = true;
+            }
+            else
+            {
+                isRectangular = true;
+                isCircular = false;
             }
         }
     }

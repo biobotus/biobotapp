@@ -194,5 +194,22 @@ namespace BioBotApp.Model.Data.Services
             }
         }
 
+        // Other functions :
+        // Can return the id of an object that has been instanciated only once (For example, the ToolRack, Tip 1000, etc)
+        public int getUniqueObjectTypeInstanceId(string objectTypeDescription)
+        {
+            BioBotDataSets.bbt_object_typeRow[] objectTypeRow =
+                (BioBotDataSets.bbt_object_typeRow[])dbManager.projectDataset.bbt_object_type.Select(
+                    "decription = '" + objectTypeDescription + "'");
+
+            if (objectTypeRow.Count() != 1) return -1;
+
+            BioBotDataSets.bbt_objectRow[] uniqueObjectRow =
+                (BioBotDataSets.bbt_objectRow[])dbManager.projectDataset.bbt_object.Select(
+                    "fk_object_type = '" + objectTypeRow[0].pk_id + "'");
+
+            if (uniqueObjectRow.Count() != 1) return -1;
+            else return uniqueObjectRow[0].pk_id;            
+        }
     }
 }
