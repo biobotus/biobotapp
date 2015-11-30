@@ -15,7 +15,7 @@ namespace BioBotCommunication.Serial.Movement
         private Thread arduinoSerialWorker;
         private AutoResetEvent toggle = new AutoResetEvent(false);
         public event EventHandler<OnCompletionEventArgs> OnCompletionEvent;
-        private String data;
+        private List<String> data;
         private volatile Boolean isStopped = false;
 
         private ArduinoCommunicationWorker()
@@ -23,7 +23,6 @@ namespace BioBotCommunication.Serial.Movement
             arduinoSerialWorker = new Thread(ArdunioSerialWorker_DoWork);
             onArduinoReceive += ArduinoCommunicationWorker_onArduinoReceive;
             onErrorMessage += ArduinoCommunicationWorker_onErrorMessage;
-            data = "";
             arduinoSerialWorker.Start();
         }
 
@@ -36,18 +35,19 @@ namespace BioBotCommunication.Serial.Movement
 
         private void ArduinoCommunicationWorker_onArduinoReceive(object sender, SerialDataReceivedEventArgs e)
         {
-            if(sender is SerialPort)
+            if (sender is SerialPort)
             {
                 SerialPort port = sender as SerialPort;
                 lock (data)
                 {
-                    data = port.ReadExisting();
+                    data.Add(port.ReadExisting());
                 }
             }
-            
+
 
             OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Completed work");
             eventargs.error = false;
+
             OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
@@ -70,15 +70,17 @@ namespace BioBotCommunication.Serial.Movement
             Boolean dataReceived = false;
             while (!isStopped)
             {
-                dataReceived = toggle.WaitOne(100);
-                if (dataReceived)
+                lock (data)
                 {
-                    dataReceived = false;
-                    lock (data)
+                    dataReceived = toggle.WaitOne(100);
+                    if (dataReceived)
                     {
+                        dataReceived = false;                        
+                        toggle.Reset();
                         OnMessageReceivedEvent(new OnCompletionEventArgs(data));
                     }
                 }
+                Thread.Sleep(100);
             }
         }
 
@@ -105,6 +107,20 @@ namespace BioBotCommunication.Serial.Movement
             {
                 handler(this, e);
             }
+        }
+
+        public String getNextMessage()
+        {
+            String dataReturn = "";
+            lock (data)
+            {
+                if(data.Count > 0)
+                {
+                    dataReturn = data[0];
+                    data.RemoveAt(0);
+                }
+            }
+            return dataReturn;
         }
     }
 }

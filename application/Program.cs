@@ -27,7 +27,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
             DLL.PipetteSimple.PipetteSimple pipetteSimple = new DLL.PipetteSimple.PipetteSimple();
-
+            Model.Movement.MovementAlgorithm algo = Model.Movement.MovementAlgorithm.Instance;
             MainViewForm form = new MainViewForm();
             Application.Run(form);
         }

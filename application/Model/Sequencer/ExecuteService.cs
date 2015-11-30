@@ -52,6 +52,7 @@ namespace BioBotApp.Model.Sequencer
                 {
                     commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
                     BioBotDataSets.bbt_protocolRow row = DBManager.Instance.projectDataset.bbt_protocol.FindBypk_id(commands[0].fk_protocol);
+                    index = 0;
                     generateList(row);
                     index = 0;
                     exectuteNext();
@@ -67,7 +68,9 @@ namespace BioBotApp.Model.Sequencer
                 return;
             }
 
+            /*
             EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index]));
+            */
             //communicationService.writeData("Executing: " + .description + '\r' + '\n');
         }
 

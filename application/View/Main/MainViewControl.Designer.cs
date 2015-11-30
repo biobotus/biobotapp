@@ -46,6 +46,8 @@
             this.operationReferenceControl1 = new BioBotApp.View.Operation.OperationReference.OperationReferenceControl();
             this.operationControl21 = new BioBotApp.View.Step.OperationControl2();
             this.protocolStepView1 = new BioBotApp.View.Protocol.ProtocolStepView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.optionMainControl1 = new BioBotApp.View.Option.OptionMainControl();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -53,6 +55,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bioBotDataSets
@@ -126,6 +129,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -194,6 +198,25 @@
             this.protocolStepView1.Size = new System.Drawing.Size(344, 393);
             this.protocolStepView1.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.optionMainControl1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(988, 399);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // optionMainControl1
+            // 
+            this.optionMainControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optionMainControl1.Location = new System.Drawing.Point(3, 3);
+            this.optionMainControl1.Name = "optionMainControl1";
+            this.optionMainControl1.Size = new System.Drawing.Size(982, 393);
+            this.optionMainControl1.TabIndex = 0;
+            // 
             // MainViewControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +235,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,5 +258,7 @@
         private Step.OperationControl2 operationControl21;
         private System.Windows.Forms.ToolStripMenuItem btnConnect;
         private Operation.OperationReference.OperationReferenceControl operationReferenceControl1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private Option.OptionMainControl optionMainControl1;
     }
 }

@@ -143,27 +143,22 @@ namespace BioBotApp.Model.Data.Services
         // Other functions :
         public string getInformationValue(string propertyTypeDesc, string propertyDesc)
         {
-            BioBotDataSets.bbt_property_typeRow[] propertyTypeRow = 
-                (BioBotDataSets.bbt_property_typeRow[])dbManager.projectDataset.bbt_property_type.Select(
-                "SELECT * " +
-                "FROM deck.bbt_property_type " +
-                "WHERE description = '" + propertyDesc + "';");
+            String query = String.Empty;
+            query = "description = '" + propertyTypeDesc + "'";
+
+            BioBotDataSets.bbt_property_typeRow[] propertyTypeRow = (BioBotDataSets.bbt_property_typeRow[])dbManager.projectDataset.bbt_property_type.Select(query);
 
             if (propertyTypeRow.Count() != 1) return "";
 
             BioBotDataSets.bbt_propertyRow[] propertyRow =
                 (BioBotDataSets.bbt_propertyRow[])dbManager.projectDataset.bbt_property.Select(
-                "SELECT * " +
-                "FROM deck.bbt_property " +
-                "WHERE fk_property_type = " + propertyTypeRow[0].pk_id + " AND description = '" + propertyTypeDesc + "';");
+                "fk_property_type = " + propertyTypeRow[0].pk_id + " AND description = '" + propertyDesc + "'");
 
             if (propertyRow.Count() != 1) return "";
 
             BioBotDataSets.bbt_information_valueRow[] informationValueRow =
                 (BioBotDataSets.bbt_information_valueRow[])dbManager.projectDataset.bbt_information_value.Select(
-                "SELECT * " +
-                "FROM deck.bbt_information_value " +
-                "WHERE fk_property = " + propertyRow[0].pk_id + ";");
+                "fk_property = " + propertyRow[0].pk_id);
 
             if (informationValueRow.Count() != 1) return "";
             else return informationValueRow[0].information_value;
