@@ -137,6 +137,7 @@
             this.operationTypeControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.operationTypeControl1.Location = new System.Drawing.Point(55, 3);
             this.operationTypeControl1.Name = "operationTypeControl1";
+            this.operationTypeControl1.Padding = new System.Windows.Forms.Padding(3);
             this.operationTypeControl1.Size = new System.Drawing.Size(439, 23);
             this.operationTypeControl1.TabIndex = 2;
             // 

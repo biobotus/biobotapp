@@ -34,10 +34,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvOperations = new System.Windows.Forms.DataGridView();
-            this.bsObjectType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsOperationType = new System.Windows.Forms.BindingSource(this.components);
             this.bioBotDataSet = new BioBotApp.Model.Data.BioBotDataSets();
-            this.bsOperation = new System.Windows.Forms.BindingSource(this.components);
-            this.bsStepOperation = new System.Windows.Forms.BindingSource(this.components);
             this.bsStep = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -45,25 +43,27 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
-            this.bsObjectTypeOperationType = new System.Windows.Forms.BindingSource(this.components);
-            this.bsOperationType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsObjectType = new System.Windows.Forms.BindingSource(this.components);
             this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fkoperationtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.fkstepDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsOperation = new System.Windows.Forms.BindingSource(this.components);
+            this.bsStepOperation = new System.Windows.Forms.BindingSource(this.components);
+            this.bsObjectTypeOperationType = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsStepOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsStep)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsStepOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectTypeOperationType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -133,26 +133,17 @@
             this.dgvOperations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOperations.Size = new System.Drawing.Size(606, 438);
             this.dgvOperations.TabIndex = 3;
+            this.dgvOperations.SelectionChanged += new System.EventHandler(this.dgvOperations_SelectionChanged);
             // 
-            // bsObjectType
+            // bsOperationType
             // 
-            this.bsObjectType.DataMember = "bbt_object_type";
-            this.bsObjectType.DataSource = this.bioBotDataSet;
+            this.bsOperationType.DataMember = "bbt_operation_type";
+            this.bsOperationType.DataSource = this.bioBotDataSet;
             // 
             // bioBotDataSet
             // 
             this.bioBotDataSet.DataSetName = "BioBotDataSets";
             this.bioBotDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bsOperation
-            // 
-            this.bsOperation.DataSource = this.bsStepOperation;
-            this.bsOperation.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.bsOperation_ListChanged);
-            // 
-            // bsStepOperation
-            // 
-            this.bsStepOperation.DataMember = "bbt_step_bbt_operation";
-            this.bsStepOperation.DataSource = this.bsStep;
             // 
             // bsStep
             // 
@@ -227,15 +218,10 @@
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
-            // bsObjectTypeOperationType
+            // bsObjectType
             // 
-            this.bsObjectTypeOperationType.DataMember = "bbt_object_type_bbt_operation_type_object_type";
-            this.bsObjectTypeOperationType.DataSource = this.bsObjectType;
-            // 
-            // bsOperationType
-            // 
-            this.bsOperationType.DataMember = "bbt_operation_type";
-            this.bsOperationType.DataSource = this.bioBotDataSet;
+            this.bsObjectType.DataMember = "bbt_object_type";
+            this.bsObjectType.DataSource = this.bioBotDataSet;
             // 
             // pkidDataGridViewTextBoxColumn
             // 
@@ -282,6 +268,21 @@
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             this.valueDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // bsOperation
+            // 
+            this.bsOperation.DataSource = this.bsStepOperation;
+            this.bsOperation.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.bsOperation_ListChanged);
+            // 
+            // bsStepOperation
+            // 
+            this.bsStepOperation.DataMember = "bbt_step_bbt_operation";
+            this.bsStepOperation.DataSource = this.bsStep;
+            // 
+            // bsObjectTypeOperationType
+            // 
+            this.bsObjectTypeOperationType.DataMember = "bbt_object_type_bbt_operation_type_object_type";
+            this.bsObjectTypeOperationType.DataSource = this.bsObjectType;
+            // 
             // OperationControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,14 +296,14 @@
             this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsStepOperation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsStep)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsStepOperation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectTypeOperationType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).EndInit();
             this.ResumeLayout(false);
 
         }

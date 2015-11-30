@@ -16,7 +16,6 @@ namespace BioBotApp.View.Execute
 {
     public partial class ExecuteView : DatasetViewControl, ISequencerView
     {
-        TreeNode executeDropTreeNode;
         SequencerPresenter presenter;
 
         public ExecuteView()

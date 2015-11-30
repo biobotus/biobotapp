@@ -57,7 +57,7 @@
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\Data\BioBotDataSets.Designer.cs">
+    <Compile Include="Model\Data\BioBotDataSets1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
@@ -78,6 +78,7 @@
     <Compile Include="Model\Data\Services\SaveProtocolService.cs" />
     <Compile Include="Model\Data\Services\StepService.cs" />
     <Compile Include="Model\EventBus\EventBus.cs" />
+    <Compile Include="Model\EventBus\Events\ExecutionService\ExecutionEvent.cs" />
     <Compile Include="Model\EventBus\Events\Object\ObjectSelectionChanged.cs" />
     <Compile Include="Model\EventBus\Events\OperationReference\OperationReferenceModifyEvent.cs" />
     <Compile Include="Model\EventBus\Events\OperationReference\OperationReferenceRemoveEvent.cs" />
@@ -85,9 +86,9 @@
     <Compile Include="Model\EventBus\Events\Operation\OperationRemoveEvent.cs" />
     <Compile Include="Model\EventBus\Events\Operation\OperationModifyEvent.cs" />
     <Compile Include="Model\EventBus\Events\Operation\OperationAddEvent.cs" />
+    <Compile Include="Model\EventBus\Events\Operation\OperationSelectionEvent.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolSelectionChangedEvent.cs" />
     <Compile Include="Model\EventBus\Events\Object\OnObjectTypeChange.cs" />
-    <Compile Include="Model\EventBus\Events\Operation\OperationEvent.cs" />
     <Compile Include="Model\EventBus\Events\Property\PropertyCurrentChanged.cs" />
     <Compile Include="Model\EventBus\Events\Property\PropertyTypeCurrentChanged.cs" />
     <Compile Include="Model\EventBus\Events\Protocol\ProtocolAddEvent.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Presenter\ModulePluginManager\ModulePluginPairPresenter.cs" />
     <Compile Include="Presenter\ModulePluginManager\PathPresenter.cs" />
     <Compile Include="Presenter\Operation\OperationPresenter.cs" />
+    <Compile Include="Presenter\Operation\OperationReference\OperationReferencePresenter.cs" />
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
     <Compile Include="Presenter\Sequencer\SequencerPresenter.cs" />
@@ -234,11 +236,19 @@
     <Compile Include="View\Operation\OperationForm.Designer.cs">
       <DependentUpon>OperationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Operation\OperationReference\IOperationReferenceView.cs" />
+    <Compile Include="View\Operation\OperationReference\OperationReferenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Operation\OperationReference\OperationReferenceControl.Designer.cs">
+      <DependentUpon>OperationReferenceControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Operation\OperationView2.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Operation\OperationView2.Designer.cs">
       <DependentUpon>OperationView2.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Option\OptionMainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +392,12 @@
     <Compile Include="View\Utils\Controls\AbstractDialog.Designer.cs">
       <DependentUpon>AbstractDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Utils\Controls\DatasetViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Utils\Controls\DatasetViewControl.Designer.cs">
+      <DependentUpon>DatasetViewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Utils\Controls\NamedComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -400,10 +416,7 @@
     <Compile Include="View\Utils\CrudOptions\crudOptions.Designer.cs">
       <DependentUpon>crudOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Utils\DatasetViewControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Utils\IDatasetViewControl.cs" />
+    <Compile Include="View\Utils\Controls\IDatasetViewControl.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -435,10 +448,6 @@
       <DependentUpon>MainTestForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Main\MainViewControl.resx">
-      <DependentUpon>MainViewControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainViewForm.resx">
       <DependentUpon>MainViewForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -466,8 +475,12 @@
     <EmbeddedResource Include="View\Operation\OperationForm.resx">
       <DependentUpon>OperationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Operation\OperationReference\OperationReferenceControl.resx">
+      <DependentUpon>OperationReferenceControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Operation\OperationView2.resx">
       <DependentUpon>OperationView2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Option\OptionMainView.resx">
       <DependentUpon>OptionMainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -527,9 +540,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Utils\Controls\AbstractDialog.resx">
       <DependentUpon>AbstractDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Utils\Controls\DatasetViewControl.resx">
-      <DependentUpon>DatasetViewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Utils\Controls\NamedComboBox.resx">
       <DependentUpon>NamedComboBox.cs</DependentUpon>

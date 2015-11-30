@@ -18,6 +18,11 @@ namespace BioBotApp.Presenter.Operation
             this.view = view;
         }
 
+        public void setSelectedOperationRow(BioBotDataSets.bbt_operationRow row)
+        {
+            Model.Data.Services.OperationService.Instance.setSelectedOperationRow(row);
+        }
+
         public void addOperationRow(BioBotDataSets.bbt_operation_typeRow operationType, BioBotDataSets.bbt_stepRow stepRow, int index, String value)
         {
             Model.Data.Services.OperationService.Instance.addOperationRow(operationType, stepRow, index, value);

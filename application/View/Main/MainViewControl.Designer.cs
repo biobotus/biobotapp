@@ -37,6 +37,7 @@
             this.txtConnectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnConnect = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -44,7 +45,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.operationControl21 = new BioBotApp.View.Step.OperationControl2();
             this.protocolStepView1 = new BioBotApp.View.Protocol.ProtocolStepView();
-            this.btnConnect = new System.Windows.Forms.ToolStripMenuItem();
+            this.operationReferenceControl1 = new BioBotApp.View.Operation.OperationReference.OperationReferenceControl();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -108,10 +109,17 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // btnConnect
+            // 
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(119, 22);
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // tabControl1
@@ -149,6 +157,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.operationReferenceControl1);
             this.tabPage2.Controls.Add(this.operationControl21);
             this.tabPage2.Controls.Add(this.protocolStepView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -161,10 +170,10 @@
             // 
             // operationControl21
             // 
-            this.operationControl21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operationControl21.Dock = System.Windows.Forms.DockStyle.Left;
             this.operationControl21.Location = new System.Drawing.Point(347, 3);
             this.operationControl21.Name = "operationControl21";
-            this.operationControl21.Size = new System.Drawing.Size(638, 393);
+            this.operationControl21.Size = new System.Drawing.Size(364, 393);
             this.operationControl21.TabIndex = 1;
             // 
             // protocolStepView1
@@ -177,12 +186,13 @@
             this.protocolStepView1.Size = new System.Drawing.Size(344, 393);
             this.protocolStepView1.TabIndex = 0;
             // 
-            // btnConnect
+            // operationReferenceControl1
             // 
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(152, 22);
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            this.operationReferenceControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.operationReferenceControl1.Location = new System.Drawing.Point(711, 3);
+            this.operationReferenceControl1.Name = "operationReferenceControl1";
+            this.operationReferenceControl1.Size = new System.Drawing.Size(259, 393);
+            this.operationReferenceControl1.TabIndex = 6;
             // 
             // MainViewControl
             // 
@@ -223,5 +233,6 @@
         private Protocol.ProtocolStepView protocolStepView2;
         private Step.OperationControl2 operationControl21;
         private System.Windows.Forms.ToolStripMenuItem btnConnect;
+        private Operation.OperationReference.OperationReferenceControl operationReferenceControl1;
     }
 }

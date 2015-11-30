@@ -18,14 +18,14 @@ namespace BioBotApp.Model.Sequencer
         private static ExecuteService privateInstance;
         private Communication.CommunicationService communicationService;
         BioBotDataSets.bbt_save_protocol_referenceDataTable commands;
-        Dictionary<int, BioBotDataSets.bbt_stepRow> commandsTODO;
+        Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
         int index = 0;
 
         private ExecuteService()
         {
             this.dbManager = DBManager.Instance;
             communicationService = Communication.CommunicationService.Instance;
-            commandsTODO = new Dictionary<int, BioBotDataSets.bbt_stepRow>();
+            commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
         }
 
         public static ExecuteService Instance
@@ -47,7 +47,7 @@ namespace BioBotApp.Model.Sequencer
             {
                 if (!commands[0].Isfk_protocolNull())
                 {
-                    commandsTODO = new Dictionary<int, BioBotDataSets.bbt_stepRow>();
+                    commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
                     BioBotDataSets.bbt_protocolRow row = DBManager.Instance.projectDataset.bbt_protocol.FindBypk_id(commands[0].fk_protocol);
                     generateList(row);
                     index = 0;
@@ -63,8 +63,10 @@ namespace BioBotApp.Model.Sequencer
             {
                 return;
             }
-            Console.WriteLine("Executing: " + commandsTODO[index].description);
-            communicationService.writeData("Executing: " + commandsTODO[index].description + '\r' + '\n');
+
+
+            EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index]));
+            //communicationService.writeData("Executing: " + .description + '\r' + '\n');
         }
 
         public void generateList(BioBotDataSets.bbt_protocolRow protocolRow)
@@ -73,10 +75,11 @@ namespace BioBotApp.Model.Sequencer
             for (int internalIndex = 1; internalIndex < maxSize+1; internalIndex++)
             {
                 BioBotDataSets.bbt_stepRow nextStepRow = getNextChildStep(protocolRow, internalIndex);
-                if (nextStepRow != null)
+                for (int i = 1; i < nextStepRow.Getbbt_operationRows().Length; i++)
                 {
-                    commandsTODO.Add(index++, nextStepRow);
+                    commandsTODO.Add(index++,nextStepRow.Getbbt_operationRows()[i]);
                 }
+
                 BioBotDataSets.bbt_protocolRow nextProtocolRow = getNextChildProtocol(protocolRow, internalIndex);
                 if (nextProtocolRow != null)
                 {

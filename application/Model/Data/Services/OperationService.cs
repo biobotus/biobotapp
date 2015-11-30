@@ -160,5 +160,10 @@ namespace BioBotApp.Model.Data.Services
                 this.dbManager.projectDataset.bbt_operation.RejectChanges();
             }
         }
+
+        public void setSelectedOperationRow(BioBotDataSets.bbt_operationRow row)
+        {
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Operation.OperationSelectionEvent(row));
+        }
     }
 }

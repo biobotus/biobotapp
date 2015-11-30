@@ -72,7 +72,6 @@ namespace BioBotApp.Model.Data.Services
 
         public void removeStepRow(int primaryKey)
         {
-            int rowId = -1;
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.FindBypk_id(primaryKey);
             removeStepRow(row);
         }
