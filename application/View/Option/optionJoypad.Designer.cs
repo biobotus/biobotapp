@@ -119,8 +119,8 @@ namespace BioBotApp.Controls.Option.Options
             this.buttonZ1Plus = new System.Windows.Forms.Button();
             this.buttonXMinus = new System.Windows.Forms.Button();
             this.buttonYMinus = new System.Windows.Forms.Button();
-            this.dsModuleStructure1 = new BioBotApp.DataSets.dsModuleStructure3();
-            this.taModule1 = new BioBotApp.DataSets.dsModuleStructure3TableAdapters.taModule();
+            //this.dsModuleStructure1 = new BioBotApp.DataSets.dsModuleStructure3();
+            //this.taModule1 = new BioBotApp.DataSets.dsModuleStructure3TableAdapters.taModule();
             this.bs1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnHomeZ3 = new System.Windows.Forms.Button();
             this.btnHomeZ2 = new System.Windows.Forms.Button();
@@ -129,8 +129,8 @@ namespace BioBotApp.Controls.Option.Options
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bs1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.bs1)).BeginInit();
             this.SuspendLayout();
             // 
             // Home
@@ -346,7 +346,7 @@ namespace BioBotApp.Controls.Option.Options
             // 
             // refresh
             // 
-            this.refresh.BackgroundImage = global::BioBotApp.Properties.Resources.refresh;
+            this.refresh.BackgroundImage = global::BioBotApp.Properties.Resources.arrow_refresh;
             this.refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.refresh.Location = new System.Drawing.Point(61, 20);
             this.refresh.Name = "refresh";
@@ -734,17 +734,17 @@ namespace BioBotApp.Controls.Option.Options
             // 
             // dsModuleStructure1
             // 
-            this.dsModuleStructure1.DataSetName = "dsModuleStructure3";
-            this.dsModuleStructure1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.dsModuleStructure1.DataSetName = "dsModuleStructure3";
+            //this.dsModuleStructure1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // taModule1
             // 
-            this.taModule1.ClearBeforeFill = true;
+            //this.taModule1.ClearBeforeFill = true;
             // 
             // bs1
             // 
-            this.bs1.DataMember = "dtModule";
-            this.bs1.DataSource = this.dsModuleStructure1;
+            //this.bs1.DataMember = "dtModule";
+           // this.bs1.DataSource = this.dsModuleStructure1;
             // 
             // btnHomeZ3
             // 
@@ -856,7 +856,7 @@ namespace BioBotApp.Controls.Option.Options
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -865,7 +865,7 @@ namespace BioBotApp.Controls.Option.Options
 
         private void Home_Click(object sender, EventArgs e)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine("H\n");
+            movementSerial.write("H\n");
         }
 
         #endregion
@@ -944,9 +944,9 @@ namespace BioBotApp.Controls.Option.Options
         private Label z1coord;
         private Label ycoord;
         private Label xcoord;
-        private DataSets.dsModuleStructure3 dsModuleStructure1;
+        //private DataSets.dsModuleStructure3 dsModuleStructure1;
         private BindingSource bs1;
-        private DataSets.dsModuleStructure3TableAdapters.taModule taModule1;
+        //private DataSets.dsModuleStructure3TableAdapters.taModule taModule1;
         private Button btnHomeZ3;
         private Button btnHomeZ2;
         private Button btnHomeZ1;

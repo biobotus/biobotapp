@@ -266,6 +266,12 @@
     <Compile Include="View\Operation\OperationView2.Designer.cs">
       <DependentUpon>OperationView2.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Option\optionJoypad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Option\optionJoypad.Designer.cs">
+      <DependentUpon>optionJoypad.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Option\OptionMainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Operation\OperationView2.resx">
       <DependentUpon>OperationView2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Option\optionJoypad.resx">
+      <DependentUpon>optionJoypad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Option\OptionMainView.resx">
       <DependentUpon>OptionMainView.cs</DependentUpon>

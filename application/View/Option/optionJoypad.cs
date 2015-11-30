@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Utils.Communication;
-using BioBotApp.DataSets;
+//using BioBotApp.DataSets;
+using BioBotCommunication.Serial.Movement;
 
 namespace BioBotApp.Controls.Option.Options
 {
@@ -30,41 +31,40 @@ namespace BioBotApp.Controls.Option.Options
 
     //}
     ////}
+
+
+
     public partial class optionJoypad : UserControl
     {
+
+        ArduinoCommunication movementSerial = new ArduinoCommunication();
+
         public optionJoypad()
         {
             InitializeComponent();
-            ComChannelFactory.getGCodeSerial().DataReceived += OptionJoypad_DataReceived;
+            //ComChannelFactory.getGCodeSerial().DataReceived += OptionJoypad_DataReceived;
         }
 
-        public optionJoypad(dsModuleStructure3 dsModuleStructure,BindingSource bsModule) : this()
-        {
-            this.dsModuleStructure1 = dsModuleStructure;
-            this.bs1 = bsModule;
-            bs1.DataSource = dsModuleStructure;
+        //public optionJoypad()// : this()
+        //{
+   
+        //}
 
-            if (labelX.Text== "X :   ")
-            {
-                taModule1.Fill(this.dsModuleStructure1.dtModule);
-            }
-        }
-
-        public void updateRow(DataSets.dsModuleStructure3.dtModuleRow updateRow)
-        {
-            try
-            {
-                taModule1.Update(updateRow);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Invalid action type, try again !",
-                    "Error !",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                dsModuleStructure1.RejectChanges();
-            }
-        }
+        //public void updateRow(DataSets.dsModuleStructure3.dtModuleRow updateRow)
+        //{
+        //    try
+        //    {
+        //        taModule1.Update(updateRow);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Invalid action type, try again !",
+        //            "Error !",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //        dsModuleStructure1.RejectChanges();
+        //    }
+        //}
         public optionJoypad(string tag, string lblTestTxt)
         {
             InitializeComponent();
@@ -80,7 +80,7 @@ namespace BioBotApp.Controls.Option.Options
         double z3coor=0;
         Double varCoor = 0;
         string GCode;
-        private dsModuleStructure3 dsModuleStructure;
+        //private dsModuleStructure3 dsModuleStructure;
         private string v;
         private string lblTestTxt;
 
@@ -363,26 +363,26 @@ namespace BioBotApp.Controls.Option.Options
         {
 
             Console.Out.WriteLine(text);
-            CustomSerial movementSerial = ComChannelFactory.getGCodeSerial();
-            movementSerial.configure("COM3", "115200", "8", "One", "None");
-            movementSerial.Open();
+            ArduinoCommunication movementSerial = new ArduinoCommunication();//ComChannelFactory.getGCodeSerial();
+            movementSerial.configure("COM3", "115200", "8", System.IO.Ports.StopBits.One, System.IO.Ports.Parity.None);
+            //movementSerial.Open();
             //movementSerial.WriteLine(text);
-            movementSerial.Write("M105\n");
+            movementSerial.write("M105\n");
             //movementSerial.WriteLine("T1\n");
 
             System.Threading.Thread.Sleep(1000);
-            movementSerial.Write("G91\n");
-            movementSerial.Write("G1 X-300 F6000\n");
+            movementSerial.write("G91\n");
+            movementSerial.write("G1 X-300 F6000\n");
             System.Threading.Thread.Sleep(1000);
-            movementSerial.ReadExisting();
+            //movementSerial.ReadExisting();
             //movementSerial.ReadLine();
-            movementSerial.Close();
+            //movementSerial.Close();
 
         }
 
         private void move(String axe, double position)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine(axe + position);
+            movementSerial.write(axe + position);
             updatePositions();
         }
 
@@ -421,10 +421,10 @@ namespace BioBotApp.Controls.Option.Options
             
         }
 
-        private void OptionJoypad_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            String comPortDataReceived = ComChannelFactory.getGCodeSerial().ReadExisting();
-        }
+        //private void OptionJoypad_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        //{
+        //    String comPortDataReceived = ComChannelFactory.getGCodeSerial().ReadExisting();
+        //}
 
         private void refresh_Click(object sender, EventArgs e)
         {
@@ -441,35 +441,35 @@ namespace BioBotApp.Controls.Option.Options
 
         private void btnHomeZ3_Click(object sender, EventArgs e)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine("HZ3");
+            movementSerial.write("HZ3");
             z3coor = 0;
             updatePositions();
         }
 
         private void btnHomeZ2_Click(object sender, EventArgs e)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine("HZ2");
+            movementSerial.write("HZ2");
             z2coor = 0;
             updatePositions();
         }
 
         private void btnHomeZ1_Click(object sender, EventArgs e)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine("HZ1");
+            movementSerial.write("HZ1");
             z1coor = 0;
             updatePositions();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine("HY");
+            movementSerial.write("HY");
             ycoor = 0;
             updatePositions();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            ComChannelFactory.getGCodeSerial().WriteLine("HX");
+            movementSerial.write("HX");
             xcoor = 0;
             updatePositions();
         }
