@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Serial\Can\PCANBasic.cs" />
     <Compile Include="Serial\Can\PCANCom.cs" />
+    <Compile Include="Serial\Events\ConsumerCompletionEvent.cs" />
     <Compile Include="Serial\Events\OnCommunicationMessageReceived.cs" />
     <Compile Include="Serial\Events\OnConnectionStatusChangeEvent.cs" />
     <Compile Include="Serial\Movement\ArduinoCommunication.cs" />
@@ -68,7 +69,14 @@
     <Compile Include="Serial\Movement\ArduinoSerialCommControl.Designer.cs">
       <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Serial\Movement\OnCompletionEventArgs.cs" />
+    <Compile Include="Serial\Movement\SerialCommunication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serial\Utils\Billboard.cs" />
+    <Compile Include="Serial\Utils\BillboardCompletionEventArgs.cs" />
+    <Compile Include="Serial\Utils\ConsumerCompletionEventargs.cs" />
+    <Compile Include="Serial\Utils\SerialConsumer.cs" />
+    <Compile Include="Serial\Utils\SerialProducer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

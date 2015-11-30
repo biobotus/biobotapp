@@ -13,9 +13,7 @@ namespace BioBotCommunication.Serial.Movement
     public class ArduinoCommunicationWorker : ArduinoCommunication
     {
         private Thread arduinoSerialWorker;
-        private AutoResetEvent toggle = new AutoResetEvent(false);
-        public event EventHandler<OnCompletionEventArgs> OnCompletionEvent;
-        private List<String> data;
+        private List<String> receivedData;
         private volatile Boolean isStopped = false;
 
         private ArduinoCommunicationWorker()
@@ -24,13 +22,12 @@ namespace BioBotCommunication.Serial.Movement
             onArduinoReceive += ArduinoCommunicationWorker_onArduinoReceive;
             onErrorMessage += ArduinoCommunicationWorker_onErrorMessage;
             arduinoSerialWorker.Start();
+            receivedData = new List<String>();
         }
 
         private void ArduinoCommunicationWorker_onErrorMessage(object sender, SerialErrorReceivedEventArgs e)
         {
-            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
-            eventargs.error = true;
-            toggle.Set();
+
         }
 
         private void ArduinoCommunicationWorker_onArduinoReceive(object sender, SerialDataReceivedEventArgs e)
@@ -38,18 +35,11 @@ namespace BioBotCommunication.Serial.Movement
             if (sender is SerialPort)
             {
                 SerialPort port = sender as SerialPort;
-                lock (data)
+                lock (receivedData)
                 {
-                    data.Add(port.ReadExisting());
+                    receivedData.Add(port.ReadExisting());
                 }
             }
-
-
-            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Completed work");
-            eventargs.error = false;
-
-            OnMessageReceivedEvent(eventargs);
-            toggle.Set();
         }
 
         private static ArduinoCommunicationWorker instance;
@@ -67,19 +57,8 @@ namespace BioBotCommunication.Serial.Movement
 
         private void ArdunioSerialWorker_DoWork()
         {
-            Boolean dataReceived = false;
             while (!isStopped)
             {
-                lock (data)
-                {
-                    dataReceived = toggle.WaitOne(100);
-                    if (dataReceived)
-                    {
-                        dataReceived = false;                        
-                        toggle.Reset();
-                        OnMessageReceivedEvent(new OnCompletionEventArgs(data));
-                    }
-                }
                 Thread.Sleep(100);
             }
         }
@@ -100,27 +79,31 @@ namespace BioBotCommunication.Serial.Movement
             arduinoSerialWorker.Abort();
         }
 
-        protected virtual void OnMessageReceivedEvent(OnCompletionEventArgs e)
+        public List<String> getMessages()
         {
-            EventHandler<OnCompletionEventArgs> handler = OnCompletionEvent;
-            if (handler != null)
+            List<String> deepCopy = new List<string>();
+            lock (receivedData)
             {
-                handler(this, e);
-            }
-        }
-
-        public String getNextMessage()
-        {
-            String dataReturn = "";
-            lock (data)
-            {
-                if(data.Count > 0)
+                foreach(String data in receivedData)
                 {
-                    dataReturn = data[0];
-                    data.RemoveAt(0);
+                    deepCopy.Add(String.Copy(data));
                 }
             }
-            return dataReturn;
+            return deepCopy;
+        }
+
+        public void consume(String consumeData)
+        {
+            lock (receivedData)
+            {
+                foreach (String data in receivedData)
+                {
+                    if (data.Contains(consumeData))
+                    {
+                        receivedData.Remove(data);
+                    }
+                }
+            }
         }
     }
 }

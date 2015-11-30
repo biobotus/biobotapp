@@ -14,14 +14,14 @@ namespace BioBotApp.Model.Communication
         private CommunicationService()
         {
             this.worker = BioBotCommunication.Serial.Movement.ArduinoCommunicationWorker.Instance;
-            this.worker.OnCompletionEvent += Worker_OnCompletionEvent;
         }
 
+        /*
         private void Worker_OnCompletionEvent(object sender, BioBotCommunication.Serial.Movement.OnCompletionEventArgs e)
         {
             EventBus.EventBus.Instance.post(new BioBotCommunication.Serial.Events.OnCommunicationMessageReceived(e.message));
         }
-
+        */
         public void writeData(String data)
         {
             worker.write(data);

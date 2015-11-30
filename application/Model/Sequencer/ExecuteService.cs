@@ -1,6 +1,7 @@
 ﻿using BioBotApp.Model.Data;
 using BioBotApp.Model.EventBus;
 using BioBotApp.Model.Sequencer.Helpers;
+using BioBotCommunication.Serial.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,26 @@ namespace BioBotApp.Model.Sequencer
         DBManager dbManager;
 
         private static ExecuteService privateInstance;
-        private Communication.CommunicationService communicationService;
         BioBotDataSets.bbt_save_protocol_referenceDataTable commands;
         Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
-        List<ICommand> currentCommands;
         int index = 0;
+        SerialProducer producer;
+        Billboard billboard;
 
         private ExecuteService()
         {
             this.dbManager = DBManager.Instance;
-            communicationService = Communication.CommunicationService.Instance;
             commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
-            currentCommands = new List<ICommand>();
+            billboard = new Billboard();
+            billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
+            producer = new SerialProducer(billboard);
+            producer.start();
+        }
+
+        private void Billboard_onBillboardCompletionEvent(object sender, BillboardCompletionEventArgs e)
+        {
+            index++;
+            exectuteNext();
         }
 
         public static ExecuteService Instance
@@ -68,9 +77,9 @@ namespace BioBotApp.Model.Sequencer
                 return;
             }
 
-            /*
-            EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index]));
-            */
+            
+            EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index], this.billboard));
+            
             //communicationService.writeData("Executing: " + .description + '\r' + '\n');
         }
 
@@ -121,25 +130,6 @@ namespace BioBotApp.Model.Sequencer
             }
             return null;
         }
-
-        [Model.EventBus.Subscribe]
-        public void onExecuteCommand(Model.Sequencer.Events.ExecuteCommandEvent e)
-        {
-            this.currentCommands.Add(e.command);
-        }
-
-        [Model.EventBus.Subscribe]
-        public void onCompletionCommand(Model.Sequencer.Events.CompletionCommandEvent e)
-        {
-            if (currentCommands.Contains(e.command))
-            {
-                currentCommands.Remove(e.command);
-            }
-            if (currentCommands.Count == 0)
-            {
-                index++;
-                exectuteNext();
-            }
-        }
+        
     }
 }

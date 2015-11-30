@@ -84,7 +84,7 @@ namespace BioBotCommunication.Serial.Movement
             {
                 return;
             }
-            ArduinoCommunicationWorker.Instance.configure(ddlPortName.Text,ddlBaud.Text,ddlDataBits.Text, (StopBits)ddlStopBits.SelectedItem, (Parity)ddlParity.SelectedItem);
+            SerialCommunication.Instance.configure(ddlPortName.Text,ddlBaud.Text,ddlDataBits.Text, (StopBits)ddlStopBits.SelectedItem, (Parity)ddlParity.SelectedItem);
         }
 
         private void ArduinoSerialCommControl_Load(object sender, EventArgs e)

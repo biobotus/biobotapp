@@ -65,7 +65,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(180, 175);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.btnResfresh);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(173, 24);
@@ -89,7 +89,7 @@
             this.ddlPortName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlPortName.FormattingEnabled = true;
             this.ddlPortName.Location = new System.Drawing.Point(81, 0);
-            this.ddlPortName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlPortName.Margin = new System.Windows.Forms.Padding(2);
             this.ddlPortName.Name = "ddlPortName";
             this.ddlPortName.Size = new System.Drawing.Size(68, 21);
             this.ddlPortName.TabIndex = 1;
@@ -99,7 +99,7 @@
             this.btnResfresh.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnResfresh.Image = global::BioBotCommunication.Properties.Resources.arrow_rotate_clockwise;
             this.btnResfresh.Location = new System.Drawing.Point(149, 0);
-            this.btnResfresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnResfresh.Margin = new System.Windows.Forms.Padding(2);
             this.btnResfresh.MinimumSize = new System.Drawing.Size(24, 24);
             this.btnResfresh.Name = "btnResfresh";
             this.btnResfresh.Size = new System.Drawing.Size(24, 24);
@@ -126,7 +126,7 @@
             this.panel2.Controls.Add(this.ddlBaud);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(2, 30);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(173, 24);
@@ -137,7 +137,7 @@
             this.ddlBaud.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlBaud.FormattingEnabled = true;
             this.ddlBaud.Location = new System.Drawing.Point(81, 0);
-            this.ddlBaud.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlBaud.Margin = new System.Windows.Forms.Padding(2);
             this.ddlBaud.Name = "ddlBaud";
             this.ddlBaud.Size = new System.Drawing.Size(92, 21);
             this.ddlBaud.TabIndex = 1;
@@ -161,7 +161,7 @@
             this.panel3.Controls.Add(this.ddlDataBits);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(2, 58);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(173, 24);
@@ -172,7 +172,7 @@
             this.ddlDataBits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlDataBits.FormattingEnabled = true;
             this.ddlDataBits.Location = new System.Drawing.Point(81, 0);
-            this.ddlDataBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlDataBits.Margin = new System.Windows.Forms.Padding(2);
             this.ddlDataBits.Name = "ddlDataBits";
             this.ddlDataBits.Size = new System.Drawing.Size(92, 21);
             this.ddlDataBits.TabIndex = 1;
@@ -196,7 +196,7 @@
             this.panel4.Controls.Add(this.ddlParity);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Location = new System.Drawing.Point(2, 86);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(173, 24);
@@ -207,7 +207,7 @@
             this.ddlParity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlParity.FormattingEnabled = true;
             this.ddlParity.Location = new System.Drawing.Point(81, 0);
-            this.ddlParity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlParity.Margin = new System.Windows.Forms.Padding(2);
             this.ddlParity.Name = "ddlParity";
             this.ddlParity.Size = new System.Drawing.Size(92, 21);
             this.ddlParity.TabIndex = 1;
@@ -231,7 +231,7 @@
             this.panel5.Controls.Add(this.ddlStopBits);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(2, 114);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.MinimumSize = new System.Drawing.Size(173, 24);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(173, 24);
@@ -242,7 +242,7 @@
             this.ddlStopBits.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlStopBits.FormattingEnabled = true;
             this.ddlStopBits.Location = new System.Drawing.Point(81, 0);
-            this.ddlStopBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlStopBits.Margin = new System.Windows.Forms.Padding(2);
             this.ddlStopBits.Name = "ddlStopBits";
             this.ddlStopBits.Size = new System.Drawing.Size(92, 21);
             this.ddlStopBits.TabIndex = 1;
@@ -262,7 +262,7 @@
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(2, 142);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(2);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(69, 22);
             this.btnConnect.TabIndex = 5;
@@ -275,7 +275,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ArduinoSerialCommControl";
             this.Size = new System.Drawing.Size(180, 175);
             this.Load += new System.EventHandler(this.ArduinoSerialCommControl_Load);
