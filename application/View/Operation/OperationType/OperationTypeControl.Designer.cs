@@ -1,4 +1,4 @@
-﻿namespace BioBotApp.View.Protocol.OperationType
+﻿namespace BioBotApp.View.Operation.OperationType
 {
     partial class OperationTypeControl
     {
@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbOperationType = new System.Windows.Forms.ComboBox();
             this.bsOperationType = new System.Windows.Forms.BindingSource(this.components);
             this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
+            this.txtInputName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbOperationType
             // 
-            this.comboBox1.DataSource = this.bsOperationType;
-            this.comboBox1.DisplayMember = "description";
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(0, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(408, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.ValueMember = "pk_id";
+            this.cmbOperationType.DataSource = this.bsOperationType;
+            this.cmbOperationType.DisplayMember = "description";
+            this.cmbOperationType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmbOperationType.FormattingEnabled = true;
+            this.cmbOperationType.Location = new System.Drawing.Point(122, 3);
+            this.cmbOperationType.Name = "cmbOperationType";
+            this.cmbOperationType.Size = new System.Drawing.Size(283, 21);
+            this.cmbOperationType.TabIndex = 0;
+            this.cmbOperationType.ValueMember = "pk_id";
             // 
             // bsOperationType
             // 
@@ -58,13 +59,25 @@
             this.bioBotDataSets.DataSetName = "BioBotDataSets";
             this.bioBotDataSets.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // txtInputName
+            // 
+            this.txtInputName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtInputName.Location = new System.Drawing.Point(3, 3);
+            this.txtInputName.Name = "txtInputName";
+            this.txtInputName.Size = new System.Drawing.Size(119, 20);
+            this.txtInputName.TabIndex = 3;
+            this.txtInputName.Text = "OperationType:";
+            this.txtInputName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // OperationTypeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbOperationType);
+            this.Controls.Add(this.txtInputName);
             this.Name = "OperationTypeControl";
-            this.Size = new System.Drawing.Size(408, 21);
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(408, 26);
             ((System.ComponentModel.ISupportInitialize)(this.bsOperationType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).EndInit();
             this.ResumeLayout(false);
@@ -73,8 +86,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbOperationType;
         private System.Windows.Forms.BindingSource bsOperationType;
         private Model.Data.BioBotDataSets bioBotDataSets;
+        private System.Windows.Forms.Label txtInputName;
     }
 }

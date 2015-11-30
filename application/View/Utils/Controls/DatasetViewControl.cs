@@ -9,7 +9,7 @@ using BioBotApp.Presenter.Utils;
 
 namespace BioBotApp.View.Utils
 {
-    public class DatasetViewControl : UserControl, IDatasetViewControl
+    public partial class DatasetViewControl : UserControl, IDatasetViewControl
     {
         public Model.Data.BioBotDataSets dataset { get; set; }
         private DatasetPresenter datasetPresenter;

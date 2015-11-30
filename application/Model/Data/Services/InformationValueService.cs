@@ -139,5 +139,46 @@ namespace BioBotApp.Model.Data.Services
                 this.dbManager.projectDataset.bbt_information_value.RejectChanges();
             }
         }
+
+        // Other functions :
+        public string getInformationValue(string propertyTypeDesc, string propertyDesc)
+        {
+            BioBotDataSets.bbt_property_typeRow[] propertyTypeRow = 
+                (BioBotDataSets.bbt_property_typeRow[])dbManager.projectDataset.bbt_property_type.Select(
+                "SELECT * " +
+                "FROM deck.bbt_property_type " +
+                "WHERE description = '" + propertyDesc + "';");
+
+            if (propertyTypeRow.Count() != 1) return "";
+
+            BioBotDataSets.bbt_propertyRow[] propertyRow =
+                (BioBotDataSets.bbt_propertyRow[])dbManager.projectDataset.bbt_property.Select(
+                "SELECT * " +
+                "FROM deck.bbt_property " +
+                "WHERE fk_property_type = " + propertyTypeRow[0].pk_id + " AND description = '" + propertyTypeDesc + "';");
+
+            if (propertyRow.Count() != 1) return "";
+
+            BioBotDataSets.bbt_information_valueRow[] informationValueRow =
+                (BioBotDataSets.bbt_information_valueRow[])dbManager.projectDataset.bbt_information_value.Select(
+                "SELECT * " +
+                "FROM deck.bbt_information_value " +
+                "WHERE fk_property = " + propertyRow[0].pk_id + ";");
+
+            if (informationValueRow.Count() != 1) return "";
+            else return informationValueRow[0].information_value;
+
+            /*
+            Could have used the following query :
+            SELECT information_value
+            FROM deck.bbt_information_value AS informationValues
+            INNER JOIN deck.bbt_property AS properties	
+            ON informationValues.fk_property = properties.pk_id
+            INNER JOIN deck.bbt_property_type as propertyTypes
+            ON properties.fk_property_type = propertyTypes.pk_id
+            WHERE propertyTypes.description = 'ToolRackPosition' AND
+                  properties.description = 'Z'
+            */
+        }
     }
 }

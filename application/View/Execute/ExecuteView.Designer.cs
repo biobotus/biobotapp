@@ -38,7 +38,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExectue = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,7 +68,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.button4);
             this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.btnExectue);
             this.splitContainer1.Size = new System.Drawing.Size(419, 495);
             this.splitContainer1.SplitterDistance = 356;
             this.splitContainer1.TabIndex = 0;
@@ -110,6 +110,7 @@
             this.tlvProtocol.Name = "tlvProtocol";
             this.tlvProtocol.Size = new System.Drawing.Size(419, 290);
             this.tlvProtocol.TabIndex = 0;
+            this.tlvProtocol.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.tlvProtocol_ItemDrag);
             this.tlvProtocol.DragDrop += new System.Windows.Forms.DragEventHandler(this.tlvProtocol_DragDrop);
             this.tlvProtocol.DragEnter += new System.Windows.Forms.DragEventHandler(this.tlvProtocol_DragEnter);
             // 
@@ -167,14 +168,15 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnExectue
             // 
-            this.button1.Location = new System.Drawing.Point(23, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExectue.Location = new System.Drawing.Point(23, 15);
+            this.btnExectue.Name = "btnExectue";
+            this.btnExectue.Size = new System.Drawing.Size(75, 23);
+            this.btnExectue.TabIndex = 0;
+            this.btnExectue.Text = "Execute";
+            this.btnExectue.UseVisualStyleBackColor = true;
+            this.btnExectue.Click += new System.EventHandler(this.btnExectue_Click);
             // 
             // ExecuteView
             // 
@@ -207,6 +209,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExectue;
     }
 }

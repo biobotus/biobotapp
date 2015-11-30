@@ -1,4 +1,5 @@
-﻿using BioBotApp.View.Utils;
+﻿using BioBotApp.Model.Data;
+using BioBotApp.View.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BioBotApp.View.Operation
 {
     public interface IOperationView : IDatasetViewControl
     {
-        void setOperation(Model.Data.BioBotDataSets.bbt_operationRow operation);
-        void setStep(Model.Data.BioBotDataSets.bbt_stepRow stepRow);
+        void setSelectedStepRow(BioBotDataSets.bbt_stepRow row);
+        void setSelectedObjectTypeRow(BioBotDataSets.bbt_object_typeRow row);
     }
 }

@@ -202,7 +202,6 @@
         #endregion
 
         private OperationControl operationControl1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private Model.Data.BioBotDataSets bioBotDataSets;
         private System.Windows.Forms.BindingSource bbt_stepBindingSource;
         private System.Windows.Forms.DataGridView bbt_stepDataGridView;

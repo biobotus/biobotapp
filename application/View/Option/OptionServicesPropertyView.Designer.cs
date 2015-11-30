@@ -37,12 +37,14 @@ namespace BioBotApp.View.Option
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.informationValueServiceView1 = new BioBotApp.View.Services.InformationValueServiceView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.objectPropertyServiceView1 = new BioBotApp.View.Services.ObjectPropertyServiceView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.operationTypeObjectTypeView1 = new BioBotApp.View.Operation.OperationTypeObjectType.OperationTypeObjectTypeView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -123,8 +125,17 @@ namespace BioBotApp.View.Option
             this.tabPage2.Text = "Object";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // objectPropertyServiceView1
+            // 
+            this.objectPropertyServiceView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectPropertyServiceView1.Location = new System.Drawing.Point(3, 3);
+            this.objectPropertyServiceView1.Name = "objectPropertyServiceView1";
+            this.objectPropertyServiceView1.Size = new System.Drawing.Size(242, 448);
+            this.objectPropertyServiceView1.TabIndex = 0;
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.operationTypeObjectTypeView1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -133,13 +144,13 @@ namespace BioBotApp.View.Option
             this.tabPage3.Text = "Operation";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // objectPropertyServiceView1
+            // operationTypeObjectTypeView1
             // 
-            this.objectPropertyServiceView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.objectPropertyServiceView1.Location = new System.Drawing.Point(3, 3);
-            this.objectPropertyServiceView1.Name = "objectPropertyServiceView1";
-            this.objectPropertyServiceView1.Size = new System.Drawing.Size(242, 448);
-            this.objectPropertyServiceView1.TabIndex = 0;
+            this.operationTypeObjectTypeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operationTypeObjectTypeView1.Location = new System.Drawing.Point(3, 3);
+            this.operationTypeObjectTypeView1.Name = "operationTypeObjectTypeView1";
+            this.operationTypeObjectTypeView1.Size = new System.Drawing.Size(242, 448);
+            this.operationTypeObjectTypeView1.TabIndex = 0;
             // 
             // OptionServicesPropertyView
             // 
@@ -152,6 +163,7 @@ namespace BioBotApp.View.Option
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -167,5 +179,6 @@ namespace BioBotApp.View.Option
         private Services.InformationValueServiceView informationValueServiceView1;
         private Services.PropertyServiceView propertyServiceView1;
         private Services.ObjectPropertyServiceView objectPropertyServiceView1;
+        private Operation.OperationTypeObjectType.OperationTypeObjectTypeView operationTypeObjectTypeView1;
     }
 }

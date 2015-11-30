@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using BioBotApp.View.Utils;
 using BioBotApp.View.Services.Objects;
 using BioBotApp.Presenter.Services.Object;
-
 namespace BioBotApp.View.Services
 {
     public partial class ObjectTypeServiceView : DatasetViewControl, IObjectTypeServiceView
