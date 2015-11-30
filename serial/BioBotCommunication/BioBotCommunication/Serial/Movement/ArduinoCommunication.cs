@@ -45,18 +45,19 @@ namespace BioBotCommunication.Serial.Movement
                 }
                 catch (UnauthorizedAccessException e)
                 {
+                    Console.WriteLine(e.StackTrace);
                     disconnectArduinoSerialPort();
                 }
             }
         }
 
-        public void write(String data)
+        public virtual void write(String data)
         {
             lock (arduinoSerialPort)
             {
                 if (arduinoSerialPort.IsOpen)
                 {
-                    arduinoSerialPort.Write(data);
+                    arduinoSerialPort.Write(data );
                 }
             }
         }
@@ -89,7 +90,8 @@ namespace BioBotCommunication.Serial.Movement
             {
                 return;
             }
-            onArduinoReceive(this, e);
+
+            onArduinoReceive(sender, e);
         }
 
         private void ArduinoSerialPort_Connect(object sender, EventArgs e)

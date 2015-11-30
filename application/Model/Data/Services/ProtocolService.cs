@@ -10,6 +10,7 @@ namespace BioBotApp.Model.Data.Services
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_protocolTableAdapter taProtocol;
+        BioBotDataSets.bbt_protocolRow selectedRow;
 
         private static ProtocolService instance;
 
@@ -29,6 +30,12 @@ namespace BioBotApp.Model.Data.Services
                 }
                 return instance;
             }
+        }
+
+        public void setSelectedRow(BioBotDataSets.bbt_protocolRow selectedRow)
+        {
+            this.selectedRow = selectedRow;
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Protocol.ProtocolSelectionChangedEvent(selectedRow));
         }
 
         public void addProtocolRow(int fkProtocolId, String description, int index)
@@ -75,16 +82,55 @@ namespace BioBotApp.Model.Data.Services
         public void removeProtocolRow(BioBotDataSets.bbt_protocolRow row)
         {
             int rowId = -1;
+            int index = -1;
+            BioBotDataSets.bbt_protocolRow parentProtocolRow = row.bbt_protocolRowParent;
             StepService.Instance.removeStepsWithGivenProtocol(row);
             foreach (BioBotDataSets.bbt_protocolRow childProtocolRow in row.Getbbt_protocolRows())
             {
                 StepService.Instance.removeStepsWithGivenProtocol(childProtocolRow);
-                removeProtocolRow(childProtocolRow);
+                removeChildRows(childProtocolRow);
             }
+            index = row.index;
             rowId = row.pk_id;
             row.Delete();
             updateRow(row);
             EventBus.EventBus.Instance.post(new Model.EventBus.Events.Protocol.ProtocolDeleteEvent(rowId));
+            updateIndex(parentProtocolRow, index);
+        }
+
+        private void removeChildRows(BioBotDataSets.bbt_protocolRow row)
+        {
+            int rowId = -1;
+            StepService.Instance.removeStepsWithGivenProtocol(row);
+            foreach (BioBotDataSets.bbt_protocolRow childProtocolRow in row.Getbbt_protocolRows())
+            {
+                StepService.Instance.removeStepsWithGivenProtocol(childProtocolRow);
+                removeChildRows(childProtocolRow);
+            }
+            rowId = row.pk_id;
+            row.Delete();
+            updateRow(row);
+        }
+
+        public void updateIndex(BioBotDataSets.bbt_protocolRow parentRow, int index)
+        {
+            if (parentRow == null) return;
+            foreach (BioBotDataSets.bbt_protocolRow protocolRow in parentRow.Getbbt_protocolRows())
+            {
+                if(protocolRow.index > index)
+                {
+                    protocolRow.index--;
+                    modifyProtocolRow(protocolRow);
+                }
+            }
+            foreach(BioBotDataSets.bbt_stepRow stepRow in parentRow.Getbbt_stepRows())
+            {
+                if(stepRow.index > index)
+                {
+                    stepRow.index--;
+                    StepService.Instance.modifyStepRow(stepRow);
+                }
+            }
         }
 
         public void updateRow(BioBotDataSets.bbt_protocolRow row)

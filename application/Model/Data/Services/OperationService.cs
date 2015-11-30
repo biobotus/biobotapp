@@ -32,22 +32,21 @@ namespace BioBotApp.Model.Data.Services
             }
         }
 
-        public void addOperationRow(int fkOperationTypeId, int fkStepId)
-        {
-            BioBotDataSets.bbt_operationRow row = this.dbManager.projectDataset.bbt_operation.Newbbt_operationRow();
-            row.fk_operation_type = fkOperationTypeId;
-            row.fk_step = fkStepId;
-            this.dbManager.projectDataset.bbt_operation.Addbbt_operationRow(row);
-            updateRow(row);
-        }
-
-        public void addOperationRow(BioBotDataSets.bbt_operation_typeRow operationTypeRow, BioBotDataSets.bbt_stepRow stepRow)
+        public void addOperationRow(BioBotDataSets.bbt_operation_typeRow operationTypeRow, BioBotDataSets.bbt_stepRow stepRow, int index,String value)
         {
             BioBotDataSets.bbt_operationRow row = this.dbManager.projectDataset.bbt_operation.Newbbt_operationRow();
             row.fk_operation_type = operationTypeRow.pk_id;
             row.fk_step = stepRow.pk_id;
+            row.index = index;
+            row.value = value;
             this.dbManager.projectDataset.bbt_operation.Addbbt_operationRow(row);
             updateRow(row);
+        }
+
+        public void modifyOperationRow(BioBotDataSets.bbt_operationRow row)
+        {
+            updateRow(row);
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Operation.OperationModifyEvent(row));
         }
 
         public void removeOperationRow(int Operation_id)
@@ -101,9 +100,9 @@ namespace BioBotApp.Model.Data.Services
                 {
                     OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
                     row.Delete();
+                    updateRow(row);
                 }
             }
-            updateRowChanges();
         }
 
         public void removeOperationsWithGivenOperationType(BioBotDataSets.bbt_operation_typeRow parentToDeleteRow)
@@ -119,11 +118,13 @@ namespace BioBotApp.Model.Data.Services
             updateRowChanges();
         }
 
-        public void modifyOperationTypeRow(int Operation_id, int newFkOperationTypeId, int newFkStepId)
+        public void modifyOperationTypeRow(int Operation_id, int newFkOperationTypeId, int newFkStepId, int index, String value)
         {
             BioBotDataSets.bbt_operationRow row = this.dbManager.projectDataset.bbt_operation.FindBypk_id(Operation_id);
             row.fk_operation_type = newFkOperationTypeId;
             row.fk_step = newFkStepId;
+            row.index = index;
+            row.value = value;
             updateRow(row);
         }
 
@@ -158,6 +159,11 @@ namespace BioBotApp.Model.Data.Services
                 MessageBox.Show(e.Message);
                 this.dbManager.projectDataset.bbt_operation.RejectChanges();
             }
+        }
+
+        public void setSelectedOperationRow(BioBotDataSets.bbt_operationRow row)
+        {
+            EventBus.EventBus.Instance.post(new Model.EventBus.Events.Operation.OperationSelectionEvent(row));
         }
     }
 }

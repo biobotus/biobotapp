@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Model.Data.Services;
+using BioBotApp.Model.Movement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,5 +52,10 @@ namespace BioBotApp.View.TestView
             ObjectTypeService.Instance.updateRow(currentRow);
         }
         #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MovementAlgorithm.Instance.Move(bioBotDataSets.bbt_operation.FindBypk_id(1));
+        }
     }
 }

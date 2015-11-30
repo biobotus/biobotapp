@@ -11,6 +11,7 @@ namespace BioBotApp.Model.Data.Services
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_objectTableAdapter taObject;
+        BioBotDataSets.bbt_objectRow selectedRow;
 
         private static ObjectService privateInstance;
 
@@ -30,6 +31,22 @@ namespace BioBotApp.Model.Data.Services
                 }
                 return privateInstance;
             }
+        }
+
+        public void setSelectedObject(BioBotDataSets.bbt_objectRow row)
+        {
+            this.selectedRow = row;
+            EventBus.EventBus.Instance.post(new EventBus.Events.Object.ObjectSelectionChanged(row, EventBus.Events.Object.ObjectSelectionChanged.SelectionType.OBJECT_SELECTION));
+        }
+
+        /// <summary>
+        /// Set selected object and fires ObjectSelectionChanged for step types. Currently selected object remains. To change selected object call setSelectedObject
+        /// method instead
+        /// </summary>
+        /// <param name="row">Selected object row</param>
+        public void setSelectedObjectStepType(BioBotDataSets.bbt_objectRow row)
+        {
+            EventBus.EventBus.Instance.post(new EventBus.Events.Object.ObjectSelectionChanged(row, EventBus.Events.Object.ObjectSelectionChanged.SelectionType.STEP_SELECTION));
         }
 
         // CRUD operations functions

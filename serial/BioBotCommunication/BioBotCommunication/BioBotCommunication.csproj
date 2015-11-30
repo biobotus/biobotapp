@@ -49,6 +49,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Serial\Can\AutoConnectCan.cs" />
+    <Compile Include="Serial\Can\CANCommunicationWorker.cs" />
     <Compile Include="Serial\Can\CanConnectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -57,6 +58,8 @@
     </Compile>
     <Compile Include="Serial\Can\PCANBasic.cs" />
     <Compile Include="Serial\Can\PCANCom.cs" />
+    <Compile Include="Serial\Events\OnCommunicationMessageReceived.cs" />
+    <Compile Include="Serial\Events\OnConnectionStatusChangeEvent.cs" />
     <Compile Include="Serial\Movement\ArduinoCommunication.cs" />
     <Compile Include="Serial\Movement\ArduinoCommunicationWorker.cs" />
     <Compile Include="Serial\Movement\ArduinoSerialCommControl.cs">

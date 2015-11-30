@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Ports;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,34 +12,43 @@ namespace BioBotCommunication.Serial.Movement
 {
     public class ArduinoCommunicationWorker : ArduinoCommunication
     {
-        private BackgroundWorker arduinoSerialWorker;
+        private Thread arduinoSerialWorker;
         private AutoResetEvent toggle = new AutoResetEvent(false);
         public event EventHandler<OnCompletionEventArgs> OnCompletionEvent;
+        private String data;
+        private volatile Boolean isStopped = false;
 
         private ArduinoCommunicationWorker()
         {
-            arduinoSerialWorker = new BackgroundWorker();
-            arduinoSerialWorker.WorkerSupportsCancellation = true;
-            arduinoSerialWorker.DoWork += ArdunioSerialWorker_DoWork;
+            arduinoSerialWorker = new Thread(ArdunioSerialWorker_DoWork);
             onArduinoReceive += ArduinoCommunicationWorker_onArduinoReceive;
             onErrorMessage += ArduinoCommunicationWorker_onErrorMessage;
+            data = "";
+            arduinoSerialWorker.Start();
         }
 
         private void ArduinoCommunicationWorker_onErrorMessage(object sender, SerialErrorReceivedEventArgs e)
         {
             OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
             eventargs.error = true;
-            OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
 
         private void ArduinoCommunicationWorker_onArduinoReceive(object sender, SerialDataReceivedEventArgs e)
         {
-            SerialPort port = sender as SerialPort;
-            String dataReceived = port.ReadExisting();
+            if(sender is SerialPort)
+            {
+                SerialPort port = sender as SerialPort;
+                lock (data)
+                {
+                    data = port.ReadExisting();
+                }
+            }
+            
 
-            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Serial port receive error !");
+            OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Completed work");
             eventargs.error = false;
+            OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
 
@@ -55,36 +65,37 @@ namespace BioBotCommunication.Serial.Movement
             }
         }
 
-        private void ArdunioSerialWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void ArdunioSerialWorker_DoWork()
         {
-            BackgroundWorker worker = sender as BackgroundWorker;
-            Boolean finished = false;
-            while (!finished)
+            Boolean dataReceived = false;
+            while (!isStopped)
             {
-                if (worker.CancellationPending)
+                dataReceived = toggle.WaitOne(100);
+                if (dataReceived)
                 {
-                    e.Cancel = true;
-                    break;
+                    dataReceived = false;
+                    lock (data)
+                    {
+                        OnMessageReceivedEvent(new OnCompletionEventArgs(data));
+                    }
                 }
-                finished = toggle.WaitOne(100);
-            }
-            
-        }
-
-        public void startWorker()
-        {
-            if (!arduinoSerialWorker.IsBusy)
-            {
-                arduinoSerialWorker.RunWorkerAsync();
             }
         }
 
         public void stopWorker()
         {
-            if (arduinoSerialWorker.WorkerSupportsCancellation)
+            isStopped = true;
+            arduinoSerialWorker.Join(1000);
+            if (arduinoSerialWorker.IsAlive)
             {
-                arduinoSerialWorker.CancelAsync();
+                KillTheThread();
             }
+        }
+
+        [SecurityPermissionAttribute(SecurityAction.Demand, ControlThread = true)]
+        private void KillTheThread()
+        {
+            arduinoSerialWorker.Abort();
         }
 
         protected virtual void OnMessageReceivedEvent(OnCompletionEventArgs e)

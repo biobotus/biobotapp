@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BioBotApp.Presenter.Protocols;
 using BioBotApp.Presenter;
 using BioBotApp.View.Utils;
 using BioBotApp.Model.Data;
@@ -18,6 +17,25 @@ namespace BioBotApp.View.Protocol
 {
     public partial class ProtocolControl : DatasetViewControl, IProtocolView, IStepView
     {
+        Boolean showSteps;
+
+        [PropertyTab("Show toolbar")]
+        [Browsable(true)]
+        [Description("Show right toolbar"), Category("Behavior")]
+        public bool ShowToolbar
+        {
+            get { return this.toolbarPanel.Visible; }
+            set { this.toolbarPanel.Visible = value; }
+        }
+
+        [PropertyTab("Show steps")]
+        [Browsable(true)]
+        [Description("Show right steps"), Category("Behavior")]
+        public bool ShowSteps
+        {
+            get { return showSteps; }
+            set { showSteps = value; Console.WriteLine("showSteps" + value); }
+        }
 
         private ProtocolPresenter presenter;
         private StepPresenter stepPresenter;
@@ -27,7 +45,7 @@ namespace BioBotApp.View.Protocol
             InitializeComponent();
             this.presenter = new ProtocolPresenter(this);
             stepPresenter = new StepPresenter(this);
-            initTree();
+
         }
 
         public void initTree()
@@ -43,6 +61,24 @@ namespace BioBotApp.View.Protocol
 
         public void addNodes(BioBotDataSets.bbt_protocolRow protocol, TreeNode parentNode)
         {
+            int size = protocol.Getbbt_protocolRows().Length + protocol.Getbbt_stepRows().Length;
+            BioBotDataSets.bbt_protocolRow[] protocolRows = protocol.Getbbt_protocolRows();
+            BioBotDataSets.bbt_stepRow[] stepRows = protocol.Getbbt_stepRows();
+            if (parentNode == null)
+            {
+                parentNode = new ProtocolTreeNode(protocol);
+                tlvProtocols.Nodes.Add(parentNode);
+            }
+
+            for (int i = 0; i < size; i++)
+            {
+                addStepIndexNode(parentNode, stepRows, i + 1);
+                addProtocolIndexNode(parentNode, protocolRows, i + 1);
+            }
+
+            /*
+
+
             ProtocolTreeNode currentNode = new ProtocolTreeNode(protocol);
 
             if (parentNode == null)
@@ -54,15 +90,61 @@ namespace BioBotApp.View.Protocol
                 parentNode.Nodes.Add(currentNode);
             }
 
+            if (showSteps)
+            {
+                foreach (BioBotDataSets.bbt_stepRow stepRow in protocol.Getbbt_stepRows())
+                {
+                    currentNode.Nodes.Add(new StepTreeNode(stepRow));
+                }
+            }
+
             foreach (BioBotDataSets.bbt_protocolRow childProtocol in protocol.Getbbt_protocolRows())
             {
                 addNodes(childProtocol, currentNode);
             }
+            */
+        }
 
-            foreach (BioBotDataSets.bbt_stepRow step in protocol.Getbbt_stepRows())
+        public Boolean addStepIndexNode(TreeNode parentNode, BioBotDataSets.bbt_stepRow[] rows, int index)
+        {
+            foreach (BioBotDataSets.bbt_stepRow row in rows)
             {
-                StepTreeNode stepNode = new StepTreeNode(step);
-                currentNode.Nodes.Add(stepNode);
+                if (row.index == index)
+                {
+                    if (parentNode == null)
+                    {
+                        tlvProtocols.Nodes.Add(new StepTreeNode(row));
+                    }
+                    else
+                    {
+                        parentNode.Nodes.Add(new StepTreeNode(row));
+                    }
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void addProtocolIndexNode(TreeNode parentNode, BioBotDataSets.bbt_protocolRow[] rows, int index)
+        {
+            ProtocolTreeNode protocolNode;
+            foreach (BioBotDataSets.bbt_protocolRow row in rows)
+            {
+                protocolNode = new ProtocolTreeNode(row);
+                if (row.index == index)
+                {
+                    if (parentNode == null)
+                    {
+
+                        tlvProtocols.Nodes.Add(protocolNode);
+                    }
+                    else
+                    {
+                        parentNode.Nodes.Add(protocolNode);
+                    }
+                    addNodes(row, protocolNode);
+                }
             }
         }
 
@@ -79,20 +161,14 @@ namespace BioBotApp.View.Protocol
 
         private void tlvProtocols_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            if (e.Item is ProtocolTreeNode)
-            {
-                DoDragDrop(e.Item, DragDropEffects.Move);
-            }
-
+            DoDragDrop(e.Item, DragDropEffects.Move);
         }
 
         private void tlvProtocols_DragDrop(object sender, DragEventArgs e)
         {
             TreeView treeView = ((TreeView)sender);
             ProtocolTreeNode procotolNode = (ProtocolTreeNode)e.Data.GetData(typeof(ProtocolTreeNode));
-
-            if (treeView == null) return;
-
+            StepTreeNode stepNode = (StepTreeNode)e.Data.GetData(typeof(StepTreeNode));
             Point pt = treeView.PointToClient(new Point(e.X, e.Y));
             TreeNode destinationNode = treeView.GetNodeAt(pt);
             ProtocolTreeNode destinationProtocolNode = null;
@@ -110,6 +186,7 @@ namespace BioBotApp.View.Protocol
 
                 if (!isChildNodePresent(procotolNode, destinationProtocolNode))
                 {
+                    if (destinationProtocolNode == procotolNode) return;
                     if (parentNode == null)
                     {
                         tlvProtocols.Nodes.Remove(procotolNode);
@@ -118,13 +195,34 @@ namespace BioBotApp.View.Protocol
                     {
                         parentNode.Nodes.Remove(procotolNode);
                     }
+
                     destinationProtocolNode.Nodes.Add(procotolNode);
                     procotolNode.getProtocolRow().fk_protocol = destinationProtocolNode.getProtocolRow().pk_id;
-                    procotolNode.getProtocolRow().index = destinationProtocolNode.getProtocolRow().Getbbt_protocolRows().Length + 1;
+                    procotolNode.getProtocolRow().index = destinationProtocolNode.getProtocolRow().Getbbt_protocolRows().Length + destinationProtocolNode.getProtocolRow().Getbbt_stepRows().Length;
                 }
+                this.presenter.updateProtocol();
             }
+            if(stepNode != null)
+            {
+                TreeNode parentNode = stepNode.Parent;
+                if (!isChildNodePresent(stepNode, destinationProtocolNode))
+                {
+                    if (parentNode == null)
+                    {
+                        tlvProtocols.Nodes.Remove(stepNode);
+                    }
+                    else
+                    {
+                        parentNode.Nodes.Remove(stepNode);
+                    }
 
-            this.presenter.updateProtocol();
+                    destinationProtocolNode.Nodes.Add(stepNode);
+                    destinationNode.Expand();
+                    stepNode.getStepRow().fk_protocol = destinationProtocolNode.getProtocolRow().pk_id;
+                    stepNode.getStepRow().index = destinationProtocolNode.getProtocolRow().Getbbt_protocolRows().Length + destinationProtocolNode.getProtocolRow().Getbbt_stepRows().Length;
+                }
+                this.stepPresenter.modifyStepRow(stepNode.getStepRow());
+            }
         }
 
         public Boolean isChildNodePresent(TreeNode parentNode, TreeNode childNode)
@@ -150,22 +248,6 @@ namespace BioBotApp.View.Protocol
             return protocolNode;
         }
 
-        public StepTreeNode getSelectedStepTreeNode()
-        {
-            if (tlvProtocols.SelectedNode == null) return null;
-            if (!(tlvProtocols.SelectedNode is StepTreeNode)) return null;
-            StepTreeNode stepNode = tlvProtocols.SelectedNode as StepTreeNode;
-            if (stepNode.getStepRow() == null) return null;
-            return stepNode;
-        }
-
-        public BioBotDataSets.bbt_stepRow getSelectedStepRow()
-        {
-            StepTreeNode stepNode = getSelectedStepTreeNode();
-            if (stepNode == null) return null;
-            return stepNode.getStepRow();
-        }
-
         public BioBotDataSets.bbt_protocolRow getSelectedProtocolRow()
         {
             ProtocolTreeNode protocolNode = getSelectedProtocolTreeNode();
@@ -182,7 +264,32 @@ namespace BioBotApp.View.Protocol
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            contextMenuStrip.Show(btnAdd, 0, btnAdd.Height);
+            AbstractDialog dialog = new AbstractDialog("Add protocol", "Add new protocol");
+            NamedInputTextBox input = new NamedInputTextBox("Protocol name:");
+            dialog.addControl(input);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                int parentId = getSelectProtocolIndex();
+                int index = 0;
+                ProtocolTreeNode parentProtocolNode = getSelectedProtocolTreeNode();
+
+                if (parentProtocolNode != null)
+                {
+                    index = parentProtocolNode.getProtocolRow().Getbbt_protocolRows().Length + parentProtocolNode.getProtocolRow().Getbbt_stepRows().Length + 1;
+                }
+
+
+                if (parentId >= 0)
+                {
+
+                    this.presenter.addProtocolRow(parentId, input.getInputTextValue(), index);
+                }
+                else
+                {
+                    this.presenter.addProtocolRow(input.getInputTextValue(), index);
+                }
+            }
         }
 
         public void onProtocolAddEvent(BioBotDataSets.bbt_protocolRow row)
@@ -204,7 +311,7 @@ namespace BioBotApp.View.Protocol
                     {
                         ProtocolTreeNode protocolNode = treeNode as ProtocolTreeNode;
                         BioBotDataSets.bbt_protocolRow parentProtocolRow = protocolNode.getProtocolRow();
-                        if(parentProtocolRow.pk_id == row.fk_protocol)
+                        if (parentProtocolRow.pk_id == row.fk_protocol)
                         {
                             protocolNode.Nodes.Insert(protocolRow.index, new ProtocolTreeNode(protocolRow));
                             protocolNode.Expand();
@@ -241,27 +348,6 @@ namespace BioBotApp.View.Protocol
             }
         }
 
-        public void addStepChildNode(BioBotDataSets.bbt_stepRow stepRow, ProtocolTreeNode node)
-        {
-            foreach (TreeNode treeNode in node.Nodes)
-            {
-                if (treeNode is ProtocolTreeNode)
-                {
-                    ProtocolTreeNode protocolNode = treeNode as ProtocolTreeNode;
-                    if (protocolNode.getProtocolRow().pk_id == stepRow.fk_protocol)
-                    {
-                        protocolNode.Nodes.Insert(stepRow.index, new StepTreeNode(stepRow));
-                        protocolNode.Expand();
-                        tlvProtocols.SelectedNode = protocolNode;
-                    }
-                    else
-                    {
-                        addStepChildNode(stepRow, protocolNode);
-                    }
-                }
-            }
-        }
-
         public void modifyProtocolChildNode(BioBotDataSets.bbt_protocolRow protocolRow, TreeNode node)
         {
             foreach (TreeNode treeNode in node.Nodes)
@@ -281,25 +367,6 @@ namespace BioBotApp.View.Protocol
             }
         }
 
-        public void modifyStepNode(BioBotDataSets.bbt_stepRow row, TreeNode node)
-        {
-            foreach (TreeNode treeNode in node.Nodes)
-            {
-                if (treeNode is StepTreeNode)
-                {
-                    StepTreeNode stepNode = treeNode as StepTreeNode;
-                    if(stepNode.getStepRow().pk_id == row.pk_id)
-                    {
-                        stepNode.updateStepRow(row);
-                    }
-                }
-                else
-                {
-                    modifyStepNode(row, treeNode);
-                }
-            }
-        }
-
         public void onProtocolModifyEvent(BioBotDataSets.bbt_protocolRow row)
         {
             foreach (TreeNode node in tlvProtocols.Nodes)
@@ -311,7 +378,6 @@ namespace BioBotApp.View.Protocol
         private void btnEdit_Click(object sender, EventArgs e)
         {
             BioBotDataSets.bbt_protocolRow protocolRow = getSelectedProtocolRow();
-            BioBotDataSets.bbt_stepRow stepRow = getSelectedStepRow();
             if (protocolRow != null)
             {
                 AbstractDialog dialog = new AbstractDialog("Modify protocol", "Modify protocol");
@@ -324,71 +390,59 @@ namespace BioBotApp.View.Protocol
                     this.presenter.modifyProtocolRow(protocolRow);
                 }
             }
-            else if(stepRow != null)
-            {
-                AbstractDialog dialog = new AbstractDialog("Modify step", "Modify step");
-                StepControl control = new StepControl(stepRow);
-                dialog.addControl(control);
-                DialogResult result = dialog.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    String description = control.getDescription();
-                    if (description == null) return;
-                    int fkObjectId = control.getSelectedObjectRow().pk_id;
-                    stepRow.description = description;
-                    stepRow.fk_object = fkObjectId;
-                    this.stepPresenter.modifyStepRow(stepRow);
-                    //protocolRow.description = input.getInputTextValue();
-                    //this.presenter.modifyProtocolRow(protocolRow);
-                }
-            }
 
-            
+
         }
 
         private void btnUp_Click_1(object sender, EventArgs e)
         {
             if (tlvProtocols.SelectedNode == null) return;
-            TreeNode node = tlvProtocols.SelectedNode;
-            MoveUp(node);
-            updateIndex(node);
+            TreeNode selectedNode = tlvProtocols.SelectedNode;
+            MoveUp(selectedNode);
+            foreach (TreeNode node in tlvProtocols.Nodes)
+            {
+                updateIndex(node, tlvProtocols.Nodes);
+            }
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
             if (tlvProtocols.SelectedNode == null) return;
-            TreeNode node = tlvProtocols.SelectedNode;
-            MoveDown(node);
-            updateIndex(node);
+            TreeNode selectedNode = tlvProtocols.SelectedNode;
+            MoveDown(selectedNode);
+            foreach (TreeNode node in tlvProtocols.Nodes)
+            {
+                updateIndex(node, tlvProtocols.Nodes);
+            }
         }
 
-        public void updateIndex(TreeNode node)
+        public void updateIndex(TreeNode node, TreeNodeCollection nodes)
         {
-            if (node.Parent == null) return;
-            foreach (TreeNode childNode in node.Parent.Nodes)
+            foreach (TreeNode childNode in nodes)
             {
                 if (childNode is ProtocolTreeNode)
                 {
                     ProtocolTreeNode protocolNode = childNode as ProtocolTreeNode;
                     BioBotDataSets.bbt_protocolRow protocolRow = protocolNode.getProtocolRow();
-                    int newIndex = node.Parent.Nodes.IndexOf(childNode);
+                    int newIndex = nodes.IndexOf(childNode) + 1;
                     if (protocolRow.index != newIndex)
                     {
                         protocolNode.getProtocolRow().index = newIndex;
                         this.presenter.modifyProtocolRow(protocolRow);
                     }
                 }
-                else if(childNode is StepTreeNode)
+                else if (childNode is StepTreeNode)
                 {
                     StepTreeNode stepNode = childNode as StepTreeNode;
                     BioBotDataSets.bbt_stepRow stepRow = stepNode.getStepRow();
-                    int newIndex = node.Parent.Nodes.IndexOf(childNode) + 1;
+                    int newIndex = nodes.IndexOf(childNode) + 1;
                     if (stepRow.index != newIndex)
                     {
-                        stepRow.index = newIndex;
+                        stepNode.getStepRow().index = newIndex;
                         this.stepPresenter.modifyStepRow(stepRow);
                     }
                 }
+                updateIndex(childNode, childNode.Nodes);
             }
         }
 
@@ -444,77 +498,29 @@ namespace BioBotApp.View.Protocol
 
         private void btnAddProtocol_Click(object sender, EventArgs e)
         {
-            AbstractDialog dialog = new AbstractDialog("Add protocol", "Add new protocol");
-            NamedInputTextBox input = new NamedInputTextBox("Protocol name:");
-            dialog.addControl(input);
-            DialogResult result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                int parentId = getSelectProtocolIndex();
-                int index = 0;
-                ProtocolTreeNode parentProtocolNode = getSelectedProtocolTreeNode();
 
-                if (parentProtocolNode != null)
-                {
-                    index = parentProtocolNode.getProtocolRow().Getbbt_protocolRows().Length + 1;
-                }
-
-
-                if (parentId >= 0)
-                {
-
-                    this.presenter.addProtocolRow(parentId, input.getInputTextValue(), index);
-                }
-                else
-                {
-                    this.presenter.addProtocolRow(input.getInputTextValue(), index);
-                }
-            }
         }
 
         private void btnAddStep_Click(object sender, EventArgs e)
         {
             AbstractDialog dialog = new AbstractDialog("Add step", "Add new step");
             StepControl control = new StepControl();
+
             dialog.addControl(control);
+            control.setStepRow(null);
             DialogResult result = dialog.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 BioBotDataSets.bbt_protocolRow protocolRow = getSelectedProtocolRow();
                 if (protocolRow == null) return;
                 int protocolId = protocolRow.pk_id;
                 if (protocolId < 0) return;
                 int stepNextIndex = protocolRow.Getbbt_stepRows().Length;
-                int index = protocolRow.Getbbt_stepRows().Length;
+                int index = protocolRow.Getbbt_stepRows().Length + protocolRow.Getbbt_protocolRows().Length + 1;
                 this.stepPresenter.addStepRow(protocolId, control.getDescription(), control.getSelectedObjectRow().pk_id, index);
             }
         }
 
-        public void addStepRow(BioBotDataSets.bbt_stepRow row)
-        {
-            if (row == null) return;
-            if (!(row is Model.Data.BioBotDataSets.bbt_stepRow)) return;
-            Model.Data.BioBotDataSets.bbt_stepRow stepRow = row as Model.Data.BioBotDataSets.bbt_stepRow;
-
-            foreach (TreeNode treeNode in tlvProtocols.Nodes)
-            {
-                if (treeNode is ProtocolTreeNode)
-                {
-                    ProtocolTreeNode protocolNode = treeNode as ProtocolTreeNode;
-                    addStepChildNode(stepRow, protocolNode);
-                }
-            }
-        }
-
-        public void modifyStepRow(BioBotDataSets.bbt_stepRow stepRow)
-        {
-            foreach(TreeNode node in tlvProtocols.Nodes)
-            {
-                modifyStepNode(stepRow,node);
-            }
-            
-        }
-        
 
         public void deleteProtocolChildNode(int rowId, TreeNode node)
         {
@@ -540,54 +546,15 @@ namespace BioBotApp.View.Protocol
             }
         }
 
-        public void deleteStepNode(int rowId, TreeNode node)
-        {
-            foreach (TreeNode treeNode in node.Nodes)
-            {
-                if (treeNode is StepTreeNode)
-                {
-                    StepTreeNode stepNode = treeNode as StepTreeNode;
-                    int stepId = stepNode.getId();
-                    if (stepId >= 0)
-                    {
-                        if(stepId == rowId)
-                        {
-                            node.Nodes.Remove(stepNode);
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    deleteStepNode(rowId, treeNode);
-                }
-            }
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             TreeNode node = tlvProtocols.SelectedNode;
-            if(node is ProtocolTreeNode)
+            if (node is ProtocolTreeNode)
             {
                 ProtocolTreeNode protocolNode = node as ProtocolTreeNode;
                 BioBotDataSets.bbt_protocolRow row = protocolNode.getProtocolRow();
                 if (row == null) return;
                 this.presenter.removeProtocolRow(row);
-            }
-            else if (node is StepTreeNode)
-            {
-                StepTreeNode protocolNode = node as StepTreeNode;
-                BioBotDataSets.bbt_stepRow row = protocolNode.getStepRow();
-                if (row == null) return;
-                this.stepPresenter.removeStepRow(row);
-            }
-        }
-
-        public void deleteStepRow(int rowId)
-        {
-            foreach (TreeNode node in tlvProtocols.Nodes)
-            {
-                deleteStepNode(rowId, node);
             }
         }
 
@@ -597,6 +564,102 @@ namespace BioBotApp.View.Protocol
             {
                 deleteProtocolChildNode(rowId, node);
             }
+        }
+
+        public void setSelectedProtocolRow(BioBotDataSets.bbt_protocolRow row)
+        {
+
+        }
+
+        private void tlvProtocols_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            BioBotDataSets.bbt_protocolRow row = getSelectedProtocolRow();
+            if (row == null) return;
+            this.presenter.setSelectedProtocolRow(row);
+        }
+
+        private void ProtocolControl_Load(object sender, EventArgs e)
+        {
+            initTree();
+        }
+
+        public void onStepAddEvent(BioBotDataSets.bbt_stepRow row)
+        {
+            foreach(TreeNode node in tlvProtocols.Nodes)
+            {
+                addStepRow(node, row);
+            }
+        }
+
+        public void addStepRow(TreeNode parentNode, BioBotDataSets.bbt_stepRow row)
+        {
+            if (!(parentNode is ProtocolTreeNode)) return;
+            if (row == null) return;
+            ProtocolTreeNode protocolTreeNode = parentNode as ProtocolTreeNode;
+            int id = protocolTreeNode.getProtocolRow().pk_id;
+            if (row.fk_protocol == id)
+            {
+                protocolTreeNode.Nodes.Add(new StepTreeNode(row));
+                return;
+            }
+            foreach(TreeNode node in parentNode.Nodes)
+            {
+                addStepRow(node,row);
+            }
+            
+        }
+
+        public void modifyStepRow(TreeNode parentNode, BioBotDataSets.bbt_stepRow row)
+        {
+            if (!(parentNode is ProtocolTreeNode)) return;
+            if (row == null) return;
+            ProtocolTreeNode protocolTreeNode = parentNode as ProtocolTreeNode;
+            
+            BioBotDataSets.bbt_protocolRow protocolRow = protocolTreeNode.getProtocolRow();
+            int id = protocolRow.pk_id;
+            if (row.fk_protocol == id)
+            {
+                protocolTreeNode.Nodes.Add(new StepTreeNode(row));
+            }
+            
+            foreach(TreeNode otherStepNode in parentNode.Nodes)
+            {
+                if(otherStepNode is StepTreeNode)
+                {
+                    StepTreeNode stepNode = otherStepNode as StepTreeNode;
+                    BioBotDataSets.bbt_stepRow stepRow = stepNode.getStepRow();
+                    if(stepRow.pk_id == row.pk_id)
+                    {
+
+                    }
+                }
+            }
+
+            foreach (TreeNode node in parentNode.Nodes)
+            {
+                addStepRow(node, row);
+            }
+
+        }
+
+        public void onStepModifyEvent(BioBotDataSets.bbt_stepRow row)
+        {
+            foreach (TreeNode node in tlvProtocols.Nodes)
+            {
+                modifyStepRow(node, row);
+            }
+        }
+
+        public void addStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+        }
+
+        public void modifyStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+        }
+
+        public void deleteStepRow(int id)
+        {
         }
     }
 }
