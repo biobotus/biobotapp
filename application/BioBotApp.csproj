@@ -103,6 +103,7 @@
     <Compile Include="Model\FSM\FSMManager.cs" />
     <Compile Include="Model\ModulePluginManager\IModulePlugin.cs" />
     <Compile Include="Model\ModulePluginManager\PluginManager.cs" />
+    <Compile Include="Model\Move\MovementAlgorithm.cs" />
     <Compile Include="Model\Sequencer\ExecuteService.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
