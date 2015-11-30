@@ -105,7 +105,7 @@ namespace BioBotApp.View.Services
         {
             if (ObjectCurrentRow != null)
             {
-                AbstractDialog dialog = new AbstractDialog("Delete Object", "Delete Object");
+                
                 DialogResult result = MessageBox.Show("Delete : " + ObjectCurrentRow.description + " ?", "Delete Object ?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result.Equals(DialogResult.No))
@@ -121,7 +121,9 @@ namespace BioBotApp.View.Services
         }
         private void ModifyObject(object sender, EventArgs e)
         {
-            if (ObjectCurrentRow == null)
+            Model.Data.BioBotDataSets.bbt_objectRow CurrentObjectRow = ObjectCurrentRow;
+
+            if (CurrentObjectRow == null)
             {
                 return;
             }
@@ -132,35 +134,35 @@ namespace BioBotApp.View.Services
             int deck_x_int_parse;
 
             AbstractDialog dialog = new AbstractDialog("Modify Object", "Modify object");
-            NamedInputTextBox description = new NamedInputTextBox("Object Name: ", ObjectCurrentRow.description);
+            NamedInputTextBox description = new NamedInputTextBox("Object Name: ", CurrentObjectRow.description);
             dialog.addControl(description);
 
-            NamedInputTextBox deck_x = new NamedInputTextBox("Object Position in X: ", ObjectCurrentRow.deck_x.ToString());
+            NamedInputTextBox deck_x = new NamedInputTextBox("Object Position in X: ", CurrentObjectRow.deck_x.ToString());
             dialog.addControl(deck_x);
 
-            NamedInputTextBox deck_y = new NamedInputTextBox("Object Position in Y: ", ObjectCurrentRow.deck_y.ToString());
+            NamedInputTextBox deck_y = new NamedInputTextBox("Object Position in Y: ", CurrentObjectRow.deck_y.ToString());
             dialog.addControl(deck_y);
 
             namedComboBox rotation = new namedComboBox("Object Rotation: ");
             rotation.getComboBox().DataSource = RotationAngle;
-            rotation.getComboBox().SelectedIndex = rotation.getComboBox().Items.IndexOf(ObjectCurrentRow.rotation);
+            rotation.getComboBox().SelectedIndex = rotation.getComboBox().Items.IndexOf(CurrentObjectRow.rotation);
             dialog.addControl(rotation);
 
             namedComboBox fk_object = new namedComboBox("Object Reference: ");
             fk_object.getComboBox().DataSource = bioBotDataSets.bbt_object;
             fk_object.getComboBox().ValueMember = "pk_id";
             fk_object.getComboBox().DisplayMember = "description";
-            fk_object.getComboBox().SelectedValue = ObjectCurrentRow.fk_object;
+            fk_object.getComboBox().SelectedValue = CurrentObjectRow.fk_object;
             dialog.addControl(fk_object);
 
-            namedComboBox fk_object_type = new namedComboBox("Object Reference: ");
+            namedComboBox fk_object_type = new namedComboBox("Object Type: ");
             fk_object_type.getComboBox().DataSource = bioBotDataSets.bbt_object_type;
             fk_object_type.getComboBox().ValueMember = "pk_id";
             fk_object_type.getComboBox().DisplayMember = "description";
-            fk_object_type.getComboBox().SelectedValue = ObjectCurrentRow.fk_object_type;
-            dialog.addControl(fk_object);
+            fk_object_type.getComboBox().SelectedValue = CurrentObjectRow.fk_object_type;
+            dialog.addControl(fk_object_type);
 
-            if (ObjectCurrentRow.activated == "1") { activated_bool_value = true; } else { activated_bool_value = false; }
+            if (CurrentObjectRow.activated == "1") { activated_bool_value = true; } else { activated_bool_value = false; }
             NamedCheckBox activated_bool = new NamedCheckBox("Object Activated? ", activated_bool_value);
             dialog.addControl(activated_bool);
 
@@ -179,15 +181,15 @@ namespace BioBotApp.View.Services
                 if (activated_bool.getInputValue()) { activated_str = "1"; } else { activated_str = "0"; }
                 if (int.TryParse(deck_y.getInputTextValue(), out deck_y_int_parse) && int.TryParse(deck_x.getInputTextValue(), out deck_x_int_parse))
                 {
-                    ObjectCurrentRow.fk_object_type = ObjectTypeRow.pk_id;
-                    ObjectCurrentRow.deck_x = deck_x_int_parse;
-                    ObjectCurrentRow.deck_y = deck_y_int_parse;
-                    ObjectCurrentRow.rotation = int.Parse(rotation.getComboBox().SelectedItem.ToString());
-                    ObjectCurrentRow.activated = activated_str;
-                    ObjectCurrentRow.description = description.getInputTextValue();
-                    ObjectCurrentRow.fk_object = ObjectRow.pk_id;
+                    CurrentObjectRow.fk_object_type = ObjectTypeRow.pk_id;
+                    CurrentObjectRow.deck_x = deck_x_int_parse;
+                    CurrentObjectRow.deck_y = deck_y_int_parse;
+                    CurrentObjectRow.rotation = int.Parse(rotation.getComboBox().SelectedItem.ToString());
+                    CurrentObjectRow.activated = activated_str;
+                    CurrentObjectRow.description = description.getInputTextValue();
+                    CurrentObjectRow.fk_object = ObjectRow.pk_id;
 
-                    presenter.ModifyObject(ObjectCurrentRow);
+                    presenter.ModifyObject(CurrentObjectRow);
                 }
                 else
                 {

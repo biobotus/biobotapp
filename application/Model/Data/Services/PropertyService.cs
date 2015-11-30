@@ -52,7 +52,6 @@ namespace BioBotApp.Model.Data.Services
 
             updateRow(row);
         }
-
         public void removePropertyRow(int id)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);

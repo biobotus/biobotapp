@@ -88,7 +88,7 @@ namespace BioBotApp.View.Services
             if (PropertyCurrentRow != null)
             {
                 AbstractDialog dialog = new AbstractDialog("Delete Property", "Delete Property");
-                DialogResult result = MessageBox.Show("Delete : " + PropertyCurrentRow.description + " ?", "Delete Step ?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Delete : " + PropertyCurrentRow.description + " ?", "Delete Property ?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result.Equals(DialogResult.No))
                 {
@@ -102,21 +102,23 @@ namespace BioBotApp.View.Services
         }
         private void modifyProperty(object sender, EventArgs e)
         {
-            if(PropertyCurrentRow == null)
+            Model.Data.BioBotDataSets.bbt_propertyRow CurrentPropertyTypeRow = PropertyCurrentRow;
+
+            if (CurrentPropertyTypeRow == null)
             {
                 return;
             }
 
             AbstractDialog dialog = new AbstractDialog("Modify Property", "Modify property");
 
-            NamedInputTextBox description = new NamedInputTextBox("Property Type Name: ", PropertyCurrentRow.description);
+            NamedInputTextBox description = new NamedInputTextBox("Property Type Name: ", CurrentPropertyTypeRow.description);
             dialog.addControl(description);
 
-            namedComboBox fk_property_type = new namedComboBox("Property Type");
+            namedComboBox fk_property_type = new namedComboBox("Property Type:");
             fk_property_type.getComboBox().DataSource = bioBotDataSets.bbt_property_type;
             fk_property_type.getComboBox().ValueMember = "pk_id";
             fk_property_type.getComboBox().DisplayMember = "description";
-            fk_property_type.getComboBox().SelectedValue = PropertyCurrentRow.fk_property_type;
+            fk_property_type.getComboBox().SelectedValue = CurrentPropertyTypeRow.fk_property_type;
             dialog.addControl(fk_property_type);
 
             DialogResult result = dialog.ShowDialog();
@@ -127,9 +129,9 @@ namespace BioBotApp.View.Services
 
             if (result == DialogResult.OK)
             {
-                PropertyCurrentRow.description = description.getInputTextValue();
-                PropertyCurrentRow.fk_property_type = PropertyTypeRow.pk_id;
-                PropertyPresenter.modifyProperty(PropertyCurrentRow);
+                CurrentPropertyTypeRow.description = description.getInputTextValue();
+                CurrentPropertyTypeRow.fk_property_type = PropertyTypeRow.pk_id;
+                PropertyPresenter.modifyProperty(CurrentPropertyTypeRow);
             }
         }
     }

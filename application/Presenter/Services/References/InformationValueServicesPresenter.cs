@@ -21,9 +21,17 @@ namespace BioBotApp.Presenter.Services
         /*
         Information value 
         */
-        public void AddInformationRow()
+        public void AddInformationValue(string informationValue, int fkPropertyId, int fkObjectId, int fkInformationValue)
         {
-            
+            InformationValueService.Instance.addInformationValueRow(informationValue, fkPropertyId, fkObjectId, fkInformationValue);
+        }
+        public void DeleteInformationValue(Model.Data.BioBotDataSets.bbt_information_valueRow row)
+        {
+            InformationValueService.Instance.removeInformationValueRow(row);
+        }
+        public void ModifyInformationValue(Model.Data.BioBotDataSets.bbt_information_valueRow row)
+        {
+            InformationValueService.Instance.modifyInformationValueRow(row);
         }
 
         [Model.EventBus.Subscribe]

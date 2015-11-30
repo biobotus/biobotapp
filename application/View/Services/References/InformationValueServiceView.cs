@@ -17,6 +17,8 @@ namespace BioBotApp.View.Services
     {
         private InformationValueServicesPresenter presenter = null;
 
+        int fkPropertyID = 0;
+
 
         public InformationValueServiceView()
         {
@@ -48,13 +50,21 @@ namespace BioBotApp.View.Services
                 return row.pk_id;
             }
         }
-        public DataRow InformationValueRow
+        public Model.Data.BioBotDataSets.bbt_information_valueRow InformationValueCurrentRow
         {
             get
             {
                 Model.Data.BioBotDataSets.bbt_information_valueRow row;
                 DataRowView rowView = InformationValueBindingSource.Current as DataRowView;
-                row = rowView.Row as Model.Data.BioBotDataSets.bbt_information_valueRow;
+                if(rowView == null)
+                {
+                    row = null;
+                }
+                else
+                {
+                    row = rowView.Row as Model.Data.BioBotDataSets.bbt_information_valueRow;
+                }
+                
                 return row;
             }
         }
@@ -103,26 +113,117 @@ namespace BioBotApp.View.Services
         Fonction triggered by the button 
         */
 
-        private void Add_Click(object sender, EventArgs e)
+        private void AddInformationValue(object sender, EventArgs e)
         {
-            /*Abstract Dialog*/
-            //abstractDialog dialog = new abstractDialog("New Information Value","Add Information Value");
-            //namedInputTextBox InformationValueText = new namedInputTextBox("Information value:");
-            //namedComboBox InformationValueFkCombo = new namedComboBox();
-            /*Model fonction*/
-            //presenter.AddInformationRow();
+
+            AbstractDialog dialog = new AbstractDialog("Add Information", "Add new Information");
+            NamedInputTextBox InformationValue = new NamedInputTextBox("Information Value: ");
+            dialog.addControl(InformationValue);
+
+            namedComboBox fk_object = new namedComboBox("Object: ");
+            fk_object.getComboBox().DataSource = bioBotDataSets.bbt_object;
+            fk_object.getComboBox().ValueMember = "pk_id";
+            fk_object.getComboBox().DisplayMember = "description";
+            dialog.addControl(fk_object);
+
+            namedComboBox fk_information = new namedComboBox("Information: ");
+            fk_information.getComboBox().DataSource = bioBotDataSets.bbt_information_value;
+            fk_information.getComboBox().ValueMember = "pk_id";
+            fk_information.getComboBox().DisplayMember = "information_value";
+            dialog.addControl(fk_information);
+
+            DialogResult result = dialog.ShowDialog();
+
+            Model.Data.BioBotDataSets.bbt_objectRow ObjectRow;
+            DataRowView ObjectCombo = fk_object.getComboBox().SelectedItem as DataRowView;
+            ObjectRow = ObjectCombo.Row as Model.Data.BioBotDataSets.bbt_objectRow;
+
+            Model.Data.BioBotDataSets.bbt_information_valueRow InformationRow;
+            DataRowView InformationCombo = fk_information.getComboBox().SelectedItem as DataRowView;
+            InformationRow = InformationCombo.Row as Model.Data.BioBotDataSets.bbt_information_valueRow;
+
+            if (result == DialogResult.OK)
+            {
+                presenter.AddInformationValue(InformationValue.getInputTextValue(), fkPropertyID, ObjectRow.pk_id, InformationRow.pk_id);
+            }
+
         }
-        private void Modify_Click(object sender, EventArgs e)
+        private void DeleteInformationValue(object sender, EventArgs e)
         {
-           
+            DialogResult result = MessageBox.Show("Delete : " + InformationValueCurrentRow.information_value + " ?", "Delete Object ?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result.Equals(DialogResult.No))
+            {
+                return;
+            }
+
+            presenter.DeleteInformationValue(InformationValueCurrentRow);
+
         }
-        private void Delete_Click(object sender, EventArgs e)
+        private void ModifyInformationValue(object sender, EventArgs e)
         {
+
+            Model.Data.BioBotDataSets.bbt_information_valueRow CurrentInformationRow = InformationValueCurrentRow;
+
+            if (CurrentInformationRow == null)
+            {
+                return;
+            }
+
+            AbstractDialog dialog = new AbstractDialog("Add Information", "Add new Information");
+
+            NamedInputTextBox InformationValue = new NamedInputTextBox("Information Value: ", CurrentInformationRow.information_value);
+            dialog.addControl(InformationValue);
+
+            namedComboBox fk_object = new namedComboBox("Object: ");
+            fk_object.getComboBox().DataSource = bioBotDataSets.bbt_object;
+            fk_object.getComboBox().ValueMember = "pk_id";
+            fk_object.getComboBox().DisplayMember = "description";
+            fk_object.getComboBox().SelectedValue = CurrentInformationRow.fk_object;
+            dialog.addControl(fk_object);
+
+            namedComboBox fk_Property = new namedComboBox("Property: ");
+            fk_Property.getComboBox().DataSource = bioBotDataSets.bbt_property;
+            fk_Property.getComboBox().ValueMember = "pk_id";
+            fk_Property.getComboBox().DisplayMember = "description";
+            fk_Property.getComboBox().SelectedValue = CurrentInformationRow.fk_property;
+            dialog.addControl(fk_Property);
+
+            namedComboBox fk_information = new namedComboBox("Information: ");
+            fk_information.getComboBox().DataSource = bioBotDataSets.bbt_information_value;
+            fk_information.getComboBox().ValueMember = "pk_id";
+            fk_information.getComboBox().DisplayMember = "information_value";
+            fk_information.getComboBox().SelectedValue = CurrentInformationRow.fk_information_value;
+            dialog.addControl(fk_information);
+
+            DialogResult result = dialog.ShowDialog();
+
+            Model.Data.BioBotDataSets.bbt_objectRow ObjectRow;
+            DataRowView ObjectCombo = fk_object.getComboBox().SelectedItem as DataRowView;
+            ObjectRow = ObjectCombo.Row as Model.Data.BioBotDataSets.bbt_objectRow;
+
+            Model.Data.BioBotDataSets.bbt_propertyRow PropertyRow;
+            DataRowView PropetyCombo = fk_Property.getComboBox().SelectedItem as DataRowView;
+            PropertyRow = PropetyCombo.Row as Model.Data.BioBotDataSets.bbt_propertyRow;
+
+            Model.Data.BioBotDataSets.bbt_information_valueRow InformationRow;
+            DataRowView InformationCombo = fk_information.getComboBox().SelectedItem as DataRowView;
+            InformationRow = InformationCombo.Row as Model.Data.BioBotDataSets.bbt_information_valueRow;
+
+            if (result == DialogResult.OK)
+            {
+                CurrentInformationRow.fk_information_value = InformationRow.pk_id;
+                CurrentInformationRow.fk_object = ObjectRow.pk_id;
+                CurrentInformationRow.information_value = InformationValue.getInputTextValue();
+                CurrentInformationRow.fk_property = PropertyRow.pk_id;
+
+                presenter.ModifyInformationValue(CurrentInformationRow);
+            }
 
         }
         public void OnPropertyChange(int pk_id)
         {
             this.InformationValueBindingSource.Filter = "fk_property =" + pk_id;
+            fkPropertyID = pk_id;
         }
                 
     }
