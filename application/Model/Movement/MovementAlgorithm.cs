@@ -68,7 +68,9 @@ namespace BioBotApp.Model.Movement
                 TrashTips(operationRow);
             }
             else if (operationRow.bbt_operation_typeRow.description == "Move To X")
-            { }
+            {
+                moveToX(operationRow);
+            }
             else if (operationRow.bbt_operation_typeRow.description == "Move To Y")
             { }
             else if (operationRow.bbt_operation_typeRow.description == "Move To Z")
@@ -816,6 +818,8 @@ namespace BioBotApp.Model.Movement
         public void setXAsDestination(ToolToMove tool, BioBotDataSets.bbt_operationRow operationRow)
         {
             int desiredXPosition = 0;
+            int tempValue = 0;
+
             //int.TryParse(operationRow)
         }
 
