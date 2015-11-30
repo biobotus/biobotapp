@@ -60,15 +60,15 @@
     <Compile Include="Serial\Can\PCANCom.cs" />
     <Compile Include="Serial\Events\OnCommunicationMessageReceived.cs" />
     <Compile Include="Serial\Events\OnConnectionStatusChangeEvent.cs" />
-    <Compile Include="Serial\Movement\ArduinoCommunication.cs" />
-    <Compile Include="Serial\Movement\ArduinoCommunicationWorker.cs" />
+    <Compile Include="Serial\Movement\ArduinoCommunication.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Serial\Movement\ArduinoSerialCommControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Serial\Movement\ArduinoSerialCommControl.Designer.cs">
       <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Serial\Movement\OnCompletionEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

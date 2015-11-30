@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DLL\PipetteSimple\PipetteSimple.cs" />
-    <Compile Include="Model\Communication\CommunicationService.cs" />
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </Compile>
@@ -539,6 +538,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\Communication\" />
     <Folder Include="View\Console\" />
   </ItemGroup>
   <ItemGroup>

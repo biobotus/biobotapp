@@ -15,8 +15,8 @@ namespace BioBotApp.Model.Movement
     {
         DBManager dbManager;
         CANCommunicationWorker canWorker;
-        Model.Communication.CommunicationService communicationService;
-
+        // Model.Communication.CommunicationService communicationService;
+        ArduinoCommunication communicationService;
         ToolRack toolRack;
         ToolToMove toolToMove;
         Movement movementToDo;
@@ -31,9 +31,10 @@ namespace BioBotApp.Model.Movement
 
             // Load the tool rack informations :
             toolRack = new ToolRack(this.dbManager);
-            communicationService = Communication.CommunicationService.Instance;
+            //communicationService = Communication.CommunicationService.Instance;
             toolToMove = new ToolToMove();
             movementToDo = new Movement();
+            communicationService = ArduinoCommunication.Instance;
         }
 
         public static MovementAlgorithm Instance
@@ -51,6 +52,7 @@ namespace BioBotApp.Model.Movement
         [Model.EventBus.Subscribe]
         public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
         {
+            /*
             Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
             if (row == null) return;
             operationRow = row;
@@ -60,7 +62,7 @@ namespace BioBotApp.Model.Movement
             {
                 Move(e.operationRow);
             }
-
+            */
             /*
             if (stepRow.fk_object == OBJECT_ID)
             {
@@ -84,7 +86,22 @@ namespace BioBotApp.Model.Movement
 
         public void writeData(String data)
         {
-            communicationService.writeData(data);
+            communicationService.WriteLine(data);
+            String test = communicationService.ReadLine();
+            while (!test.Contains("Ok"))
+            {
+                //do nothing
+                System.Threading.Thread.Sleep(10);
+                try
+                {
+                    test = communicationService.ReadLine();
+                }
+                catch (Exception e)
+                {
+                    System.Console.WriteLine(e.StackTrace);
+                }
+
+            }
             Console.WriteLine(data);
         }
 
@@ -253,6 +270,7 @@ namespace BioBotApp.Model.Movement
             // TODO : Create the commands to do the movements for each axis.
             writeData("X" + movementToDo.desiredXPos.ToString());
             writeData("Y" + movementToDo.desiredYPos.ToString());
+            writeData("Z" + toolToMove.zAxisNumber + movementToDo.desiredZPos.ToString());
             commandToSendCount = 2;
             sendCompletion(operationRow);
             // TODO : HOME THE Z AXIS OF THE CONCERNED TOOL BEFORE STARTING
@@ -327,7 +345,7 @@ namespace BioBotApp.Model.Movement
             {
                 commandToSendCount = 1;
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
-                writeData("H" + toolToMove.zAxisNumber);
+                writeData("HZ" + toolToMove.zAxisNumber);
                 sendCompletion(operationRow);
             }
         }
@@ -549,8 +567,23 @@ namespace BioBotApp.Model.Movement
 
         public void updateObject(BioBotDataSets.bbt_objectRow row)
         {
-            xDeckPos = row.deck_x;
-            yDeckPos = row.deck_y;
+            if (row.Isdeck_xNull())
+            {
+                xDeckPos = 0;
+            }
+            else
+            {
+                xDeckPos = row.deck_x;
+            }
+
+            if (row.Isdeck_yNull())
+            {
+                yDeckPos = 0;
+            }
+            else
+            {
+                yDeckPos = row.deck_y;
+            }
 
             // Verify if the object is grippable :
             if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Grippable").Any())
@@ -563,10 +596,10 @@ namespace BioBotApp.Model.Movement
             }
 
             // Load the offset that the object adds on the Z axis.
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "AddedZOffset").Any())
+            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "PipetteOffset").Any())
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "AddedZOffset").First().value, out tempValue);
+                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "PipetteOffset").First().value, out tempValue);
                 zOffset = tempValue;
             }
 
@@ -643,7 +676,7 @@ namespace BioBotApp.Model.Movement
         public void updateTipProperties(BioBotDataSets.bbt_operationRow operationRow)
         {
             BioBotDataSets.bbt_objectRow objectRow = operationRow.Getbbt_operation_referenceRows().Where(p => p.bbt_objectRow.bbt_object_typeRow.description.StartsWith("Tip")).First().bbt_objectRow;
-
+           // operationRow.Getbbt_operation_referenceRows().
             isSet = false;
             bool getGoing = true;
 
@@ -663,6 +696,7 @@ namespace BioBotApp.Model.Movement
                 xTrashDepthOffset = tempValue;
 
                 isSet = true;
+                getGoing = false;
             }
         }
     }
@@ -733,16 +767,14 @@ namespace BioBotApp.Model.Movement
                 BioBotDataSets.bbt_operation_reference_propertyDataTable a = DBManager.Instance.projectDataset.bbt_operation_reference_property;
                 // End of test section.
 
-                //getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
-                if (operation_referenceRow.Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell").Any())
+                if (operationRow.bbt_stepRow.bbt_objectRow.bbt_object_typeRow.description == "Single Channel Pipette")
                 {
-                    getGoing = int.TryParse(operation_referenceRow.Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWell").First().value, out tempValue);
+                    int.TryParse(operationRow.value, out tempValue);
                     chosenWell = tempValue;
                 }
-                else if (operation_referenceRow.Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWellRow").Any())
+                else if (operationRow.bbt_stepRow.bbt_objectRow.bbt_object_typeRow.description == "Multiple Channel Pipette")
                 {
-                    //getGoing = int.TryParse(objectRow.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWellRow" && p.bbt_propertyRow.bbt_property_typeRow.description == "WellProperties").First().value, out tempValue);
-                    getGoing = int.TryParse(operation_referenceRow.Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "ChosenWellRow").First().value, out tempValue);
+                    int.TryParse(operationRow.value, out tempValue);
                     chosenWellRow = tempValue;
                 }
 
@@ -829,10 +861,10 @@ namespace BioBotApp.Model.Movement
                 int tipAndBoxHeight = box.zLength + tip.zBoxOffset;
                 int penetrationDeepness = tip.zLength - tip.zPipetteOffset;
 
-                desiredZPos = tool.zToolZeroPos - (tipAndBoxHeight - penetrationDeepness - ADDED_BOX_PENETRATION_DEEPNESS);
+                desiredZPos = tool.zToolZeroPos - (tipAndBoxHeight + penetrationDeepness + ADDED_BOX_PENETRATION_DEEPNESS);
 
-                int tempX = box.xDeckPos + box.firstWellXBoxOffset;
-                int tempY = box.yDeckPos + box.firstWellYBoxOffset;
+                int tempX = box.xDeckPos + box.firstWellXBoxOffset + tool.xToolRackOffset;
+                int tempY = box.yDeckPos + box.firstWellYBoxOffset + tool.yToolRackOffset;
 
                 if (tool.toolType == ToolType.SingleChannelPipette && box.chosenWell != 0)
                 {

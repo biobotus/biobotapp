@@ -11,12 +11,12 @@ namespace BioBotApp.DLL.PipetteSimple
 {
     public class PipetteSimple : Model.EventBus.Subscriber, ICommand
     {
-        Model.Communication.CommunicationService communicationService;
+       // Model.Communication.CommunicationService communicationService;
         BioBotDataSets.bbt_operationRow operationRow;
         private const int OBJECT_ID = 5;
         public PipetteSimple()
         {
-            communicationService = Model.Communication.CommunicationService.Instance;
+            //communicationService = Model.Communication.CommunicationService.Instance;
         }
 
         [Model.EventBus.Subscribe]

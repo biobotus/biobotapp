@@ -125,13 +125,13 @@ namespace BioBotApp.Model.Data.Services
         {
             BioBotDataSets.bbt_property_typeRow[] propertyTypeRow =
                 (BioBotDataSets.bbt_property_typeRow[])dbManager.projectDataset.bbt_property_type.Select(
-                "description = '" + propertyDesc + "'");
+                "description = '" + propertyTypeDesc + "'");
 
             if (propertyTypeRow.Count() != 1) return "";
 
             BioBotDataSets.bbt_propertyRow[] propertyRow =
                 (BioBotDataSets.bbt_propertyRow[])dbManager.projectDataset.bbt_property.Select(
-                "fk_property_type = " + propertyTypeRow[0].pk_id + " AND description = '" + propertyTypeDesc + "'");
+                "fk_property_type = " + propertyTypeRow[0].pk_id + " AND description = '" + propertyDesc + "'");
 
             if (propertyRow.Count() != 1) return "";
 

@@ -17,17 +17,19 @@ namespace BioBotApp.Model.Sequencer
         DBManager dbManager;
 
         private static ExecuteService privateInstance;
-        private Communication.CommunicationService communicationService;
+        //private Communication.CommunicationService communicationService;
         BioBotDataSets.bbt_save_protocol_referenceDataTable commands;
-        Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
+        //Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
+        List<BioBotDataSets.bbt_operationRow> todo;
         List<ICommand> currentCommands;
         int index = 0;
 
         private ExecuteService()
         {
             this.dbManager = DBManager.Instance;
-            communicationService = Communication.CommunicationService.Instance;
-            commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
+            // communicationService = Communication.CommunicationService.Instance;
+            //commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
+            todo = new List<BioBotDataSets.bbt_operationRow>();
             currentCommands = new List<ICommand>();
         }
 
@@ -50,7 +52,8 @@ namespace BioBotApp.Model.Sequencer
             {
                 if (!commands[0].Isfk_protocolNull())
                 {
-                    commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
+                    //commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
+                    todo = new List<BioBotDataSets.bbt_operationRow>();
                     BioBotDataSets.bbt_protocolRow row = DBManager.Instance.projectDataset.bbt_protocol.FindBypk_id(commands[0].fk_protocol);
                     index = 0;
                     generateList(row);
@@ -63,9 +66,25 @@ namespace BioBotApp.Model.Sequencer
 
         public void exectuteNext()
         {
-            if (commandsTODO.Count <= index)
+            if (todo.Count <= index)
             {
                 return;
+            }
+
+            foreach (BioBotDataSets.bbt_operationRow operation in todo)
+            {
+                if (operation.bbt_stepRow != null)
+                {
+                    BioBotDataSets.bbt_stepRow step = operation.bbt_stepRow;
+                    if (step.bbt_objectRow.fk_object_type == 13)
+                    {
+                        Movement.MovementAlgorithm.Instance.Move(operation);
+                    }
+                    else if (step.bbt_objectRow.fk_object_type == 5)
+                    {
+                        Movement.MovementAlgorithm.Instance.Move(operation);
+                    }
+                }
             }
 
             /*
@@ -74,6 +93,7 @@ namespace BioBotApp.Model.Sequencer
             //communicationService.writeData("Executing: " + .description + '\r' + '\n');
         }
 
+        
         public void generateList(BioBotDataSets.bbt_protocolRow protocolRow)
         {
             int maxSize = protocolRow.Getbbt_protocolRows().Length + protocolRow.Getbbt_stepRows().Length;
@@ -85,7 +105,7 @@ namespace BioBotApp.Model.Sequencer
                     int operationCount = nextStepRow.Getbbt_operationRows().Length;
                     for (int i = 0; i < operationCount; i++)
                     {
-                        commandsTODO.Add(index++, nextStepRow.Getbbt_operationRows()[i]);
+                        todo.Add(nextStepRow.Getbbt_operationRows()[i]);
                     }
                 }
 
@@ -97,6 +117,7 @@ namespace BioBotApp.Model.Sequencer
                 }
             }
         }
+        
 
         public BioBotDataSets.bbt_stepRow getNextChildStep(BioBotDataSets.bbt_protocolRow protocolRow, int index)
         {

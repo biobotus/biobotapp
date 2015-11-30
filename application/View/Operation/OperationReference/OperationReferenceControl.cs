@@ -66,9 +66,10 @@ namespace BioBotApp.View.Operation.OperationReference
             DialogResult result = dialog.ShowDialog();
             if(result == DialogResult.OK)
             {
-                this.bsObject.Filter = "";
+                
                 int pkId = (int)objectName.getComboBox().SelectedValue;
-                this.presenter.addOperationReference(operationRow.pk_id, pkId); 
+                this.presenter.addOperationReference(operationRow.pk_id, pkId);
+                this.bsObject.Filter = "";
             }
         }
 

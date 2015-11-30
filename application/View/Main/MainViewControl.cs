@@ -31,7 +31,7 @@ namespace BioBotApp.View.Main
             DialogResult result = dialog.ShowDialog();
             if (result != DialogResult.OK)
             {
-                BioBotCommunication.Serial.Movement.ArduinoCommunicationWorker.Instance.stopWorker();
+                //communicationService.Instance.stopWorker();
             }
         }
     }
