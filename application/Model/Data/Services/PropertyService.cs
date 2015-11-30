@@ -31,21 +31,27 @@ namespace BioBotApp.Model.Data.Services
             }
         }
 
-        public void addPropertyRow(String description)
+        public void addPropertyRow(String description, int fk_property_type)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.Newbbt_propertyRow();
             row.description = description;
+            row.fk_property_type = fk_property_type;
             this.dbManager.projectDataset.bbt_property.Addbbt_propertyRow(row);
             updateRow(row);
         }
 
-        public void modifyPropertyRow(int id, String description)
+        public void modifyPropertyRow(int id, String description,int fk_property_type)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);
             row.description = description;
+            row.fk_property_type = fk_property_type;
             updateRow(row);
         }
+        public void modifyPropertyRow(BioBotDataSets.bbt_propertyRow row)
+        {
 
+            updateRow(row);
+        }
         public void removePropertyRow(int id)
         {
             BioBotDataSets.bbt_propertyRow row = this.dbManager.projectDataset.bbt_property.FindBypk_id(id);

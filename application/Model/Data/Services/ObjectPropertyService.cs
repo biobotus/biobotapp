@@ -33,11 +33,12 @@ namespace BioBotApp.Model.Data.Services
         }
 
         // CRUD operations functions
-        public void addObjectPropertyRow(int fkObjectTypeId, int fkPropertyId)
+        public void addObjectPropertyRow(int fkObjectTypeId, int fkPropertyId, string value)
         {
             BioBotDataSets.bbt_object_propertyRow row = this.dbManager.projectDataset.bbt_object_property.Newbbt_object_propertyRow();
             row.fk_object_type_id = fkObjectTypeId;
             row.fk_properties_id = fkPropertyId;
+            row.value = value;
             this.dbManager.projectDataset.bbt_object_property.Addbbt_object_propertyRow(row);
             updateRow(row);
         }

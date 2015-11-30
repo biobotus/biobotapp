@@ -1,6 +1,6 @@
-﻿namespace BioBotApp.View.Utils
+﻿namespace BioBotApp.View.Utils.Controls
 {
-    partial class NamedInputTextBox
+    partial class NamedCheckBox
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,37 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.edtInputValue = new System.Windows.Forms.TextBox();
             this.txtInputName = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // edtInputValue
-            // 
-            this.edtInputValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.edtInputValue.Location = new System.Drawing.Point(123, 4);
-            this.edtInputValue.Name = "edtInputValue";
-            this.edtInputValue.Size = new System.Drawing.Size(195, 20);
-            this.edtInputValue.TabIndex = 3;
             // 
             // txtInputName
             // 
             this.txtInputName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtInputName.Location = new System.Drawing.Point(4, 4);
+            this.txtInputName.Location = new System.Drawing.Point(0, 0);
             this.txtInputName.Name = "txtInputName";
-            this.txtInputName.Size = new System.Drawing.Size(119, 17);
-            this.txtInputName.TabIndex = 2;
+            this.txtInputName.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.txtInputName.Size = new System.Drawing.Size(123, 25);
+            this.txtInputName.TabIndex = 3;
             this.txtInputName.Text = "InputName";
             this.txtInputName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // NamedInputTextBox
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Location = new System.Drawing.Point(123, 0);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(106, 25);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // NamedCheckBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.edtInputValue);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtInputName);
-            this.Name = "NamedInputTextBox";
-            this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(322, 25);
+            this.Name = "NamedCheckBox";
+            this.Size = new System.Drawing.Size(229, 25);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,7 +68,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox edtInputValue;
         private System.Windows.Forms.Label txtInputName;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
