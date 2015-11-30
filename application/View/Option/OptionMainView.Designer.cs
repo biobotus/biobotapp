@@ -33,6 +33,7 @@
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Services", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("JoyPad");
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.mainPanel = new System.Windows.Forms.Panel();
@@ -66,8 +67,11 @@
             treeNode2.Text = "Object";
             treeNode3.Name = "ServicesNode0";
             treeNode3.Text = "Services";
+            treeNode4.Name = "JoypadNode";
+            treeNode4.Text = "JoyPad";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode3,
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(122, 445);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
