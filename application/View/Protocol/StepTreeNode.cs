@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Model.Data;
+using BioBotApp.View.Step;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,26 +12,27 @@ namespace BioBotApp.View.Protocol
 {
     public class StepTreeNode : TreeNode
     {
-        private BioBotDataSets.bbt_stepRow stepRow;
+        BioBotDataSets.bbt_stepRow row;
         private int id = -1;
-        public StepTreeNode(BioBotDataSets.bbt_stepRow stepRow)
-        {
-            this.stepRow = stepRow;
-            this.Text = this.stepRow.description;
-            this.BackColor = Color.LightGreen;
-            this.id = stepRow.pk_id;
-        }
 
-        public void updateStepRow(BioBotDataSets.bbt_stepRow row)
+        public StepTreeNode(BioBotDataSets.bbt_stepRow row)
         {
-            this.stepRow = row;
-            this.Text = this.stepRow.description;
+            this.row = row;
+            this.Text = this.row.description;
+            this.BackColor = Color.LightGreen;
             this.id = row.pk_id;
         }
 
         public BioBotDataSets.bbt_stepRow getStepRow()
         {
-            return this.stepRow;
+            return this.row;
+        }
+
+        public void setStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+            this.row = row;
+            this.Text = row.description;
+            this.id = row.pk_id;
         }
 
         public int getId()

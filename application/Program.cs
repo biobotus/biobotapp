@@ -1,9 +1,7 @@
 ﻿using BioBotApp.Presenter;
 using BioBotApp.View.Communication;
-using BioBotApp.View.Deck;
-using BioBotApp.View.Execute;
+using BioBotApp.View.Main;
 using BioBotApp.View.Operation;
-using BioBotApp.View.Option;
 using BioBotApp.View.Properties;
 using BioBotApp.View.Protocol;
 using BioBotApp.View.Step;
@@ -29,10 +27,7 @@ namespace BioBotApp
 
             Model.Data.DBManager.Instance.initializeDataSet();
 
-            //ObjectTypeTestForm form = new ObjectTypeTestForm();
-            OptionMainView form = new OptionMainView();
-            //OptionServicesPropertyView form2 = new OptionServicesPropertyView(); 
-            //form.Controls.Add(form2);
+            MainViewForm form = new MainViewForm();
             Application.Run(form);
         }
     }

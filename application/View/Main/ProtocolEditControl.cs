@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BioBotApp.Presenter.Protocols;
+using BioBotApp.View.Utils;
 
-namespace BioBotApp.View.Protocol
+namespace BioBotApp.View.Main
 {
-    public partial class ProtocolForm : Form
+    public partial class ProtocolEditControl : DatasetViewControl, IMainView
     {
-        public ProtocolForm()
+        public ProtocolEditControl()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void setConnectionStatus(string status)
         {
-            operationTypeControl1.getSelectedOperationType();
+
         }
     }
 }

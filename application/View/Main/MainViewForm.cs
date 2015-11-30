@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BioBotApp.View.Execute
+namespace BioBotApp.View.Main
 {
-    public partial class ExecuteForm : Form
+    public partial class MainViewForm : Form
     {
-        public ExecuteForm()
+        public MainViewForm()
         {
             InitializeComponent();
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void mainView1_Load(object sender, EventArgs e)
         {
 
         }

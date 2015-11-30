@@ -11,6 +11,7 @@ namespace BioBotApp.Model.Data.Services
     {
         DBManager dbManager;
         BioBotDataSetsTableAdapters.bbt_stepTableAdapter taStep;
+        private BioBotDataSets.bbt_stepRow selectedStepRow;
 
         private static StepService privateInstance;
 
@@ -30,6 +31,12 @@ namespace BioBotApp.Model.Data.Services
                 }
                 return privateInstance;
             }
+        }
+
+        public void setSelectedStepRow(BioBotDataSets.bbt_stepRow row)
+        {
+            this.selectedStepRow = row;
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepSelectionChangedEvent(row));
         }
 
         // CRUD operations functions
@@ -65,23 +72,21 @@ namespace BioBotApp.Model.Data.Services
 
         public void removeStepRow(int primaryKey)
         {
-            int rowId = -1;
             BioBotDataSets.bbt_stepRow row = this.dbManager.projectDataset.bbt_step.FindBypk_id(primaryKey);
-            OperationService.Instance.removeOperationsWithGivenStep(row);
-            rowId = row.pk_id;
-            row.Delete();
-            updateRow(row);
-            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
+            removeStepRow(row);
         }
 
         public void removeStepRow(BioBotDataSets.bbt_stepRow row)
         {
             int rowId = -1;
+            int index = -1;
+            BioBotDataSets.bbt_protocolRow parentRow = row.bbt_protocolRow;
             OperationService.Instance.removeOperationsWithGivenStep(row);
             rowId = row.pk_id;
             row.Delete();
             updateRow(row);    //(this.dbManager.projectDataset);
             Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Step.StepDeleteEvent(rowId));
+            Services.ProtocolService.Instance.updateIndex(parentRow, index);
         }
 
         public void removeStepsWithGivenObject(BioBotDataSets.bbt_objectRow parentToDeleteRow)

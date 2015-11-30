@@ -64,7 +64,7 @@ namespace BioBotApp.View.Operation
         {
             Model.Data.BioBotDataSets.bbt_operationRow operationRow = getSelectedOperationRow();
             if (operationRow == null) return;
-            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Operation.OperationEvent(operationRow));
+            Model.EventBus.EventBus.Instance.post(new Model.EventBus.Events.Operation.OperationAddEvent(operationRow));
         }
     }
 }
