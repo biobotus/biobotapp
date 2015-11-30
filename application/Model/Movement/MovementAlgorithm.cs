@@ -3,10 +3,10 @@ using BioBotCommunication.Serial.Can;
 using BioBotCommunication.Serial.Movement;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BioBotApp.Model.Data.Services;
 
 namespace BioBotApp.Model.Movement
 {
@@ -53,10 +53,11 @@ namespace BioBotApp.Model.Movement
         }        
 
         public int Move(BioBotDataSets.bbt_operationRow operationRow)
-        {            
-            if (operationRow.bbt_operation_typeRow.description == "Move To")
+        {
+
+            if (operationRow.bbt_operation_typeRow.description == "Move To Object")
             {
-                moveToXYZ(operationRow);
+                // To be done
             }
             else if (operationRow.bbt_operation_typeRow.description == "Load Tip")
             {
@@ -66,12 +67,145 @@ namespace BioBotApp.Model.Movement
             {
                 TrashTips(operationRow);
             }
+            else if (operationRow.bbt_operation_typeRow.description == "Move To X")
+            { }
+            else if (operationRow.bbt_operation_typeRow.description == "Move To Y")
+            { }
+            else if (operationRow.bbt_operation_typeRow.description == "Move To Z")
+            { }
             else
             {
                 return -1;
             }
             return 1;
-        }       
+        }
+
+        private void moveToXYZ(BioBotDataSets.bbt_operationRow operationRow)
+        {
+            try
+            {
+                BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
+                BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
+
+                // Update the tool rack position before starting the movement.
+                toolRack.setToolRackPositions(dbManager);
+
+                // Update the tool to be moved (include update of the attached object if there is one)
+                toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
+
+                // Setting the destination point.                
+                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+
+                // TODO : Create the commands to do the movements for each axis.
+                commandsToSendList.Add("X" + movementToDo.desiredXPos.ToString());
+                commandsToSendList.Add("Y" + movementToDo.desiredYPos.ToString());
+
+                // TODO : Send the command to move the Y and X axis 
+                arduinoWorker.startWorker();
+                arduinoWorker.write(commandsToSendList.First());
+                commandsToSendList.RemoveAt(0);
+
+                // TODO : Move the Z axis to the desired position :
+                // moveZ(concernedTool, movementToDo.desiredZPos) through CAN
+
+                // TODO : Update the current position of the rack in the database (deck_x, deck_y)
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
+            }
+        }
+
+        private void moveToX(BioBotDataSets.bbt_operationRow operationRow)
+        {
+            try
+            {
+                BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
+                BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
+
+                // Update the tool rack position before starting the movement.
+                toolRack.setToolRackPositions(dbManager);
+
+                // Update the tool to be moved (include update of the attached object if there is one)
+                toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
+
+                // Setting the destination point.                
+                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+
+                // TODO : Create the commands to do the movements for each axis.
+                commandsToSendList.Add("X" + movementToDo.desiredXPos.ToString());
+
+                // TODO : Send the command to move the X axis 
+                arduinoWorker.startWorker();
+                arduinoWorker.write(commandsToSendList.First());
+                commandsToSendList.RemoveAt(0);
+
+                // TODO : Update the current position of the rack in the database (deck_x, deck_y)
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
+            }
+        }
+
+        private void moveToY(BioBotDataSets.bbt_operationRow operationRow)
+        {
+            try
+            {
+                BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
+                BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
+
+                // Update the tool rack position before starting the movement.
+                toolRack.setToolRackPositions(dbManager);
+
+                // Update the tool to be moved (include update of the attached object if there is one)
+                toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
+
+                // Setting the destination point.                
+                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+
+                // TODO : Create the commands to do the movements for each axis.
+                commandsToSendList.Add("Y" + movementToDo.desiredXPos.ToString());
+
+                // TODO : Send the command to move the X axis 
+                arduinoWorker.startWorker();
+                arduinoWorker.write(commandsToSendList.First());
+                commandsToSendList.RemoveAt(0);
+
+                // TODO : Update the current position of the rack in the database (deck_x, deck_y)
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
+            }
+        }
+
+        private void moveToZ(BioBotDataSets.bbt_operationRow operationRow)
+        {
+            try
+            {
+                BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
+                BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
+
+                // Update the tool rack position before starting the movement.
+                toolRack.setToolRackPositions(dbManager);
+
+                // Update the tool to be moved (include update of the attached object if there is one)
+                toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
+
+                // Setting the destination point.                
+                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+
+                // TODO : Move the Z axis to the desired position :
+                // moveZ(concernedTool, movementToDo.desiredZPos) through CAN
+
+                // TODO : Update the current position of the rack in the database (deck_x, deck_y)
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
+            }
+        }
 
         private void GetTips(BioBotDataSets.bbt_operationRow operationRow)
         {
@@ -153,43 +287,7 @@ namespace BioBotApp.Model.Movement
 
                 // TODO : Update the current position of the rack in the database (deck_x, deck_y)
             }
-        }
-
-        private void moveToXYZ(BioBotDataSets.bbt_operationRow operationRow)
-        {
-            try
-            {
-                BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
-                BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
-
-                // Update the tool rack position before starting the movement.
-                toolRack.setToolRackPositions(dbManager);
-
-                // Update the tool to be moved (include update of the attached object if there is one)
-                toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
-
-                // Setting the destination point.
-                movementToDo.setXYZAsDestination(operationRow, toolToMove);
-
-                // TODO : Create the commands to do the movements for each axis.
-                commandsToSendList.Add("X" + movementToDo.desiredXPos.ToString());
-                commandsToSendList.Add("Y" + movementToDo.desiredYPos.ToString());
-
-                // TODO : Send the command to move the Y and X axis 
-                arduinoWorker.startWorker();
-                arduinoWorker.write(commandsToSendList.First());
-                commandsToSendList.RemoveAt(0);
-
-                // TODO : Move the Z axis to the desired position :
-                // moveZ(concernedTool, movementToDo.desiredZPos) through CAN
-
-                // TODO : Update the current position of the rack in the database (deck_x, deck_y)
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
-            }
-        }
+        }        
 
         private void Worker_onArduinoReceive(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -229,19 +327,21 @@ namespace BioBotApp.Model.Movement
             setToolRackPositions(dbManager);            
         }
 
-        public void setToolRackPositions(DBManager dbManager)
+        public bool setToolRackPositions(DBManager dbManager)
         {
+            string informationValue = InformationValueService.Instance.getInformationValue("ToolRackPosition", "Z");
+            
             int tempValue;
-            /*
-            int.TryParse(dbManager.projectDataset.bbt_information_value.Where(p => p.bbt_propertyRow.description == "X" && p.bbt_propertyRow.bbt_property_typeRow.description == "ToolRackPosition").First().information_value, out tempValue);
-            xPos = tempValue;
 
-            int.TryParse(dbManager.projectDataset.bbt_information_value.Where(p => p.bbt_propertyRow.description == "Y" && p.bbt_propertyRow.bbt_property_typeRow.description == "ToolRackPosition").First().information_value, out tempValue);
-            yPos = tempValue;
-            */
-
-            int.TryParse(dbManager.projectDataset.bbt_information_value.Where(p => p.bbt_propertyRow.description == "Z" && p.bbt_propertyRow.bbt_property_typeRow.description == "ToolRackPosition").First().information_value, out tempValue);
-            zPos = tempValue;
+            if (int.TryParse(informationValue, out tempValue))
+            {
+                zPos = tempValue;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void updateToolRackPositions(int newXPos, int newYPos, int newZPos)
@@ -259,15 +359,15 @@ namespace BioBotApp.Model.Movement
         public bool hasAttachedObject { get; set; }
         public bool isSet { get; set; }
 
-        public int xToolRackOffset { get; set; }
-        public int yToolRackOffset { get; set; }
-        public int zToolRackOffset { get; set; }
-        public int zToolZeroPos { get; set; }
-
         public int xLength { get; set; }
         public int yLength { get; set; }
         public int zLength { get; set; }
-        public int radius { get; set; }       
+        public int radius { get; set; }
+
+        public int xToolRackOffset { get; set; }
+        public int yToolRackOffset { get; set; }
+        public int zToolRackOffset { get; set; }
+        public int zToolZeroPos { get; set; }   
 
         public ToolToMove()
         {
@@ -306,7 +406,7 @@ namespace BioBotApp.Model.Movement
 
             setToolOffsets(sourceToolRow, dbManager); 
             
-            zToolZeroPos = toolRack.zPos - zToolRackOffset; //4650-3500
+            zToolZeroPos = toolRack.zPos - zToolRackOffset;
 
             isSet = true;
         }
@@ -314,34 +414,39 @@ namespace BioBotApp.Model.Movement
         private void loadDimensions(BioBotDataSets.bbt_objectRow row)
         {
             // Load the length on the X axis of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "XLength").Any())
+            string tempString;
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("XLength", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "XLength").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 xLength = tempValue;
             }
 
             // Load the length on the Y axis of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "YLength").Any())
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("YLength", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "YLength").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);            
                 yLength = tempValue;
             }
 
             // Load the length on the Z axis of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ZLength").Any())
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("ZLength", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ZLength").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 zLength = tempValue;
             }
 
             // Load the radius of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Radius").Any())
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("Radius", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Radius").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 radius = tempValue;
             }
         }
@@ -442,34 +547,39 @@ namespace BioBotApp.Model.Movement
         private void loadDimensions(BioBotDataSets.bbt_objectRow row)
         {
             // Load the length on the X axis of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "XLength" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").Any())
+            string tempString;
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("XLength", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "XLength" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 xLength = tempValue;
             }
 
             // Load the length on the Y axis of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "YLength" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").Any())
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("YLength", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "YLength" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 yLength = tempValue;
             }
 
             // Load the length on the Z axis of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ZLength" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").Any())
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("ZLength", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "ZLength" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 zLength = tempValue;
             }
 
             // Load the radius of the object
-            if (row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Radius" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").Any())
+            tempString = ObjectPropertyService.Instance.getObjectPropertyValue("Radius", "Dimension", row.bbt_object_typeRow.pk_id);
+            if (tempString != "")
             {
                 int tempValue;
-                int.TryParse(row.bbt_object_typeRow.Getbbt_object_propertyRows().Where(p => p.bbt_propertyRow.description == "Radius" && p.bbt_propertyRow.bbt_property_typeRow.description == "Dimensions").First().value, out tempValue);
+                int.TryParse(tempString, out tempValue);
                 radius = tempValue;
             }
         }
@@ -703,8 +813,15 @@ namespace BioBotApp.Model.Movement
             desiredZPos = tool.zToolZeroPos - (trash.zFirstTrashWellOffset-(tip.zLength-tip.zPipetteOffset)-ADDED_TRASH_PENETRATION_DEEPNESS);         
         }
 
+        public void setXAsDestination(ToolToMove tool, BioBotDataSets.bbt_operationRow operationRow)
+        {
+            int desiredXPosition = 0;
+            //int.TryParse(operationRow)
+        }
+
         public void setXYZAsDestination(BioBotDataSets.bbt_operationRow operationRow, ToolToMove tool)
         {
+
             int tempValue = 0;
             int.TryParse(operationRow.Getbbt_operation_referenceRows().First().Getbbt_operation_reference_propertyRows().Where(p => p.bbt_propertyRow.description == "xDestination" && p.bbt_propertyRow.bbt_property_typeRow.description == "DestinationPoint").First().value, out tempValue);
             desiredXPos = tempValue;
