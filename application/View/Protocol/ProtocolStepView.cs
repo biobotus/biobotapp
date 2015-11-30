@@ -339,8 +339,15 @@ namespace BioBotApp.View.Protocol
             {
                 oldParentNode = protocolNode.Parent as ProtocolTreeNode;
             }
-
-            oldParentNode.Nodes.RemoveAt(oldParentNode.Nodes.IndexOf(protocolNode));
+            if(oldParentNode == null)
+            {
+                tlvProtocols.Nodes.RemoveAt(tlvProtocols.Nodes.IndexOf(protocolNode));
+            }
+            else
+            {
+                oldParentNode.Nodes.RemoveAt(oldParentNode.Nodes.IndexOf(protocolNode));
+            }
+            
         }
 
         #endregion
@@ -462,7 +469,6 @@ namespace BioBotApp.View.Protocol
                 if (row == null) return;
                 this.protocolPresenter.removeProtocolRow(row);
             }
-
         }
 
         private void btnAddProtocol_Click(object sender, EventArgs e)

@@ -100,9 +100,9 @@ namespace BioBotApp.Model.Data.Services
                 {
                     OperationReferenceService.Instance.removeOperationReferenceRowWithGivenOperation(row);
                     row.Delete();
+                    updateRow(row);
                 }
             }
-            updateRowChanges();
         }
 
         public void removeOperationsWithGivenOperationType(BioBotDataSets.bbt_operation_typeRow parentToDeleteRow)

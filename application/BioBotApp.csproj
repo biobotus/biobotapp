@@ -70,6 +70,7 @@
     <Compile Include="Model\Data\Services\ObjectPropertyService.cs" />
     <Compile Include="Model\Data\Services\ObjectService.cs" />
     <Compile Include="Model\Data\Services\ObjectTypeService.cs" />
+    <Compile Include="Model\Data\Services\OperationReferenceProperty.cs" />
     <Compile Include="Model\Data\Services\OperationReferenceService.cs" />
     <Compile Include="Model\Data\Services\OperationService.cs" />
     <Compile Include="Model\Data\Services\OperationTypeService.cs" />
@@ -109,7 +110,7 @@
     <Compile Include="Model\Sequencer\ExecuteService.cs" />
     <Compile Include="Model\Sequencer\Helpers\ICommand.cs" />
     <Compile Include="Model\Utils\Events\OnCloseModelEvent.cs" />
-	<Compile Include="Model\Movement\MovementAlgorithm.cs" />
+    <Compile Include="Model\Movement\MovementAlgorithm.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\Main\MainPresenter.cs" />

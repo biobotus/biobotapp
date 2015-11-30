@@ -7,14 +7,15 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using BioBotApp.Model.Data.Services;
+using BioBotApp.Model.Sequencer.Helpers;
 
 namespace BioBotApp.Model.Movement
 {
-    class MovementAlgorithm
+    class MovementAlgorithm : Model.EventBus.Subscriber, ICommand
     {
-        DBManager dbManager;        
-        ArduinoCommunicationWorker arduinoWorker;        
+        DBManager dbManager;              
         CANCommunicationWorker canWorker;
+        Model.Communication.CommunicationService communicationService;
 
         ToolRack toolRack;
         ToolToMove toolToMove;        
@@ -33,10 +34,7 @@ namespace BioBotApp.Model.Movement
 
             toolToMove = new ToolToMove();
             movementToDo = new Movement();
-
-            arduinoWorker = ArduinoCommunicationWorker.Instance;
-            arduinoWorker.onArduinoReceive += Worker_onArduinoReceive;
-
+            communicationService = Model.Communication.CommunicationService.Instance;
             canWorker = CANCommunicationWorker.Instance;                                 
         }
 
@@ -50,7 +48,48 @@ namespace BioBotApp.Model.Movement
                 }
                 return instance;
             }
-        }        
+        }
+
+        [Model.EventBus.Subscribe]
+        public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
+        {
+            Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
+            if (row == null) return;
+            BioBotDataSets.bbt_stepRow stepRow = row.bbt_stepRow;
+            Move(e.operationRow);
+
+            /*
+            if (stepRow.fk_object == OBJECT_ID)
+            {
+                Console.WriteLine("Single channel pipette step execute: " + stepRow.description);
+                EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this));
+            }
+            if (row.Getbbt_operation_referenceRows().Length > 0)
+            {
+
+                foreach (BioBotDataSets.bbt_operation_referenceRow referenceRow in row.Getbbt_operation_referenceRows())
+                {
+                    if (referenceRow.fk_object == OBJECT_ID)
+                    {
+                        Console.WriteLine("Single channel pipette operation execute: " + row.bbt_operation_typeRow.description);
+                        Model.EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this));
+                    }
+                }
+            }
+            /**/
+        }
+
+        public void writeData(String data)
+        {
+            communicationService.writeData(data);
+            Model.EventBus.EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this));
+        }
+
+        [Model.EventBus.Subscribe]
+        public void OnMessageReceived(BioBotCommunication.Serial.Events.OnCommunicationMessageReceived e)
+        {
+            Model.EventBus.EventBus.Instance.post(new Model.Sequencer.Events.CompletionCommandEvent(this));
+        }
 
         public int Move(BioBotDataSets.bbt_operationRow operationRow)
         {
@@ -72,50 +111,18 @@ namespace BioBotApp.Model.Movement
                 moveToX(operationRow);
             }
             else if (operationRow.bbt_operation_typeRow.description == "Move To Y")
-            { }
+            {
+                moveToY(operationRow);
+            }
             else if (operationRow.bbt_operation_typeRow.description == "Move To Z")
-            { }
+            {
+                moveToZ(operationRow);
+            }
             else
             {
                 return -1;
             }
             return 1;
-        }
-
-        private void moveToXYZ(BioBotDataSets.bbt_operationRow operationRow)
-        {
-            try
-            {
-                BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
-                BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
-
-                // Update the tool rack position before starting the movement.
-                toolRack.setToolRackPositions(dbManager);
-
-                // Update the tool to be moved (include update of the attached object if there is one)
-                toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
-
-                // Setting the destination point.                
-                movementToDo.setXYZAsDestination(operationRow, toolToMove);
-
-                // TODO : Create the commands to do the movements for each axis.
-                commandsToSendList.Add("X" + movementToDo.desiredXPos.ToString());
-                commandsToSendList.Add("Y" + movementToDo.desiredYPos.ToString());
-
-                // TODO : Send the command to move the Y and X axis 
-                arduinoWorker.startWorker();
-                arduinoWorker.write(commandsToSendList.First());
-                commandsToSendList.RemoveAt(0);
-
-                // TODO : Move the Z axis to the desired position :
-                // moveZ(concernedTool, movementToDo.desiredZPos) through CAN
-
-                // TODO : Update the current position of the rack in the database (deck_x, deck_y)
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message); // REMOVE THE THROW LATER ON                
-            }
         }
 
         private void moveToX(BioBotDataSets.bbt_operationRow operationRow)
@@ -131,15 +138,14 @@ namespace BioBotApp.Model.Movement
                 // Update the tool to be moved (include update of the attached object if there is one)
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
 
-                // Setting the destination point.                
-                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+                // Setting the destination point.  
+                movementToDo.setXAsDestination(toolToMove, operationRow);              
 
                 // TODO : Create the commands to do the movements for each axis.
                 commandsToSendList.Add("X" + movementToDo.desiredXPos.ToString());
 
-                // TODO : Send the command to move the X axis 
-                arduinoWorker.startWorker();
-                arduinoWorker.write(commandsToSendList.First());
+                // TODO : Send the command to move the X axis                
+                writeData(commandsToSendList.First());
                 commandsToSendList.RemoveAt(0);
 
                 // TODO : Update the current position of the rack in the database (deck_x, deck_y)
@@ -164,14 +170,13 @@ namespace BioBotApp.Model.Movement
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
 
                 // Setting the destination point.                
-                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+                movementToDo.setYAsDestination(toolToMove, operationRow);
 
                 // TODO : Create the commands to do the movements for each axis.
-                commandsToSendList.Add("Y" + movementToDo.desiredXPos.ToString());
+                commandsToSendList.Add("Y" + movementToDo.desiredYPos.ToString());
 
-                // TODO : Send the command to move the X axis 
-                arduinoWorker.startWorker();
-                arduinoWorker.write(commandsToSendList.First());
+                // TODO : Send the command to move the Y axis 
+                writeData(commandsToSendList.First());
                 commandsToSendList.RemoveAt(0);
 
                 // TODO : Update the current position of the rack in the database (deck_x, deck_y)
@@ -195,8 +200,15 @@ namespace BioBotApp.Model.Movement
                 // Update the tool to be moved (include update of the attached object if there is one)
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
 
-                // Setting the destination point.                
-                movementToDo.setXYZAsDestination(operationRow, toolToMove);
+                // Setting the destination point.    
+                movementToDo.setZAsDestination(toolToMove, operationRow);
+
+                // TODO : Create the commands to do the movements for each axis.
+                commandsToSendList.Add("Z" + toolToMove.zAxisNumber + " " + movementToDo.desiredYPos.ToString());
+
+                // TODO : Send the command to move the Z axis 
+                writeData(commandsToSendList.First());
+                commandsToSendList.RemoveAt(0);
 
                 // TODO : Move the Z axis to the desired position :
                 // moveZ(concernedTool, movementToDo.desiredZPos) through CAN
@@ -238,8 +250,7 @@ namespace BioBotApp.Model.Movement
             // moveZ(concernedTool, 0) through CAN, 0 should be considered as the "Home" command
 
             // TODO : Send the command to move the Y and X axis 
-            arduinoWorker.startWorker();
-            arduinoWorker.write(commandsToSendList.First());
+            writeData(commandsToSendList.First());
             commandsToSendList.RemoveAt(0);
 
             // TODO : LOAD THE TIP ON THE TOOL BY DROPPING Z TO THE CALCULATED VALUE IN movementToDo.
@@ -277,8 +288,7 @@ namespace BioBotApp.Model.Movement
                 // moveZ(concernedTool, 0) through CAN, 0 should be considered as the "Home" command
 
                 // TODO : Send the command to move the Y and X axis 
-                arduinoWorker.startWorker();
-                arduinoWorker.write(commandsToSendList.First());
+                writeData(commandsToSendList.First());
                 commandsToSendList.RemoveAt(0);
 
                 // TODO : LOAD THE TIP ON THE TOOL BY DROPPING Z TO THE CALCULATED VALUE IN movementToDo.
@@ -293,8 +303,7 @@ namespace BioBotApp.Model.Movement
 
         private void Worker_onArduinoReceive(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            arduinoWorker.startWorker();
-            arduinoWorker.write(commandsToSendList.First());
+            writeData(commandsToSendList.First());
             commandsToSendList.RemoveAt(0);
             //throw new NotImplementedException();
         }
@@ -369,7 +378,8 @@ namespace BioBotApp.Model.Movement
         public int xToolRackOffset { get; set; }
         public int yToolRackOffset { get; set; }
         public int zToolRackOffset { get; set; }
-        public int zToolZeroPos { get; set; }   
+        public int zToolZeroPos { get; set; }  
+        public int zAxisNumber { get; set; } 
 
         public ToolToMove()
         {
@@ -377,6 +387,7 @@ namespace BioBotApp.Model.Movement
             toolType = new ToolType();
             attachedObject = new Object();
             zToolZeroPos = 0;
+            zAxisNumber = 0;
         }
 
         public void setToolToMove(BioBotDataSets.bbt_objectRow sourceToolRow, DBManager dbManager, ToolRack toolRack)
@@ -385,14 +396,17 @@ namespace BioBotApp.Model.Movement
             if (sourceToolRow.bbt_object_typeRow.description == "Single Channel Pipette")
             {
                 toolType = ToolType.SingleChannelPipette;
+                zAxisNumber = 1;
             }
             else if (sourceToolRow.bbt_object_typeRow.description == "Multiple Channel Pipette")
             {
                 toolType = ToolType.MultipleChannelPipette;
+                zAxisNumber = 2;
             }
             else if (sourceToolRow.bbt_object_typeRow.description == "Gripper")
             {
                 toolType = ToolType.Gripper;
+                zAxisNumber = 3;
             }
 
             // Loading the dimensions of the tool :
@@ -766,6 +780,7 @@ namespace BioBotApp.Model.Movement
     {
         public const int ADDED_BOX_PENETRATION_DEEPNESS = 30; // Represents 3mm.
         public const int ADDED_TRASH_PENETRATION_DEEPNESS = 10; // Represents 1mm.
+        bool movementCandBeDone = false;
 
         public int desiredXPos { get; set; }
         public int desiredYPos { get; set; }
@@ -820,8 +835,61 @@ namespace BioBotApp.Model.Movement
             int desiredXPosition = 0;
             int tempValue = 0;
 
-            //int.TryParse(operationRow)
+            if (int.TryParse(operationRow.value, out tempValue))
+            {
+                desiredXPosition = tempValue;
+
+                desiredXPos = desiredXPosition - tool.xToolRackOffset;
+
+                if (desiredXPos > 0)
+                    movementCandBeDone = true;
+            }
+            else
+            {
+                movementCandBeDone = false;
+            }           
         }
+
+        public void setYAsDestination(ToolToMove tool, BioBotDataSets.bbt_operationRow operationRow)
+        {
+            int desiredYPosition = 0;
+            int tempValue = 0;
+
+            if (int.TryParse(operationRow.value, out tempValue))
+            {
+                desiredYPosition = tempValue;
+
+                desiredYPos = desiredYPosition - tool.yToolRackOffset;
+
+                if (desiredYPos > 0)
+                    movementCandBeDone = true;
+            }
+            else
+            {
+                movementCandBeDone = false;
+            }
+        }
+
+        public void setZAsDestination(ToolToMove tool, BioBotDataSets.bbt_operationRow operationRow)
+        {
+            int desiredZPosition = 0;
+            int tempValue = 0;
+
+            if (int.TryParse(operationRow.value, out tempValue))
+            {
+                desiredZPosition = tempValue;
+
+                desiredZPos = desiredZPosition - tool.zToolRackOffset;
+
+                if (desiredZPos > 0)
+                    movementCandBeDone = true;
+            }
+            else
+            {
+                movementCandBeDone = false;
+            }
+        }
+
 
         public void setXYZAsDestination(BioBotDataSets.bbt_operationRow operationRow, ToolToMove tool)
         {
