@@ -20,21 +20,6 @@ namespace SimpleTacClient
 
         }
 
-        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This is a simple client to operate a TAC module.",
@@ -53,45 +38,58 @@ namespace SimpleTacClient
             option.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void autoCallibrationBtn_Click(object sender, EventArgs e)
         {
-            int subModuleId = GetSubModuleId();
-            tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "start_calibration", ""));
+            // not implemented yet
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void sendCommandBtn_Click(object sender, EventArgs e)
         {
             int subModuleId = GetSubModuleId();
-
+            int moduleId = GetModuleId();
             if (agitationCb.Checked)
             {
                 int agitationValue = agitPct.Value * 10;
-                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "set_agitator_speed", agitationValue.ToString()));
-                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "enable_agitator", ""));
+                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "set_agitator_speed", agitationValue.ToString()));
+                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "enable_agitator", ""));
             }
             else
             {
-                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "disable_agitator", ""));
+                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "disable_agitator", ""));
             }
 
             // TODO verify that tempTB.Text is a float
-            tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "set_target_temperature", tempTB.Text));
+            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "set_target_temperature", tempTB.Text));
 
-            if (ventilCb.Checked )
+            if (ventilCb.Checked)
             {
                 int vent = VentPct.Value * 10;
-                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "set_fan_speed", vent.ToString()));
-                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "enable_fan", ""));
+                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "set_fan_speed", vent.ToString()));
+                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "enable_fan", ""));
             }
             else
             {
-                tacPlugin.ExecuteCommand(BuildTacCmd(1, subModuleId, "disable_fan", ""));
+                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "disable_fan", ""));
             }
         }
+        
 
-        private string BuildTacCmd(int moduleId, int subModuleId, string cmd, string value)
+        private int GetModuleId()
         {
-            return cmd + " " + moduleId.ToString() + " " + subModuleId.ToString() + " " + value;
+            int moduleId = -1;
+            bool isMoudleIdValid = int.TryParse(moduleIdTxt.Text, out moduleId);
+            if (isMoudleIdValid)
+            {
+                int subModuleId = GetSubModuleId();
+            }
+            else
+            {
+                MessageBox.Show("The module ID should be an int",
+                "Error : invalid module ID",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
+            return moduleId;
         }
 
         private int GetSubModuleId()
@@ -102,6 +100,11 @@ namespace SimpleTacClient
                 subModuleId = 2;
             }
             return subModuleId;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

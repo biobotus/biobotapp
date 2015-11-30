@@ -35,7 +35,7 @@
             this.AgitationLabel = new System.Windows.Forms.Label();
             this.currentTempLabel = new System.Windows.Forms.Label();
             this.goalTempLabel = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             this.groupBox1.Controls.Add(this.AgitationLabel);
             this.groupBox1.Controls.Add(this.currentTempLabel);
             this.groupBox1.Controls.Add(this.goalTempLabel);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.refreshBtn);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -118,15 +118,15 @@
             this.goalTempLabel.TabIndex = 32;
             this.goalTempLabel.Text = "NO DATA";
             // 
-            // button2
+            // refreshBtn
             // 
-            this.button2.Location = new System.Drawing.Point(150, 86);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "refresh";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.refreshBtn.Location = new System.Drawing.Point(150, 86);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(75, 23);
+            this.refreshBtn.TabIndex = 31;
+            this.refreshBtn.Text = "refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // label6
             // 
@@ -186,7 +186,7 @@
         private System.Windows.Forms.Label AgitationLabel;
         private System.Windows.Forms.Label currentTempLabel;
         private System.Windows.Forms.Label goalTempLabel;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button refreshBtn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

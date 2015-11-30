@@ -8,7 +8,7 @@ using BioBotApp.Utils.Communication.pcan;
 using System.Globalization;
 using System.Text;
 using BioBotApp.Model.Data;
-using Peak.Can.Basic;
+using TACDLL.Can;
 namespace TACDLL
 {
     /// <summary>
@@ -19,27 +19,8 @@ namespace TACDLL
     public class TacDll : IModulePlugin
     {
 
-        public byte HARDWARE_FILTER_TAC = 0x70;
-        Dictionary<string, int> byteCommandDict = new Dictionary<string, int>()
-        {
-            {"set_target_temperature", 0x00},
-            {"set_agitator_speed", 0x01},
-            {"set_fan_speed", 0x02},
-            {"start_calibration", 0x03},
-            {"stop_calibration", 0x04},
-            {"start_temperature_maintain", 0x05},
-            {"stop_temperature_maintain", 0x06},
-            {"enable_fan", 0x07},
-            {"disable_fan", 0x08},
-            {"enable_agitator", 0x09},
-            {"disable_agitator", 0x0a},
-            {"enable_peltier", 0x0b},
-            {"disable_peltier", 0x0c},
-            {"send_fan_speed", 0x0d},
-            {"send_temperature", 0x0e},
-            {"send_agitator_speed", 0x0f},
-            {"send_turbidity", 0x10}
-        };
+        public static byte HARDWARE_FILTER_TAC = 0x70;
+      
 
         /// <summary>
         /// 
@@ -72,21 +53,6 @@ namespace TACDLL
             {
                 // error handling
             }
-
-
-            TPCANMsg CANMsg = new TPCANMsg();
-            CANMsg.DATA = new byte[8];
-            //Device Id
-            CANMsg.DATA[0] = moduleId;
-            //SubModule Target 
-            CANMsg.DATA[1] = subModuleId;
-            // Instruction 
-            //  CANMsg.DATA[2] =
-            // Spare 
-            CANMsg.DATA[3] = 0;
-            // Data Byte  1 to 4
-            //  CANMsg.DATA[4 to 7] = 
-            CANMsg.ID = this.HARDWARE_FILTER_TAC;
             
 
             if (parsed_command.Length == 4)
@@ -98,30 +64,20 @@ namespace TACDLL
                         bool isParamFloat = float.TryParse(parsed_command[3], NumberStyles.Any, CultureInfo.InvariantCulture, out floatParam);
                         if(isParamFloat)
                         {
-                            Int16 temp = (Int16)Math.Truncate(floatParam * 10);
-                            
-                            byte[] bytes = BitConverter.GetBytes(temp);
-                            if (BitConverter.IsLittleEndian)
-                            {
-                                CANMsg.DATA[4] = bytes[1];
-                                CANMsg.DATA[5] = bytes[0];
-                            }
-                            else
-                            {
-                                CANMsg.DATA[4] = bytes[0];
-                                CANMsg.DATA[5] = bytes[1];
-                            }
+                            UInt16 temp = (UInt16)Math.Truncate(floatParam * 10);
+                            TAC2CAN.setTemperatureTarget(temp);
                         }
                         else
                         {
                             // error handling
                         }
+
                         break;
                     case "set_agitator_speed":
-                        CANMsg.DATA[4] = ParsePercent(parsed_command[3]);
+                        TAC2CAN.setAgitatorSpeed(ParsePercent(parsed_command[3]));
                         break;
                     case "set_fan_speed":
-                        CANMsg.DATA[4] = ParsePercent(parsed_command[3]);
+                        TAC2CAN.setFanSpeed(ParsePercent(parsed_command[3]));
                         break;
 
                     default:
@@ -130,14 +86,44 @@ namespace TACDLL
                         break;
                 }
             }
-            // Need to check if parsed_command[0] is in the dictionary
-            // and if parsed_command.Length == 3 or 4
-            // Here we should send the packet
-            if (returnValue == "")
+            else if(parsed_command.Length == 3)
             {
-                CANMsg.DATA[2] = (Byte)byteCommandDict[parsed_command[0]];
-                PCANCom.Instance.send(CANMsg);
+                switch (parsed_command[0])
+                {
+                    case "enable_agitator":
+                        TAC2CAN.setAgitatorEnable(1);
+                        break;
+                    case "disable_agitator":
+                        TAC2CAN.setAgitatorEnable(0);
+                        break;
+                    case "enable_fan":
+                        TAC2CAN.setFanEnable(1);
+                        break;
+                    case "disable_fan":
+                        TAC2CAN.setFanEnable(0);
+                        break;
+                    case "send_fan_speed":
+                        TAC2CAN.getFanState();
+                        break;
+                    case "send_temperature":
+                        TAC2CAN.getCurrentTemperature();
+                        break;
+                    case "send_agitator_speed":
+                        TAC2CAN.getAgitatorState();
+                        break;
+                    case "send_turbidity":
+                        TAC2CAN.getTurbidity();
+                        break;
+                    case "send_goal_temperature":
+                        TAC2CAN.getTemperatureTargetValue();
+                        break;
+                    default:
+                        returnValue = "uknown command : " + command;
+                        // raise error?
+                        break;
+                }
             }
+
             return returnValue;
         }
 
@@ -169,7 +155,7 @@ namespace TACDLL
 
         public UserControl GetModuleDescriptionControl(int moduleId)
         {
-            return new TACDLL.OptionCtrl.TacDescription(this);
+            return new TACDLL.OptionCtrl.TacDescription(this, moduleId);
         }
 
         public void SetInChargeModule(List<string> moduleList)
@@ -192,9 +178,14 @@ namespace TACDLL
             return result;
         }
 
-        public string BuildTacCmd(int moduleId, int subModuleId, string cmd, string value)
+        public static string BuildTacCmd(int moduleId, int subModuleId, string cmd, string value)
         {
-            return cmd + " " + moduleId.ToString() + " " + subModuleId.ToString() + " " + value;
+            string command = cmd + " " + moduleId.ToString() + " " + subModuleId.ToString();
+            if (value != "")
+            {
+                command += " " + value;
+            }
+            return command; 
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using BioBotApp.Utils.Communication.pcan;
-
+using TACDLL.Can;
 namespace TACDLL.OptionCtrl
 {
     /// <summary>
@@ -72,7 +72,7 @@ namespace TACDLL.OptionCtrl
                 isSampling = true;
                 btnStartSample.Text = "Stop sampling";
                 // Here we want to ask for new value of turbido
-                tac.ExecuteCommand(tac.BuildTacCmd(1,1, "send_turbidity", ""));
+                tac.ExecuteCommand(TacDll.BuildTacCmd(1,1, "send_turbidity", ""));
                 pullTurbidoValue();
             }
         }
@@ -92,7 +92,7 @@ namespace TACDLL.OptionCtrl
         void pullTurbidoValue()
         {
             //Ask for a new turbido value
-            tac.ExecuteCommand(tac.BuildTacCmd(1, 1, "send_turbidity", ""));
+            tac.ExecuteCommand(TacDll.BuildTacCmd(1, 1, "send_turbidity", ""));
         }
 
 
@@ -120,15 +120,13 @@ namespace TACDLL.OptionCtrl
 
         private void CANMessageReceived(object sender, PCANComEventArgs e)
         {
-            if (e.CanMsg.DATA[0] == tac.HARDWARE_FILTER_TAC)
+            if (e.CanMsg.DATA[0] == TacDll.HARDWARE_FILTER_TAC)
             {
                 switch (e.CanMsg.DATA[2])
                 {
-                    // turbidity
-                    case 0x10:
-                        onTurbidoValueReceived(1);
+                    case TACConstant.INST_GET_TURBIDITY:
+                        onTurbidoValueReceived(BitConverter.ToSingle(e.CanMsg.DATA, 4));
                         break;
-
                 }
             }
         }

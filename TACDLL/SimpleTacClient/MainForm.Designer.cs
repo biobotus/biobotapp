@@ -36,16 +36,16 @@
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.sendCommandBtn = new System.Windows.Forms.Button();
             this.ventilCb = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.autoCalibrationBtn = new System.Windows.Forms.Button();
             this.tacDescriptionPanel = new System.Windows.Forms.Panel();
             this.sub1RB = new System.Windows.Forms.RadioButton();
             this.sub2RB = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.VentPct = new System.Windows.Forms.TrackBar();
             this.agitationCb = new System.Windows.Forms.CheckBox();
+            this.moduleIdTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.agitPct)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VentPct)).BeginInit();
@@ -67,7 +67,6 @@
             this.tempTB.Size = new System.Drawing.Size(59, 20);
             this.tempTB.TabIndex = 4;
             this.tempTB.Text = "0.00";
-            this.tempTB.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // agitPct
             // 
@@ -118,15 +117,15 @@
             this.toolStripMenuItem1.Text = "?";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // button1
+            // sendCommandBtn
             // 
-            this.button1.Location = new System.Drawing.Point(176, 190);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.sendCommandBtn.Location = new System.Drawing.Point(176, 190);
+            this.sendCommandBtn.Name = "sendCommandBtn";
+            this.sendCommandBtn.Size = new System.Drawing.Size(75, 23);
+            this.sendCommandBtn.TabIndex = 7;
+            this.sendCommandBtn.Text = "send";
+            this.sendCommandBtn.UseVisualStyleBackColor = true;
+            this.sendCommandBtn.Click += new System.EventHandler(this.sendCommandBtn_Click);
             // 
             // ventilCb
             // 
@@ -139,15 +138,15 @@
             this.ventilCb.Text = "Ventilation";
             this.ventilCb.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // autoCalibrationBtn
             // 
-            this.button3.Location = new System.Drawing.Point(23, 190);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 23);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "Auto Calibration";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.autoCalibrationBtn.Location = new System.Drawing.Point(23, 190);
+            this.autoCalibrationBtn.Name = "autoCalibrationBtn";
+            this.autoCalibrationBtn.Size = new System.Drawing.Size(102, 23);
+            this.autoCalibrationBtn.TabIndex = 16;
+            this.autoCalibrationBtn.Text = "Auto Calibration";
+            this.autoCalibrationBtn.UseVisualStyleBackColor = true;
+            this.autoCalibrationBtn.Click += new System.EventHandler(this.autoCallibrationBtn_Click);
             // 
             // tacDescriptionPanel
             // 
@@ -178,22 +177,14 @@
             this.sub2RB.Text = "Sub-module 2";
             this.sub2RB.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(85, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(77, 21);
-            this.comboBox1.TabIndex = 20;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 13);
+            this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Tac Module";
+            this.label3.Text = "Tac Module Id :";
             // 
             // VentPct
             // 
@@ -214,21 +205,29 @@
             this.agitationCb.Text = "Agitation";
             this.agitationCb.UseVisualStyleBackColor = true;
             // 
+            // moduleIdTxt
+            // 
+            this.moduleIdTxt.Location = new System.Drawing.Point(103, 35);
+            this.moduleIdTxt.Name = "moduleIdTxt";
+            this.moduleIdTxt.Size = new System.Drawing.Size(59, 20);
+            this.moduleIdTxt.TabIndex = 24;
+            this.moduleIdTxt.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 389);
+            this.Controls.Add(this.moduleIdTxt);
             this.Controls.Add(this.agitationCb);
             this.Controls.Add(this.VentPct);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.sub2RB);
             this.Controls.Add(this.sub1RB);
             this.Controls.Add(this.tacDescriptionPanel);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.autoCalibrationBtn);
             this.Controls.Add(this.ventilCb);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sendCommandBtn);
             this.Controls.Add(this.agitPct);
             this.Controls.Add(this.tempTB);
             this.Controls.Add(this.label2);
@@ -253,17 +252,17 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button sendCommandBtn;
         private System.Windows.Forms.CheckBox ventilCb;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button autoCalibrationBtn;
         private System.Windows.Forms.Panel tacDescriptionPanel;
         private System.Windows.Forms.RadioButton sub1RB;
         private System.Windows.Forms.RadioButton sub2RB;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar VentPct;
         private System.Windows.Forms.CheckBox agitationCb;
+        private System.Windows.Forms.TextBox moduleIdTxt;
     }
 }
 
