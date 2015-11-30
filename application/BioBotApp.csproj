@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLL\MultiChannel\MultiChannelPipette.cs" />
     <Compile Include="DLL\PipetteSimple\PipetteSimple.cs" />
     <Compile Include="Model\Data\BioBotDataSets.cs">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
