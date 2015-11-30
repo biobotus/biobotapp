@@ -117,5 +117,35 @@ namespace BioBotApp.Model.Data.Services
                 this.dbManager.projectDataset.bbt_object_property.RejectChanges();
             }
         }
+
+        // Other functions :
+
+        public string getObjectPropertyValue(string propertyDesc, string propertyTypeDesc, int fk_object_type_id)
+        {
+            BioBotDataSets.bbt_property_typeRow[] propertyTypeRow =
+                (BioBotDataSets.bbt_property_typeRow[])dbManager.projectDataset.bbt_property_type.Select(
+                "SELECT * " +
+                "FROM deck.bbt_property_type " +
+                "WHERE description = '" + propertyDesc + "';");
+
+            if (propertyTypeRow.Count() != 1) return "";
+
+            BioBotDataSets.bbt_propertyRow[] propertyRow =
+                (BioBotDataSets.bbt_propertyRow[])dbManager.projectDataset.bbt_property.Select(
+                "SELECT * " +
+                "FROM deck.bbt_property " +
+                "WHERE fk_property_type = " + propertyTypeRow[0].pk_id + " AND description = '" + propertyTypeDesc + "';");
+
+            if (propertyRow.Count() != 1) return "";
+
+            BioBotDataSets.bbt_object_propertyRow[] objectPropertyRows =
+                (BioBotDataSets.bbt_object_propertyRow[])dbManager.projectDataset.bbt_object_property.Select(
+                "SELECT * " +
+                "FROM deck.bbt_object_property " +
+                "WHERE fk_object_type_id = " + fk_object_type_id + " AND fk_properties_id = " + propertyRow[0].pk_id + ";");
+
+            if (objectPropertyRows.Count() != 1) return "";
+            else return objectPropertyRows[0].value.ToString();
+        }
     }
 }

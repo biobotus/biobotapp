@@ -48,6 +48,7 @@ namespace BioBotCommunication.Serial.Movement
 
             OnCompletionEventArgs eventargs = new OnCompletionEventArgs("Completed work");
             eventargs.error = false;
+            OnMessageReceivedEvent(eventargs);
             toggle.Set();
         }
 

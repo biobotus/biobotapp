@@ -49,6 +49,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Serial\Can\AutoConnectCan.cs" />
+    <Compile Include="Serial\Can\CANCommunicationWorker.cs" />
     <Compile Include="Serial\Can\CanConnectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
