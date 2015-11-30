@@ -10,14 +10,14 @@ namespace BioBotApp.Model.Data.Services
     class OperationTypeObjectTypeServices
     {
         DBManager dbManager;
-        BioBotDataSetsTableAdapters.bbt_object_propertyTableAdapter taObjectProperty;
+        BioBotDataSetsTableAdapters.bbt_operation_type_object_typeTableAdapter taOperationTypeObjectType;
 
         private static OperationTypeObjectTypeServices privateInstance;
 
         private OperationTypeObjectTypeServices()
         {
             this.dbManager = DBManager.Instance;
-            this.taObjectProperty = dbManager.taManager.bbt_object_propertyTableAdapter;
+            this.taOperationTypeObjectType = dbManager.taManager.bbt_operation_type_object_typeTableAdapter;
         }
 
         public static OperationTypeObjectTypeServices Instance
@@ -33,47 +33,46 @@ namespace BioBotApp.Model.Data.Services
         }
 
         // CRUD operations functions
-        public void addObjectPropertyRow(int fkObjectTypeId, int fkPropertyId, string value)
+        public void addOperationTypeObjectTypeRow(int fkObjectTypeId, int fkOperationTypeId)
         {
-            BioBotDataSets.bbt_object_propertyRow row = this.dbManager.projectDataset.bbt_object_property.Newbbt_object_propertyRow();
-            row.fk_object_type_id = fkObjectTypeId;
-            row.fk_properties_id = fkPropertyId;
-            row.value = value;
-            this.dbManager.projectDataset.bbt_object_property.Addbbt_object_propertyRow(row);
+            BioBotDataSets.bbt_operation_type_object_typeRow row = this.dbManager.projectDataset.bbt_operation_type_object_type.Newbbt_operation_type_object_typeRow();
+            row.fk_object_type = fkObjectTypeId;
+            row.fk_operation_type = fkOperationTypeId;
+            this.dbManager.projectDataset.bbt_operation_type_object_type.Addbbt_operation_type_object_typeRow(row);
             updateRow(row);
         }
 
-        public void modifyObjectRow(int fkObjectTypeId, int fkPropertyId)
+        public void modifyOperationTypeObjectTypeRow(int fkObjectTypeId, int fkOperationTypeId)
         {
-            BioBotDataSets.bbt_object_propertyRow row = this.dbManager.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == fkObjectTypeId && p.fk_properties_id == fkPropertyId).First();
-            row.fk_object_type_id = fkObjectTypeId;
-            row.fk_properties_id = fkPropertyId;
+            BioBotDataSets.bbt_operation_type_object_typeRow row = this.dbManager.projectDataset.bbt_operation_type_object_type.Where(p => p.fk_object_type == fkObjectTypeId && p.fk_operation_type == fkOperationTypeId).First();
+            row.fk_object_type = fkObjectTypeId;
+            row.fk_operation_type = fkOperationTypeId;
             updateRow(row);
         }
 
-        public void modifyObjectRow(BioBotDataSets.bbt_object_propertyRow row)
+        public void modifyOperationTypeObjectTypeRow(BioBotDataSets.bbt_operation_type_object_typeRow row)
         {
             updateRow(row);
         }
 
-        public void removeObjectRow(int fkObjectTypeId, int fkPropertyId)
+        public void removeOperationTypeObjectTypeRow(int fkObjectTypeId, int fkOperationTypeId)
         {
-            BioBotDataSets.bbt_object_propertyRow row = this.dbManager.projectDataset.bbt_object_property.Where(p => p.fk_object_type_id == fkObjectTypeId && p.fk_properties_id == fkPropertyId).First();
+            BioBotDataSets.bbt_operation_type_object_typeRow row = this.dbManager.projectDataset.bbt_operation_type_object_type.Where(p => p.fk_object_type == fkObjectTypeId && p.fk_operation_type == fkOperationTypeId).First();
             row.Delete();
             updateRow(row);
         }
 
-        public void removeObjectRow(BioBotDataSets.bbt_object_propertyRow row)
+        public void removeOperationTypeObjectTypeRow(BioBotDataSets.bbt_operation_type_object_typeRow row)
         {
             row.Delete();
             updateRow(row);
         }
 
-        public void removeObjectRowWithGivenObjectType(BioBotDataSets.bbt_object_typeRow parentToDeleteRow)
+        public void removeOperationTypeObjectTypeRowWithGivenObjectType(BioBotDataSets.bbt_operation_typeRow parentToDeleteRow)
         {
             if (parentToDeleteRow != null)
             {
-                foreach (BioBotDataSets.bbt_object_propertyRow row in parentToDeleteRow.Getbbt_object_propertyRows())
+                foreach (BioBotDataSets.bbt_operation_type_object_typeRow row in parentToDeleteRow.Getbbt_operation_type_object_typeRows())
                 {
                     row.Delete();
                 }
@@ -81,11 +80,11 @@ namespace BioBotApp.Model.Data.Services
             updateRowChanges();
         }
 
-        public void removeObjectRowWithGivenProperty(BioBotDataSets.bbt_propertyRow parentToDeleteRow)
+        public void removeOperationTypeObjectTypeRowWithGivenProperty(BioBotDataSets.bbt_object_typeRow parentToDeleteRow)
         {
             if (parentToDeleteRow != null)
             {
-                foreach (BioBotDataSets.bbt_object_propertyRow row in parentToDeleteRow.Getbbt_object_propertyRows())
+                foreach (BioBotDataSets.bbt_operation_type_object_typeRow row in parentToDeleteRow.Getbbt_operation_type_object_typeRows())
                 {
                     row.Delete();
                 }
@@ -93,16 +92,16 @@ namespace BioBotApp.Model.Data.Services
             updateRowChanges();
         }
 
-        public void updateRow(BioBotDataSets.bbt_object_propertyRow row)
+        public void updateRow(BioBotDataSets.bbt_operation_type_object_typeRow row)
         {
             try
             {
-                this.taObjectProperty.Update(row);
+                this.taOperationTypeObjectType.Update(row);
             }
             catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
-                this.dbManager.projectDataset.bbt_object_property.RejectChanges();
+                this.dbManager.projectDataset.bbt_operation_type_object_type.RejectChanges();
             }
         }
 
@@ -110,12 +109,12 @@ namespace BioBotApp.Model.Data.Services
         {
             try
             {
-                this.taObjectProperty.Update(this.dbManager.projectDataset.bbt_object_property);
+                this.taOperationTypeObjectType.Update(this.dbManager.projectDataset.bbt_operation_type_object_type);
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                this.dbManager.projectDataset.bbt_object_property.RejectChanges();
+                this.dbManager.projectDataset.bbt_operation_type_object_type.RejectChanges();
             }
         }
     }
