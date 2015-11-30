@@ -44,5 +44,6 @@ namespace BioBotApp.View.Utils
         {
             return edtInputValue.Text;
         }
+
     }
 }

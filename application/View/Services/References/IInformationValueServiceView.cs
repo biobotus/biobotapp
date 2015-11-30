@@ -15,7 +15,7 @@ namespace BioBotApp.View.Services
 
         int InformationValuePrimaryKey { get; }
 
-        DataRow InformationValueRow { get; }
+        Model.Data.BioBotDataSets.bbt_information_valueRow InformationValueCurrentRow { get; }
 
         int PropertyForeignKey { get; }
 

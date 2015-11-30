@@ -128,9 +128,9 @@
             this.crudOptions1.Name = "crudOptions1";
             this.crudOptions1.Size = new System.Drawing.Size(157, 37);
             this.crudOptions1.TabIndex = 1;
-            this.crudOptions1.AddClickHandler += new System.EventHandler(this.Add_Click);
-            this.crudOptions1.DeleteClickHandler += new System.EventHandler(this.Delete_Click);
-            this.crudOptions1.ModifyClickHandler += new System.EventHandler(this.Modify_Click);
+            this.crudOptions1.AddClickHandler += new System.EventHandler(this.AddInformationValue);
+            this.crudOptions1.DeleteClickHandler += new System.EventHandler(this.DeleteInformationValue);
+            this.crudOptions1.ModifyClickHandler += new System.EventHandler(this.ModifyInformationValue);
             // 
             // groupBox3
             // 

@@ -118,6 +118,9 @@
             this.crudOptions1.Name = "crudOptions1";
             this.crudOptions1.Size = new System.Drawing.Size(159, 37);
             this.crudOptions1.TabIndex = 1;
+            this.crudOptions1.AddClickHandler += new System.EventHandler(this.AddObjectProperty);
+            this.crudOptions1.DeleteClickHandler += new System.EventHandler(this.DeleteObjectProperty);
+            this.crudOptions1.ModifyClickHandler += new System.EventHandler(this.ModifyObjectProperty);
             // 
             // bbt_object_propertyTableAdapter
             // 
