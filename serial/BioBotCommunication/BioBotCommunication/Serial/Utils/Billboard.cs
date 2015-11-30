@@ -25,6 +25,15 @@ namespace BioBotCommunication.Serial.Utils
                 listValues.Add(value);
             }
         }
+
+        public void emptyList()
+        {
+            lock (listValues)
+            {
+                listValues.Clear();
+            }
+        }
+
         public void delete(String valueId)
         {
             lock (listValues)
@@ -42,7 +51,6 @@ namespace BioBotCommunication.Serial.Utils
                     Console.WriteLine("END OF OPERATION: " + valueId);
                 }
             }
-
         }
 
         public List<String> getValues()
@@ -102,6 +110,14 @@ namespace BioBotCommunication.Serial.Utils
                     }
                 }
                 return isRegistered;
+            }
+        }
+
+        public int getConsumerRegisteredSize()
+        {
+            lock (listConsumers)
+            {
+                return listConsumers.Count;
             }
         }
     }

@@ -28,6 +28,7 @@ namespace BioBotApp.DLL.PipetteSimple
         [Model.EventBus.Subscribe]
         public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
         {
+            /*
             if(e.operationRow.bbt_stepRow.bbt_objectRow.fk_object_type == 5)
             {
                 Billboard billboard = e.billboard;
@@ -45,6 +46,7 @@ namespace BioBotApp.DLL.PipetteSimple
                 consumer2.onCompletion += Consumer_onCompletion;
                 consumer2.start();
             }
+            */
             /*
             Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
             if (row == null) return;

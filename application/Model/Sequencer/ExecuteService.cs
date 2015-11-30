@@ -76,11 +76,12 @@ namespace BioBotApp.Model.Sequencer
             {
                 return;
             }
-
-            
+            billboard.emptyList();
             EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index], this.billboard));
-            
-            //communicationService.writeData("Executing: " + .description + '\r' + '\n');
+            if(this.billboard.getConsumerRegisteredSize() == 0)
+            {
+                exectuteNext();
+            }
         }
 
         public void generateList(BioBotDataSets.bbt_protocolRow protocolRow)

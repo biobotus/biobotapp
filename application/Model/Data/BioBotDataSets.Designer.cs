@@ -939,6 +939,8 @@ namespace BioBotApp.Model.Data {
             
             private global::System.Data.DataColumn columnfk_object;
             
+            private global::System.Data.DataColumn columndeck_z;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_objectDataTable() {
@@ -1038,6 +1040,14 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn deck_zColumn {
+                get {
+                    return this.columndeck_z;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1073,7 +1083,7 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bbt_objectRow Addbbt_objectRow(bbt_object_typeRow parentbbt_object_typeRowBybbt_object_type_bbt_object, int deck_x, int deck_y, int rotation, string activated, string description, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_object) {
+            public bbt_objectRow Addbbt_objectRow(bbt_object_typeRow parentbbt_object_typeRowBybbt_object_type_bbt_object, int deck_x, int deck_y, int rotation, string activated, string description, bbt_objectRow parentbbt_objectRowBybbt_object_bbt_object, int deck_z) {
                 bbt_objectRow rowbbt_objectRow = ((bbt_objectRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1083,7 +1093,8 @@ namespace BioBotApp.Model.Data {
                         rotation,
                         activated,
                         description,
-                        null};
+                        null,
+                        deck_z};
                 if ((parentbbt_object_typeRowBybbt_object_type_bbt_object != null)) {
                     columnValuesArray[1] = parentbbt_object_typeRowBybbt_object_type_bbt_object[0];
                 }
@@ -1127,6 +1138,7 @@ namespace BioBotApp.Model.Data {
                 this.columnactivated = base.Columns["activated"];
                 this.columndescription = base.Columns["description"];
                 this.columnfk_object = base.Columns["fk_object"];
+                this.columndeck_z = base.Columns["deck_z"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1148,6 +1160,8 @@ namespace BioBotApp.Model.Data {
                 base.Columns.Add(this.columndescription);
                 this.columnfk_object = new global::System.Data.DataColumn("fk_object", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfk_object);
+                this.columndeck_z = new global::System.Data.DataColumn("deck_z", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndeck_z);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnpk_id}, true));
                 this.columnpk_id.AutoIncrement = true;
@@ -5653,6 +5667,22 @@ namespace BioBotApp.Model.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int deck_z {
+                get {
+                    try {
+                        return ((int)(this[this.tablebbt_object.deck_zColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'deck_z\' in table \'bbt_object\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebbt_object.deck_zColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bbt_object_typeRow bbt_object_typeRow {
                 get {
                     return ((bbt_object_typeRow)(this.GetParentRow(this.Table.ParentRelations["bbt_object_type_bbt_object"])));
@@ -5755,6 +5785,18 @@ namespace BioBotApp.Model.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setfk_objectNull() {
                 this[this.tablebbt_object.fk_objectColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isdeck_zNull() {
+                return this.IsNull(this.tablebbt_object.deck_zColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setdeck_zNull() {
+                this[this.tablebbt_object.deck_zColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7791,10 +7833,11 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             tableMapping.ColumnMappings.Add("activated", "activated");
             tableMapping.ColumnMappings.Add("description", "description");
             tableMapping.ColumnMappings.Add("fk_object", "fk_object");
+            tableMapping.ColumnMappings.Add("deck_z", "deck_z");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""biobot"".""deck"".""bbt_object"" WHERE ((""pk_id"" = ?) AND ((? = 1 AND ""fk_object_type"" IS NULL) OR (""fk_object_type"" = ?)) AND ((? = 1 AND ""deck_x"" IS NULL) OR (""deck_x"" = ?)) AND ((? = 1 AND ""deck_y"" IS NULL) OR (""deck_y"" = ?)) AND ((? = 1 AND ""rotation"" IS NULL) OR (""rotation"" = ?)) AND ((? = 1 AND ""activated"" IS NULL) OR (""activated"" = ?)) AND ((? = 1 AND ""fk_object"" IS NULL) OR (""fk_object"" = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""biobot"".""deck"".""bbt_object"" WHERE ((""pk_id"" = ?) AND ((? = 1 AND ""fk_object_type"" IS NULL) OR (""fk_object_type"" = ?)) AND ((? = 1 AND ""deck_x"" IS NULL) OR (""deck_x"" = ?)) AND ((? = 1 AND ""deck_y"" IS NULL) OR (""deck_y"" = ?)) AND ((? = 1 AND ""rotation"" IS NULL) OR (""rotation"" = ?)) AND ((? = 1 AND ""activated"" IS NULL) OR (""activated"" = ?)) AND ((? = 1 AND ""fk_object"" IS NULL) OR (""fk_object"" = ?)) AND ((? = 1 AND ""deck_z"" IS NULL) OR (""deck_z"" = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object_type", global::System.Data.DataRowVersion.Original, true, null));
@@ -7809,11 +7852,13 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_activated", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "activated", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_deck_z", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_z", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_deck_z", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_z", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"deck\".\"bbt_object\" (\"fk_object_type\", \"deck_x\", \"deck_y\", \"" +
-                "rotation\", \"activated\", \"description\", \"fk_object\") VALUES (?, ?, ?, ?, ?, ?, ?)" +
-                "";
+                "rotation\", \"activated\", \"description\", \"fk_object\", \"deck_z\") VALUES (?, ?, ?, ?" +
+                ", ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object_type", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("deck_x", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_x", global::System.Data.DataRowVersion.Current, false, null));
@@ -7822,9 +7867,10 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("activated", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "activated", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("deck_z", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_z", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""biobot"".""deck"".""bbt_object"" SET ""fk_object_type"" = ?, ""deck_x"" = ?, ""deck_y"" = ?, ""rotation"" = ?, ""activated"" = ?, ""description"" = ?, ""fk_object"" = ? WHERE ((""pk_id"" = ?) AND ((? = 1 AND ""fk_object_type"" IS NULL) OR (""fk_object_type"" = ?)) AND ((? = 1 AND ""deck_x"" IS NULL) OR (""deck_x"" = ?)) AND ((? = 1 AND ""deck_y"" IS NULL) OR (""deck_y"" = ?)) AND ((? = 1 AND ""rotation"" IS NULL) OR (""rotation"" = ?)) AND ((? = 1 AND ""activated"" IS NULL) OR (""activated"" = ?)) AND ((? = 1 AND ""fk_object"" IS NULL) OR (""fk_object"" = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""biobot"".""deck"".""bbt_object"" SET ""fk_object_type"" = ?, ""deck_x"" = ?, ""deck_y"" = ?, ""rotation"" = ?, ""activated"" = ?, ""description"" = ?, ""fk_object"" = ?, ""deck_z"" = ? WHERE ((""pk_id"" = ?) AND ((? = 1 AND ""fk_object_type"" IS NULL) OR (""fk_object_type"" = ?)) AND ((? = 1 AND ""deck_x"" IS NULL) OR (""deck_x"" = ?)) AND ((? = 1 AND ""deck_y"" IS NULL) OR (""deck_y"" = ?)) AND ((? = 1 AND ""rotation"" IS NULL) OR (""rotation"" = ?)) AND ((? = 1 AND ""activated"" IS NULL) OR (""activated"" = ?)) AND ((? = 1 AND ""fk_object"" IS NULL) OR (""fk_object"" = ?)) AND ((? = 1 AND ""deck_z"" IS NULL) OR (""deck_z"" = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object_type", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("deck_x", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_x", global::System.Data.DataRowVersion.Current, false, null));
@@ -7833,6 +7879,7 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("activated", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "activated", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("deck_z", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_z", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object_type", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object_type", global::System.Data.DataRowVersion.Original, false, null));
@@ -7846,6 +7893,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_activated", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "activated", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_deck_z", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_z", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_deck_z", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "deck_z", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7861,8 +7910,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"pk_id\", \"fk_object_type\", \"deck_x\", \"deck_y\", \"rotation\", \"activated\", \"d" +
-                "escription\", \"fk_object\" FROM \"deck\".\"bbt_object\"";
+            this._commandCollection[0].CommandText = "SELECT        pk_id, fk_object_type, deck_x, deck_y, rotation, activated, descrip" +
+                "tion, fk_object, deck_z\r\nFROM            deck.bbt_object";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7923,18 +7972,12 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_pk_id, int Original_fk_object_type, global::System.Nullable<int> Original_deck_x, int Original_deck_y, int Original_rotation, string Original_activated, int Original_fk_object) {
+        public virtual int Delete(int Original_pk_id, int Original_fk_object_type, int Original_deck_x, int Original_deck_y, int Original_rotation, string Original_activated, int Original_fk_object, int Original_deck_z) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_pk_id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_fk_object_type));
-            if ((Original_deck_x.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_deck_x.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_deck_x));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_deck_y));
             this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
@@ -7948,6 +7991,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             }
             this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_fk_object));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_deck_z));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7968,14 +8013,9 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int fk_object_type, global::System.Nullable<int> deck_x, int deck_y, int rotation, string activated, string description, int fk_object) {
+        public virtual int Insert(int fk_object_type, int deck_x, int deck_y, int rotation, string activated, string description, int fk_object, int deck_z) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(fk_object_type));
-            if ((deck_x.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(deck_x.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(deck_x));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(deck_y));
             this.Adapter.InsertCommand.Parameters[3].Value = ((int)(rotation));
             if ((activated == null)) {
@@ -7991,6 +8031,7 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(description));
             }
             this.Adapter.InsertCommand.Parameters[6].Value = ((int)(fk_object));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((int)(deck_z));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8011,14 +8052,25 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int fk_object_type, global::System.Nullable<int> deck_x, int deck_y, int rotation, string activated, string description, int fk_object, int Original_pk_id, int Original_fk_object_type, global::System.Nullable<int> Original_deck_x, int Original_deck_y, int Original_rotation, string Original_activated, int Original_fk_object) {
+        public virtual int Update(
+                    int fk_object_type, 
+                    int deck_x, 
+                    int deck_y, 
+                    int rotation, 
+                    string activated, 
+                    string description, 
+                    int fk_object, 
+                    int deck_z, 
+                    int Original_pk_id, 
+                    int Original_fk_object_type, 
+                    int Original_deck_x, 
+                    int Original_deck_y, 
+                    int Original_rotation, 
+                    string Original_activated, 
+                    int Original_fk_object, 
+                    int Original_deck_z) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(fk_object_type));
-            if ((deck_x.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(deck_x.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(deck_x));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(deck_y));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(rotation));
             if ((activated == null)) {
@@ -8034,30 +8086,27 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(description));
             }
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(fk_object));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_pk_id));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_fk_object_type));
-            if ((Original_deck_x.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_deck_x.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_deck_y));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_rotation));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(deck_z));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_pk_id));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_fk_object_type));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_deck_x));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_deck_y));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_rotation));
             if ((Original_activated == null)) {
                 throw new global::System.ArgumentNullException("Original_activated");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_activated));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_activated));
             }
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_fk_object));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_fk_object));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_deck_z));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
