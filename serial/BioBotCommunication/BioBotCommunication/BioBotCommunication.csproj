@@ -75,6 +75,7 @@
     <Compile Include="Serial\Utils\Billboard.cs" />
     <Compile Include="Serial\Utils\BillboardCompletionEventArgs.cs" />
     <Compile Include="Serial\Utils\ConsumerCompletionEventargs.cs" />
+    <Compile Include="Serial\Utils\ConsumerPool.cs" />
     <Compile Include="Serial\Utils\SerialConsumer.cs" />
     <Compile Include="Serial\Utils\SerialProducer.cs" />
   </ItemGroup>
