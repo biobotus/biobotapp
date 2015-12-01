@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.View.Utils;
+using PCAN;
 
 namespace BioBotApp.View.Main
 {
@@ -27,7 +28,10 @@ namespace BioBotApp.View.Main
         {
             AbstractDialog dialog = new AbstractDialog();
             BioBotCommunication.Serial.Movement.ArduinoSerialCommControl control = new BioBotCommunication.Serial.Movement.ArduinoSerialCommControl();
+            CanConnectorControl canControl = new CanConnectorControl();
             dialog.addControl(control);
+
+            dialog.addControl(canControl);
             DialogResult result = dialog.ShowDialog();
             if (result != DialogResult.OK)
             {

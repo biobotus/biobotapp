@@ -1,4 +1,4 @@
-﻿using BioBotApp.Utils.Communication.pcan;
+﻿using PCAN;
 using Peak.Can.Basic;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,7 @@ namespace BioBotCommunication.Serial.Utils.Can
             this.billboard = billboard;
             producerThread = new Thread(run);
             serial = PCANCom.Instance;
+            messageReceived = new AutoResetEvent(false);
             serial.OnMessageReceived += Serial_OnMessageReceived;
             receivedData = new List<byte[]>();
         }
@@ -33,6 +34,9 @@ namespace BioBotCommunication.Serial.Utils.Can
             lock (receivedData)
             {
                 receivedData.Add(e.CanMsg.DATA);
+                Console.WriteLine("Can message reception: ");
+                PCANCom.Instance.printPacket(e.CanMsg.DATA);
+              //  Console.WriteLine("Can message receive: " + e.CanMsg.DATA);
             }
             messageReceived.Set();
         }

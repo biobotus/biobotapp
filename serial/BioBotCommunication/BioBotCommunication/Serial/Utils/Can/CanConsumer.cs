@@ -72,7 +72,7 @@ namespace BioBotCommunication.Serial.Utils.Can
                     {
                         if (value is byte[])
                         {
-                            byte[] byteValue = Billboard.ObjectToByteArray(value);
+                            byte[] byteValue = value as byte[];
                             for (int i = 0; i < byteValue.Length; i++)
                             {
                                 if (byteValue[i] != waitValue[i]) return;

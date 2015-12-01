@@ -10,5 +10,6 @@ namespace BioBotCommunication.Serial.Utils
     {
         void notifyValue(Boolean value);
         Boolean objectEquals(Object value, Object compare);
+        void stopThread();
     }
 }

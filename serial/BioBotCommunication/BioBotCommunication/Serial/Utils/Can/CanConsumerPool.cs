@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PCAN;
+using Peak.Can.Basic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BioBotApp.Utils.Communication.pcan;
 
 namespace BioBotCommunication.Serial.Utils.Can
 {
@@ -45,12 +46,30 @@ namespace BioBotCommunication.Serial.Utils.Can
             if (messagesToSend.Count == 0) return;
             messagesToSend.RemoveAt(0);
             if (messagesToSend.Count == 0) return;
-            communication.printPacket(messagesToSend.First());
+            sendCANMessage(messagesToSend.First());
         }
 
         public void startExecution()
         {
-            communication.printPacket(messagesToSend.First());
+
+            sendCANMessage(messagesToSend.First());
+        }
+
+        private static void sendCANMessage(byte[] messageToSend)
+        {
+            TPCANMsg CANMsg = new TPCANMsg();
+            CANMsg.DATA = new byte[8];
+            CANMsg.DATA[0] = messageToSend[0];
+            CANMsg.DATA[1] = messageToSend[1]; 
+            CANMsg.DATA[2] = messageToSend[2];
+            CANMsg.DATA[3] = messageToSend[3];
+            CANMsg.DATA[4] = messageToSend[4];
+            CANMsg.DATA[5] = messageToSend[5];
+            CANMsg.DATA[6] = messageToSend[6];
+            CANMsg.DATA[7] = messageToSend[7];
+            CANMsg.ID = Convert.ToUInt32(messageToSend[8]);
+            CANQueue.Instance.add(CANMsg);
+            CANQueue.Instance.executeFirst();
         }
     }
 }

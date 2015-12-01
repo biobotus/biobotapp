@@ -16,7 +16,6 @@ namespace BioBotApp.Model.Movement
     class MovementAlgorithm : Model.EventBus.Subscriber, ICommand
     {
         DBManager dbManager;
-        CANCommunicationWorker canWorker;
         SerialConsumerPool consumerPool;
         ToolRack toolRack;
         List<String> messagesToSend;

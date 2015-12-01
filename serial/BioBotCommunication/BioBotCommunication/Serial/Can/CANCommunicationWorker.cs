@@ -1,4 +1,5 @@
 ﻿using BioBotApp.Utils.Communication.pcan;
+using PCAN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,8 +34,9 @@ namespace BioBotCommunication.Serial.Can
             canCommunicationWorker = new BackgroundWorker();
             canCommunicationWorker.WorkerSupportsCancellation = true;
             canCommunicationWorker.DoWork += CanCommunicationWorker_DoWork;
-            onPCANReceive += CANCommunicationWorker_onPCANReceive;
-            onErrorMessage += CANCommunicationWorker_onErrorMessage;
+
+           // onPCANReceive += CANCommunicationWorker_onPCANReceive;
+           // onErrorMessage += CANCommunicationWorker_onErrorMessage;
         }
 
         private void CANCommunicationWorker_onErrorMessage(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)

@@ -2,6 +2,7 @@
 using BioBotApp.Model.EventBus;
 using BioBotApp.Model.Sequencer.Helpers;
 using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Can;
 using BioBotCommunication.Serial.Utils.Serial;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace BioBotApp.Model.Sequencer
         BioBotDataSets.bbt_save_protocol_referenceDataTable commands;
         Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
         int index = 0;
-        SerialProducer producer;
+        SerialProducer serialProducer;
+        CanProducer canProducer;
         Billboard billboard;
 
         private ExecuteService()
@@ -31,8 +33,11 @@ namespace BioBotApp.Model.Sequencer
             commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
             billboard = new Billboard();
             billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent1;
-            producer = new SerialProducer(billboard);
-            producer.start();
+            serialProducer = new SerialProducer(billboard);
+            serialProducer.start();
+
+            canProducer = new CanProducer(billboard);
+            canProducer.start();
         }
 
         private void Billboard_onBillboardCompletionEvent1(object sender, BillboardCompletionEvent e)
@@ -79,7 +84,7 @@ namespace BioBotApp.Model.Sequencer
             }
             billboard.emptyList();
             EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index], this.billboard));
-            if(this.billboard.getConsumerRegisteredSize() == 0)
+            if (this.billboard.getConsumerRegisteredSize() == 0)
             {
                 exectuteNext();
             }
@@ -132,6 +137,13 @@ namespace BioBotApp.Model.Sequencer
             }
             return null;
         }
-        
+
+        [Model.EventBus.Subscribe]
+        public void onCloseEvent(Utils.Events.OnCloseModelEvent e)
+        {
+            billboard.closeBillboard();
+            canProducer.stopThread();
+            serialProducer.stopThread();
+        }
     }
 }

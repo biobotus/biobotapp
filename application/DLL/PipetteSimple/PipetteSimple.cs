@@ -3,7 +3,9 @@ using BioBotApp.Model.EventBus;
 using BioBotApp.Model.Sequencer.Helpers;
 using BioBotCommunication.Serial.Movement;
 using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Can;
 using BioBotCommunication.Serial.Utils.Serial;
+using PCAN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,10 @@ namespace BioBotApp.DLL.PipetteSimple
         private const int OBJECT_ID = 5;
         SerialCommunication communication;
         List<String> messagesToSend;
+
+        private SerialConsumerPool serialConsumerPool;
+        private CanConsumerPool canConsumerPool;
+
         //List<SerialConsumer> localConsumers;
 
         public PipetteSimple()
@@ -29,9 +35,40 @@ namespace BioBotApp.DLL.PipetteSimple
         [Model.EventBus.Subscribe]
         public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
         {
-            /*
-            if(e.operationRow.bbt_stepRow.bbt_objectRow.fk_object_type == 5)
+
+            if (e.operationRow.bbt_stepRow.bbt_objectRow.fk_object_type == 5)
             {
+                canConsumerPool = new CanConsumerPool(e.billboard);
+                byte[] sendMessage = new byte[9];
+
+                sendMessage[0] = 0x00;
+                sendMessage[1] = 0x00;
+                sendMessage[2] = 0x00;
+                sendMessage[3] = 0x00;
+                sendMessage[4] = 0x00;
+                sendMessage[5] = 0x00;
+                sendMessage[6] = 0x00;
+                sendMessage[7] = 0x10;
+                sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
+                
+
+                canConsumerPool.newConsumer(sendMessage);
+
+                sendMessage[0] = 0x00;
+                sendMessage[1] = 0x00;
+                sendMessage[2] = 0x00;
+                sendMessage[3] = 0x00;
+                sendMessage[4] = 0x00;
+                sendMessage[5] = 0x00;
+                sendMessage[6] = 0x00;
+                sendMessage[7] = 0x20;
+                sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
+
+
+                canConsumerPool.newConsumer(sendMessage);
+
+                canConsumerPool.startExecution();
+                /*
                 Billboard billboard = e.billboard;
                 String first = System.Guid.NewGuid().ToString();
                 String second = System.Guid.NewGuid().ToString();
@@ -46,8 +83,9 @@ namespace BioBotApp.DLL.PipetteSimple
                 SerialConsumer consumer2 = new SerialConsumer(billboard, second);
                 consumer2.onCompletion += Consumer_onCompletion;
                 consumer2.start();
+                */
             }
-            */
+
             /*
             Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
             if (row == null) return;

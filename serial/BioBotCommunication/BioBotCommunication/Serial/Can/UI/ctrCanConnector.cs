@@ -11,9 +11,10 @@ using System.Windows.Forms;
 using Peak.Can.Basic;
 using TPCANHandle = System.UInt16;
 
+
 namespace PCAN
 {
-    public partial class CanConnectorControl : UserControl
+    public partial class ctrCanConnector : UserControl
     {
         PCANCom pCanCom = new PCANCom();
 
@@ -31,6 +32,10 @@ namespace PCAN
         /// </summary>
         private System.Threading.AutoResetEvent m_ReceiveEvent;
         /// <summary>
+        /// Thread for message reading (using events)
+        /// </summary>
+        private System.Threading.Thread m_ReadThread;
+        /// <summary>
         /// Handles of the current available PCAN-Hardware
         /// </summary>
         private TPCANHandle[] m_HandlesArray;
@@ -38,7 +43,7 @@ namespace PCAN
 
 
 
-        public CanConnectorControl()
+        public ctrCanConnector()
         {
             InitializeComponent();
             InitializeBasicComponents();
@@ -99,9 +104,6 @@ namespace PCAN
             // Creates the list for received messages
             //
             m_LastMsgsList = new System.Collections.ArrayList();
-            // Creates the delegate used for message reading
-            //
-            //m_ReadDelegate = new ReadDelegateHandler(ReadMessages);
             // Creates the event used for signalize incomming messages 
             //
             m_ReceiveEvent = new System.Threading.AutoResetEvent(false);
@@ -173,10 +175,6 @@ namespace PCAN
             // Fills and configures the Data of several comboBox components
             //
             FillComboBoxData();
-
-            // Prepares the PCAN-Basic's debug-Log file
-            //
-           // ConfigureLogFile();
         }
 
 
@@ -233,15 +231,9 @@ namespace PCAN
             //
             btnHwRefresh_Click(this, new EventArgs());
 
-            // FD Bitrate: 
-            //      Arbitration: 1 Mbit/sec 
-            //      Data: 2 Mbit/sec
-            //
-            //txtBitrate.Text = "f_clock_mhz=20, nom_brp=5, nom_tseg1=2, nom_tseg2=1, nom_sjw=1, data_brp=2, data_tseg1=3, data_tseg2=1, data_sjw=1";
-
             // Baudrates 
             //
-            cbBaudrates.SelectedIndex = 0; // 1M
+            cbBaudrates.SelectedIndex = 3; // 250kbps
 
             // Hardware Type for no plugAndplay hardware
             //
@@ -361,7 +353,8 @@ namespace PCAN
 
         #endregion
 
-        private void btnConnect_Click(object sender, EventArgs e)
+
+        public void btnConnect_Click(object sender, EventArgs e)
         {
             TPCANStatus stsResult;
 
@@ -385,9 +378,6 @@ namespace PCAN
                     MessageBox.Show(GetFormatedError(stsResult));
                 else
                 {
-                    //IncludeTextMessage("******************************************************");
-                    //IncludeTextMessage("The bitrate being used is different than the given one");
-                    //IncludeTextMessage("******************************************************");
                     stsResult = TPCANStatus.PCAN_ERROR_OK;
                 }
 
@@ -404,20 +394,6 @@ namespace PCAN
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
             PCANCom.Instance.disconnect();
-
-            // Releases a current connected PCAN-Basic channel
-            //
-            /*PCANBasic.Uninitialize(m_PcanHandle);
-            //tmrRead.Enabled = false;
-            if (m_ReadThread != null)
-            {
-                m_ReadThread.Abort();
-                m_ReadThread.Join();
-                m_ReadThread = null;
-            }
-
-            // Sets the connection status of the main-form
-            */
             SetConnectionStatus(false);
         }
 

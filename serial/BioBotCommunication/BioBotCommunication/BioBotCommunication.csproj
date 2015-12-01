@@ -49,15 +49,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Serial\Can\AutoConnectCan.cs" />
-    <Compile Include="Serial\Can\CANCommunicationWorker.cs" />
     <Compile Include="Serial\Can\CanConnectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Serial\Can\CanConnectorControl.designer.cs">
       <DependentUpon>CanConnectorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Serial\Can\PCANBasic.cs" />
-    <Compile Include="Serial\Can\PCANCom.cs" />
+    <Compile Include="Serial\Can\Driver\CANDeviceConstant.cs" />
+    <Compile Include="Serial\Can\Driver\CANQueue.cs" />
+    <Compile Include="Serial\Can\Driver\PCANBasic.cs" />
+    <Compile Include="Serial\Can\Driver\PCANCom.cs" />
+    <Compile Include="Serial\Can\UI\ctrCanConnector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Serial\Can\UI\ctrCanConnector.Designer.cs">
+      <DependentUpon>ctrCanConnector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Serial\Events\ConsumerCompletionEvent.cs" />
     <Compile Include="Serial\Events\OnCommunicationMessageReceived.cs" />
     <Compile Include="Serial\Events\OnConnectionStatusChangeEvent.cs" />
@@ -95,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Serial\Can\CanConnectorControl.resx">
       <DependentUpon>CanConnectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Serial\Can\UI\ctrCanConnector.resx">
+      <DependentUpon>ctrCanConnector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Serial\Movement\ArduinoSerialCommControl.resx">
       <DependentUpon>ArduinoSerialCommControl.cs</DependentUpon>
