@@ -72,9 +72,15 @@
     <Compile Include="Serial\Movement\SerialCommunication.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Serial\Utils\Serial\Billboard.cs" />
-    <Compile Include="Serial\Utils\Serial\BillboardCompletionEventArgs.cs" />
-    <Compile Include="Serial\Utils\Serial\ConsumerCompletionEventargs.cs" />
+    <Compile Include="Serial\Utils\Can\CanBillboard.cs" />
+    <Compile Include="Serial\Utils\Can\CanBillboardCompletionEventArgs.cs" />
+    <Compile Include="Serial\Utils\Can\CanConsumer.cs" />
+    <Compile Include="Serial\Utils\Can\CanConsumerCompletionEventArgs.cs" />
+    <Compile Include="Serial\Utils\Can\CanConsumerPool.cs" />
+    <Compile Include="Serial\Utils\Can\CanProducer.cs" />
+    <Compile Include="Serial\Utils\Serial\SerialBillboard.cs" />
+    <Compile Include="Serial\Utils\Serial\SerialBillboardCompletionEventArgs.cs" />
+    <Compile Include="Serial\Utils\Serial\SerialConsumerCompletionEventargs.cs" />
     <Compile Include="Serial\Utils\Serial\SerialConsumerPool.cs" />
     <Compile Include="Serial\Utils\Serial\SerialConsumer.cs" />
     <Compile Include="Serial\Utils\Serial\SerialProducer.cs" />
