@@ -104,7 +104,6 @@ namespace BioBotApp.Model.Movement
 
         public int Move(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
-
             if (operationRow.bbt_operation_typeRow.description == "Move To Object")
             {
                 // To be done
@@ -149,7 +148,7 @@ namespace BioBotApp.Model.Movement
                 BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
 
                 // Update the tool rack position before starting the movement.
-                toolRack.setToolRackPositions(dbManager);
+                //toolRack.setToolRackPositions(dbManager);
 
                 // Update the tool to be moved (include update of the attached object if there is one)
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
@@ -176,7 +175,7 @@ namespace BioBotApp.Model.Movement
                 BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
 
                 // Update the tool rack position before starting the movement.
-                toolRack.setToolRackPositions(dbManager);
+                //toolRack.setToolRackPositions(dbManager);
 
                 // Update the tool to be moved (include update of the attached object if there is one)
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
@@ -202,7 +201,7 @@ namespace BioBotApp.Model.Movement
                 BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
 
                 // Update the tool rack position before starting the movement.
-                toolRack.setToolRackPositions(dbManager);
+                //toolRack.setToolRackPositions(dbManager);
 
                 // Update the tool to be moved (include update of the attached object if there is one)
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
@@ -229,7 +228,7 @@ namespace BioBotApp.Model.Movement
             BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
 
             // Update the tool rack position before starting the movement.
-            //toolRack.setToolRackPositions(dbManager);
+            toolRack.setToolRackPositions(dbManager);
 
             // Update the tool to be moved (include update of the attached object if there is one)
             toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
@@ -337,21 +336,15 @@ namespace BioBotApp.Model.Movement
 
     class ToolRack
     {
-        public int xPos { get; set; }
-        public int yPos { get; set; }
-        public int zPos { get; set; }
-        public int xHomeOffset { get; set; }
-        public int yHomeOffset { get; set; }
-        public int zHomeOffset { get; set; }
+        public int xHomeOffset { get; set; } // negative when on home side
+        public int yHomeOffset { get; set; } // negative when on home side
+        public int zHomeOffset { get; set; } // negative when on home side        
         public bool isInitialized { get; set; }
         public int objectId { get; set; }
 
         public ToolRack(DBManager dbManager)
         {
             isInitialized = false;
-            xPos = 0;
-            yPos = 0;
-            zPos = 0;
             xHomeOffset = 0;
             yHomeOffset = 0;
             zHomeOffset = 0;
@@ -362,66 +355,52 @@ namespace BioBotApp.Model.Movement
 
         public bool setToolRackPositions(DBManager dbManager)
         {
-            objectId = ObjectService.Instance.getUniqueObjectTypeInstanceId("ToolRack");
+            IEnumerable <BioBotDataSets.bbt_object_typeRow> ToolRackRow = dbManager.projectDataset.bbt_object_type.Where(p => p.description == "ToolRack");
 
-            if (objectId == -1) return false;
-
-            BioBotDataSets.bbt_objectRow ToolRackRow = dbManager.projectDataset.bbt_object.FindBypk_id(objectId);
-            
-            if (ToolRackRow.Isdeck_xNull())
+            if (ToolRackRow.Count() == 1)
             {
-                xPos = 0;
+                objectId = dbManager.projectDataset.bbt_object_type.Where(p => p.description == "ToolRack").First().pk_id;
             }
             else
             {
-                xPos = ToolRackRow.deck_x;
-            }
-            if (ToolRackRow.Isdeck_yNull())
-            {
-                yPos = 0;
-            }
-            else
-            {
-                yPos = ToolRackRow.deck_y;
-            }
-
-            if (ToolRackRow.Isdeck_zNull())
-            {
-                zPos = 0;
-            }
-            else
-            {
-                zPos = ToolRackRow.deck_z;
-            }
-
-            //zPos = ToolRackRow.deck_z; // To be added to the table object in database.            
-            int tempValue = 0;
-
-            string xHomeOffsetFromDB = InformationValueService.Instance.getInformationValue("ToolRackHomeOffset", "X");
-            if (int.TryParse(xHomeOffsetFromDB, out tempValue))
-                xHomeOffset = tempValue;
-            else
+                objectId = -1;
                 return false;
+            }
 
-            string yHomeOffsetFromDB = InformationValueService.Instance.getInformationValue("ToolRackHomeOffset", "Y");
-            if (int.TryParse(yHomeOffsetFromDB, out tempValue))
-                yHomeOffset = tempValue;
+            if (objectId != -1)
+            {
+                int tempValue = 0;
+
+                string xHomeOffsetFromDB = ObjectPropertyService.Instance.getObjectPropertyValue("ToolRackHomeOffset", "X", objectId);
+                if (int.TryParse(xHomeOffsetFromDB, out tempValue))
+                    xHomeOffset = tempValue;
+                else
+                    return false;
+
+                string yHomeOffsetFromDB = ObjectPropertyService.Instance.getObjectPropertyValue("ToolRackHomeOffset", "Y", objectId);
+                if (int.TryParse(yHomeOffsetFromDB, out tempValue))
+                    yHomeOffset = tempValue;
+                else
+                    return false;
+
+                string zHomeOffsetFromDB = ObjectPropertyService.Instance.getObjectPropertyValue("ToolRackHomeOffset", "Z", objectId);
+                if (int.TryParse(zHomeOffsetFromDB, out tempValue))
+                    zHomeOffset = tempValue;
+                else
+                    return false;
+            }
             else
+            {
                 return false;
-
-            string zHomeOffsetFromDB = InformationValueService.Instance.getInformationValue("ToolRackHomeOffset", "Z");
-            if (int.TryParse(zHomeOffsetFromDB, out tempValue))
-                zHomeOffset = tempValue;
-            else
-                return false;
-
+            }
             return true;
-
         }
 
         public void updateToolRackPositions(int newXPos, int newYPos, int newZPos)
         {
             // Must apply the new positions in the database.
+            // If the command that was sent was Home on a given axis, we can then use the toolRackProperty
+            // to set the axis to it's original value like so : xPos = xHomeOffset and then push it in the database.
 
         }
     }
@@ -439,10 +418,13 @@ namespace BioBotApp.Model.Movement
         public int zLength { get; set; }
         public int radius { get; set; }
 
-        public int xToolRackOffset { get; set; }
-        public int yToolRackOffset { get; set; }
-        public int zToolRackOffset { get; set; }
-        public int zToolZeroPos { get; set; }
+        public int xToolRackOffset { get; set; } // Negative if leaving home
+        public int yToolRackOffset { get; set; } // Negative if leaving home
+        public int zToolRackOffset { get; set; } // Should always be negative
+
+        public int xToolZeroPos { get; set; } // Should always be positive
+        public int yToolZeroPos { get; set; } // Always positive;
+        public int zToolZeroPos { get; set; } // Always positive;
         public int zAxisNumber { get; set; }
 
         public ToolToMove()
@@ -450,6 +432,8 @@ namespace BioBotApp.Model.Movement
             isSet = false;
             toolType = new ToolType();
             attachedObject = new Object();
+            xToolZeroPos = 0;
+            yToolZeroPos = 0;
             zToolZeroPos = 0;
             zAxisNumber = 0;
         }
@@ -486,7 +470,9 @@ namespace BioBotApp.Model.Movement
 
             setToolOffsets(sourceToolRow, dbManager);
 
-            zToolZeroPos = toolRack.zPos - zToolRackOffset;
+            xToolZeroPos = toolRack.xHomeOffset + xToolRackOffset;
+            yToolZeroPos = toolRack.yHomeOffset + yToolRackOffset;
+            zToolZeroPos = toolRack.zHomeOffset + zToolRackOffset; // zHomeOffset positive, zToolRackOffset negative
 
             isSet = true;
         }
@@ -700,9 +686,9 @@ namespace BioBotApp.Model.Movement
 
     class Tip : Object
     {
-        public int zBoxOffset { get; set; }
-        public int zPipetteOffset { get; set; }
-        public int xTrashDepthOffset { get; set; } // center to center
+        public int zBoxOffset { get; set; } // Always positive
+        public int zPipetteOffset { get; set; } // Negative when toward bottom (always in this case)
+        public int xTrashDepthOffset { get; set; } // center to center, negative if toward home
 
         public Tip()
         {
@@ -897,8 +883,8 @@ namespace BioBotApp.Model.Movement
         {
             if (box.isSet == true && tip.isSet == true && tool.isSet == true && tool.hasAttachedObject == false)
             {
-                int tipAndBoxHeight = box.zLength + tip.zBoxOffset;
-                int penetrationDeepness = tip.zLength - tip.zPipetteOffset;
+                int tipAndBoxHeight = box.zLength + tip.zBoxOffset; // zLenght and zBoxOffset are always positives
+                int penetrationDeepness = tip.zLength + tip.zPipetteOffset; // zLengt is positive and zPipetteOffset is negative
 
                 desiredZPos = tool.zToolZeroPos - tipAndBoxHeight + penetrationDeepness + ADDED_BOX_PENETRATION_DEEPNESS;
 
@@ -935,7 +921,7 @@ namespace BioBotApp.Model.Movement
             {
                 desiredXPosition = tempValue;
 
-                desiredXPos = desiredXPosition - tool.xToolRackOffset;
+                desiredXPos = desiredXPosition - tool.xToolZeroPos;
 
                 if (desiredXPos > 0)
                     movementCandBeDone = true;
@@ -955,7 +941,7 @@ namespace BioBotApp.Model.Movement
             {
                 desiredYPosition = tempValue;
 
-                desiredYPos = desiredYPosition - tool.yToolRackOffset;
+                desiredYPos = desiredYPosition - tool.yToolZeroPos;
 
                 if (desiredYPos > 0)
                     movementCandBeDone = true;
@@ -975,7 +961,7 @@ namespace BioBotApp.Model.Movement
             {
                 desiredZPosition = tempValue;
 
-                desiredZPos = desiredZPosition - tool.zToolRackOffset;
+                desiredZPos = tool.zToolZeroPos - desiredZPosition;
 
                 if (desiredZPos > 0)
                     movementCandBeDone = true;
@@ -985,7 +971,6 @@ namespace BioBotApp.Model.Movement
                 movementCandBeDone = false;
             }
         }
-
 
         public void setXYZAsDestination(BioBotDataSets.bbt_operationRow operationRow, ToolToMove tool)
         {
