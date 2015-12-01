@@ -12,8 +12,8 @@ namespace BioBotApp.Model.EventBus.Events.ExecutionService
     public class ExecutionEvent : EventArgs
     {
         public BioBotDataSets.bbt_operationRow operationRow { get; private set; }
-        public SerialBillboard billboard { get; private set; }
-        public ExecutionEvent(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        public Billboard billboard { get; private set; }
+        public ExecutionEvent(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             this.operationRow = operationRow;
             this.billboard = billboard;

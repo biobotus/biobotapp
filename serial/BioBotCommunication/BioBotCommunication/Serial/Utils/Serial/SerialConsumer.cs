@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace BioBotCommunication.Serial.Utils.Serial
 {
-    public class SerialConsumer
+    public class SerialConsumer : IConsumer
     {
-        private readonly SerialBillboard billboard;
+        private readonly Billboard billboard;
         private readonly String waitValue;
 	    private volatile bool isStopped = false;
         private bool isNotified = false;
@@ -19,7 +19,7 @@ namespace BioBotCommunication.Serial.Utils.Serial
         private Thread consumerThread;
         public event EventHandler<SerialConsumerCompletionEventargs> onCompletion;
 
-        public SerialConsumer(SerialBillboard billboard, String waitValue)
+        public SerialConsumer(Billboard billboard, String waitValue)
         {
             isNotifiedLock = new object();
             this.billboard = billboard;
@@ -66,16 +66,21 @@ namespace BioBotCommunication.Serial.Utils.Serial
 
                 if (isNotifiedValue())
                 {
-                    List<String> listValues = billboard.getValues();
-                    foreach(String value in listValues)
+                    List<Object> listValues = billboard.getValues();
+                    foreach(Object value in listValues)
                     {
-                        if (value.Contains(waitValue))
+                        if(value is String)
                         {
-                            Console.WriteLine("Consume: " + waitValue);
-                            billboard.delete(waitValue);
-                            isStopped = true;
-                            break;
+                            String valueString = value as String;
+                            if (valueString.Contains(waitValue))
+                            {
+                                Console.WriteLine("Consume: " + waitValue);
+                                billboard.delete(value, this);
+                                isStopped = true;
+                                break;
+                            }
                         }
+                        
                     }
                     notifyValue(false);
                 }
@@ -91,6 +96,14 @@ namespace BioBotCommunication.Serial.Utils.Serial
         private void KillTheThread()
         {
             consumerThread.Abort();
+        }
+
+        public bool objectEquals(object value, object compare)
+        {
+            String valueString = value as String;
+            String compareString = compare as String;
+            if (valueString == null || compareString == null) return false;
+            return valueString.Contains(compareString);
         }
     }
 }

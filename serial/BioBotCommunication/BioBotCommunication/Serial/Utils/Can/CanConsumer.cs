@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BioBotCommunication.Serial.Utils.Can
 {
-    public class CanConsumer
+    public class CanConsumer : IConsumer
     {
-        private readonly CanBillboard billboard;
+        private readonly Billboard billboard;
         private readonly byte[] waitValue;
         private volatile bool isStopped = false;
         private bool isNotified = false;
@@ -18,7 +18,7 @@ namespace BioBotCommunication.Serial.Utils.Can
         private Thread consumerThread;
         public event EventHandler<CanConsumerCompletionEventArgs> onCompletion;
 
-        public CanConsumer(CanBillboard billboard, byte[] waitValue)
+        public CanConsumer(Billboard billboard, byte[] waitValue)
         {
             isNotifiedLock = new object();
             this.billboard = billboard;
@@ -65,27 +65,24 @@ namespace BioBotCommunication.Serial.Utils.Can
 
                 if (isNotifiedValue())
                 {
-                    List<byte[]> listValues = billboard.getValues();
-                    foreach (byte[] value in listValues)
+                    List<Object> listValues = billboard.getValues();
+
+
+                    foreach (Object value in listValues)
                     {
-                        foreach (byte[] data in listValues)
+                        if (value is byte[])
                         {
-                            if (waitValue.Length == data.Length)
+                            byte[] byteValue = Billboard.ObjectToByteArray(value);
+                            for (int i = 0; i < byteValue.Length; i++)
                             {
-                                for (int i = 0; i < data.Length; i++)
-                                {
-                                    if (data[i] != waitValue[i]) return;
-                                }
+                                if (byteValue[i] != waitValue[i]) return;
                             }
-                            else
-                            {
-                                return;
-                            }
+                            Console.WriteLine("Consume: " + waitValue);
+                            billboard.delete(value, this);
+                            isStopped = true;
+                            break;
                         }
-                        Console.WriteLine("Consume: " + waitValue);
-                        billboard.delete(waitValue);
-                        isStopped = true;
-                        break;
+
 
                     }
                     notifyValue(false);
@@ -102,6 +99,23 @@ namespace BioBotCommunication.Serial.Utils.Can
         private void KillTheThread()
         {
             consumerThread.Abort();
+        }
+
+        public bool objectEquals(object value, object compare)
+        {
+            byte[] byteValue = value as byte[];
+            byte[] compareByte = compare as byte[];
+            if (byteValue == null || compare == null) return false;
+
+            if (byteValue.Length == compareByte.Length)
+            {
+                for (int i = 0; i < byteValue.Length; i++)
+                {
+                    if (byteValue[i] != compareByte[i]) return false;
+                }
+            }
+
+            return true;
         }
     }
 }

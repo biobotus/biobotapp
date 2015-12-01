@@ -23,19 +23,19 @@ namespace BioBotApp.Model.Sequencer
         Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
         int index = 0;
         SerialProducer producer;
-        SerialBillboard billboard;
+        Billboard billboard;
 
         private ExecuteService()
         {
             this.dbManager = DBManager.Instance;
             commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
-            billboard = new SerialBillboard();
-            billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
+            billboard = new Billboard();
+            billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent1;
             producer = new SerialProducer(billboard);
             producer.start();
         }
 
-        private void Billboard_onBillboardCompletionEvent(object sender, SerialBillboardCompletionEventArgs e)
+        private void Billboard_onBillboardCompletionEvent1(object sender, BillboardCompletionEvent e)
         {
             index++;
             exectuteNext();

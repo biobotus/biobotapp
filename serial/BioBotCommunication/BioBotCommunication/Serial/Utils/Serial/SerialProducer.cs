@@ -11,12 +11,12 @@ namespace BioBotCommunication.Serial.Utils.Serial
 {
     public class SerialProducer
     {
-        private readonly SerialBillboard billboard;
+        private readonly Billboard billboard;
         private volatile bool isStopped = false;
         private Thread producerThread;
         SerialCommunication serial;
 
-        public SerialProducer(SerialBillboard billboard)
+        public SerialProducer(Billboard billboard)
         {
             this.billboard = billboard;
             producerThread = new Thread(run);

@@ -12,9 +12,9 @@ namespace BioBotCommunication.Serial.Utils.Serial
         List<SerialConsumer> consumers;
         SerialCommunication communication;
         List<String> messagesToSend;
-        SerialBillboard billboard;
+        Billboard billboard;
 
-        public SerialConsumerPool(SerialBillboard billboard)
+        public SerialConsumerPool(Billboard billboard)
         {
             communication = SerialCommunication.Instance;
             messagesToSend = new List<string>();
@@ -23,7 +23,7 @@ namespace BioBotCommunication.Serial.Utils.Serial
             this.billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
         }
 
-        private void Billboard_onBillboardCompletionEvent(object sender, SerialBillboardCompletionEventArgs e)
+        private void Billboard_onBillboardCompletionEvent(object sender, BillboardCompletionEvent e)
         {
             this.messagesToSend.Clear();
 

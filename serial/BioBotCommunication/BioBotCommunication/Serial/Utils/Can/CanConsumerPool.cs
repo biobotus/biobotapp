@@ -12,9 +12,9 @@ namespace BioBotCommunication.Serial.Utils.Can
         List<CanConsumer> consumers;
         PCANCom communication;
         List<byte[]> messagesToSend;
-        CanBillboard billboard;
+        Billboard billboard;
 
-        public CanConsumerPool(CanBillboard billboard)
+        public CanConsumerPool(Billboard billboard)
         {
             communication = PCANCom.Instance;
             messagesToSend = new List<byte[]>();
@@ -22,8 +22,9 @@ namespace BioBotCommunication.Serial.Utils.Can
             this.billboard = billboard;
             this.billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
         }
+        
 
-        private void Billboard_onBillboardCompletionEvent(object sender, CanBillboardCompletionEventArgs e)
+        private void Billboard_onBillboardCompletionEvent(object sender, BillboardCompletionEvent e)
         {
             this.messagesToSend.Clear();
 

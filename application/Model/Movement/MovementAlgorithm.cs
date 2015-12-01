@@ -17,7 +17,7 @@ namespace BioBotApp.Model.Movement
     {
         DBManager dbManager;
         CANCommunicationWorker canWorker;
-        SerialCommunication communication;
+        SerialConsumerPool consumerPool;
         ToolRack toolRack;
         List<String> messagesToSend;
         ToolToMove toolToMove;
@@ -35,7 +35,7 @@ namespace BioBotApp.Model.Movement
             toolRack = new ToolRack(this.dbManager);
             toolToMove = new ToolToMove();
             movementToDo = new Movement();
-            communication = SerialCommunication.Instance;
+           
             messagesToSend = new List<string>();
         }
 
@@ -54,6 +54,10 @@ namespace BioBotApp.Model.Movement
         [Model.EventBus.Subscribe]
         public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
         {
+
+            consumerPool = new SerialConsumerPool(e.billboard);
+
+
             Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
             if (row == null) return;
             operationRow = row;
@@ -85,24 +89,13 @@ namespace BioBotApp.Model.Movement
             /**/
         }
 
-        public void writeData(String data, SerialBillboard billboard)
+        public void writeData(String data, Billboard billboard)
         {
-            //communicationService.writeData(data);
-            SerialConsumer consumer = new SerialConsumer(billboard, data);
-            messagesToSend.Add(data);
-            consumer.onCompletion += Consumer_onCompletion; ;
-            consumer.start();
+            consumerPool.newConsumer(data);
         }
+        
 
-        private void Consumer_onCompletion(object sender, SerialConsumerCompletionEventargs e)
-        {
-            if (messagesToSend.Count == 0) return;
-            messagesToSend.RemoveAt(0);
-            if (messagesToSend.Count == 0) return;
-            communication.WriteLine(messagesToSend.First());
-        }
-
-        public int Move(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        public int Move(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             if (operationRow.bbt_operation_typeRow.description == "Move To Object")
             {
@@ -136,11 +129,11 @@ namespace BioBotApp.Model.Movement
             {
                 return -1;
             }
-            communication.WriteLine(messagesToSend.First());
+            consumerPool.startExecution();
             return 1;
         }
 
-        private void moveToX(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        private void moveToX(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             try
             {
@@ -167,7 +160,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void moveToY(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        private void moveToY(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             try
             {
@@ -193,7 +186,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void moveToZ(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        private void moveToZ(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             try
             {
@@ -222,7 +215,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void GetTips(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        private void GetTips(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
             BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
@@ -260,7 +253,7 @@ namespace BioBotApp.Model.Movement
             // TODO : Update the current position of the rack in the database (deck_x, deck_y)
         }
 
-        private void TrashTips(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        private void TrashTips(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             if (operationRow.bbt_operation_typeRow.description == "Unload Tip")
             {
@@ -294,7 +287,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void Home(string axis, BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
+        private void Home(string axis, BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
         {
             BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
             BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
