@@ -59,6 +59,7 @@ namespace BioBotApp.Model.Data.Services
         /// <param name="rotation"></param>
         /// <param name="activated"></param>
         /// <param name="description"></param>
+
         public void addObjectRow(int fk_object_type, int deck_x, int deck_y, int rotation, string activated, String description, int fk_object)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.Newbbt_objectRow();
@@ -70,9 +71,25 @@ namespace BioBotApp.Model.Data.Services
             row.description = description;
             row.fk_object = fk_object;
 
-            this.dbManager.projectDataset.bbt_object.Addbbt_objectRow(row);                     
+            this.dbManager.projectDataset.bbt_object.Addbbt_objectRow(row);
             updateRow(row);
         }
+
+        public void addObjectRow(int fk_object_type, int deck_x, int deck_y, int rotation, String activated, String description)
+        {
+            BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.Newbbt_objectRow();
+            row.fk_object_type = fk_object_type;
+            row.deck_x = deck_x;
+            row.deck_y = deck_y;
+            row.rotation = rotation;
+            row.activated = activated;
+            row.description = description;
+            row.fk_object = 0;
+
+            this.dbManager.projectDataset.bbt_object.Addbbt_objectRow(row);
+            updateRow(row);
+        }
+
         public void addObjectRow(BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, string activated, String description)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.Newbbt_objectRow();
@@ -99,7 +116,15 @@ namespace BioBotApp.Model.Data.Services
 
             updateRow(row);
         }
-        public void modifyObjectRow(int pk_id, BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, string activated, String description)
+
+        public void modifyObjectRow(int pk_id, String activated)
+        {
+            BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.FindBypk_id(pk_id);
+            row.activated = activated;
+
+            updateRow(row);
+        }
+        public void modifyObjectRow(int pk_id, BioBotDataSets.bbt_object_typeRow fk_object_type_row, int deck_x, int deck_y, int rotation, String activated, String description)
         {
             BioBotDataSets.bbt_objectRow row = this.dbManager.projectDataset.bbt_object.FindBypk_id(pk_id);
             row.fk_object_type = fk_object_type_row.pk_id;
@@ -130,18 +155,10 @@ namespace BioBotApp.Model.Data.Services
         public void removeObjectsWithGivenObjectTypeId(int fkObjectTypeId)
         {
 
-            /*
-            IEnumerable<BioBotDataSets.bbt_objectRow> rowsToDelete = this.dbManager.projectDataset.bbt_object.Where(rowToDelete => rowToDelete.fk_object_type == fkObjectTypeId);
-            foreach (BioBotDataSets.bbt_objectRow row in rowsToDelete)
-            {
-                MessageBox.Show("Item deleted with pk_id : " + row.pk_id.ToString());
-                row.Delete();
-            }*/
-                        
             BioBotDataSets.bbt_object_typeRow parentToDelete = this.dbManager.projectDataset.bbt_object_type.FindBypk_id(fkObjectTypeId);
             if (parentToDelete != null)
             {
-                foreach(BioBotDataSets.bbt_objectRow row in parentToDelete.Getbbt_objectRows())
+                foreach (BioBotDataSets.bbt_objectRow row in parentToDelete.Getbbt_objectRows())
                 {
                     row.Delete();
                 }

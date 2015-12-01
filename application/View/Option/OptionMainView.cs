@@ -1,4 +1,5 @@
-﻿using BioBotApp.View.Services;
+﻿using BioBotApp.Controls.Option.Options;
+using BioBotApp.View.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,10 @@ namespace BioBotApp.View.Option
             else if (e.Node.Name.Equals("ObjectNode"))
             {
                 setOptionControl(new OptionServicesObjectView());
+            }
+            else if (e.Node.Name.Equals("JoypadNode"))
+            {
+                setOptionControl(new optionJoypad());
             }
             else
             {
