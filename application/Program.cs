@@ -29,9 +29,10 @@ namespace BioBotApp
             Model.Data.DBManager.Instance.initializeDataSet();
 
             //ObjectTypeTestForm form = new ObjectTypeTestForm();
-            OptionMainView form = new OptionMainView();
+            //OptionMainView form = new OptionMainView();
             //OptionServicesPropertyView form2 = new OptionServicesPropertyView(); 
             //form.Controls.Add(form2);
+            DeckForm form = new DeckForm();
             Application.Run(form);
         }
     }

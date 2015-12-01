@@ -26,7 +26,7 @@ namespace BioBotApp.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=PostgreSQLUS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Localhost")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -36,7 +36,7 @@ namespace BioBotApp.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=PostgreSQLUS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Localhost")]
         public string biobotConnectionString {
             get {
                 return ((string)(this["biobotConnectionString"]));

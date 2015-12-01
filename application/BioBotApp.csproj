@@ -113,6 +113,7 @@
     <Compile Include="Model\Sequencer\Helpers\ICommand.cs" />
     <Compile Include="Model\Utils\Events\OnCloseModelEvent.cs" />
     <Compile Include="Model\Movement\MovementAlgorithm.cs" />
+    <Compile Include="Presenter\Deck\DeckPresenter.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\Main\MainPresenter.cs" />
@@ -141,6 +142,12 @@
     <Compile Include="View\Communication\CommunicationTestForm.Designer.cs">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Deck\AddModuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\AddModuleForm.Designer.cs">
+      <DependentUpon>AddModuleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Deck\DeckForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,11 +161,24 @@
       <DependentUpon>DeckView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Deck\IDeckView.cs" />
+    <Compile Include="View\Deck\Module.cs" />
+    <Compile Include="View\Deck\ObjectTypeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Deck\ObjectTypeView.Designer.cs">
+      <DependentUpon>ObjectTypeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Deck\ObjectView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Deck\ObjectView.Designer.cs">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Deck\UserDeckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\UserDeckForm.Designer.cs">
+      <DependentUpon>UserDeckForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Execute\ExecuteView.cs">
       <SubType>UserControl</SubType>
@@ -458,14 +478,23 @@
     <EmbeddedResource Include="View\Communication\CommunicationTestForm.resx">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\AddModuleForm.resx">
+      <DependentUpon>AddModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\DeckForm.resx">
       <DependentUpon>DeckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\DeckView.resx">
       <DependentUpon>DeckView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\ObjectTypeView.resx">
+      <DependentUpon>ObjectTypeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\ObjectView.resx">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\UserDeckForm.resx">
+      <DependentUpon>UserDeckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Execute\ExecuteView.resx">
       <DependentUpon>ExecuteView.cs</DependentUpon>
