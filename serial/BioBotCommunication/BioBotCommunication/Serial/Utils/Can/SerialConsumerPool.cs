@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioBotCommunication.Serial.Utils
+namespace BioBotCommunication.Serial.Utils.Serial
 {
-    public class ConsumerPool
+    public class SerialConsumerPool
     {
         List<SerialConsumer> consumers;
         SerialCommunication communication;
         List<String> messagesToSend;
         Billboard billboard;
 
-        public ConsumerPool(Billboard billboard)
+        public SerialConsumerPool(Billboard billboard)
         {
             communication = SerialCommunication.Instance;
             messagesToSend = new List<string>();

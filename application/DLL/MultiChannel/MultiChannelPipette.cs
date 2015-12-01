@@ -1,4 +1,5 @@
 ﻿using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Serial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BioBotApp.DLL.MultiChannel
 {
     public class MultiChannelPipette : Model.EventBus.Subscriber
     {
-        private ConsumerPool consumerPool;
+        private SerialConsumerPool consumerPool;
 
         public MultiChannelPipette()
         {
@@ -21,7 +22,7 @@ namespace BioBotApp.DLL.MultiChannel
         public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
         {
             if (e.billboard == null) return;
-            consumerPool = new ConsumerPool(e.billboard);
+            consumerPool = new SerialConsumerPool(e.billboard);
             consumerPool.newConsumer("OK4");
             consumerPool.newConsumer("OK5");
             consumerPool.startExecution();

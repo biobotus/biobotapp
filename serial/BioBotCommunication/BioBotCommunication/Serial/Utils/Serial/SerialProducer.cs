@@ -7,16 +7,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BioBotCommunication.Serial.Utils
+namespace BioBotCommunication.Serial.Utils.Serial
 {
     public class SerialProducer
     {
-        private readonly Billboard billboard;
+        private readonly SerialBillboard billboard;
         private volatile bool isStopped = false;
         private Thread producerThread;
         SerialCommunication serial;
 
-        public SerialProducer(Billboard billboard)
+        public SerialProducer(SerialBillboard billboard)
         {
             this.billboard = billboard;
             producerThread = new Thread(run);

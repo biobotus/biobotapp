@@ -2,6 +2,7 @@
 using BioBotApp.Model.EventBus;
 using BioBotApp.Model.Sequencer.Helpers;
 using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Serial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,19 +23,19 @@ namespace BioBotApp.Model.Sequencer
         Dictionary<int, BioBotDataSets.bbt_operationRow> commandsTODO;
         int index = 0;
         SerialProducer producer;
-        Billboard billboard;
+        SerialBillboard billboard;
 
         private ExecuteService()
         {
             this.dbManager = DBManager.Instance;
             commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
-            billboard = new Billboard();
+            billboard = new SerialBillboard();
             billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
             producer = new SerialProducer(billboard);
             producer.start();
         }
 
-        private void Billboard_onBillboardCompletionEvent(object sender, BillboardCompletionEventArgs e)
+        private void Billboard_onBillboardCompletionEvent(object sender, SerialBillboardCompletionEventArgs e)
         {
             index++;
             exectuteNext();

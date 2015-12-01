@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioBotCommunication.Serial.Utils
+namespace BioBotCommunication.Serial.Utils.Can
 {
-    public class Billboard
+    public class CanBillboard
     {
-        private List<String> listValues = new List<String>();
-        private List<SerialConsumer> listConsumers = new List<SerialConsumer>();
+        private List<byte[]> listValues = new List<byte[]>();
+        private List<CanConsumer> listConsumers = new List<CanConsumer>();
         private readonly Object registerLock = new Object();
-        public event EventHandler<BillboardCompletionEventArgs> onBillboardCompletionEvent;
+        public event EventHandler<CanBillboardCompletionEventArgs> onBillboardCompletionEvent;
 
-        public Billboard()
+        public CanBillboard()
         {
 
         }
 
-        public void create(String value)
+        public void create(byte[] value)
         {
             lock (listValues)
             {
@@ -34,17 +34,21 @@ namespace BioBotCommunication.Serial.Utils
             }
         }
 
-        public void delete(String valueId)
+        public void delete(byte[] valueId)
         {
             lock (listValues)
             {
-                foreach (String data in listValues)
+                
+                foreach (byte[] data in listValues)
                 {
-                    if (data.Contains(valueId))
+                    if (valueId.Length == data.Length)
                     {
-                        listValues.Remove(data);
-                        break;
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                            if (data[i] != valueId[i]) return;
+                        }
                     }
+                    listValues.Remove(data);
                 }
                 if (listValues.Count == 0)
                 {
@@ -53,14 +57,16 @@ namespace BioBotCommunication.Serial.Utils
             }
         }
 
-        public List<String> getValues()
+        public List<byte[]> getValues()
         {
-            List<String> copy = new List<string>();
+            List<byte[]> copy = new List<byte[]>();
             lock (listValues)
             {
-                foreach (String data in listValues)
+                foreach (byte[] data in listValues)
                 {
-                    copy.Add(String.Copy(data));
+                    byte[] temp = new byte[data.Length];
+                    data.CopyTo(temp, 0);
+                    copy.Add(temp);
                 }
             }
             return copy;
@@ -70,13 +76,13 @@ namespace BioBotCommunication.Serial.Utils
         {
             lock (registerLock)
             {
-                foreach (SerialConsumer consumer in listConsumers)
+                foreach (CanConsumer consumer in listConsumers)
                 {
                     consumer.notifyValue(true);
                 }
             }
         }
-        public Boolean register(SerialConsumer consumer)
+        public Boolean register(CanConsumer consumer)
         {
             Boolean isRegistered = false;
             lock (registerLock)
@@ -90,7 +96,7 @@ namespace BioBotCommunication.Serial.Utils
             }
             return isRegistered;
         }
-        public Boolean unregister(SerialConsumer consumer)
+        public Boolean unregister(CanConsumer consumer)
         {
             Boolean isRegistered = false;
             lock (registerLock)
@@ -104,7 +110,7 @@ namespace BioBotCommunication.Serial.Utils
                     {
                         if (onBillboardCompletionEvent != null)
                         {
-                            onBillboardCompletionEvent(this, new BillboardCompletionEventArgs());
+                            onBillboardCompletionEvent(this, new CanBillboardCompletionEventArgs());
                             Console.WriteLine("Bilboard completion !");
                         }
                     }

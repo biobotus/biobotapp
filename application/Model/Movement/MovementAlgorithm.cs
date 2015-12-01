@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using BioBotApp.Model.Data.Services;
 using BioBotApp.Model.Sequencer.Helpers;
 using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Serial;
 
 namespace BioBotApp.Model.Movement
 {
@@ -84,7 +85,7 @@ namespace BioBotApp.Model.Movement
             /**/
         }
 
-        public void writeData(String data, Billboard billboard)
+        public void writeData(String data, SerialBillboard billboard)
         {
             //communicationService.writeData(data);
             SerialConsumer consumer = new SerialConsumer(billboard, "Ok");
@@ -93,7 +94,7 @@ namespace BioBotApp.Model.Movement
             consumer.start();
         }
 
-        private void Consumer_onCompletion(object sender, ConsumerCompletionEventargs e)
+        private void Consumer_onCompletion(object sender, SerialConsumerCompletionEventargs e)
         {
             if (messagesToSend.Count == 0) return;
             messagesToSend.RemoveAt(0);
@@ -101,7 +102,7 @@ namespace BioBotApp.Model.Movement
             communication.WriteLine(messagesToSend.First());
         }
 
-        public int Move(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        public int Move(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             if (operationRow.bbt_operation_typeRow.description == "Move To Object")
             {
@@ -139,7 +140,7 @@ namespace BioBotApp.Model.Movement
             return 1;
         }
 
-        private void moveToX(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        private void moveToX(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             try
             {
@@ -166,7 +167,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void moveToY(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        private void moveToY(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             try
             {
@@ -192,7 +193,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void moveToZ(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        private void moveToZ(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             try
             {
@@ -221,7 +222,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void GetTips(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        private void GetTips(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
             BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;
@@ -259,7 +260,7 @@ namespace BioBotApp.Model.Movement
             // TODO : Update the current position of the rack in the database (deck_x, deck_y)
         }
 
-        private void TrashTips(BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        private void TrashTips(BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             if (operationRow.bbt_operation_typeRow.description == "Unload Tip")
             {
@@ -293,7 +294,7 @@ namespace BioBotApp.Model.Movement
             }
         }
 
-        private void Home(string axis, BioBotDataSets.bbt_operationRow operationRow, Billboard billboard)
+        private void Home(string axis, BioBotDataSets.bbt_operationRow operationRow, SerialBillboard billboard)
         {
             BioBotDataSets.bbt_stepRow stepToRun = operationRow.bbt_stepRow;
             BioBotDataSets.bbt_objectRow sourceToolRow = stepToRun.bbt_objectRow;

@@ -1,5 +1,4 @@
-﻿using BioBotCommunication.Serial.Movement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
@@ -7,19 +6,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BioBotCommunication.Serial.Utils
+namespace BioBotCommunication.Serial.Utils.Can
 {
-    public class SerialConsumer
+    public class CanConsumer
     {
-        private readonly Billboard billboard;
-        private readonly String waitValue;
-	    private volatile bool isStopped = false;
+        private readonly CanBillboard billboard;
+        private readonly byte[] waitValue;
+        private volatile bool isStopped = false;
         private bool isNotified = false;
         private Object isNotifiedLock;
         private Thread consumerThread;
-        public event EventHandler<ConsumerCompletionEventargs> onCompletion;
+        public event EventHandler<CanConsumerCompletionEventArgs> onCompletion;
 
-        public SerialConsumer(Billboard billboard, String waitValue)
+        public CanConsumer(CanBillboard billboard, byte[] waitValue)
         {
             isNotifiedLock = new object();
             this.billboard = billboard;
@@ -66,23 +65,35 @@ namespace BioBotCommunication.Serial.Utils
 
                 if (isNotifiedValue())
                 {
-                    List<String> listValues = billboard.getValues();
-                    foreach(String value in listValues)
+                    List<byte[]> listValues = billboard.getValues();
+                    foreach (byte[] value in listValues)
                     {
-                        if (value.Contains(waitValue))
+                        foreach (byte[] data in listValues)
                         {
-                            Console.WriteLine("Consume: " + waitValue);
-                            billboard.delete(waitValue);
-                            isStopped = true;
-                            break;
+                            if (waitValue.Length == data.Length)
+                            {
+                                for (int i = 0; i < data.Length; i++)
+                                {
+                                    if (data[i] != waitValue[i]) return;
+                                }
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
+                        Console.WriteLine("Consume: " + waitValue);
+                        billboard.delete(waitValue);
+                        isStopped = true;
+                        break;
+
                     }
                     notifyValue(false);
                 }
             }
-            if(onCompletion != null)
+            if (onCompletion != null)
             {
-                onCompletion(this, new ConsumerCompletionEventargs());
+                onCompletion(this, new CanConsumerCompletionEventArgs());
                 billboard.unregister(this);
             }
         }
