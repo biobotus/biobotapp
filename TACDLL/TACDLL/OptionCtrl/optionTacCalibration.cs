@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TACDLL.Library;
+using TACDLL.DataSets;
 
 namespace TACDLL.OptionCtrl
 {
@@ -17,6 +18,8 @@ namespace TACDLL.OptionCtrl
         public optionTacCalibration()
         {
             InitializeComponent();
+
+            dsTacCalibration1 = DataManager.tacData;
         }
 
         /// <summary>
@@ -25,25 +28,24 @@ namespace TACDLL.OptionCtrl
         /// <param name="dsModuleStruct"></param>
         /// <param name="tacModel"></param>
         // TODO ajouter en entré la liste des models concerné.
-        public optionTacCalibration(DataSets.dsTacCalibration dsModuleStruct, string tacModel, TacDll tacDll) :this()
+        public optionTacCalibration(string tacModel, TacDll tacDll) :this()
         {
             tac = tacDll;
-            this.dsModuleStructure = dsModuleStruct;
   //          DataView dv = dsModuleStructure.dtModule.DefaultView;
-  //          DataView dv2 = dsModuleStructure.dtTacCalibrationData.DefaultView;
+            DataView dv2 = dsTacCalibration1.dtTacCalibrationData.DefaultView;
 
-  //          dgvTacCalibrationDataView.DataSource = dv2;
-  //          dgvTacCalibrationDataView.Columns["fk_module_id"].Visible = false;
+            dgvTacCalibrationDataView.DataSource = dv2;
+            dgvTacCalibrationDataView.Columns["fk_module_id"].Visible = false;
 
-   //         var res = (
-  //              from module in dsModuleStructure.dtModule.AsEnumerable()
-  //              join DataRowView module_type in dsModuleStructure.dtModuleType.AsDataView() 
-   //             on module["fk_module_type"] equals module_type["pk_id"]
-    //            where (string)module_type["description"] == tacModel
-     //           select new { pk_id = module.Field<String>("pk_id"), type = module_type.Row.Field<String>("description") }
-      //       ).ToArray();
+            //         var res = (
+            //              from module in dsModuleStructure.dtModule.AsEnumerable()
+            //              join DataRowView module_type in dsModuleStructure.dtModuleType.AsDataView() 
+            //             on module["fk_module_type"] equals module_type["pk_id"]
+            //            where (string)module_type["description"] == tacModel
+            //           select new { pk_id = module.Field<String>("pk_id"), type = module_type.Row.Field<String>("description") }
+            //       ).ToArray();
 
-   //         cmbTacSelector.DataSource = res;
+            //         cmbTacSelector.DataSource = res;
             cmbTacSelector.ValueMember = "pk_id";
             cmbTacSelector.DisplayMember = "pk_id";
         }
@@ -69,7 +71,7 @@ namespace TACDLL.OptionCtrl
 
                 DataSets.dsTacCalibration.dtTacCalibrationDataRow row;
 
-                row = dsModuleStructure.dtTacCalibrationData.NewdtTacCalibrationDataRow();
+                row = dsTacCalibration1.dtTacCalibrationData.NewdtTacCalibrationDataRow();
 
                 row.fk_module_id = (string)this.cmbTacSelector.SelectedValue;
 
@@ -88,7 +90,7 @@ namespace TACDLL.OptionCtrl
 
                 row.optical_density = opticalDensity;
                 row.tac_sample = tacSample;
-                dsModuleStructure.dtTacCalibrationData.AdddtTacCalibrationDataRow(row);
+                dsTacCalibration1.dtTacCalibrationData.AdddtTacCalibrationDataRow(row);
             }
         }
 

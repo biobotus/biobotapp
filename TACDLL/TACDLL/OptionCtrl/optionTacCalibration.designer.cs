@@ -31,9 +31,10 @@
             this.btnValidation = new System.Windows.Forms.Button();
             this.dgvTacCalibrationDataView = new System.Windows.Forms.DataGridView();
             this.cmbTacSelector = new System.Windows.Forms.ComboBox();
-            this.crudOptions1 = new crudOptions();
+            this.crudOptions1 = new TACDLL.OptionCtrl.crudOptions();
+            this.dsTacCalibration1 = new TACDLL.DataSets.dsTacCalibration();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTacCalibrationDataView)).BeginInit();
-//            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsTacCalibration1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnValidation
@@ -55,6 +56,7 @@
             this.dgvTacCalibrationDataView.Location = new System.Drawing.Point(0, 37);
             this.dgvTacCalibrationDataView.Name = "dgvTacCalibrationDataView";
             this.dgvTacCalibrationDataView.ReadOnly = true;
+            this.dgvTacCalibrationDataView.RowHeadersVisible = false;
             this.dgvTacCalibrationDataView.Size = new System.Drawing.Size(347, 256);
             this.dgvTacCalibrationDataView.TabIndex = 2;
             // 
@@ -65,11 +67,6 @@
             this.cmbTacSelector.Name = "cmbTacSelector";
             this.cmbTacSelector.Size = new System.Drawing.Size(146, 21);
             this.cmbTacSelector.TabIndex = 3;
-            // 
-            // dsModuleStructure
-            // 
-//            this.dsModuleStructure.DataSetName = "dsModuleStructure2";
-//            this.dsModuleStructure.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // crudOptions1
             // 
@@ -83,6 +80,11 @@
             this.crudOptions1.TabIndex = 0;
             this.crudOptions1.AddClickHandler += new System.EventHandler(this.crudOptions_AddClickHandler);
             // 
+            // dsTacCalibration1
+            // 
+            this.dsTacCalibration1.DataSetName = "dsModuleStructure2";
+            this.dsTacCalibration1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // optionTacCalibration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,7 +97,7 @@
             this.Size = new System.Drawing.Size(347, 293);
             this.Tag = "Tac calibration";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTacCalibrationDataView)).EndInit();
-//            ((System.ComponentModel.ISupportInitialize)(this.dsModuleStructure)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsTacCalibration1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -107,5 +109,6 @@
         private System.Windows.Forms.Button btnValidation;
         private System.Windows.Forms.ComboBox cmbTacSelector;
         private DataSets.dsTacCalibration dsModuleStructure;
+        private DataSets.dsTacCalibration dsTacCalibration1;
     }
 }

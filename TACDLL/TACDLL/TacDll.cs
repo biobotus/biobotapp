@@ -132,7 +132,7 @@ namespace TACDLL
             var d = new Dictionary<string, UserControl>();
             d.Add("tacPluginRoot", new OptionCtrl.TacPluginDescription());
             // Need to be linked to the db here change the null null
-            d.Add("tacPluginDoConfiguration", new OptionCtrl.optionTacCalibration(null, null, this));
+            d.Add("tacPluginDoConfiguration", new OptionCtrl.optionTacCalibration(null, this));
             return d;
         }
 
