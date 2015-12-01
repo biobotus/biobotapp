@@ -88,7 +88,7 @@ namespace BioBotApp.Model.Movement
         public void writeData(String data, SerialBillboard billboard)
         {
             //communicationService.writeData(data);
-            SerialConsumer consumer = new SerialConsumer(billboard, "Ok");
+            SerialConsumer consumer = new SerialConsumer(billboard, "Ok2");
             messagesToSend.Add(data);
             consumer.onCompletion += Consumer_onCompletion; ;
             consumer.start();
