@@ -1,5 +1,6 @@
 ﻿using BioBotApp.Model.Data;
 using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Serial;
 using System;
 using System.Collections.Generic;
 using System.Linq;

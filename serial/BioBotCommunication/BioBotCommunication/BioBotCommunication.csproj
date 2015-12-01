@@ -72,12 +72,12 @@
     <Compile Include="Serial\Movement\SerialCommunication.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Serial\Utils\Billboard.cs" />
-    <Compile Include="Serial\Utils\BillboardCompletionEventArgs.cs" />
-    <Compile Include="Serial\Utils\ConsumerCompletionEventargs.cs" />
-    <Compile Include="Serial\Utils\ConsumerPool.cs" />
-    <Compile Include="Serial\Utils\SerialConsumer.cs" />
-    <Compile Include="Serial\Utils\SerialProducer.cs" />
+    <Compile Include="Serial\Utils\Serial\Billboard.cs" />
+    <Compile Include="Serial\Utils\Serial\BillboardCompletionEventArgs.cs" />
+    <Compile Include="Serial\Utils\Serial\ConsumerCompletionEventargs.cs" />
+    <Compile Include="Serial\Utils\Serial\SerialConsumerPool.cs" />
+    <Compile Include="Serial\Utils\Serial\SerialConsumer.cs" />
+    <Compile Include="Serial\Utils\Serial\SerialProducer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -3,6 +3,7 @@ using BioBotApp.Model.EventBus;
 using BioBotApp.Model.Sequencer.Helpers;
 using BioBotCommunication.Serial.Movement;
 using BioBotCommunication.Serial.Utils;
+using BioBotCommunication.Serial.Utils.Serial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace BioBotApp.DLL.PipetteSimple
             */
         }
 
-        private void Consumer_onCompletion(object sender, ConsumerCompletionEventargs e)
+        private void Consumer_onCompletion(object sender, SerialConsumerCompletionEventargs e)
         {
             if (messagesToSend.Count == 0) return;
             messagesToSend.RemoveAt(0);
