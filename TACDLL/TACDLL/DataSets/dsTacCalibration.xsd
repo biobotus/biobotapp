@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="dsModuleStructure2" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="dsTacCalibration" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -11,15 +11,24 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="dsModuleStructure2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsModuleStructure2" msprop:Generator_UserDSName="dsModuleStructure2">
+  <xs:element name="dsTacCalibration" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsTacCalibration" msprop:Generator_UserDSName="dsTacCalibration">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="dtTacCalibrationData" msprop:Generator_TableClassName="dtTacCalibrationDataDataTable" msprop:Generator_TableVarName="tabledtTacCalibrationData" msprop:Generator_TablePropName="dtTacCalibrationData" msprop:Generator_RowDeletingName="dtTacCalibrationDataRowDeleting" msprop:Generator_RowChangingName="dtTacCalibrationDataRowChanging" msprop:Generator_RowEvHandlerName="dtTacCalibrationDataRowChangeEventHandler" msprop:Generator_RowDeletedName="dtTacCalibrationDataRowDeleted" msprop:Generator_UserTableName="dtTacCalibrationData" msprop:Generator_RowChangedName="dtTacCalibrationDataRowChanged" msprop:Generator_RowEvArgName="dtTacCalibrationDataRowChangeEvent" msprop:Generator_RowClassName="dtTacCalibrationDataRow">
+        <xs:element name="dtTacCalibrationData" msprop:Generator_TableClassName="dtTacCalibrationDataDataTable" msprop:Generator_TableVarName="tabledtTacCalibrationData" msprop:Generator_RowChangedName="dtTacCalibrationDataRowChanged" msprop:Generator_TablePropName="dtTacCalibrationData" msprop:Generator_RowDeletingName="dtTacCalibrationDataRowDeleting" msprop:Generator_RowChangingName="dtTacCalibrationDataRowChanging" msprop:Generator_RowEvHandlerName="dtTacCalibrationDataRowChangeEventHandler" msprop:Generator_RowDeletedName="dtTacCalibrationDataRowDeleted" msprop:Generator_RowClassName="dtTacCalibrationDataRow" msprop:Generator_UserTableName="dtTacCalibrationData" msprop:Generator_RowEvArgName="dtTacCalibrationDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="optical_density" msprop:Generator_ColumnVarNameInTable="columnoptical_density" msprop:Generator_ColumnPropNameInRow="optical_density" msprop:Generator_ColumnPropNameInTable="optical_densityColumn" msprop:Generator_UserColumnName="optical_density" type="xs:double" minOccurs="0" />
               <xs:element name="tac_sample" msprop:Generator_ColumnVarNameInTable="columntac_sample" msprop:Generator_ColumnPropNameInRow="tac_sample" msprop:Generator_ColumnPropNameInTable="tac_sampleColumn" msprop:Generator_UserColumnName="tac_sample" type="xs:double" minOccurs="0" />
               <xs:element name="fk_module_id" msprop:Generator_ColumnVarNameInTable="columnfk_module_id" msprop:Generator_ColumnPropNameInRow="fk_module_id" msprop:Generator_ColumnPropNameInTable="fk_module_idColumn" msprop:Generator_UserColumnName="fk_module_id" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtTacSample" msprop:Generator_TableClassName="dtTacSampleDataTable" msprop:Generator_TableVarName="tabledtTacSample" msprop:Generator_TablePropName="dtTacSample" msprop:Generator_RowDeletingName="dtTacSampleRowDeleting" msprop:Generator_RowChangingName="dtTacSampleRowChanging" msprop:Generator_RowEvHandlerName="dtTacSampleRowChangeEventHandler" msprop:Generator_RowDeletedName="dtTacSampleRowDeleted" msprop:Generator_UserTableName="dtTacSample" msprop:Generator_RowChangedName="dtTacSampleRowChanged" msprop:Generator_RowEvArgName="dtTacSampleRowChangeEvent" msprop:Generator_RowClassName="dtTacSampleRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sample" msprop:Generator_ColumnVarNameInTable="columnsample" msprop:Generator_ColumnPropNameInRow="sample" msprop:Generator_ColumnPropNameInTable="sampleColumn" msprop:Generator_UserColumnName="sample" type="xs:double" minOccurs="0" />
+              <xs:element name="date" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_UserColumnName="date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

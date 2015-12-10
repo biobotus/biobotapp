@@ -1,6 +1,6 @@
-﻿namespace TACDLL.OptionCtrl
+﻿namespace TACDLL.UI
 {
-    partial class TacDescription
+    partial class SubModuleDesc
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,165 +28,137 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.VentilationLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.OpticalDensityLabel = new System.Windows.Forms.Label();
             this.AgitationLabel = new System.Windows.Forms.Label();
             this.currentTempLabel = new System.Windows.Forms.Label();
             this.goalTempLabel = new System.Windows.Forms.Label();
-            this.refreshBtn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.VentilationLabel);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.OpticalDensityLabel);
-            this.groupBox1.Controls.Add(this.AgitationLabel);
-            this.groupBox1.Controls.Add(this.currentTempLabel);
-            this.groupBox1.Controls.Add(this.goalTempLabel);
-            this.groupBox1.Controls.Add(this.refreshBtn);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(232, 112);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tac : 123456";
             // 
             // VentilationLabel
             // 
             this.VentilationLabel.AutoSize = true;
-            this.VentilationLabel.Location = new System.Drawing.Point(158, 68);
+            this.VentilationLabel.Location = new System.Drawing.Point(127, 62);
             this.VentilationLabel.Name = "VentilationLabel";
             this.VentilationLabel.Size = new System.Drawing.Size(55, 13);
-            this.VentilationLabel.TabIndex = 37;
+            this.VentilationLabel.TabIndex = 59;
             this.VentilationLabel.Text = "NO DATA";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 68);
+            this.label12.Location = new System.Drawing.Point(3, 62);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 13);
-            this.label12.TabIndex = 36;
+            this.label12.TabIndex = 58;
             this.label12.Text = "Ventilation";
             // 
             // OpticalDensityLabel
             // 
             this.OpticalDensityLabel.AutoSize = true;
-            this.OpticalDensityLabel.Location = new System.Drawing.Point(158, 55);
+            this.OpticalDensityLabel.Location = new System.Drawing.Point(127, 49);
             this.OpticalDensityLabel.Name = "OpticalDensityLabel";
             this.OpticalDensityLabel.Size = new System.Drawing.Size(55, 13);
-            this.OpticalDensityLabel.TabIndex = 35;
+            this.OpticalDensityLabel.TabIndex = 57;
             this.OpticalDensityLabel.Text = "NO DATA";
             // 
             // AgitationLabel
             // 
             this.AgitationLabel.AutoSize = true;
-            this.AgitationLabel.Location = new System.Drawing.Point(158, 42);
+            this.AgitationLabel.Location = new System.Drawing.Point(127, 36);
             this.AgitationLabel.Name = "AgitationLabel";
             this.AgitationLabel.Size = new System.Drawing.Size(55, 13);
-            this.AgitationLabel.TabIndex = 34;
+            this.AgitationLabel.TabIndex = 56;
             this.AgitationLabel.Text = "NO DATA";
             // 
             // currentTempLabel
             // 
             this.currentTempLabel.AutoSize = true;
-            this.currentTempLabel.Location = new System.Drawing.Point(158, 29);
+            this.currentTempLabel.Location = new System.Drawing.Point(127, 23);
             this.currentTempLabel.Name = "currentTempLabel";
             this.currentTempLabel.Size = new System.Drawing.Size(55, 13);
-            this.currentTempLabel.TabIndex = 33;
+            this.currentTempLabel.TabIndex = 55;
             this.currentTempLabel.Text = "NO DATA";
             // 
             // goalTempLabel
             // 
             this.goalTempLabel.AutoSize = true;
-            this.goalTempLabel.Location = new System.Drawing.Point(158, 16);
+            this.goalTempLabel.Location = new System.Drawing.Point(127, 10);
             this.goalTempLabel.Name = "goalTempLabel";
             this.goalTempLabel.Size = new System.Drawing.Size(55, 13);
-            this.goalTempLabel.TabIndex = 32;
+            this.goalTempLabel.TabIndex = 54;
             this.goalTempLabel.Text = "NO DATA";
-            // 
-            // refreshBtn
-            // 
-            this.refreshBtn.Location = new System.Drawing.Point(150, 86);
-            this.refreshBtn.Name = "refreshBtn";
-            this.refreshBtn.Size = new System.Drawing.Size(75, 23);
-            this.refreshBtn.TabIndex = 31;
-            this.refreshBtn.Text = "refresh";
-            this.refreshBtn.UseVisualStyleBackColor = true;
-            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 29);
+            this.label6.Location = new System.Drawing.Point(3, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 13);
-            this.label6.TabIndex = 30;
+            this.label6.TabIndex = 52;
             this.label6.Text = "Temperature (current)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 55);
+            this.label5.Location = new System.Drawing.Point(3, 49);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 29;
+            this.label5.TabIndex = 51;
             this.label5.Text = "Optical density";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 42);
+            this.label4.Location = new System.Drawing.Point(3, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
-            this.label4.TabIndex = 28;
+            this.label4.TabIndex = 50;
             this.label4.Text = "Agitation    ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 16);
+            this.label3.Location = new System.Drawing.Point(3, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
-            this.label3.TabIndex = 27;
+            this.label3.TabIndex = 49;
             this.label3.Text = "Temperature (goal)";
             // 
-            // TacDescription
+            // SubModuleDesc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
-            this.Name = "TacDescription";
-            this.Size = new System.Drawing.Size(232, 112);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Controls.Add(this.VentilationLabel);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.OpticalDensityLabel);
+            this.Controls.Add(this.AgitationLabel);
+            this.Controls.Add(this.currentTempLabel);
+            this.Controls.Add(this.goalTempLabel);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Name = "SubModuleDesc";
+            this.Size = new System.Drawing.Size(186, 83);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label VentilationLabel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label OpticalDensityLabel;
         private System.Windows.Forms.Label AgitationLabel;
         private System.Windows.Forms.Label currentTempLabel;
         private System.Windows.Forms.Label goalTempLabel;
-        private System.Windows.Forms.Button refreshBtn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

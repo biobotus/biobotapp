@@ -207,11 +207,14 @@
             // 
             // moduleIdTxt
             // 
-            this.moduleIdTxt.Location = new System.Drawing.Point(103, 35);
+            this.moduleIdTxt.Location = new System.Drawing.Point(103, 40);
             this.moduleIdTxt.Name = "moduleIdTxt";
             this.moduleIdTxt.Size = new System.Drawing.Size(59, 20);
             this.moduleIdTxt.TabIndex = 24;
             this.moduleIdTxt.Text = "0";
+            this.moduleIdTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.moduleIdTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.moduleIdTxt_KeyUp);
+            this.moduleIdTxt.Validated += new System.EventHandler(this.moduleIdTxt_Validated);
             // 
             // MainForm
             // 

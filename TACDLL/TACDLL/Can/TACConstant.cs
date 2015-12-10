@@ -1,7 +1,7 @@
 ﻿
 namespace TACDLL.Can
 {
-    class TACConstant
+    public class TACConstant
     {
 
         public const int MODULE0 = 0;

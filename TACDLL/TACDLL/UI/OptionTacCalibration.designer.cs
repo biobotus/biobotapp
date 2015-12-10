@@ -82,7 +82,7 @@
             // 
             // dsTacCalibration1
             // 
-            this.dsTacCalibration1.DataSetName = "dsModuleStructure2";
+            this.dsTacCalibration1.DataSetName = "dsTacCalibration";
             this.dsTacCalibration1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // optionTacCalibration
@@ -108,7 +108,6 @@
         private System.Windows.Forms.DataGridView dgvTacCalibrationDataView;
         private System.Windows.Forms.Button btnValidation;
         private System.Windows.Forms.ComboBox cmbTacSelector;
-        private DataSets.dsTacCalibration dsModuleStructure;
         private DataSets.dsTacCalibration dsTacCalibration1;
     }
 }

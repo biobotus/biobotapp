@@ -19,7 +19,7 @@ namespace TACDLL.OptionCtrl
         {
             InitializeComponent();
 
-            dsTacCalibration1 = DataManager.tacData;
+            //dsTacCalibration1 = DataManager.tacData;
         }
 
         /// <summary>
@@ -69,11 +69,11 @@ namespace TACDLL.OptionCtrl
                 double opticalDensity = 0.0;
                 double tacSample = 0.0;
 
-                DataSets.dsTacCalibration.dtTacCalibrationDataRow row;
+                dsTacCalibration.dtTacCalibrationDataRow row;
 
                 row = dsTacCalibration1.dtTacCalibrationData.NewdtTacCalibrationDataRow();
 
-                row.fk_module_id = (string)this.cmbTacSelector.SelectedValue;
+   //             row.fk_module_id = (string)this.cmbTacSelector.SelectedValue;
 
                 if (!double.TryParse(density.getInputTextValue(), out opticalDensity))
                 {
@@ -96,12 +96,11 @@ namespace TACDLL.OptionCtrl
 
         private void btnValidation_Click(object sender, EventArgs e)
         {
-            int rowCount = dsModuleStructure.dtTacCalibrationData.Rows.Count;
-            if(rowCount>1)
+            int rowCount = dsTacCalibration1.dtTacCalibrationData.Rows.Count;
+            if(rowCount>3)
             { 
-                double[] tacSample = dsModuleStructure.dtTacCalibrationData.AsEnumerable().Select(r => r.Field<double>("tac_sample")).ToArray();
-                double[] opticalDesityValue = dsModuleStructure.dtTacCalibrationData.AsEnumerable().Select(r => r.Field<double>("optical_density")).ToArray();            
-
+                double[] tacSample = dsTacCalibration1.dtTacCalibrationData.AsEnumerable().Select(r => r.Field<double>("tac_sample")).ToArray();
+                double[] opticalDesityValue = dsTacCalibration1.dtTacCalibrationData.AsEnumerable().Select(r => r.Field<double>("optical_density")).ToArray();            
                 opticalDesityValue = opticalDesityValue.Select(d => Math.Log(d)).ToArray();
 
                 Matrix res = Matrix.PolyFit(tacSample, opticalDesityValue, 3);
@@ -109,7 +108,7 @@ namespace TACDLL.OptionCtrl
             }
             else
             {
-                MessageBox.Show("Not enough values to calibrate (5 minimum)", "Validation error",
+                MessageBox.Show("Not enough values to calibrate (3 minimum)", "Validation error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

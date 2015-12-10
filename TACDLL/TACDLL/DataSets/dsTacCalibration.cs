@@ -1,4 +1,7 @@
-﻿
+﻿namespace TACDLL.DataSets
+{
+}
+
 namespace TACDLL.DataSets
 {
 
@@ -20,7 +23,7 @@ namespace TACDLL.DataSets
     }
 }
 
-namespace TACDLL.DataSets.dsModuleStructure2TableAdapters
+namespace TACDLL.DataSets.dsTacCalibrationTableAdapters
 {
 
 

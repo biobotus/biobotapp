@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,12 @@
   <ItemGroup>
     <Compile Include="Can\TAC2CAN.cs" />
     <Compile Include="Can\TACConstant.cs" />
+    <Compile Include="Chart\DataDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chart\DataDisplayForm.Designer.cs">
+      <DependentUpon>DataDisplayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\DataManager.cs" />
     <Compile Include="DataSets\dsTacCalibration.cs">
       <DependentUpon>dsTacCalibration.xsd</DependentUpon>
@@ -62,46 +69,52 @@
       <DependentUpon>dsTacCalibration.xsd</DependentUpon>
     </Compile>
     <Compile Include="Library\Matrix.cs" />
-    <Compile Include="OptionCtrl\abstractDialog.cs">
+    <Compile Include="UI\AbstractDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\abstractDialog.designer.cs">
-      <DependentUpon>abstractDialog.cs</DependentUpon>
+    <Compile Include="UI\AbstractDialog.designer.cs">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionCtrl\crudOptions.cs">
+    <Compile Include="UI\CrudOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\crudOptions.Designer.cs">
-      <DependentUpon>crudOptions.cs</DependentUpon>
+    <Compile Include="UI\CrudOptions.Designer.cs">
+      <DependentUpon>CrudOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionCtrl\namedInputTextBox.cs">
+    <Compile Include="UI\NamedInputTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\namedInputTextBox.designer.cs">
-      <DependentUpon>namedInputTextBox.cs</DependentUpon>
+    <Compile Include="UI\NamedInputTextBox.designer.cs">
+      <DependentUpon>NamedInputTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionCtrl\optionTacCalibration.cs">
+    <Compile Include="UI\OptionTacCalibration.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\optionTacCalibration.designer.cs">
-      <DependentUpon>optionTacCalibration.cs</DependentUpon>
+    <Compile Include="UI\OptionTacCalibration.designer.cs">
+      <DependentUpon>OptionTacCalibration.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionCtrl\optionTacSampleCtrl.cs">
+    <Compile Include="UI\OptionTacSampleCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\optionTacSampleCtrl.designer.cs">
-      <DependentUpon>optionTacSampleCtrl.cs</DependentUpon>
+    <Compile Include="UI\OptionTacSampleCtrl.designer.cs">
+      <DependentUpon>OptionTacSampleCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionCtrl\TacDescription.cs">
+    <Compile Include="UI\SubModuleDesc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\TacDescription.Designer.cs">
+    <Compile Include="UI\SubModuleDesc.Designer.cs">
+      <DependentUpon>SubModuleDesc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TacDescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\TacDescription.Designer.cs">
       <DependentUpon>TacDescription.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionCtrl\TacPluginDescription.cs">
+    <Compile Include="UI\TacPluginDescription.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OptionCtrl\TacPluginDescription.Designer.cs">
+    <Compile Include="UI\TacPluginDescription.Designer.cs">
       <DependentUpon>TacPluginDescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -121,25 +134,31 @@
     <Content Include="Resources\pencil.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OptionCtrl\abstractDialog.resx">
-      <DependentUpon>abstractDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Chart\DataDisplayForm.resx">
+      <DependentUpon>DataDisplayForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionCtrl\crudOptions.resx">
-      <DependentUpon>crudOptions.cs</DependentUpon>
+    <EmbeddedResource Include="UI\AbstractDialog.resx">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionCtrl\namedInputTextBox.resx">
-      <DependentUpon>namedInputTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="UI\CrudOptions.resx">
+      <DependentUpon>CrudOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionCtrl\optionTacCalibration.resx">
-      <DependentUpon>optionTacCalibration.cs</DependentUpon>
+    <EmbeddedResource Include="UI\NamedInputTextBox.resx">
+      <DependentUpon>NamedInputTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionCtrl\optionTacSampleCtrl.resx">
-      <DependentUpon>optionTacSampleCtrl.cs</DependentUpon>
+    <EmbeddedResource Include="UI\OptionTacCalibration.resx">
+      <DependentUpon>OptionTacCalibration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionCtrl\TacDescription.resx">
+    <EmbeddedResource Include="UI\OptionTacSampleCtrl.resx">
+      <DependentUpon>OptionTacSampleCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SubModuleDesc.resx">
+      <DependentUpon>SubModuleDesc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TacDescription.resx">
       <DependentUpon>TacDescription.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptionCtrl\TacPluginDescription.resx">
+    <EmbeddedResource Include="UI\TacPluginDescription.resx">
       <DependentUpon>TacPluginDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
