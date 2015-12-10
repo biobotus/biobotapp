@@ -57,7 +57,7 @@
             // 
             // sampleCtrl
             // 
-            this.sampleCtrl.Location = new System.Drawing.Point(195, 8);
+            this.sampleCtrl.Location = new System.Drawing.Point(212, 8);
             this.sampleCtrl.Name = "sampleCtrl";
             this.sampleCtrl.Size = new System.Drawing.Size(96, 23);
             this.sampleCtrl.TabIndex = 2;
@@ -75,7 +75,7 @@
             this.Controls.Add(this.lblSampleNb);
             this.Controls.Add(this.btnStartSample);
             this.Name = "optionTacSampleCtrl";
-            this.Size = new System.Drawing.Size(294, 37);
+            this.Size = new System.Drawing.Size(311, 37);
             this.ResumeLayout(false);
             this.PerformLayout();
 

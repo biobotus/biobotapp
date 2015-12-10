@@ -97,7 +97,7 @@ namespace TACDLL.OptionCtrl
         private void btnValidation_Click(object sender, EventArgs e)
         {
             int rowCount = dsTacCalibration1.dtTacCalibrationData.Rows.Count;
-            if(rowCount>3)
+            if(rowCount>2)
             { 
                 double[] tacSample = dsTacCalibration1.dtTacCalibrationData.AsEnumerable().Select(r => r.Field<double>("tac_sample")).ToArray();
                 double[] opticalDesityValue = dsTacCalibration1.dtTacCalibrationData.AsEnumerable().Select(r => r.Field<double>("optical_density")).ToArray();            

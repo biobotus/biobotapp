@@ -16,7 +16,7 @@ namespace TACDLL.OptionCtrl
         private bool resetProgress = false;
         int sampleNumber = 0;
         float sampleSum = 0;
-
+        bool sampleRequested = false;
         
 
         namedInputTextBox sampleDisplayTxt;
@@ -74,6 +74,7 @@ namespace TACDLL.OptionCtrl
                 // Here we want to ask for new value of turbido
                 tac.ExecuteCommand(TacDll.BuildTacCmd(1,1, "send_turbidity", ""));
                 pullTurbidoValue();
+                acquisitionTimer.Start();
             }
         }
 
@@ -83,7 +84,15 @@ namespace TACDLL.OptionCtrl
         void incrementSampleNumber()
         {
             sampleNumber++;
-            lblSampleNb.Text = "number of sample : " + sampleNumber.ToString();
+
+            if (this.lblSampleNb.InvokeRequired)
+            {
+                this.lblSampleNb.BeginInvoke((MethodInvoker)delegate () { this.lblSampleNb.Text = "number of sample : " + sampleNumber.ToString();});
+            }
+            else
+            {
+                this.lblSampleNb.Text = "number of sample : " + sampleNumber.ToString(); ;
+            }
         }
 
         /// <summary>
@@ -92,7 +101,9 @@ namespace TACDLL.OptionCtrl
         void pullTurbidoValue()
         {
             //Ask for a new turbido value
-            tac.ExecuteCommand(TacDll.BuildTacCmd(1, 1, "send_turbidity", ""));
+            // TODO change for the right submodule / module
+            tac.ExecuteCommand(TacDll.BuildTacCmd(112, 0, "send_turbidity", ""));
+            sampleRequested = true;
         }
 
 
@@ -120,12 +131,16 @@ namespace TACDLL.OptionCtrl
 
         private void CANMessageReceived(object sender, PCANComEventArgs e)
         {
-            if (e.CanMsg.DATA[0] == TacDll.HARDWARE_FILTER_TAC)
+            if (e.CanMsg.DATA[2] == TacDll.HARDWARE_FILTER_TAC)
             {
-                switch (e.CanMsg.DATA[2])
+                switch (e.CanMsg.DATA[0])
                 {
                     case TACConstant.INST_GET_TURBIDITY:
-                        onTurbidoValueReceived(BitConverter.ToSingle(e.CanMsg.DATA, 4));
+                        if (sampleRequested)
+                        {
+                            sampleRequested = false;
+                            onTurbidoValueReceived(BitConverter.ToSingle(e.CanMsg.DATA, 4));
+                        }
                         break;
                 }
             }

@@ -17,7 +17,6 @@ namespace SimpleTacClient.Option
             treeViewAction = actions;
             treeViewAction.Add("canNode", new CanConnectorControl());
             PCANCom p = PCANCom.Instance;
-            p.test = "toto";
         }
 
         private void tlvOptions_AfterSelect(object sender, TreeViewEventArgs e)

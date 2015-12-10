@@ -52,7 +52,14 @@ namespace TACDLL.OptionCtrl
         /// <param name="text">The value to be put into the left label text value</param>
         public void setInputTextValue(string text)
         {
-            edtInputValue.Text = text;
+            if (this.edtInputValue.InvokeRequired)
+            {
+                this.edtInputValue.BeginInvoke((MethodInvoker)delegate () { this.edtInputValue.Text = text; });
+            }
+            else
+            {
+                this.edtInputValue.Text = text;
+            }
         }
     }
 }
