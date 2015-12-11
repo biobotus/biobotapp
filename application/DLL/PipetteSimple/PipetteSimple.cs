@@ -21,8 +21,7 @@ namespace BioBotApp.DLL.PipetteSimple
         SerialCommunication communication;
         List<String> messagesToSend;
 
-        private SerialConsumerPool serialConsumerPool;
-        private CanConsumerPool canConsumerPool;
+        private ConsumerPool consumerPool;
 
         //List<SerialConsumer> localConsumers;
 
@@ -38,86 +37,131 @@ namespace BioBotApp.DLL.PipetteSimple
 
             if (e.operationRow.bbt_stepRow.bbt_objectRow.fk_object_type == 5)
             {
-                canConsumerPool = new CanConsumerPool(e.billboard);
+
+                consumerPool = new ConsumerPool(e.billboard);
                 byte[] sendMessage = new byte[9];
-
-                sendMessage[0] = 0x00;
-                sendMessage[1] = 0x00;
-                sendMessage[2] = 0x00;
-                sendMessage[3] = 0x00;
-                sendMessage[4] = 0x00;
-                sendMessage[5] = 0x00;
-                sendMessage[6] = 0x00;
-                sendMessage[7] = 0x10;
-                sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
-                
-
-                canConsumerPool.newConsumer(sendMessage);
-
-                sendMessage[0] = 0x00;
-                sendMessage[1] = 0x00;
-                sendMessage[2] = 0x00;
-                sendMessage[3] = 0x00;
-                sendMessage[4] = 0x00;
-                sendMessage[5] = 0x00;
-                sendMessage[6] = 0x00;
-                sendMessage[7] = 0x20;
-                sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
-
-
-                canConsumerPool.newConsumer(sendMessage);
-
-                canConsumerPool.startExecution();
                 /*
-                Billboard billboard = e.billboard;
-                String first = System.Guid.NewGuid().ToString();
-                String second = System.Guid.NewGuid().ToString();
-                messagesToSend.Add(first);
-                messagesToSend.Add(second);
-                SerialConsumer consumer = new SerialConsumer(billboard, first);
-                consumer.onCompletion += Consumer_onCompletion;
-                consumer.start();
+                sendMessage[0] = 0x00;
+                sendMessage[1] = 0x00;
+                sendMessage[2] = 0x00;
+                sendMessage[3] = 0x00;
+                sendMessage[4] = 0x00;
+                sendMessage[5] = 0x00;
+                sendMessage[6] = 0x00;
+                sendMessage[7] = 0x00;
+                sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
 
-                communication.WriteLine("Pipette: " + first);
 
-                SerialConsumer consumer2 = new SerialConsumer(billboard, second);
-                consumer2.onCompletion += Consumer_onCompletion;
-                consumer2.start();
-                */
-            }
-
-            /*
-            Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
-            if (row == null) return;
-            BioBotDataSets.bbt_stepRow stepRow = row.bbt_stepRow;
-            if(stepRow.bbt_objectRow.fk_object_type == OBJECT_ID)
-            {
-                operationRow = row;
-                Console.WriteLine("Single channel pipette step execute: " + stepRow.description);
-                EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this, operationRow));
-            }
-            if(row.Getbbt_operation_referenceRows().Length > 0)
-            {
-                
-                foreach(BioBotDataSets.bbt_operation_referenceRow referenceRow in row.Getbbt_operation_referenceRows())
+                consumerPool.addConsumer(new CanConsumer(e.billboard,sendMessage,sendMessage));
+            */
+                if (e.operationRow.bbt_operation_typeRow.pk_id == 8)
                 {
-                    if(referenceRow.fk_object == OBJECT_ID)
+                    if (e.operationRow.value == null) return;
+                    Int16 value = System.Convert.ToInt16(e.operationRow.value);
+                    sendMessage = new byte[9];
+                    sendMessage[0] = 0x01;
+                    sendMessage[1] = 0x00;
+                    sendMessage[2] = 0x00;
+                    sendMessage[3] = 0x00;
+                    sendMessage[4] = 0x00;
+                    sendMessage[5] = 0x00;
+                    sendMessage[6] = (byte)(value >> 8) ;
+                    sendMessage[7] = (byte)(value);
+                    sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
+
+                    byte[] waitValue = new byte[9];
+                    waitValue[0] = 0x01;
+                    waitValue[1] = CANDeviceConstant.PIPETTE_SIMPLE;
+                    waitValue[2] = 0x00;
+                    waitValue[3] = 0x00;
+                    waitValue[4] = 0x00;
+                    waitValue[5] = 0x00;
+                    waitValue[6] = (byte)(value >> 8);
+                    waitValue[7] = (byte)(value);
+                    waitValue[8] = CANDeviceConstant.PIPETTE_SIMPLE;
+                    consumerPool.addConsumer(new CanConsumer(e.billboard, waitValue, sendMessage));
+
+                    consumerPool.startExecutionHistory();
+                }
+                else if (e.operationRow.bbt_operation_typeRow.pk_id == 12)
+                {
+                    sendMessage = new byte[9];
+                    sendMessage[0] = 0x00;
+                    sendMessage[1] = 0x00;
+                    sendMessage[2] = 0x00;
+                    sendMessage[3] = 0x00;
+                    sendMessage[4] = 0x00;
+                    sendMessage[5] = 0x00;
+                    sendMessage[6] = 0x00;
+                    sendMessage[7] = 0x00;
+                    sendMessage[8] = CANDeviceConstant.PIPETTE_SIMPLE;
+
+                    byte[] waitValue = new byte[9];
+                    waitValue[0] = 0x00;
+                    waitValue[1] = CANDeviceConstant.PIPETTE_SIMPLE;
+                    waitValue[2] = 0x00;
+                    waitValue[3] = 0x00;
+                    waitValue[4] = 0x00;
+                    waitValue[5] = 0x00;
+                    waitValue[6] = 0x00;
+                    waitValue[7] = 0x00;
+                    waitValue[8] = CANDeviceConstant.PIPETTE_SIMPLE;
+                    consumerPool.addConsumer(new CanConsumer(e.billboard, waitValue, sendMessage));
+                    consumerPool.startExecutionHistory();
+                }
+
+
+                    /*
+                        Billboard billboard = e.billboard;
+                        String first = System.Guid.NewGuid().ToString();
+                        String second = System.Guid.NewGuid().ToString();
+                        messagesToSend.Add(first);
+                        messagesToSend.Add(second);
+                        SerialConsumer consumer = new SerialConsumer(billboard, first);
+                        consumer.onCompletion += Consumer_onCompletion;
+                        consumer.start();
+
+                        communication.WriteLine("Pipette: " + first);
+
+                        SerialConsumer consumer2 = new SerialConsumer(billboard, second);
+                        consumer2.onCompletion += Consumer_onCompletion;
+                        consumer2.start();
+                        */
+                }
+
+                /*
+                Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
+                if (row == null) return;
+                BioBotDataSets.bbt_stepRow stepRow = row.bbt_stepRow;
+                if(stepRow.bbt_objectRow.fk_object_type == OBJECT_ID)
+                {
+                    operationRow = row;
+                    Console.WriteLine("Single channel pipette step execute: " + stepRow.description);
+                    EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this, operationRow));
+                }
+                if(row.Getbbt_operation_referenceRows().Length > 0)
+                {
+
+                    foreach(BioBotDataSets.bbt_operation_referenceRow referenceRow in row.Getbbt_operation_referenceRows())
                     {
-                        operationRow = row;
-                        Console.WriteLine("Single channel pipette operation execute: " + row.bbt_operation_typeRow.description);
-                        EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this, operationRow));
+                        if(referenceRow.fk_object == OBJECT_ID)
+                        {
+                            operationRow = row;
+                            Console.WriteLine("Single channel pipette operation execute: " + row.bbt_operation_typeRow.description);
+                            EventBus.Instance.post(new Model.Sequencer.Events.ExecuteCommandEvent(this, operationRow));
+                        }
                     }
                 }
+                */
             }
-            */
-        }
 
         private void Consumer_onCompletion(object sender, SerialConsumerCompletionEventargs e)
         {
             if (messagesToSend.Count == 0) return;
             messagesToSend.RemoveAt(0);
             if (messagesToSend.Count == 0) return;
-            communication.WriteLine("Pipette: " + messagesToSend.First());
+            communication.WriteLine(messagesToSend.First());
+            Console.WriteLine("Pipette: " + messagesToSend.First());
         }
     }
 }

@@ -11,9 +11,9 @@ namespace BioBotCommunication.Serial.Utils
     public class Billboard
     {
         private List<Object> listValues = new List<Object>();
-        private List<IConsumer> listConsumers = new List<IConsumer>();
+        private List<AbstractConsumer> listConsumers = new List<AbstractConsumer>();
         private readonly Object registerLock = new Object();
-        public event EventHandler<BillboardCompletionEvent> onBillboardCompletionEvent;
+        private Object isCompleted = true;
 
         public Billboard()
         {
@@ -35,8 +35,15 @@ namespace BioBotCommunication.Serial.Utils
                 listValues.Clear();
             }
         }
+        public void emptyConsumers()
+        {
+            lock (listConsumers)
+            {
+                listConsumers.Clear();
+            }
+        }
 
-        public void delete(Object valueId, IConsumer consumer)
+        public void delete(Object valueId, AbstractConsumer consumer)
         {
             lock (listValues)
             {
@@ -50,6 +57,11 @@ namespace BioBotCommunication.Serial.Utils
                 }
                 if (listValues.Count == 0)
                 {
+                    lock (isCompleted)
+                    {
+                        isCompleted = true;
+                    }
+
                     Console.WriteLine("END OF OPERATION: " + valueId);
                 }
             }
@@ -62,16 +74,16 @@ namespace BioBotCommunication.Serial.Utils
             {
                 foreach (Object data in listValues)
                 {
-                    if(data is String)
+                    if (data is String)
                     {
                         String dataString = data as String;
                         copy.Add(String.Copy(dataString));
                     }
-                    else if(data is byte[])
+                    else if (data is byte[])
                     {
                         byte[] dataByte = data as byte[];
                         byte[] deepCopy = new byte[dataByte.Length];
-                        for(int i = 0; i < dataByte.Length; i++)
+                        for (int i = 0; i < dataByte.Length; i++)
                         {
                             deepCopy[i] = dataByte[i];
                         }
@@ -86,13 +98,13 @@ namespace BioBotCommunication.Serial.Utils
         {
             lock (registerLock)
             {
-                foreach (IConsumer consumer in listConsumers)
+                foreach (AbstractConsumer consumer in listConsumers)
                 {
                     consumer.notifyValue(true);
                 }
             }
         }
-        public Boolean register(IConsumer consumer)
+        public Boolean register(AbstractConsumer consumer)
         {
             Boolean isRegistered = false;
             lock (registerLock)
@@ -106,7 +118,7 @@ namespace BioBotCommunication.Serial.Utils
             }
             return isRegistered;
         }
-        public Boolean unregister(IConsumer consumer)
+        public Boolean unregister(AbstractConsumer consumer)
         {
             Boolean isRegistered = false;
             lock (registerLock)
@@ -116,14 +128,6 @@ namespace BioBotCommunication.Serial.Utils
                 {
                     listConsumers.Remove(consumer);
                     isRegistered = false;
-                    if (listConsumers.Count == 0)
-                    {
-                        if (onBillboardCompletionEvent != null)
-                        {
-                            onBillboardCompletionEvent(this, new BillboardCompletionEvent());
-                            Console.WriteLine("Bilboard completion !");
-                        }
-                    }
                 }
                 return isRegistered;
             }
@@ -134,6 +138,30 @@ namespace BioBotCommunication.Serial.Utils
             lock (listConsumers)
             {
                 return listConsumers.Count;
+            }
+        }
+
+        public Boolean getCompleted()
+        {
+            lock (isCompleted)
+            {
+                return (Boolean)isCompleted == true;
+            }
+        }
+
+        public void resetCompleted()
+        {
+            lock (isCompleted)
+            {
+                isCompleted = false;
+            }
+        }
+
+        public void setCompleted(Boolean value)
+        {
+            lock (isCompleted)
+            {
+                isCompleted = value;
             }
         }
 

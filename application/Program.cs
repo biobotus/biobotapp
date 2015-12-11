@@ -28,7 +28,7 @@ namespace BioBotApp
             Model.Data.DBManager.Instance.initializeDataSet();
             DLL.PipetteSimple.PipetteSimple pipetteSimple = new DLL.PipetteSimple.PipetteSimple();
             DLL.MultiChannel.MultiChannelPipette multi = new DLL.MultiChannel.MultiChannelPipette();
-
+            BioBotCommunication.Serial.Movement.SerialCommunication.Instance.configure("COM1", "115200", "8", System.IO.Ports.StopBits.One, System.IO.Ports.Parity.None);//.configure("COM4", "57600", "8", "One", "None");
             Model.Movement.MovementAlgorithm algo = Model.Movement.MovementAlgorithm.Instance;
             MainViewForm form = new MainViewForm();
             Application.Run(form);

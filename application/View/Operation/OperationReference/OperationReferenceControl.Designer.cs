@@ -32,7 +32,11 @@
             this.bioBotDataSets = new BioBotApp.Model.Data.BioBotDataSets();
             this.bsOperation = new System.Windows.Forms.BindingSource(this.components);
             this.bbt_operation_referenceDataGridView = new System.Windows.Forms.DataGridView();
+            this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fkoperationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fkobjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.bsObject = new System.Windows.Forms.BindingSource(this.components);
+            this.bsOperationReference = new System.Windows.Forms.BindingSource(this.components);
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -41,20 +45,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pkidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fkoperationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fkobjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.bsOperationReference = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bioBotDataSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbt_operation_referenceDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperationReference)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsOperationReference)).BeginInit();
             this.SuspendLayout();
             // 
             // bioBotDataSets
@@ -87,10 +87,44 @@
             this.bbt_operation_referenceDataGridView.Size = new System.Drawing.Size(394, 294);
             this.bbt_operation_referenceDataGridView.TabIndex = 1;
             // 
+            // pkidDataGridViewTextBoxColumn
+            // 
+            this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
+            this.pkidDataGridViewTextBoxColumn.HeaderText = "pk_id";
+            this.pkidDataGridViewTextBoxColumn.Name = "pkidDataGridViewTextBoxColumn";
+            this.pkidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pkidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fkoperationDataGridViewTextBoxColumn
+            // 
+            this.fkoperationDataGridViewTextBoxColumn.DataPropertyName = "fk_operation";
+            this.fkoperationDataGridViewTextBoxColumn.HeaderText = "fk_operation";
+            this.fkoperationDataGridViewTextBoxColumn.Name = "fkoperationDataGridViewTextBoxColumn";
+            this.fkoperationDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fkoperationDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fkobjectDataGridViewTextBoxColumn
+            // 
+            this.fkobjectDataGridViewTextBoxColumn.DataPropertyName = "fk_object";
+            this.fkobjectDataGridViewTextBoxColumn.DataSource = this.bsObject;
+            this.fkobjectDataGridViewTextBoxColumn.DisplayMember = "description";
+            this.fkobjectDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.fkobjectDataGridViewTextBoxColumn.HeaderText = "Object";
+            this.fkobjectDataGridViewTextBoxColumn.Name = "fkobjectDataGridViewTextBoxColumn";
+            this.fkobjectDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fkobjectDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.fkobjectDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.fkobjectDataGridViewTextBoxColumn.ValueMember = "pk_id";
+            // 
             // bsObject
             // 
             this.bsObject.DataMember = "bbt_object";
             this.bsObject.DataSource = this.bioBotDataSets;
+            // 
+            // bsOperationReference
+            // 
+            this.bsOperationReference.DataMember = "bbt_operation_bbt_operation_reference";
+            this.bsOperationReference.DataSource = this.bsOperation;
             // 
             // panel8
             // 
@@ -150,7 +184,7 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
@@ -180,40 +214,6 @@
             this.panel1.Size = new System.Drawing.Size(448, 65);
             this.panel1.TabIndex = 8;
             // 
-            // pkidDataGridViewTextBoxColumn
-            // 
-            this.pkidDataGridViewTextBoxColumn.DataPropertyName = "pk_id";
-            this.pkidDataGridViewTextBoxColumn.HeaderText = "pk_id";
-            this.pkidDataGridViewTextBoxColumn.Name = "pkidDataGridViewTextBoxColumn";
-            this.pkidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pkidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fkoperationDataGridViewTextBoxColumn
-            // 
-            this.fkoperationDataGridViewTextBoxColumn.DataPropertyName = "fk_operation";
-            this.fkoperationDataGridViewTextBoxColumn.HeaderText = "fk_operation";
-            this.fkoperationDataGridViewTextBoxColumn.Name = "fkoperationDataGridViewTextBoxColumn";
-            this.fkoperationDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fkoperationDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fkobjectDataGridViewTextBoxColumn
-            // 
-            this.fkobjectDataGridViewTextBoxColumn.DataPropertyName = "fk_object";
-            this.fkobjectDataGridViewTextBoxColumn.DataSource = this.bsObject;
-            this.fkobjectDataGridViewTextBoxColumn.DisplayMember = "description";
-            this.fkobjectDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.fkobjectDataGridViewTextBoxColumn.HeaderText = "Object";
-            this.fkobjectDataGridViewTextBoxColumn.Name = "fkobjectDataGridViewTextBoxColumn";
-            this.fkobjectDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fkobjectDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.fkobjectDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.fkobjectDataGridViewTextBoxColumn.ValueMember = "pk_id";
-            // 
-            // bsOperationReference
-            // 
-            this.bsOperationReference.DataMember = "bbt_operation_bbt_operation_reference";
-            this.bsOperationReference.DataSource = this.bsOperation;
-            // 
             // OperationReferenceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,12 +226,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsOperation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bbt_operation_referenceDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsOperationReference)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsOperationReference)).EndInit();
             this.ResumeLayout(false);
 
         }

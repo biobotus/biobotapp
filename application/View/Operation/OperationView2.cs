@@ -33,6 +33,7 @@ namespace BioBotApp.View.Step
             this.bsOperationType.DataSource = this.bioBotDataSet;
             this.bsObjectTypeOperationType.DataSource = this.bsObjectType;
             this.bsStep.Filter = "pk_id = -1";
+            updateGridSort();
         }
 
         public void setSelectedStepRow(BioBotDataSets.bbt_stepRow row)
@@ -46,6 +47,7 @@ namespace BioBotApp.View.Step
             this.bsStep.Filter = "pk_id = " + row.pk_id;
             stepRow = row;
             this.bsStep.Position = index;
+            updateGridSort();
         }
 
         public void setSelectedObjectTypeRow(BioBotDataSets.bbt_object_typeRow row)
@@ -59,6 +61,7 @@ namespace BioBotApp.View.Step
             this.bsObjectType.Filter = String.Empty;
             objectTypeRow = row;
             this.bsObjectType.Position = index;
+            updateGridSort();
         }
 
         public BioBotDataSets.bbt_operationRow getSelectedOperationRow()
@@ -92,10 +95,10 @@ namespace BioBotApp.View.Step
         {
             BioBotDataSets.bbt_operationRow stepRow = getSelectedOperationRow();
             if (stepRow == null) return;
-            if (stepRow.index > this.bsStep.Count) return;
-            foreach (DataRowView rowView in bsStep)
+            if (stepRow.index > this.bsOperation.Count) return;
+            foreach (DataRowView rowView in bsOperation)
             {
-                if (rowView.Row is BioBotDataSets.bbt_stepRow)
+                if (rowView.Row is BioBotDataSets.bbt_operationRow)
                 {
                     BioBotDataSets.bbt_operationRow row = rowView.Row as BioBotDataSets.bbt_operationRow;
                     if (row.index == stepRow.index - 1)
@@ -114,10 +117,10 @@ namespace BioBotApp.View.Step
         {
             BioBotDataSets.bbt_operationRow stepRow = getSelectedOperationRow();
             if (stepRow == null) return;
-            if (stepRow.index > this.bsStep.Count) return;
-            foreach (DataRowView rowView in bsStep)
+            if (stepRow.index > this.bsOperation.Count) return;
+            foreach (DataRowView rowView in bsOperation)
             {
-                if (rowView.Row is BioBotDataSets.bbt_stepRow)
+                if (rowView.Row is BioBotDataSets.bbt_operationRow)
                 {
                     BioBotDataSets.bbt_operationRow row = rowView.Row as BioBotDataSets.bbt_operationRow;
                     if (row.index == stepRow.index + 1)
@@ -134,20 +137,10 @@ namespace BioBotApp.View.Step
 
         private void StepView2_Load(object sender, EventArgs e)
         {
-            try
-            {
-                dgvOperations.Sort(indexColumn, ListSortDirection.Ascending);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.StackTrace);
-                //exception used to eliminate designer error : 
-                //DataGridView control cannot be sorted if it is bound to an IBindingList that does not support sorting. 
-            }
-
+            updateGridSort();
         }
 
-        private void dgvOperation_EnabledChanged(object sender, EventArgs e)
+        private void updateGridSort()
         {
             try
             {
@@ -159,6 +152,11 @@ namespace BioBotApp.View.Step
                 //exception used to eliminate designer error : 
                 //DataGridView control cannot be sorted if it is bound to an IBindingList that does not support sorting. 
             }
+        }
+
+        private void dgvOperation_EnabledChanged(object sender, EventArgs e)
+        {
+            updateGridSort();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

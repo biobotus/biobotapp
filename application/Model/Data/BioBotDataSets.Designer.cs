@@ -8863,7 +8863,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_pk_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pk_id", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation_type\" (\"description\") VALUES (?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO protocol.bbt_operation_type\r\n             (description)\r\nVALUES (?) R" +
+                "ETURNING pk_id";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("description", global::System.Data.Odbc.OdbcType.Text, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "description", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
@@ -10755,8 +10756,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation_reference\" (\"fk_operation\", \"fk_ob" +
-                "ject\") VALUES (?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO protocol.bbt_operation_reference\r\n             (fk_operation, fk_obje" +
+                "ct)\r\nVALUES (?, ?) RETURNING pk_id";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_object", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_object", global::System.Data.DataRowVersion.Current, false, null));
@@ -11374,8 +11375,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_index", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "index", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"biobot\".\"protocol\".\"bbt_operation\" (\"fk_operation_type\", \"fk_step\", " +
-                "\"index\", \"value\") VALUES (?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO protocol.bbt_operation\r\n             (fk_operation_type, fk_step, \"in" +
+                "dex\", \"value\")\r\nVALUES (?, ?, ?, ?) RETURNING pk_id";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_operation_type", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_operation_type", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fk_step", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fk_step", global::System.Data.DataRowVersion.Current, false, null));
@@ -11411,8 +11412,8 @@ namespace BioBotApp.Model.Data.BioBotDataSetsTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        pk_id, fk_operation_type, fk_step, \"index\", \"value\"\r\nFROM          " +
-                "  protocol.bbt_operation";
+            this._commandCollection[0].CommandText = "SELECT pk_id, fk_operation_type, fk_step, \"index\", \"value\"\r\nFROM   protocol.bbt_o" +
+                "peration\r\nORDER BY index";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

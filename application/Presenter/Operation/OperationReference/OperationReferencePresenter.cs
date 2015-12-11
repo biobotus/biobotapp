@@ -11,6 +11,7 @@ namespace BioBotApp.Presenter.Operation.OperationReference
     public class OperationReferencePresenter : DatasetPresenter
     {
         IOperationReferenceView view;
+
         public OperationReferencePresenter(IOperationReferenceView view) : base(view)
         {
             this.view = view;

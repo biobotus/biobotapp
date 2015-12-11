@@ -87,7 +87,9 @@
     <Compile Include="Serial\Utils\Can\CanConsumerCompletionEventArgs.cs" />
     <Compile Include="Serial\Utils\Can\CanConsumerPool.cs" />
     <Compile Include="Serial\Utils\Can\CanProducer.cs" />
-    <Compile Include="Serial\Utils\IConsumer.cs" />
+    <Compile Include="Serial\Utils\ConsumerCompletionEvent.cs" />
+    <Compile Include="Serial\Utils\ConsumerPool.cs" />
+    <Compile Include="Serial\Utils\AbstractConsumer.cs" />
     <Compile Include="Serial\Utils\Serial\SerialBillboard.cs" />
     <Compile Include="Serial\Utils\Serial\SerialBillboardCompletionEventArgs.cs" />
     <Compile Include="Serial\Utils\Serial\SerialConsumerCompletionEventargs.cs" />

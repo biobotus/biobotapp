@@ -508,19 +508,27 @@ namespace BioBotApp.View.Deck
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            XPk = getPkProperty("Dimension", "XLength");
-            YPk = getPkProperty("Dimension", "YLength");
-            XCount = getValueObjectProperty("PegHoleCount", "Deck", "X");
-            YCount = getValueObjectProperty("PegHoleCount", "Deck", "Y");
-            deckXReal = getValueObjectProperty("Dimension", "Deck", "XLength");
-            deckYReal = getValueObjectProperty("Dimension", "Deck", "YLength");
-            this.Location = new Point(this.ParentForm.ClientSize.Width - deckX, 0);
-            deckX = this.ParentForm.Width;
-            deckY = this.ParentForm.Height;
-            this.Size = new Size(deckX, deckY);
-            getOffsetParameters();
-            UpdateDeck(true);
-            ObjectCreation = false;
+            try
+            {
+                XPk = getPkProperty("Dimension", "XLength");
+                YPk = getPkProperty("Dimension", "YLength");
+                XCount = getValueObjectProperty("PegHoleCount", "Deck", "X");
+                YCount = getValueObjectProperty("PegHoleCount", "Deck", "Y");
+                deckXReal = getValueObjectProperty("Dimension", "Deck", "XLength");
+                deckYReal = getValueObjectProperty("Dimension", "Deck", "YLength");
+                this.Location = new Point(this.ParentForm.ClientSize.Width - deckX, 0);
+                deckX = this.ParentForm.Width;
+                deckY = this.ParentForm.Height;
+                this.Size = new Size(deckX, deckY);
+                getOffsetParameters();
+                UpdateDeck(true);
+                ObjectCreation = false;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            
         }
 
         private void DeckView_DragDrop(object sender, DragEventArgs e)

@@ -20,7 +20,7 @@ namespace BioBotCommunication.Serial.Utils.Serial
             messagesToSend = new List<string>();
             consumers = new List<SerialConsumer>();
             this.billboard = billboard;
-            this.billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
+            //this.billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
         }
 
         private void Billboard_onBillboardCompletionEvent(object sender, BillboardCompletionEvent e)
@@ -30,16 +30,16 @@ namespace BioBotCommunication.Serial.Utils.Serial
             this.consumers.Clear();
         }
 
-        public void newConsumer(String waitMessage)
+        public void newConsumer(String waitMessage, String writeMessage)
         {
             if (waitMessage == null) return;
             messagesToSend.Add(String.Copy(waitMessage));
-            SerialConsumer consumer = new SerialConsumer(billboard, waitMessage);
+            SerialConsumer consumer = new SerialConsumer(billboard, waitMessage, writeMessage);
             consumer.onCompletion += Consumer_onCompletion;
             consumer.start();
         }
 
-        private void Consumer_onCompletion(object sender, SerialConsumerCompletionEventargs e)
+        private void Consumer_onCompletion(object sender, ConsumerCompletionEvent e)
         {
             if (messagesToSend.Count == 0) return;
             messagesToSend.RemoveAt(0);

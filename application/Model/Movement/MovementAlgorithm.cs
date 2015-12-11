@@ -16,7 +16,7 @@ namespace BioBotApp.Model.Movement
     class MovementAlgorithm : Model.EventBus.Subscriber, ICommand
     {
         DBManager dbManager;
-        SerialConsumerPool consumerPool;
+        ConsumerPool consumerPool;
         ToolRack toolRack;
         List<String> messagesToSend;
         ToolToMove toolToMove;
@@ -53,8 +53,9 @@ namespace BioBotApp.Model.Movement
         [Model.EventBus.Subscribe]
         public void onExecuteEvent(Model.EventBus.Events.ExecutionService.ExecutionEvent e)
         {
+            
 
-            consumerPool = new SerialConsumerPool(e.billboard);
+            consumerPool = new ConsumerPool(e.billboard);
 
 
             Model.Data.BioBotDataSets.bbt_operationRow row = e.operationRow;
@@ -64,8 +65,12 @@ namespace BioBotApp.Model.Movement
             if (stepRow == null) return;
             if (stepRow.bbt_objectRow.fk_object_type == 5 || stepRow.bbt_objectRow.fk_object_type == 6 || stepRow.bbt_objectRow.fk_object_type == 7 || stepRow.bbt_objectRow.fk_object_type == 13)
             {
-                Move(e.operationRow, e.billboard);
+                if(stepRow.bbt_objectRow.pk_id == 6)
+                {
+                    Move(e.operationRow, e.billboard);
+                }
             }
+            
 
             /*
             if (stepRow.fk_object == OBJECT_ID)
@@ -90,7 +95,7 @@ namespace BioBotApp.Model.Movement
 
         public void writeData(String data, Billboard billboard)
         {
-            consumerPool.newConsumer(data);
+            consumerPool.addConsumer(new SerialConsumer(billboard, "Completed", data));
         }
         
 
@@ -110,16 +115,32 @@ namespace BioBotApp.Model.Movement
             }
             else if (operationRow.bbt_operation_typeRow.description == "Move To X")
             {
-                moveToX(operationRow, billboard);
+                if(operationRow.bbt_stepRow.bbt_objectRow.pk_id == 6)
+                {
+                    writeData("G1 X" + operationRow.value, billboard);
+                }
+                else
+                {
+                    moveToX(operationRow, billboard);
+                }
             }
             else if (operationRow.bbt_operation_typeRow.description == "Move To Y")
             {
-                moveToY(operationRow, billboard);
+                if (operationRow.bbt_stepRow.bbt_objectRow.pk_id == 6)
+                {
+                    writeData("G1 Y" + operationRow.value, billboard);
+                }
+                else
+                {
+                    moveToY(operationRow, billboard);
+                }
             }
+            /*
             else if (operationRow.bbt_operation_typeRow.description == "Move To Z")
             {
                 moveToZ(operationRow, billboard);
             }
+            */
             else if (operationRow.bbt_operation_typeRow.description.StartsWith("Home"))
             {
                 Home(operationRow.bbt_operation_typeRow.description, operationRow, billboard);
@@ -128,7 +149,7 @@ namespace BioBotApp.Model.Movement
             {
                 return -1;
             }
-            consumerPool.startExecution();
+            consumerPool.startExecutionHistory();
             return 1;
         }
 
@@ -149,7 +170,7 @@ namespace BioBotApp.Model.Movement
                 movementToDo.setXAsDestination(toolToMove, operationRow);
 
                 // TODO : Send the command to move the X axis          
-                writeData("X" + movementToDo.desiredXPos.ToString(), billboard);
+                writeData("G1 X" + movementToDo.desiredXPos.ToString(), billboard);
 
                 // TODO : Update the current position of the rack in the database (deck_x, deck_y)
             }
@@ -176,7 +197,7 @@ namespace BioBotApp.Model.Movement
                 movementToDo.setYAsDestination(toolToMove, operationRow);
 
                 // TODO : Send the command to move the Y axis 
-                writeData("Y" + movementToDo.desiredYPos.ToString(), billboard);
+                writeData("G1 Y" + movementToDo.desiredYPos.ToString(), billboard);
                 // TODO : Update the current position of the rack in the database (deck_x, deck_y)
             }
             catch (Exception e)
@@ -201,7 +222,7 @@ namespace BioBotApp.Model.Movement
                 // Setting the destination point.    
                 movementToDo.setZAsDestination(toolToMove, operationRow);
                 // TODO : Send the command to move the Z axis 
-                writeData("Z" + toolToMove.zAxisNumber + " " + movementToDo.desiredYPos.ToString(), billboard);
+                writeData("G1 Z" + toolToMove.zAxisNumber + " " + movementToDo.desiredYPos.ToString(), billboard);
 
                 // TODO : Move the Z axis to the desired position :
                 // moveZ(concernedTool, movementToDo.desiredZPos) through CAN
@@ -236,9 +257,9 @@ namespace BioBotApp.Model.Movement
             movementToDo.setTipToLoadPointAsDestination(box, tip, toolToMove, toolRack);
 
             // TODO : Create the commands to do the movements for each axis.
-            writeData("X" + movementToDo.desiredXPos.ToString(), billboard);
-            writeData("Y" + movementToDo.desiredYPos.ToString(), billboard);
-            writeData("Z" + toolToMove.zAxisNumber + movementToDo.desiredZPos.ToString(), billboard);
+            writeData("G1 X" + movementToDo.desiredXPos.ToString(), billboard);
+            writeData("G1 Y" + movementToDo.desiredYPos.ToString(), billboard);
+            //writeData("G1 Z" + toolToMove.zAxisNumber + movementToDo.desiredZPos.ToString(), billboard);
 
             // TODO : HOME THE Z AXIS OF THE CONCERNED TOOL BEFORE STARTING
             // moveZ(concernedTool, 0) through CAN, 0 should be considered as the "Home" command
@@ -271,8 +292,8 @@ namespace BioBotApp.Model.Movement
                 movementToDo.setTrashPointAsDestination(tip, trash, toolToMove);
 
                 // TODO : Calculate the movements to be done for each axis.
-                writeData("X" + movementToDo.desiredXPos.ToString(), billboard);
-                writeData("Y" + movementToDo.desiredYPos.ToString(), billboard);
+                writeData("G1 X" + movementToDo.desiredXPos.ToString(), billboard);
+                writeData("G1 Y" + movementToDo.desiredYPos.ToString(), billboard);
                 // TODO : HOME THE Z AXIS OF THE CONCERNED TOOL BEFORE STARTING
                 // moveZ(concernedTool, 0) through CAN, 0 should be considered as the "Home" command
 
@@ -297,19 +318,21 @@ namespace BioBotApp.Model.Movement
             if (axis.Contains("x"))
             {
                 commandToSendCount = 1;
-                writeData("HX", billboard);
+                writeData("G28 X", billboard);
             }
             else if (axis.Contains("y"))
             {
                 commandToSendCount = 1;
-                writeData("HY", billboard);
+                writeData("G28 Y", billboard);
             }
+            /*
             else if (axis.Contains("tool"))
             {
                 commandToSendCount = 1;
                 toolToMove.setToolToMove(sourceToolRow, dbManager, toolRack);
                 writeData("HZ" + toolToMove.zAxisNumber, billboard);
             }
+            */
         }
 
 

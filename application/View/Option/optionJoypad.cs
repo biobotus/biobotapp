@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BioBotApp.Utils.Communication;
 //using BioBotApp.DataSets;
 using BioBotCommunication.Serial.Movement;
 

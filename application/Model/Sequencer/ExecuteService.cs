@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 /// <summary>
@@ -26,24 +27,34 @@ namespace BioBotApp.Model.Sequencer
         SerialProducer serialProducer;
         CanProducer canProducer;
         Billboard billboard;
+        Thread billboardCompletion;
+        private volatile bool isCancel = false;
 
         private ExecuteService()
         {
             this.dbManager = DBManager.Instance;
             commandsTODO = new Dictionary<int, BioBotDataSets.bbt_operationRow>();
             billboard = new Billboard();
-            billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent1;
+            billboardCompletion = new Thread(billboardCompletionRun);
+            billboardCompletion.Start();
             serialProducer = new SerialProducer(billboard);
             serialProducer.start();
-
             canProducer = new CanProducer(billboard);
             canProducer.start();
         }
 
-        private void Billboard_onBillboardCompletionEvent1(object sender, BillboardCompletionEvent e)
+        private void billboardCompletionRun()
         {
-            index++;
-            exectuteNext();
+            while (!isCancel)
+            {
+                Thread.Sleep(100);
+                if (billboard.getCompleted())
+                {
+                    billboard.resetCompleted();
+                    index++;
+                    exectuteNext();
+                }
+            }
         }
 
         public static ExecuteService Instance
@@ -69,9 +80,8 @@ namespace BioBotApp.Model.Sequencer
                     BioBotDataSets.bbt_protocolRow row = DBManager.Instance.projectDataset.bbt_protocol.FindBypk_id(commands[0].fk_protocol);
                     index = 0;
                     generateList(row);
-                    index = 0;
-                    exectuteNext();
-
+                    index = -1;
+                    billboard.setCompleted(true);
                 }
             }
         }
@@ -83,11 +93,9 @@ namespace BioBotApp.Model.Sequencer
                 return;
             }
             billboard.emptyList();
+            Console.WriteLine("Executing: " + commandsTODO[index].bbt_stepRow.description);
             EventBus.EventBus.Instance.post(new EventBus.Events.ExecutionService.ExecutionEvent(commandsTODO[index], this.billboard));
-            if (this.billboard.getConsumerRegisteredSize() == 0)
-            {
-                exectuteNext();
-            }
+            
         }
 
         public void generateList(BioBotDataSets.bbt_protocolRow protocolRow)
@@ -144,6 +152,7 @@ namespace BioBotApp.Model.Sequencer
             billboard.closeBillboard();
             canProducer.stopThread();
             serialProducer.stopThread();
+            isCancel = true;
         }
     }
 }

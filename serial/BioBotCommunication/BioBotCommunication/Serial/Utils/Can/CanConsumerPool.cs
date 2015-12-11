@@ -21,7 +21,7 @@ namespace BioBotCommunication.Serial.Utils.Can
             messagesToSend = new List<byte[]>();
             consumers = new List<CanConsumer>();
             this.billboard = billboard;
-            this.billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
+            //this.billboard.onBillboardCompletionEvent += Billboard_onBillboardCompletionEvent;
         }
         
 
@@ -36,12 +36,12 @@ namespace BioBotCommunication.Serial.Utils.Can
         {
             if (waitMessage == null) return;
             messagesToSend.Add(waitMessage);
-            CanConsumer consumer = new CanConsumer(billboard, waitMessage);
+            CanConsumer consumer = new CanConsumer(billboard, waitMessage, waitMessage);
             consumer.onCompletion += Consumer_onCompletion;
             consumer.start();
         }
 
-        private void Consumer_onCompletion(object sender, CanConsumerCompletionEventArgs e)
+        private void Consumer_onCompletion(object sender, ConsumerCompletionEvent e)
         {
             if (messagesToSend.Count == 0) return;
             messagesToSend.RemoveAt(0);

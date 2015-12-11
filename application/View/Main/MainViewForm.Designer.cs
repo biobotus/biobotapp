@@ -48,7 +48,7 @@
             this.ClientSize = new System.Drawing.Size(915, 422);
             this.Controls.Add(this.mainView1);
             this.Name = "MainViewForm";
-            this.Text = "MainViewForm";
+            this.Text = "Biobot application";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainViewForm_FormClosed);
             this.ResumeLayout(false);
 

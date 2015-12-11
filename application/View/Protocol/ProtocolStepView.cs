@@ -235,9 +235,19 @@ namespace BioBotApp.View.Protocol
 
             if (oldParentNode != newParentNode)
             {
-                oldParentNode.Nodes.Remove(protocolNode);
-                newParentNode.Nodes.Add(protocolNode);
-                oldParentNode = newParentNode;
+                if(newParentNode == null)
+                {
+                    oldParentNode.Nodes.Remove(protocolNode);
+                    tlvProtocols.Nodes.Add(protocolNode);
+                    oldParentNode = newParentNode;
+                }
+                else
+                {
+                    oldParentNode.Nodes.Remove(protocolNode);
+                    newParentNode.Nodes.Add(protocolNode);
+                    oldParentNode = newParentNode;
+                }
+                
             }
 
             int newIndex = oldParentNode.Nodes.IndexOf(protocolNode) + 1;
@@ -314,13 +324,25 @@ namespace BioBotApp.View.Protocol
                 oldParentNode = newParentNode;
             }
 
-
-            int newIndex = oldParentNode.Nodes.IndexOf(protocolNode) + 1;
-            if (newIndex != row.index)
+            if(oldParentNode == null)
             {
-                oldParentNode.Nodes.RemoveAt(oldParentNode.Nodes.IndexOf(protocolNode));
-                oldParentNode.Nodes.Insert(row.index - 1, protocolNode);
+                int newIndex = tlvProtocols.Nodes.IndexOf(protocolNode) + 1;
+                if (newIndex != row.index)
+                {
+                    tlvProtocols.Nodes.RemoveAt(tlvProtocols.Nodes.IndexOf(protocolNode));
+                    tlvProtocols.Nodes.Insert(row.index - 1, protocolNode);
+                }
             }
+            else
+            {
+                int newIndex = oldParentNode.Nodes.IndexOf(protocolNode) + 1;
+                if (newIndex != row.index)
+                {
+                    oldParentNode.Nodes.RemoveAt(oldParentNode.Nodes.IndexOf(protocolNode));
+                    oldParentNode.Nodes.Insert(row.index - 1, protocolNode);
+                }
+            }
+            
 
             protocolNode.setProtocolRow(row);
         }

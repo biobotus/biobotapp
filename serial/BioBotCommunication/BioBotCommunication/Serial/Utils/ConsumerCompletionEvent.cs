@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace BioBotCommunication.Serial.Utils
 {
-    public interface IConsumer
+    public class ConsumerCompletionEvent : EventArgs
     {
-        void notifyValue(Boolean value);
-        Boolean objectEquals(Object value, Object compare);
-        void stopThread();
     }
 }

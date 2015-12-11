@@ -71,6 +71,7 @@
     <Compile Include="Model\Data\Services\OperationReferenceProperty.cs" />
     <Compile Include="Model\Data\Services\OperationReferenceService.cs" />
     <Compile Include="Model\Data\Services\OperationService.cs" />
+    <Compile Include="Model\Data\Services\OperationTypeObjectTypeServices.cs" />
     <Compile Include="Model\Data\Services\OperationTypeService.cs" />
     <Compile Include="Model\Data\Services\PropertyService.cs" />
     <Compile Include="Model\Data\Services\PropertyTypeService.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Model\Sequencer\ExecuteService.cs" />
     <Compile Include="Model\Sequencer\Helpers\ICommand.cs" />
     <Compile Include="Model\Utils\Events\OnCloseModelEvent.cs" />
+    <Compile Include="Presenter\Deck\DeckPresenter.cs" />
     <Compile Include="Presenter\Jog\JogPresenter.cs" />
     <Compile Include="Presenter\Jog\MoveAxisEvent.cs" />
     <Compile Include="Presenter\Main\MainPresenter.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Presenter\ModulePluginManager\PathPresenter.cs" />
     <Compile Include="Presenter\Operation\OperationPresenter.cs" />
     <Compile Include="Presenter\Operation\OperationReference\OperationReferencePresenter.cs" />
+    <Compile Include="Presenter\Operation\OperationTypeObjectType\OperationTypeObjectTypePresenter.cs" />
     <Compile Include="Presenter\Properties\PropertiesPresenter.cs" />
     <Compile Include="Presenter\Protocols\ProtocolPresenter.cs" />
     <Compile Include="Presenter\Sequencer\SequencerPresenter.cs" />
@@ -135,6 +138,12 @@
     <Compile Include="View\Communication\CommunicationTestForm.Designer.cs">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Deck\AddModuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\AddModuleForm.designer.cs">
+      <DependentUpon>AddModuleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Deck\DeckForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,11 +157,24 @@
       <DependentUpon>DeckView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Deck\IDeckView.cs" />
+    <Compile Include="View\Deck\Module.cs" />
+    <Compile Include="View\Deck\ObjectTypeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Deck\ObjectTypeView.designer.cs">
+      <DependentUpon>ObjectTypeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Deck\ObjectView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Deck\ObjectView.Designer.cs">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Deck\UserDeckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Deck\UserDeckForm.Designer.cs">
+      <DependentUpon>UserDeckForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Execute\ExecuteView.cs">
       <SubType>UserControl</SubType>
@@ -247,11 +269,24 @@
     <Compile Include="View\Operation\OperationReference\OperationReferenceControl.Designer.cs">
       <DependentUpon>OperationReferenceControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Operation\OperationTypeObjectType\IOperationTypeObjectTypeView.cs" />
+    <Compile Include="View\Operation\OperationTypeObjectType\OperationTypeObjectTypeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Operation\OperationTypeObjectType\OperationTypeObjectTypeView.Designer.cs">
+      <DependentUpon>OperationTypeObjectTypeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Operation\OperationView2.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Operation\OperationView2.Designer.cs">
       <DependentUpon>OperationView2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Option\optionJoypad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Option\optionJoypad.Designer.cs">
+      <DependentUpon>optionJoypad.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Option\OptionMainControl.cs">
       <SubType>UserControl</SubType>
@@ -360,6 +395,12 @@
     <Compile Include="View\TestView\ObjectTypeTestForm.Designer.cs">
       <DependentUpon>ObjectTypeTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Utils\Console\ctrlConsole.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Utils\Console\ctrlConsole.Designer.cs">
+      <DependentUpon>ctrlConsole.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Utils\Controls\AbstractDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -409,14 +450,23 @@
     <EmbeddedResource Include="View\Communication\CommunicationTestForm.resx">
       <DependentUpon>CommunicationTestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\AddModuleForm.resx">
+      <DependentUpon>AddModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\DeckForm.resx">
       <DependentUpon>DeckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\DeckView.resx">
       <DependentUpon>DeckView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\ObjectTypeView.resx">
+      <DependentUpon>ObjectTypeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Deck\ObjectView.resx">
       <DependentUpon>ObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Deck\UserDeckForm.resx">
+      <DependentUpon>UserDeckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Execute\ExecuteView.resx">
       <DependentUpon>ExecuteView.cs</DependentUpon>
@@ -452,8 +502,14 @@
     <EmbeddedResource Include="View\Operation\OperationReference\OperationReferenceControl.resx">
       <DependentUpon>OperationReferenceControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Operation\OperationTypeObjectType\OperationTypeObjectTypeView.resx">
+      <DependentUpon>OperationTypeObjectTypeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Operation\OperationView2.resx">
       <DependentUpon>OperationView2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Option\optionJoypad.resx">
+      <DependentUpon>optionJoypad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Option\OptionMainView.resx">
       <DependentUpon>OptionMainView.cs</DependentUpon>
@@ -496,6 +552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\TestView\ObjectTypeTestForm.resx">
       <DependentUpon>ObjectTypeTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Utils\Console\ctrlConsole.resx">
+      <DependentUpon>ctrlConsole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Utils\Controls\AbstractDialog.resx">
       <DependentUpon>AbstractDialog.cs</DependentUpon>
