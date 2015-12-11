@@ -78,16 +78,8 @@ namespace SimpleTacClient
             // TODO verify that tempTB.Text is a float
             tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "set_target_temperature", tempTB.Text));
 
-            if (ventilCb.Checked)
-            {
-                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "enable_fan", ""));
-            }
-            else
-            {
-                tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "disable_fan", ""));
-            }
-            int vent = VentPct.Value * 10;
-            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, subModuleId, "set_fan_speed", vent.ToString()));
+            refreshSubModuleInformation(TACConstant.MODULE0);
+            refreshSubModuleInformation(TACConstant.MODULE1);
 
         }
 
@@ -146,8 +138,25 @@ namespace SimpleTacClient
 
             TACDLL.OptionCtrl.TacDescription tacDesc;
             tacDesc = (TACDLL.OptionCtrl.TacDescription)tacPlugin.GetModuleDescriptionControl(moduleId);
+            tacDesc.Dock = DockStyle.Fill;
             tacDescriptionPanel.Controls.Add(tacDesc);
         }
+
+
+        /// <summary>
+        /// Send command askin for information about a given submodule
+        /// </summary>
+        /// <param name="tacSubModule">the submodule we want information about</param>
+        private void refreshSubModuleInformation(int tacSubModule)
+        {
+            int moduleId = GetModuleId();
+            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, tacSubModule, "send_fan_speed", ""));
+            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, tacSubModule, "send_temperature", ""));
+            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, tacSubModule, "send_agitator_speed", ""));
+            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, tacSubModule, "send_turbidity", ""));
+            tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, tacSubModule, "send_goal_temperature", ""));
+        }
+
 
 
     }

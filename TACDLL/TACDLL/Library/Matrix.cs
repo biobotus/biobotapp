@@ -278,33 +278,6 @@ namespace TACDLL.Library
             return matrix;
         }
 
-        public static Matrix RandomMatrix(int iRows, int iCols, int dispersion)       // Function generates the random matrix
-        {
-            Random random = new Random();
-            Matrix matrix = new Matrix(iRows, iCols);
-            for (int i = 0; i < iRows; i++)
-                for (int j = 0; j < iCols; j++)
-                    matrix[i, j] = random.Next(-dispersion, dispersion);
-            return matrix;
-        }
-
-        public static Matrix Parse(string ps)                        // Function parses the matrix from string
-        {
-            string s = NormalizeMatrixString(ps);
-            string[] rows = Regex.Split(s, "\r\n");
-            string[] nums = rows[0].Split(' ');
-            Matrix matrix = new Matrix(rows.Length, nums.Length);
-            try
-            {
-                for (int i = 0; i < rows.Length; i++)
-                {
-                    nums = rows[i].Split(' ');
-                    for (int j = 0; j < nums.Length; j++) matrix[i, j] = double.Parse(nums[j]);
-                }
-            }
-            catch (FormatException) { throw new MException("Wrong input format!"); }
-            return matrix;
-        }
 
         public override string ToString()                           // Function returns matrix as a string
         {
@@ -586,26 +559,6 @@ namespace TACDLL.Library
             return r;
         }
 
-        public static string NormalizeMatrixString(string matStr)	// From Andy - thank you! :)
-        {
-            // Remove any multiple spaces
-            while (matStr.IndexOf("  ") != -1)
-                matStr = matStr.Replace("  ", " ");
-
-            // Remove any spaces before or after newlines
-            matStr = matStr.Replace(" \r\n", "\r\n");
-            matStr = matStr.Replace("\r\n ", "\r\n");
-
-            // If the data ends in a newline, remove the trailing newline.
-            // Make it easier by first replacing \r\n’s with |’s then
-            // restore the |’s with \r\n’s
-            matStr = matStr.Replace("\r\n", "|");
-            while (matStr.LastIndexOf("|") == (matStr.Length - 1))
-                matStr = matStr.Substring(0, matStr.Length - 1);
-
-            matStr = matStr.Replace("|", "\r\n");
-            return matStr.Trim();
-        }
 
         //   O P E R A T O R S
 
