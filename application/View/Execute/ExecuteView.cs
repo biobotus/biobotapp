@@ -86,7 +86,7 @@ namespace BioBotApp.View.Execute
 
         private void tlvProtocol_DragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Move;
+            e.Effect = DragDropEffects.Copy;
             //tlvProtocol.SelectedNode;
             //executeDropTreeNode = 
         }
@@ -98,7 +98,7 @@ namespace BioBotApp.View.Execute
 
         private void tlvProtocol_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            DoDragDrop(e.Item, DragDropEffects.Move);
+            DoDragDrop(e.Item, DragDropEffects.Copy);
         }
 
         private void btnExectue_Click(object sender, EventArgs e)

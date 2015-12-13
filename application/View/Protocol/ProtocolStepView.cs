@@ -189,7 +189,8 @@ namespace BioBotApp.View.Protocol
             else
             {
                 StepTreeNode stepNode = node as StepTreeNode;
-                if (stepNode.getId() == id)
+                BioBotDataSets.bbt_stepRow stepRow = stepNode.getStepRow();
+                if (stepRow.pk_id == id)
                 {
                     return stepNode;
                 }
@@ -214,50 +215,43 @@ namespace BioBotApp.View.Protocol
 
         public void modifyStepRow(BioBotDataSets.bbt_stepRow row)
         {
-            StepTreeNode protocolNode = null;
+            StepTreeNode stepNode = null;
             ProtocolTreeNode oldParentNode = null;
             ProtocolTreeNode newParentNode = null;
 
             foreach (TreeNode node in tlvProtocols.Nodes)
             {
-                protocolNode = findStepNodeById(node, row.pk_id);
-                if (protocolNode != null) break;
+                stepNode = findStepNodeById(node, row.pk_id);
+                if (stepNode != null) break;
             }
-            if (protocolNode != null)
+            if (stepNode != null)
             {
-                oldParentNode = protocolNode.Parent as ProtocolTreeNode;
+                oldParentNode = stepNode.Parent as ProtocolTreeNode;
             }
+
 
             foreach (TreeNode node in tlvProtocols.Nodes)
             {
                 newParentNode = findProtocolNodeById(node, row.fk_protocol);
+                if (newParentNode != null) break;
             }
-
-            if (oldParentNode != newParentNode)
+            if (oldParentNode != null)
             {
-                if(newParentNode == null)
+                if (oldParentNode != newParentNode)
                 {
-                    oldParentNode.Nodes.Remove(protocolNode);
-                    tlvProtocols.Nodes.Add(protocolNode);
+                    oldParentNode.Nodes.Remove(stepNode);
+                    newParentNode.Nodes.Add(stepNode);
                     oldParentNode = newParentNode;
                 }
-                else
+
+                int newIndex = oldParentNode.Nodes.IndexOf(stepNode) + 1;
+                if (newIndex != row.index)
                 {
-                    oldParentNode.Nodes.Remove(protocolNode);
-                    newParentNode.Nodes.Add(protocolNode);
-                    oldParentNode = newParentNode;
+                    oldParentNode.Nodes.RemoveAt(oldParentNode.Nodes.IndexOf(stepNode));
+                    oldParentNode.Nodes.Insert(row.index - 1, stepNode);
                 }
-                
+                stepNode.setStepRow(row);
             }
-
-            int newIndex = oldParentNode.Nodes.IndexOf(protocolNode) + 1;
-            if (newIndex != row.index)
-            {
-                oldParentNode.Nodes.RemoveAt(oldParentNode.Nodes.IndexOf(protocolNode));
-                oldParentNode.Nodes.Insert(row.index - 1, protocolNode);
-            }
-
-            protocolNode.setStepRow(row);
         }
 
         public void deleteStepRow(int id)
@@ -589,8 +583,10 @@ namespace BioBotApp.View.Protocol
             {
                 if (stepNode.getStepRow().index > 1)
                 {
+                    BioBotDataSets.bbt_stepRow stepRow = stepNode.getStepRow();
                     int index = stepNode.getStepRow().index;
-                    stepNode.getStepRow().index--;
+
+                    stepRow.index--;
 
                     TreeNode previousNode = stepNode.Parent.Nodes[index - 2] as TreeNode;
                     if (previousNode is ProtocolTreeNode)
@@ -607,7 +603,7 @@ namespace BioBotApp.View.Protocol
                         nextStepRow.index++;
                         this.stepPResenter.modifyStepRow(nextStepRow);
                     }
-                    this.stepPResenter.modifyStepRow(stepNode.getStepRow());
+                    this.stepPResenter.modifyStepRow(stepRow);
 
                 }
             }
@@ -744,14 +740,14 @@ namespace BioBotApp.View.Protocol
 
         private void tlvProtocols_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            DoDragDrop(e.Item, DragDropEffects.Move);
+            DoDragDrop(e.Item, DragDropEffects.Copy);
         }
 
         private void tlvProtocols_DragEnter(object sender, DragEventArgs e)
         {
             if (ShowToolbar)
             {
-                e.Effect = DragDropEffects.Move;
+                e.Effect = DragDropEffects.Copy;
             }
         }
 

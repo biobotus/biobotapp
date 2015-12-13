@@ -12,10 +12,6 @@ namespace BioBotCommunication.Serial.Utils.Can
 {
     public class CanConsumer : AbstractConsumer
     {
-        private readonly Billboard billboard;
-        private readonly byte[] waitValue;
-        private volatile bool isStopped = false;
-        private bool isNotified = false;
         private PCAN.PCANCom communication;
 
         public CanConsumer(Billboard billboard, byte[] waitValue, byte[] writeValue) : base(billboard, waitValue, writeValue)
@@ -40,6 +36,7 @@ namespace BioBotCommunication.Serial.Utils.Can
 
         public override void writeLine(object writeValue)
         {
+
             if (!(writeValue is byte[])) return;
             byte[] messageToSend = writeValue as byte[];
             TPCANMsg CANMsg = new TPCANMsg();
@@ -53,6 +50,8 @@ namespace BioBotCommunication.Serial.Utils.Can
             CANMsg.DATA[6] = messageToSend[6];
             CANMsg.DATA[7] = messageToSend[7];
             CANMsg.ID = Convert.ToUInt32(messageToSend[8]);
+            Console.WriteLine("Can send: ");
+            PCANCom.Instance.printPacket(messageToSend);
             CANQueue.Instance.add(CANMsg);
             CANQueue.Instance.executeFirst();
         }

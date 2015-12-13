@@ -65,7 +65,7 @@ namespace BioBotApp.Model.Movement
             if (stepRow == null) return;
             if (stepRow.bbt_objectRow.fk_object_type == 5 || stepRow.bbt_objectRow.fk_object_type == 6 || stepRow.bbt_objectRow.fk_object_type == 7 || stepRow.bbt_objectRow.fk_object_type == 13)
             {
-                if(stepRow.bbt_objectRow.pk_id == 6)
+                if(stepRow.bbt_objectRow.pk_id == 6 || stepRow.bbt_objectRow.pk_id == 7)
                 {
                     Move(e.operationRow, e.billboard);
                 }
@@ -95,7 +95,7 @@ namespace BioBotApp.Model.Movement
 
         public void writeData(String data, Billboard billboard)
         {
-            consumerPool.addConsumer(new SerialConsumer(billboard, "Completed", data));
+            consumerPool.addConsumer(new SerialConsumer(billboard, data, data));
         }
         
 
@@ -115,7 +115,7 @@ namespace BioBotApp.Model.Movement
             }
             else if (operationRow.bbt_operation_typeRow.description == "Move To X")
             {
-                if(operationRow.bbt_stepRow.bbt_objectRow.pk_id == 6)
+                if(operationRow.bbt_stepRow.bbt_objectRow.pk_id == 7)
                 {
                     writeData("G1 X" + operationRow.value, billboard);
                 }
@@ -126,7 +126,7 @@ namespace BioBotApp.Model.Movement
             }
             else if (operationRow.bbt_operation_typeRow.description == "Move To Y")
             {
-                if (operationRow.bbt_stepRow.bbt_objectRow.pk_id == 6)
+                if (operationRow.bbt_stepRow.bbt_objectRow.pk_id == 7)
                 {
                     writeData("G1 Y" + operationRow.value, billboard);
                 }

@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DLL\MultiChannel\MultiChannelPipette.cs" />
     <Compile Include="DLL\PipetteSimple\PipetteSimple.cs" />
     <Compile Include="Model\Data\BioBotDataSets.cs">
@@ -571,6 +576,17 @@
     <EmbeddedResource Include="View\Utils\CrudOptions\crudOptions.resx">
       <DependentUpon>crudOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Model\Data\BioBotDataSets.xsc">
       <DependentUpon>BioBotDataSets.xsd</DependentUpon>
     </None>

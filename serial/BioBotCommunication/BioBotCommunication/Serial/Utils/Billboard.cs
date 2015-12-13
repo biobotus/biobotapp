@@ -57,11 +57,6 @@ namespace BioBotCommunication.Serial.Utils
                 }
                 if (listValues.Count == 0)
                 {
-                    lock (isCompleted)
-                    {
-                        isCompleted = true;
-                    }
-
                     Console.WriteLine("END OF OPERATION: " + valueId);
                 }
             }
@@ -127,6 +122,15 @@ namespace BioBotCommunication.Serial.Utils
                 if (isRegistered)
                 {
                     listConsumers.Remove(consumer);
+                    if (listConsumers.Count == 0)
+                    {
+                        lock (isCompleted)
+                        {
+                            isCompleted = true;
+                        }
+                    }
+
+
                     isRegistered = false;
                 }
                 return isRegistered;

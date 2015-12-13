@@ -23,7 +23,7 @@ namespace BioBotCommunication.Serial.Utils.Serial
             String valueString = value as String;
             String compareString = compare as String;
             if (valueString == null || compareString == null) return false;
-            return valueString.Contains(compareString);
+            return compareString.Contains(valueString.Replace("\r", "").Replace("\n",""));
         }
 
         public override void writeLine(object writeValue)

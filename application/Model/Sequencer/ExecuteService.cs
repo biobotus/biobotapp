@@ -47,7 +47,7 @@ namespace BioBotApp.Model.Sequencer
         {
             while (!isCancel)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
                 if (billboard.getCompleted())
                 {
                     billboard.resetCompleted();
