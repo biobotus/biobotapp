@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Utils.Communication.pcan;
 using TACDLL.Can;
+
 namespace TACDLL.OptionCtrl
 {
     /// <summary>
@@ -67,12 +68,6 @@ namespace TACDLL.OptionCtrl
             refreshSubModuleInformation(TACConstant.MODULE1);
         }
 
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TACDLL.Chart.DataDisplayForm f = new TACDLL.Chart.DataDisplayForm();
-            f.Show();
-        }
-
         #endregion
 
         #region CommunicationHandling
@@ -103,8 +98,31 @@ namespace TACDLL.OptionCtrl
 
 
 
+
         #endregion
 
+        private void showPlotResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TACDLL.Chart.DataDisplayForm f = new TACDLL.Chart.DataDisplayForm(tac, tacId, getActiveSubmodulId());
+            f.Show();
+        }
 
+        private int getActiveSubmodulId()
+        {
+            int subModuleIndex = 0;
+
+            switch (subModulesTab.SelectedIndex)
+            {
+                case 0:
+                    subModuleIndex = TACConstant.MODULE0;
+                    break;
+                case 1:
+                    subModuleIndex = TACConstant.MODULE1;
+                    break;
+                default:
+                    break;
+            }
+            return subModuleIndex;
+        }
     }
 }

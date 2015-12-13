@@ -28,21 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tacParamGB = new System.Windows.Forms.GroupBox();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.subModulesTab = new System.Windows.Forms.TabControl();
             this.tabSubModule1 = new System.Windows.Forms.TabPage();
-            this.subModule1Desc = new TACDLL.UI.SubModuleDesc();
             this.tabSubModule2 = new System.Windows.Forms.TabPage();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showPlotResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subModule1Desc = new TACDLL.UI.SubModuleDesc();
             this.subModule2Desc = new TACDLL.UI.SubModuleDesc();
             this.tacParamGB.SuspendLayout();
             this.subModulesTab.SuspendLayout();
             this.tabSubModule1.SuspendLayout();
             this.tabSubModule2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tacParamGB
             // 
+            this.tacParamGB.ContextMenuStrip = this.contextMenuStrip1;
             this.tacParamGB.Controls.Add(this.refreshBtn);
             this.tacParamGB.Controls.Add(this.subModulesTab);
             this.tacParamGB.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -84,13 +89,6 @@
             this.tabSubModule1.Text = "Sub-module 1";
             this.tabSubModule1.UseVisualStyleBackColor = true;
             // 
-            // subModule1Desc
-            // 
-            this.subModule1Desc.Location = new System.Drawing.Point(0, 0);
-            this.subModule1Desc.Name = "subModule1Desc";
-            this.subModule1Desc.Size = new System.Drawing.Size(186, 81);
-            this.subModule1Desc.TabIndex = 0;
-            // 
             // tabSubModule2
             // 
             this.tabSubModule2.Controls.Add(this.subModule2Desc);
@@ -101,6 +99,27 @@
             this.tabSubModule2.TabIndex = 1;
             this.tabSubModule2.Text = "Sub-module 2";
             this.tabSubModule2.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPlotResultToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(160, 26);
+            // 
+            // showPlotResultToolStripMenuItem
+            // 
+            this.showPlotResultToolStripMenuItem.Name = "showPlotResultToolStripMenuItem";
+            this.showPlotResultToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.showPlotResultToolStripMenuItem.Text = "Show plot result";
+            this.showPlotResultToolStripMenuItem.Click += new System.EventHandler(this.showPlotResultToolStripMenuItem_Click);
+            // 
+            // subModule1Desc
+            // 
+            this.subModule1Desc.Location = new System.Drawing.Point(0, 0);
+            this.subModule1Desc.Name = "subModule1Desc";
+            this.subModule1Desc.Size = new System.Drawing.Size(186, 81);
+            this.subModule1Desc.TabIndex = 0;
             // 
             // subModule2Desc
             // 
@@ -120,6 +139,7 @@
             this.subModulesTab.ResumeLayout(false);
             this.tabSubModule1.ResumeLayout(false);
             this.tabSubModule2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -133,5 +153,7 @@
         private UI.SubModuleDesc subModule1Desc;
         private System.Windows.Forms.Button refreshBtn;
         private UI.SubModuleDesc subModule2Desc;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showPlotResultToolStripMenuItem;
     }
 }

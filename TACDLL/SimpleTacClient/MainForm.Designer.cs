@@ -37,7 +37,6 @@
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sendCommandBtn = new System.Windows.Forms.Button();
-            this.autoCalibrationBtn = new System.Windows.Forms.Button();
             this.tacDescriptionPanel = new System.Windows.Forms.Panel();
             this.sub1RB = new System.Windows.Forms.RadioButton();
             this.sub2RB = new System.Windows.Forms.RadioButton();
@@ -59,9 +58,9 @@
             // 
             // tempTB
             // 
-            this.tempTB.Location = new System.Drawing.Point(97, 123);
+            this.tempTB.Location = new System.Drawing.Point(153, 123);
             this.tempTB.Name = "tempTB";
-            this.tempTB.Size = new System.Drawing.Size(59, 20);
+            this.tempTB.Size = new System.Drawing.Size(70, 20);
             this.tempTB.TabIndex = 4;
             this.tempTB.Text = "0.00";
             // 
@@ -123,16 +122,6 @@
             this.sendCommandBtn.Text = "send";
             this.sendCommandBtn.UseVisualStyleBackColor = true;
             this.sendCommandBtn.Click += new System.EventHandler(this.sendCommandBtn_Click);
-            // 
-            // autoCalibrationBtn
-            // 
-            this.autoCalibrationBtn.Location = new System.Drawing.Point(17, 158);
-            this.autoCalibrationBtn.Name = "autoCalibrationBtn";
-            this.autoCalibrationBtn.Size = new System.Drawing.Size(102, 23);
-            this.autoCalibrationBtn.TabIndex = 16;
-            this.autoCalibrationBtn.Text = "Auto Calibration";
-            this.autoCalibrationBtn.UseVisualStyleBackColor = true;
-            this.autoCalibrationBtn.Click += new System.EventHandler(this.autoCallibrationBtn_Click);
             // 
             // tacDescriptionPanel
             // 
@@ -205,7 +194,6 @@
             this.Controls.Add(this.sub2RB);
             this.Controls.Add(this.sub1RB);
             this.Controls.Add(this.tacDescriptionPanel);
-            this.Controls.Add(this.autoCalibrationBtn);
             this.Controls.Add(this.sendCommandBtn);
             this.Controls.Add(this.agitPct);
             this.Controls.Add(this.tempTB);
@@ -232,7 +220,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Button sendCommandBtn;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private System.Windows.Forms.Button autoCalibrationBtn;
         private System.Windows.Forms.Panel tacDescriptionPanel;
         private System.Windows.Forms.RadioButton sub1RB;
         private System.Windows.Forms.RadioButton sub2RB;

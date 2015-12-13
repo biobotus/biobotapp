@@ -589,11 +589,13 @@ namespace TACDLL.DataSets {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class dtTacSampleDataTable : global::System.Data.TypedTableBase<dtTacSampleRow> {
             
-            private global::System.Data.DataColumn columnsample;
+            private global::System.Data.DataColumn columntemperature;
             
             private global::System.Data.DataColumn columndate;
             
-            private global::System.Data.DataColumn columntype;
+            private global::System.Data.DataColumn columnopticalDensity;
+            
+            private global::System.Data.DataColumn columntacId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -630,9 +632,9 @@ namespace TACDLL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn sampleColumn {
+            public global::System.Data.DataColumn temperatureColumn {
                 get {
-                    return this.columnsample;
+                    return this.columntemperature;
                 }
             }
             
@@ -646,9 +648,17 @@ namespace TACDLL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn typeColumn {
+            public global::System.Data.DataColumn opticalDensityColumn {
                 get {
-                    return this.columntype;
+                    return this.columnopticalDensity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tacIdColumn {
+                get {
+                    return this.columntacId;
                 }
             }
             
@@ -689,12 +699,13 @@ namespace TACDLL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtTacSampleRow AdddtTacSampleRow(double sample, System.DateTime date, string type) {
+            public dtTacSampleRow AdddtTacSampleRow(double temperature, System.DateTime date, double opticalDensity, short tacId) {
                 dtTacSampleRow rowdtTacSampleRow = ((dtTacSampleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        sample,
+                        temperature,
                         date,
-                        type};
+                        opticalDensity,
+                        tacId};
                 rowdtTacSampleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtTacSampleRow);
                 return rowdtTacSampleRow;
@@ -717,20 +728,23 @@ namespace TACDLL.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnsample = base.Columns["sample"];
+                this.columntemperature = base.Columns["temperature"];
                 this.columndate = base.Columns["date"];
-                this.columntype = base.Columns["type"];
+                this.columnopticalDensity = base.Columns["opticalDensity"];
+                this.columntacId = base.Columns["tacId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnsample = new global::System.Data.DataColumn("sample", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsample);
+                this.columntemperature = new global::System.Data.DataColumn("temperature", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntemperature);
                 this.columndate = new global::System.Data.DataColumn("date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndate);
-                this.columntype = new global::System.Data.DataColumn("type", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntype);
+                this.columnopticalDensity = new global::System.Data.DataColumn("opticalDensity", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnopticalDensity);
+                this.columntacId = new global::System.Data.DataColumn("tacId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntacId);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -975,17 +989,17 @@ namespace TACDLL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double sample {
+            public double temperature {
                 get {
                     try {
-                        return ((double)(this[this.tabledtTacSample.sampleColumn]));
+                        return ((double)(this[this.tabledtTacSample.temperatureColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'sample\' dans la table \'dtTacSample\' est DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'temperature\' dans la table \'dtTacSample\' est DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledtTacSample.sampleColumn] = value;
+                    this[this.tabledtTacSample.temperatureColumn] = value;
                 }
             }
             
@@ -1007,30 +1021,47 @@ namespace TACDLL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string type {
+            public double opticalDensity {
                 get {
                     try {
-                        return ((string)(this[this.tabledtTacSample.typeColumn]));
+                        return ((double)(this[this.tabledtTacSample.opticalDensityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'type\' dans la table \'dtTacSample\' est DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'opticalDensity\' dans la table \'dtTacSample\' est DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tabledtTacSample.typeColumn] = value;
+                    this[this.tabledtTacSample.opticalDensityColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IssampleNull() {
-                return this.IsNull(this.tabledtTacSample.sampleColumn);
+            public short tacId {
+                get {
+                    try {
+                        return ((short)(this[this.tabledtTacSample.tacIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'tacId\' dans la table \'dtTacSample\' est DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTacSample.tacIdColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetsampleNull() {
-                this[this.tabledtTacSample.sampleColumn] = global::System.Convert.DBNull;
+            public bool IstemperatureNull() {
+                return this.IsNull(this.tabledtTacSample.temperatureColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SettemperatureNull() {
+                this[this.tabledtTacSample.temperatureColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1047,14 +1078,26 @@ namespace TACDLL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IstypeNull() {
-                return this.IsNull(this.tabledtTacSample.typeColumn);
+            public bool IsopticalDensityNull() {
+                return this.IsNull(this.tabledtTacSample.opticalDensityColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SettypeNull() {
-                this[this.tabledtTacSample.typeColumn] = global::System.Convert.DBNull;
+            public void SetopticalDensityNull() {
+                this[this.tabledtTacSample.opticalDensityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IstacIdNull() {
+                return this.IsNull(this.tabledtTacSample.tacIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SettacIdNull() {
+                this[this.tabledtTacSample.tacIdColumn] = global::System.Convert.DBNull;
             }
         }
         

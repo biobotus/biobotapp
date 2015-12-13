@@ -53,10 +53,10 @@
   <ItemGroup>
     <Compile Include="Can\TAC2CAN.cs" />
     <Compile Include="Can\TACConstant.cs" />
-    <Compile Include="Chart\DataDisplayForm.cs">
+    <Compile Include="UI\Chart\DataDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Chart\DataDisplayForm.Designer.cs">
+    <Compile Include="UI\Chart\DataDisplayForm.Designer.cs">
       <DependentUpon>DataDisplayForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSets\DataManager.cs" />
@@ -134,7 +134,7 @@
     <Content Include="Resources\pencil.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Chart\DataDisplayForm.resx">
+    <EmbeddedResource Include="UI\Chart\DataDisplayForm.resx">
       <DependentUpon>DataDisplayForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AbstractDialog.resx">
