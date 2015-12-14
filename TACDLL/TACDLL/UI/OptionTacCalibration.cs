@@ -104,6 +104,9 @@ namespace TACDLL.OptionCtrl
                 opticalDesityValue = opticalDesityValue.Select(d => Math.Log(d)).ToArray();
 
                 Matrix res = Matrix.PolyFit(tacSample, opticalDesityValue, 3);
+                MesureToOpticalDensity.SaveTacODCalibration(112, res.mat);
+                var test = MesureToOpticalDensity.ConvertMesureToDo(112, 0.1762);
+                var test2 = MesureToOpticalDensity.ConvertMesureToDo(112, 0.849);
                 Console.WriteLine(res);
             }
             else

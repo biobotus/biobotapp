@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using BioBotApp.Utils.Communication.pcan;
 using TACDLL.Can;
-
+using TACDLL.Library;
 namespace TACDLL.Chart
 {
     public partial class DataDisplayForm : Form
@@ -51,21 +51,42 @@ namespace TACDLL.Chart
             isNewSampleRequired = true;
             tac.ExecuteCommand(TacDll.BuildTacCmd(tacId, submodule, "send_temperature", ""));
             tac.ExecuteCommand(TacDll.BuildTacCmd(tacId, submodule, "send_turbidity", ""));
-            AddSampleRow(Math.Cos(count), Math.Floor(count / 10) + 1);
             count++;
         }
 
         private void AddSampleRow(double temp, double opticalDensity)
         {
             System.DateTime x = System.DateTime.Now;
-            resultChart.Series[0].Points.AddXY(x.ToLocalTime(), Math.Cos(count));
-            resultChart.Series[1].Points.AddXY(x.ToLocalTime(), Math.Floor(count / 10) + 1);
-            DataRow row = dataTable.NewRow();
-            row["tacId"] = tacId;
-            row["date"] = x;
-            row["opticalDensity"] = opticalDensity;
-            row["temperature"] = temp;
-            dataTable.Rows.Add(row);
+
+            if (this.resultChart.InvokeRequired)
+            {
+                this.resultChart.BeginInvoke((MethodInvoker)delegate () 
+                    {
+                        resultChart.Series[0].Points.AddXY(x.ToLocalTime(), temp);
+                        resultChart.Series[1].Points.AddXY(x.ToLocalTime(), opticalDensity);
+
+                        DataRow row = dataTable.NewRow();
+                        row["tacId"] = tacId;
+                        row["date"] = x;
+                        row["opticalDensity"] = opticalDensity;
+                        row["temperature"] = temp;
+                        dataTable.Rows.Add(row);
+                    });
+            }
+            else
+            {
+                resultChart.Series[0].Points.AddXY(x.ToLocalTime(), temp);
+                resultChart.Series[1].Points.AddXY(x.ToLocalTime(), opticalDensity);
+
+                DataRow row = dataTable.NewRow();
+                row["tacId"] = tacId;
+                row["date"] = x;
+                row["opticalDensity"] = opticalDensity;
+                row["temperature"] = temp;
+                dataTable.Rows.Add(row);
+            }
+            
+
         }
 
         private void activateBtn_Click(object sender, EventArgs e)
@@ -178,7 +199,7 @@ namespace TACDLL.Chart
                     isNewDo = false;
                     isNewTemp = false;
                     isNewSampleRequired = false;
-                    AddSampleRow(newTemp, newDo);
+                    AddSampleRow(newTemp, MesureToOpticalDensity.ConvertMesureToDo(tacId, newDo));
                 }
             }
         }

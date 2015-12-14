@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Utils.Communication.pcan;
 using TACDLL.Can;
-
+using TACDLL.Library;
 namespace TACDLL.OptionCtrl
 {
     /// <summary>
@@ -90,7 +90,7 @@ namespace TACDLL.OptionCtrl
                         subModule1Desc.SetCurrentFan(e.CanMsg.DATA[4]);
                         break;
                     case TACConstant.INST_GET_TURBIDITY:
-                        subModule1Desc.SetCurrentTurbidity(BitConverter.ToSingle(e.CanMsg.DATA, 4));
+                        subModule1Desc.SetCurrentTurbidity(MesureToOpticalDensity.ConvertMesureToDo(tacId, BitConverter.ToSingle(e.CanMsg.DATA, 4)));
                         break;
                 }
             }

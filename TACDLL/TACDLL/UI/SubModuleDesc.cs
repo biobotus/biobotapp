@@ -15,6 +15,7 @@ namespace TACDLL.UI
         public SubModuleDesc()
         {
             InitializeComponent();
+            Library.MesureToOpticalDensity.ConvertMesureToDo(112, 0.25);
         }
 
         #region labelSetter
@@ -75,7 +76,7 @@ namespace TACDLL.UI
         /// Set the current turbidity label with a value in a thread safe fashion
         /// </summary>
         /// <param name="turbido">the value to be set</param>
-        public void SetCurrentTurbidity(float turbido)
+        public void SetCurrentTurbidity(double turbido)
         {
             if (this.OpticalDensityLabel.InvokeRequired)
             {

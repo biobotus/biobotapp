@@ -39,7 +39,7 @@
             // 
             // btnValidation
             // 
-            this.btnValidation.Location = new System.Drawing.Point(164, 3);
+            this.btnValidation.Location = new System.Drawing.Point(192, 4);
             this.btnValidation.Name = "btnValidation";
             this.btnValidation.Size = new System.Drawing.Size(67, 31);
             this.btnValidation.TabIndex = 0;
@@ -63,13 +63,15 @@
             // cmbTacSelector
             // 
             this.cmbTacSelector.FormattingEnabled = true;
-            this.cmbTacSelector.Location = new System.Drawing.Point(12, 10);
+            this.cmbTacSelector.Location = new System.Drawing.Point(90, 10);
             this.cmbTacSelector.Name = "cmbTacSelector";
-            this.cmbTacSelector.Size = new System.Drawing.Size(146, 21);
+            this.cmbTacSelector.Size = new System.Drawing.Size(96, 21);
             this.cmbTacSelector.TabIndex = 3;
             // 
             // crudOptions1
             // 
+            this.crudOptions1.ButtonDeleteVisible = false;
+            this.crudOptions1.ButtonModifyVisible = false;
             this.crudOptions1.ButtonRefreshVisible = false;
             this.crudOptions1.Dock = System.Windows.Forms.DockStyle.Top;
             this.crudOptions1.LayoutLeftToRight = System.Windows.Forms.FlowDirection.RightToLeft;
