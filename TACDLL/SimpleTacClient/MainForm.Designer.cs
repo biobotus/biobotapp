@@ -43,6 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.agitationCb = new System.Windows.Forms.CheckBox();
             this.moduleIdTxt = new System.Windows.Forms.TextBox();
+            this.smallProtBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.agitPct)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -183,11 +184,22 @@
             this.moduleIdTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.moduleIdTxt_KeyUp);
             this.moduleIdTxt.Validated += new System.EventHandler(this.moduleIdTxt_Validated);
             // 
+            // smallProtBtn
+            // 
+            this.smallProtBtn.Location = new System.Drawing.Point(7, 159);
+            this.smallProtBtn.Name = "smallProtBtn";
+            this.smallProtBtn.Size = new System.Drawing.Size(75, 23);
+            this.smallProtBtn.TabIndex = 25;
+            this.smallProtBtn.Text = "Start growth";
+            this.smallProtBtn.UseVisualStyleBackColor = true;
+            this.smallProtBtn.Click += new System.EventHandler(this.smallProtBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(260, 356);
+            this.Controls.Add(this.smallProtBtn);
             this.Controls.Add(this.moduleIdTxt);
             this.Controls.Add(this.agitationCb);
             this.Controls.Add(this.label3);
@@ -226,6 +238,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox agitationCb;
         private System.Windows.Forms.TextBox moduleIdTxt;
+        private System.Windows.Forms.Button smallProtBtn;
     }
 }
 

@@ -2,12 +2,15 @@
 using System.Windows.Forms;
 using TACDLL;
 using TACDLL.Can;
+
 namespace SimpleTacClient
 {
     public partial class MainForm : Form
     {
         Option.frmOptions option;
         TacDll tacPlugin;
+        SmallProtocol smallProt;
+
         public MainForm(TacDll dll)
         {
             InitializeComponent();
@@ -157,7 +160,25 @@ namespace SimpleTacClient
             tacPlugin.ExecuteCommand(TacDll.BuildTacCmd(moduleId, tacSubModule, "send_goal_temperature", ""));
         }
 
+        private void smallProtBtn_Click(object sender, EventArgs e)
+        {
+            int moduleId = GetModuleId();
+            SmallProtDialog protDial = new SmallProtDialog();
+            DialogResult result = protDial.ShowDialog();
 
+            double tempHigh, tempLow, doValue;
 
+            if (result == DialogResult.Yes)
+            {
+                tempHigh = protDial.getTempHigh();
+                tempLow = protDial.getTempLow();
+                doValue = protDial.getDoThreshold();
+
+                smallProt = new SmallProtocol(tacPlugin, moduleId, GetSubModuleId(), tempHigh, tempLow, doValue);
+                smallProt.start();
+            }
+
+            
+        }
     }
 }

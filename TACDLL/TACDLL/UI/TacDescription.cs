@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BioBotApp.Utils.Communication.pcan;
 using TACDLL.Can;
 using TACDLL.Library;
+
 namespace TACDLL.OptionCtrl
 {
     /// <summary>
